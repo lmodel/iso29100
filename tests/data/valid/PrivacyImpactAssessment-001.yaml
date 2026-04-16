@@ -6,7 +6,7 @@ assessment_scope: >-
   behavioural analytics on the ACME Corp customer portal, including
   cross-session profiling and cohort-based personalisation.
 assessment_date: "2025-06-01"
-assessor: Privacy Team, ACME Corp (lead: Jane Smith DPO)
+assessor: "Privacy Team, ACME Corp (lead: Jane Smith DPO)"
 processing_activities_assessed:
   - iso29100:activity-order-fulfilment
 risks_identified:

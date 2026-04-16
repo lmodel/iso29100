@@ -1,0 +1,3258 @@
+name: iso29100
+annotations:
+  standard_reference:
+    tag: standard_reference
+    value: ISO/IEC 29100:2024(E)
+  standard_title:
+    tag: standard_title
+    value: "Information technology \u2014 Security techniques \u2014 Privacy framework"
+  standard_edition:
+    tag: standard_edition
+    value: Second edition
+  standard_date:
+    tag: standard_date
+    value: 2024-02
+  previous_edition:
+    tag: previous_edition
+    value: ISO/IEC 29100:2011/Amd 1:2018
+  rights_notice:
+    tag: rights_notice
+    value: This project is licensed under Apache-2.0 for original code and schema
+      structure. ISO/IEC standards text is owned by ISO and is not redistributed by
+      this project license.
+  schema_maintainer:
+    tag: schema_maintainer
+    value: noel.mcloughlin@gmail.com
+  schema_status:
+    tag: schema_status
+    value: stable
+description: 'A comprehensive LinkML schema modeling the ISO/IEC 29100:2024 privacy
+  framework for information and communication technology (ICT) systems. Captures actors
+  and roles, PII recognition, privacy safeguarding requirements, the eleven privacy
+  principles, and the privacy risk management process.
+
+  This schema covers: - Privacy framework actors (PII principal, controller, processor,
+  third party) - Personally identifiable information (PII) and its categories - Privacy
+  principles (11 principles from Clause 6) - Privacy safeguarding requirements and
+  influencing factors - Privacy risk management including privacy impact assessment
+  - Privacy policies, privacy controls, consent records, and privacy preferences'
+title: 'ISO 29100 / Privacy Framework: LinkML Schema'
+id: https://w3id.org/lmodel/iso29100
+version: 1.0.0
+imports:
+- linkml:types
+license: https://www.apache.org/licenses/LICENSE-2.0
+prefixes:
+  linkml:
+    prefix_prefix: linkml
+    prefix_reference: https://w3id.org/linkml/
+  iso29100:
+    prefix_prefix: iso29100
+    prefix_reference: https://w3id.org/lmodel/iso29100/
+  iso27001:
+    prefix_prefix: iso27001
+    prefix_reference: https://w3id.org/lmodel/iso27001/
+  schema:
+    prefix_prefix: schema
+    prefix_reference: http://schema.org/
+  dcterms:
+    prefix_prefix: dcterms
+    prefix_reference: http://purl.org/dc/terms/
+  rdfs:
+    prefix_prefix: rdfs
+    prefix_reference: http://www.w3.org/2000/01/rdf-schema#
+  dpv:
+    prefix_prefix: dpv
+    prefix_reference: https://w3id.org/dpv#
+default_prefix: iso29100
+default_range: string
+subsets:
+  privacy_framework_core:
+    name: privacy_framework_core
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyFrameworkCore
+    description: "Core privacy framework elements: actors, roles, PII concept, interactions,\
+      \ and the overall framework container (Clauses 5.1\u20135.3)."
+    comments:
+    - Covers the fundamental building blocks of the privacy framework
+    from_schema: https://w3id.org/lmodel/iso29100
+  pii_recognition:
+    name: pii_recognition
+    definition_uri: https://w3id.org/lmodel/iso29100/PiiRecognition
+    description: Elements relating to recognizing and categorizing personally identifiable
+      information, including identifiers, sensitivity, and pseudonymization (Clause
+      5.4).
+    from_schema: https://w3id.org/lmodel/iso29100
+  privacy_safeguarding:
+    name: privacy_safeguarding
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacySafeguarding
+    description: 'Privacy safeguarding requirements and their influencing factors:
+      legal, regulatory, contractual, business, and other factors (Clause 5.5).'
+    from_schema: https://w3id.org/lmodel/iso29100
+  privacy_governance:
+    name: privacy_governance
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyGovernance
+    description: "Privacy policies, privacy controls, and governance elements that\
+      \ implement safeguarding requirements (Clauses 5.6\u20135.7)."
+    from_schema: https://w3id.org/lmodel/iso29100
+  privacy_principles:
+    name: privacy_principles
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyPrinciples
+    annotations:
+      principle_count:
+        tag: principle_count
+        value: '11'
+    description: The eleven privacy principles defined in Clause 6 of ISO/IEC 29100:2024.
+      These principles guide the design and operation of privacy programs.
+    from_schema: https://w3id.org/lmodel/iso29100
+  privacy_risk_management:
+    name: privacy_risk_management
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyRiskManagement
+    description: "Elements supporting privacy risk management, including privacy impact\
+      \ assessments and privacy risk treatment (Clauses 3.17\u20133.18, 5.5)."
+    from_schema: https://w3id.org/lmodel/iso29100
+types:
+  positive_integer_type:
+    name: positive_integer_type
+    definition_uri: https://w3id.org/lmodel/iso29100/PositiveIntegerType
+    description: Integer greater than zero; natural number explicitly excluding zero.
+    from_schema: https://w3id.org/lmodel/iso29100
+    base: int
+    uri: xsd:positiveInteger
+  duration_type:
+    name: duration_type
+    definition_uri: https://w3id.org/lmodel/iso29100/DurationType
+    description: ISO 8601 duration value such as P1Y, P30D, or PT4H.
+    from_schema: https://w3id.org/lmodel/iso29100
+    base: str
+    uri: xsd:duration
+  string:
+    name: string
+    definition_uri: https://w3id.org/linkml/String
+    description: A character string
+    notes:
+    - In RDF serializations, a slot with range of string is treated as a literal or
+      type xsd:string.   If you are authoring schemas in LinkML YAML, the type is
+      referenced with the lower case "string".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Text
+    base: str
+    uri: xsd:string
+  integer:
+    name: integer
+    definition_uri: https://w3id.org/linkml/Integer
+    description: An integer
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "integer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Integer
+    base: int
+    uri: xsd:integer
+  boolean:
+    name: boolean
+    definition_uri: https://w3id.org/linkml/Boolean
+    description: A binary (true or false) value
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "boolean".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Boolean
+    base: Bool
+    uri: xsd:boolean
+    repr: bool
+  float:
+    name: float
+    definition_uri: https://w3id.org/linkml/Float
+    description: A real number that conforms to the xsd:float specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "float".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:float
+  double:
+    name: double
+    definition_uri: https://w3id.org/linkml/Double
+    description: A real number that conforms to the xsd:double specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "double".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:Float
+    base: float
+    uri: xsd:double
+  decimal:
+    name: decimal
+    definition_uri: https://w3id.org/linkml/Decimal
+    description: A real number with arbitrary precision that conforms to the xsd:decimal
+      specification
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "decimal".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    broad_mappings:
+    - schema:Number
+    base: Decimal
+    uri: xsd:decimal
+  time:
+    name: time
+    definition_uri: https://w3id.org/linkml/Time
+    description: A time object represents a (local) time of day, independent of any
+      particular day
+    notes:
+    - URI is dateTime because OWL reasoners do not work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "time".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Time
+    base: XSDTime
+    uri: xsd:time
+    repr: str
+  date:
+    name: date
+    definition_uri: https://w3id.org/linkml/Date
+    description: a date (year, month and day) in an idealized calendar
+    notes:
+    - URI is dateTime because OWL reasoners don't work with straight date or time
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:Date
+    base: XSDDate
+    uri: xsd:date
+    repr: str
+  datetime:
+    name: datetime
+    definition_uri: https://w3id.org/linkml/Datetime
+    description: The combination of a date and time
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    exact_mappings:
+    - schema:DateTime
+    base: XSDDateTime
+    uri: xsd:dateTime
+    repr: str
+  date_or_datetime:
+    name: date_or_datetime
+    definition_uri: https://w3id.org/linkml/DateOrDatetime
+    description: Either a date or a datetime
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "date_or_datetime".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: linkml:DateOrDatetime
+    repr: str
+  uriorcurie:
+    name: uriorcurie
+    definition_uri: https://w3id.org/linkml/Uriorcurie
+    description: a URI or a CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uriorcurie".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: URIorCURIE
+    uri: xsd:anyURI
+    repr: str
+  curie:
+    name: curie
+    definition_uri: https://w3id.org/linkml/Curie
+    conforms_to: https://www.w3.org/TR/curie/
+    description: a compact URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "curie".
+    comments:
+    - in RDF serializations this MUST be expanded to a URI
+    - in non-RDF serializations MAY be serialized as the compact representation
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: Curie
+    uri: xsd:string
+    repr: str
+  uri:
+    name: uri
+    definition_uri: https://w3id.org/linkml/Uri
+    conforms_to: https://www.ietf.org/rfc/rfc3987.txt
+    description: a complete URI
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "uri".
+    comments:
+    - in RDF serializations a slot with range of uri is treated as a literal or type
+      xsd:anyURI unless it is an identifier or a reference to an identifier, in which
+      case it is translated directly to a node
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    close_mappings:
+    - schema:URL
+    base: URI
+    uri: xsd:anyURI
+    repr: str
+  ncname:
+    name: ncname
+    definition_uri: https://w3id.org/linkml/Ncname
+    description: Prefix part of CURIE
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "ncname".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NCName
+    uri: xsd:string
+    repr: str
+  objectidentifier:
+    name: objectidentifier
+    definition_uri: https://w3id.org/linkml/Objectidentifier
+    description: A URI or CURIE that represents an object in the model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "objectidentifier".
+    comments:
+    - Used for inheritance and type checking
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: ElementIdentifier
+    uri: shex:iri
+    repr: str
+  nodeidentifier:
+    name: nodeidentifier
+    definition_uri: https://w3id.org/linkml/Nodeidentifier
+    description: A URI, CURIE or BNODE that represents a node in a model.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "nodeidentifier".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: NodeIdentifier
+    uri: shex:nonLiteral
+    repr: str
+  jsonpointer:
+    name: jsonpointer
+    definition_uri: https://w3id.org/linkml/Jsonpointer
+    conforms_to: https://datatracker.ietf.org/doc/html/rfc6901
+    description: A string encoding a JSON Pointer. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to a valid object within the current
+      instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpointer".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  jsonpath:
+    name: jsonpath
+    definition_uri: https://w3id.org/linkml/Jsonpath
+    conforms_to: https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html
+    description: A string encoding a JSON Path. The value of the string MUST conform
+      to JSON Point syntax and SHOULD dereference to zero or more valid objects within
+      the current instance document when encoded in tree form.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "jsonpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+  sparqlpath:
+    name: sparqlpath
+    definition_uri: https://w3id.org/linkml/Sparqlpath
+    conforms_to: https://www.w3.org/TR/sparql11-query/#propertypaths
+    description: A string encoding a SPARQL Property Path. The value of the string
+      MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects
+      within the current instance document when encoded as RDF.
+    notes:
+    - If you are authoring schemas in LinkML YAML, the type is referenced with the
+      lower case "sparqlpath".
+    from_schema: https://w3id.org/linkml/types
+    imported_from: linkml:types
+    base: str
+    uri: xsd:string
+    repr: str
+enums:
+  PrivacyPrinciple:
+    name: PrivacyPrinciple
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyPrinciple
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6'
+      principle_count:
+        tag: principle_count
+        value: '11'
+    description: The eleven privacy principles defined in ISO/IEC 29100:2024 Clause
+      6 that govern the processing of PII in ICT systems.
+    in_subset:
+    - privacy_principles
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      consent_and_choice:
+        text: consent_and_choice
+        description: 'Schema value for privacy principle 1 (Clause 6.2): the organization
+          gives PII principals meaningful choice over processing of their PII, manages
+          opt-in consent mechanisms, and provides readily accessible means to withdraw
+          consent.'
+        meaning: dpv:Consent
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.2'
+          principle_number:
+            tag: principle_number
+            value: '1'
+      purpose_legitimacy_and_specification:
+        text: purpose_legitimacy_and_specification
+        description: 'Schema value for privacy principle 2 (Clause 6.3): the organization
+          ensures each processing purpose is lawful, relies on a valid legal basis,
+          and is communicated to PII principals prior to or at the time of collection.'
+        meaning: dpv:Purpose
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.3'
+          principle_number:
+            tag: principle_number
+            value: '2'
+      collection_limitation:
+        text: collection_limitation
+        description: 'Schema value for privacy principle 3 (Clause 6.4): the organization
+          limits PII collection to what is lawful and strictly necessary to fulfil
+          the stated processing purposes.'
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.4'
+          principle_number:
+            tag: principle_number
+            value: '3'
+      data_minimization:
+        text: data_minimization
+        description: 'Schema value for privacy principle 4 (Clause 6.5): the organization
+          designs processing procedures and ICT systems to minimize the volume of
+          PII handled and the number of parties with access to it.'
+        meaning: dpv:DataMinimisation
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.5'
+          principle_number:
+            tag: principle_number
+            value: '4'
+      use_retention_and_disclosure_limitation:
+        text: use_retention_and_disclosure_limitation
+        description: 'Schema value for privacy principle 5 (Clause 6.6): the organization
+          limits use, retention, and disclosure of PII to the minimum needed for legitimate
+          purposes, and securely disposes of PII once those purposes have been fulfilled.'
+        meaning: dpv:StorageLimitation
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.6'
+          principle_number:
+            tag: principle_number
+            value: '5'
+      accuracy_and_quality:
+        text: accuracy_and_quality
+        description: 'Schema value for privacy principle 6 (Clause 6.7): the organization
+          ensures PII is accurate, complete, current, and fit for purpose, and establishes
+          procedures for verification, correction, and ongoing quality control of
+          processed PII.'
+        meaning: dpv:Accuracy
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.7'
+          principle_number:
+            tag: principle_number
+            value: '6'
+      openness_transparency_and_notice:
+        text: openness_transparency_and_notice
+        description: 'Schema value for privacy principle 7 (Clause 6.8): the organization
+          provides PII principals with clear, accessible information about its PII
+          processing policies and practices, and notifies them of material changes
+          to those policies.'
+        meaning: dpv:Transparency
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.8'
+          principle_number:
+            tag: principle_number
+            value: '7'
+      individual_participation_and_access:
+        text: individual_participation_and_access
+        description: 'Schema value for privacy principle 8 (Clause 6.9): the organization
+          gives PII principals the ability to access and review their PII and to challenge
+          its accuracy and completeness, subject to applicable law.'
+        meaning: dpv:RightToAccess
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.9'
+          principle_number:
+            tag: principle_number
+            value: '8'
+      accountability:
+        text: accountability
+        description: 'Schema value for privacy principle 9 (Clause 6.10): the organization
+          documents and communicates its privacy obligations, ensures equivalent protection
+          when transferring PII to third parties, and maintains internal complaint-handling
+          and redress procedures.'
+        meaning: dpv:Accountability
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.10'
+          principle_number:
+            tag: principle_number
+            value: '9'
+      information_security:
+        text: information_security
+        description: 'Schema value for privacy principle 10 (Clause 6.11): the organization
+          applies appropriate security controls across operational, functional, and
+          strategic levels to protect PII against unauthorized access, loss, or misuse
+          throughout its full lifecycle.'
+        meaning: dpv:SecurityMeasure
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.11'
+          principle_number:
+            tag: principle_number
+            value: '10'
+      privacy_compliance:
+        text: privacy_compliance
+        description: 'Schema value for privacy principle 11 (Clause 6.12): the organization
+          verifies and demonstrates compliance with data protection and privacy requirements
+          through audits, independent internal controls, and ongoing privacy risk
+          assessments.'
+        meaning: dpv:Conformance
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '6.12'
+          principle_number:
+            tag: principle_number
+            value: '11'
+  PIIFlowRole:
+    name: PIIFlowRole
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIFlowRole
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: The role played by an actor in a specific PII flow scenario, as described
+      in Table 1 of ISO/IEC 29100:2024 Clause 5.3.
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      pii_provider:
+        text: pii_provider
+        description: Actor that provides PII to another party in this flow scenario.
+      pii_recipient:
+        text: pii_recipient
+        description: Actor that receives PII from another party in this flow scenario.
+      not_involved:
+        text: not_involved
+        description: Actor not directly involved in this specific PII flow scenario.
+  PIIProcessingOperation:
+    name: PIIProcessingOperation
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIProcessingOperation
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.21'
+    description: Categories of operations that can be performed on PII, as referenced
+      in the definition of processing of PII (Clause 3.21).
+    in_subset:
+    - pii_recognition
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      collection:
+        text: collection
+        description: Gathering or acquiring PII from PII principals or other sources.
+        meaning: dpv:Collect
+      storage:
+        text: storage
+        description: Storing PII in a persistent manner in ICT systems or other media.
+        meaning: dpv:Store
+      alteration:
+        text: alteration
+        description: Modifying or updating existing PII.
+        meaning: dpv:Transform
+      retrieval:
+        text: retrieval
+        description: Accessing or fetching stored PII for use.
+        meaning: dpv:Access
+      consultation:
+        text: consultation
+        description: Reviewing or examining PII without necessarily extracting it.
+        meaning: dpv:Use
+      disclosure:
+        text: disclosure
+        description: Making PII available to other parties or making it accessible.
+        meaning: dpv:Disclose
+      anonymization:
+        text: anonymization
+        description: Irreversibly altering PII such that the PII principal can no
+          longer be identified directly or indirectly.
+        meaning: dpv:Anonymise
+      pseudonymization:
+        text: pseudonymization
+        description: Replacing identifying information in PII with an alias, retaining
+          linkability while restricting direct identification.
+        meaning: dpv:Pseudonymise
+      dissemination:
+        text: dissemination
+        description: Widely distributing or publishing PII to multiple recipients.
+        meaning: dpv:Disseminate
+      deletion:
+        text: deletion
+        description: Removing PII such that it is no longer accessible or usable.
+        meaning: dpv:Erase
+      destruction:
+        text: destruction
+        description: Permanently and irrecoverably eliminating PII and its carriers.
+        meaning: dpv:Destroy
+  SafeguardingRequirementFactor:
+    name: SafeguardingRequirementFactor
+    definition_uri: https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.5'
+    description: Categories of factors that influence an organization's privacy safeguarding
+      requirements, as described in Clause 5.5 and Figure 1.
+    in_subset:
+    - privacy_safeguarding
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      legal_and_regulatory:
+        text: legal_and_regulatory
+        description: Safeguarding requirements arising from applicable laws (international,
+          national, and local), regulations, judicial decisions, and negotiated labour
+          or work-council agreements.
+        meaning: dpv:LegalBasis
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: 5.5.2
+      contractual:
+        text: contractual
+        description: Safeguarding requirements set out in data processing agreements,
+          company policies, and binding corporate rules agreed between PII controllers,
+          processors, and other parties.
+        meaning: dpv:Contract
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: 5.5.3
+      business:
+        text: business
+        description: Safeguarding requirements driven by the application's characteristics,
+          industry guidelines, codes of conduct, or standards voluntarily adopted
+          by the organization as part of its business model.
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: 5.5.4
+      other:
+        text: other
+        description: Safeguarding requirements arising from PII principal privacy
+          preferences, internal control frameworks, or technical standards voluntarily
+          adopted by the organization.
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: 5.5.5
+  PIISensitivityCategory:
+    name: PIISensitivityCategory
+    definition_uri: https://w3id.org/lmodel/iso29100/PIISensitivityCategory
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.23'
+    description: Categories of PII based on sensitivity, distinguishing standard PII
+      from sensitive PII as defined in Clause 3.23.
+    in_subset:
+    - pii_recognition
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      standard:
+        text: standard
+        description: PII that does not meet the threshold for sensitive PII but still
+          requires appropriate privacy protection measures.
+      sensitive:
+        text: sensitive
+        description: PII warranting heightened protection due to its potential for
+          significant adverse impact on the individual, or because applicable law
+          classifies it as a special category. Typical examples include health, biometric,
+          financial, racial, religious, political, and sexual orientation data. Processing
+          may require opt-in consent or specific legal authorization.
+        meaning: dpv:SpecialCategoryPersonalData
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '3.23'
+  ConsentMechanism:
+    name: ConsentMechanism
+    definition_uri: https://w3id.org/lmodel/iso29100/ConsentMechanism
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.6'
+    description: The mechanism by which a PII principal provides or withholds consent
+      for PII processing, as referenced in Clauses 3.6 and 6.2.
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      opt_in:
+        text: opt_in
+        description: The PII principal must take an explicit action to express prior
+          consent for their PII to be processed for a particular purpose.
+        meaning: dpv:OptIn
+        annotations:
+          iso29100_clause:
+            tag: iso29100_clause
+            value: '3.6'
+      opt_out:
+        text: opt_out
+        description: The PII principal must take a separate action to withhold or
+          withdraw consent; processing is presumed permitted unless that action is
+          taken.
+        meaning: dpv:OptOut
+      implied:
+        text: implied
+        description: Consent implied by some action of the PII principal, such as
+          placing an order or using a service, where applicable law permits.
+  PrivacyRiskLevel:
+    name: PrivacyRiskLevel
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyRiskLevel
+    description: Qualitative assessment of privacy risk level based on likelihood
+      and potential adverse consequences for PII principals.
+    in_subset:
+    - privacy_risk_management
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      low:
+        text: low
+        description: Limited potential adverse consequences for PII principals.
+      medium:
+        text: medium
+        description: Moderate risk requiring management attention and planned controls.
+      high:
+        text: high
+        description: Significant risk with potentially serious consequences for PII
+          principals.
+      very_high:
+        text: very_high
+        description: Severe risk with potentially catastrophic or irreversible consequences
+          for PII principals requiring immediate treatment.
+  PrivacyControlType:
+    name: PrivacyControlType
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyControlType
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.12'
+    description: Categories of privacy controls that treat privacy risks by reducing
+      their likelihood or consequences, as noted in Clause 3.12 Note 1.
+    in_subset:
+    - privacy_governance
+    from_schema: https://w3id.org/lmodel/iso29100
+    permissible_values:
+      organizational:
+        text: organizational
+        description: Policies, procedures, guidelines, management practices, or organizational
+          structures used as privacy controls.
+        meaning: dpv:OrganisationalMeasure
+      physical:
+        text: physical
+        description: Physical measures protecting PII and PII processing infrastructure.
+        meaning: dpv:PhysicalMeasure
+      technical:
+        text: technical
+        description: ICT measures, products, or services that protect privacy, including
+          privacy enhancing technologies (PETs).
+        meaning: dpv:TechnicalMeasure
+      legal_contractual:
+        text: legal_contractual
+        description: Legal contracts, binding corporate rules, or data processing
+          agreements implementing privacy safeguards.
+        meaning: dpv:LegalMeasure
+slots:
+  id:
+    name: id
+    definition_uri: https://w3id.org/lmodel/iso29100/id
+    description: Unique identifier for the entity.
+    examples:
+    - value: iso29100:framework-acme-corp
+    - value: iso29100:pii-controller-001
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - dcterms:identifier
+    slot_uri: dcterms:identifier
+    identifier: true
+    owner: NamedEntity
+    domain_of:
+    - NamedEntity
+    range: uriorcurie
+    required: true
+  name:
+    name: name
+    definition_uri: https://w3id.org/lmodel/iso29100/name
+    description: Human-readable name or title.
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - rdfs:label
+    slot_uri: rdfs:label
+    owner: NamedEntity
+    domain_of:
+    - NamedEntity
+    range: string
+    required: true
+  description:
+    name: description
+    definition_uri: https://w3id.org/lmodel/iso29100/description
+    description: Detailed description of the entity.
+    comments:
+    - Should provide sufficient detail for understanding without external reference
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - dcterms:description
+    slot_uri: dcterms:description
+    owner: NamedEntity
+    domain_of:
+    - NamedEntity
+    range: string
+  created_date:
+    name: created_date
+    definition_uri: https://w3id.org/lmodel/iso29100/created_date
+    description: Date when the entity record was created.
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - dcterms:created
+    slot_uri: dcterms:created
+    owner: NamedEntity
+    domain_of:
+    - NamedEntity
+    range: date
+  modified_date:
+    name: modified_date
+    definition_uri: https://w3id.org/lmodel/iso29100/modified_date
+    description: Date when the entity record was last modified.
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - dcterms:modified
+    slot_uri: dcterms:modified
+    owner: NamedEntity
+    domain_of:
+    - NamedEntity
+    range: date
+  organization_name:
+    name: organization_name
+    definition_uri: https://w3id.org/lmodel/iso29100/organization_name
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.1'
+    description: Name of the organization operating the privacy framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:organization_name
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: string
+  ict_system_description:
+    name: ict_system_description
+    definition_uri: https://w3id.org/lmodel/iso29100/ict_system_description
+    description: Description of the ICT system(s) within the scope of the privacy
+      framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:ict_system_description
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: string
+  applicable_jurisdictions:
+    name: applicable_jurisdictions
+    definition_uri: https://w3id.org/lmodel/iso29100/applicable_jurisdictions
+    description: Legal jurisdictions whose privacy laws apply to the organization.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:applicable_jurisdictions
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: string
+    multivalued: true
+  pii_controllers:
+    name: pii_controllers
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_controllers
+    description: PII controllers operating within this privacy framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_controllers
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PIIController
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  pii_processors:
+    name: pii_processors
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_processors
+    description: PII processors engaged within this privacy framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_processors
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PIIProcessor
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  third_parties:
+    name: third_parties
+    definition_uri: https://w3id.org/lmodel/iso29100/third_parties
+    description: Third parties that may receive PII within this framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:third_parties
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: ThirdParty
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  pii_principals_description:
+    name: pii_principals_description
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_principals_description
+    description: Description of the categories of PII principals whose PII is processed.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_principals_description
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: string
+  privacy_policy:
+    name: privacy_policy
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_policy
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.6'
+    description: The organization's privacy policy governing PII processing.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_policy
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacyPolicy
+  privacy_controls:
+    name: privacy_controls
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_controls
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.7'
+    description: Privacy controls implemented within the framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_controls
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacyControl
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  safeguarding_requirements:
+    name: safeguarding_requirements
+    definition_uri: https://w3id.org/lmodel/iso29100/safeguarding_requirements
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.5'
+    description: Privacy safeguarding requirements applicable to the organization.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:safeguarding_requirements
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacySafeguardingRequirement
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  privacy_risks:
+    name: privacy_risks
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_risks
+    description: Privacy risks identified within the framework scope.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_risks
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacyRisk
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  privacy_impact_assessments:
+    name: privacy_impact_assessments
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_impact_assessments
+    description: Privacy impact assessments conducted under this framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_impact_assessments
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacyImpactAssessment
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  privacy_breaches:
+    name: privacy_breaches
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_breaches
+    description: Privacy breaches recorded within the framework.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_breaches
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacyBreach
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  pii_processing_activities:
+    name: pii_processing_activities
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_processing_activities
+    description: PII processing activities within the framework scope.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_processing_activities
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PIIProcessingActivity
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  principle_implementations:
+    name: principle_implementations
+    definition_uri: https://w3id.org/lmodel/iso29100/principle_implementations
+    description: Implementation records for each of the eleven privacy principles.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:principle_implementations
+    owner: PrivacyFramework
+    domain_of:
+    - PrivacyFramework
+    range: PrivacyPrincipleImplementation
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  contact_information:
+    name: contact_information
+    definition_uri: https://w3id.org/lmodel/iso29100/contact_information
+    description: Contact details for the privacy stakeholder.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:contact_information
+    owner: PrivacyStakeholder
+    domain_of:
+    - PrivacyStakeholder
+    range: string
+  jurisdictions:
+    name: jurisdictions
+    definition_uri: https://w3id.org/lmodel/iso29100/jurisdictions
+    description: Jurisdictions in which the privacy stakeholder operates.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:jurisdictions
+    owner: PrivacyStakeholder
+    domain_of:
+    - PrivacyStakeholder
+    range: string
+    multivalued: true
+  privacy_preferences:
+    name: privacy_preferences
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_preferences
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.15'
+    description: Privacy preferences expressed by the PII principal.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_preferences
+    owner: PIIPrincipal
+    domain_of:
+    - PIIPrincipal
+    range: PrivacyPreference
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  consent_records:
+    name: consent_records
+    definition_uri: https://w3id.org/lmodel/iso29100/consent_records
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.4'
+    description: Consent records associated with the PII principal.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:consent_records
+    owner: PIIPrincipal
+    domain_of:
+    - PIIPrincipal
+    range: ConsentRecord
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  processing_purposes:
+    name: processing_purposes
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_purposes
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.3'
+    description: Purposes for which the PII controller processes PII.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_purposes
+    owner: PIIController
+    domain_of:
+    - PIIController
+    range: string
+    multivalued: true
+  legal_bases:
+    name: legal_bases
+    definition_uri: https://w3id.org/lmodel/iso29100/legal_bases
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: 5.5.2
+    description: Legal bases relied upon for PII processing by this controller.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:legal_bases
+    owner: PIIController
+    domain_of:
+    - PIIController
+    range: string
+    multivalued: true
+  appointed_processors:
+    name: appointed_processors
+    definition_uri: https://w3id.org/lmodel/iso29100/appointed_processors
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.8'
+    description: PII processors appointed by this controller.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:appointed_processors
+    owner: PIIController
+    domain_of:
+    - PIIController
+    range: PIIProcessor
+    multivalued: true
+  privacy_policy_ref:
+    name: privacy_policy_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_policy_ref
+    description: Reference to the privacy policy of this PII controller.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_policy_ref
+    owner: PIIController
+    domain_of:
+    - PIIController
+    range: PrivacyPolicy
+  data_protection_officer:
+    name: data_protection_officer
+    definition_uri: https://w3id.org/lmodel/iso29100/data_protection_officer
+    description: Name or contact of the data protection officer, where applicable.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:data_protection_officer
+    owner: PIIController
+    domain_of:
+    - PIIController
+    range: string
+  instructing_controller:
+    name: instructing_controller
+    definition_uri: https://w3id.org/lmodel/iso29100/instructing_controller
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.10'
+    description: The PII controller on whose behalf this processor acts.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:instructing_controller
+    owner: PIIProcessor
+    domain_of:
+    - PIIProcessor
+    range: PIIController
+  processing_agreement_ref:
+    name: processing_agreement_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_agreement_ref
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: 5.5.3
+    description: Reference to the data processing agreement with the controller.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_agreement_ref
+    owner: PIIProcessor
+    domain_of:
+    - PIIProcessor
+    range: string
+  sub_processors:
+    name: sub_processors
+    definition_uri: https://w3id.org/lmodel/iso29100/sub_processors
+    description: Sub-processors engaged by this PII processor.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:sub_processors
+    owner: PIIProcessor
+    domain_of:
+    - PIIProcessor
+    range: PIIProcessor
+    multivalued: true
+  receiving_purpose:
+    name: receiving_purpose
+    definition_uri: https://w3id.org/lmodel/iso29100/receiving_purpose
+    description: Purpose for which the third party receives PII.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:receiving_purpose
+    owner: ThirdParty
+    domain_of:
+    - ThirdParty
+    range: string
+  transfer_basis:
+    name: transfer_basis
+    definition_uri: https://w3id.org/lmodel/iso29100/transfer_basis
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: 5.5.2
+    description: Legal or contractual basis for transferring PII to this third party.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:transfer_basis
+    owner: ThirdParty
+    domain_of:
+    - ThirdParty
+    range: string
+  pii_category:
+    name: pii_category
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_category
+    description: Category or type of PII (e.g., financial, health, biometric, location).
+    comments:
+    - See Table 2 of the standard for informative examples of attributes that can
+      be PII
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_category
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: string
+    multivalued: true
+  sensitivity_level:
+    name: sensitivity_level
+    definition_uri: https://w3id.org/lmodel/iso29100/sensitivity_level
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.23'
+    description: Sensitivity classification of this PII.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:sensitivity_level
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: PIISensitivityCategory
+  identifier_type:
+    name: identifier_type
+    definition_uri: https://w3id.org/lmodel/iso29100/identifier_type
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: 5.4.2
+    description: Type of identifier (e.g., direct identifier, indirect identifier,
+      linkable attribute, or combination of attributes).
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:identifier_type
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: string
+  is_pseudonymized:
+    name: is_pseudonymized
+    definition_uri: https://w3id.org/lmodel/iso29100/is_pseudonymized
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.22'
+    description: Whether the PII has been pseudonymized.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:is_pseudonymized
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: boolean
+  is_anonymized:
+    name: is_anonymized
+    definition_uri: https://w3id.org/lmodel/iso29100/is_anonymized
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.2'
+    description: Whether the PII has been anonymized. Anonymized data is no longer
+      considered PII as the PII principal can no longer be identified.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:is_anonymized
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: boolean
+  linkability_risk:
+    name: linkability_risk
+    definition_uri: https://w3id.org/lmodel/iso29100/linkability_risk
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: 5.4.5
+    description: Assessment of the risk that this data can be linked to identify a
+      PII principal, even if not directly identifying on its own.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:linkability_risk
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: string
+  applicable_to_principal:
+    name: applicable_to_principal
+    definition_uri: https://w3id.org/lmodel/iso29100/applicable_to_principal
+    description: Reference or description of the PII principal(s) to whom this PII
+      relates.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:applicable_to_principal
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: string
+  retention_schedule:
+    name: retention_schedule
+    definition_uri: https://w3id.org/lmodel/iso29100/retention_schedule
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.6'
+    description: Schedule defining how long this PII is retained and how it is disposed.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:retention_schedule
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: string
+  processing_operations:
+    name: processing_operations
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_operations
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.21'
+    description: Types of processing operations performed on this PII.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_operations
+    owner: PersonallyIdentifiableInformation
+    domain_of:
+    - PersonallyIdentifiableInformation
+    range: PIIProcessingOperation
+    multivalued: true
+  scenario_label:
+    name: scenario_label
+    definition_uri: https://w3id.org/lmodel/iso29100/scenario_label
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: Label for the PII flow scenario (e.g., "Scenario a").
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:scenario_label
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: string
+  pii_principal_role:
+    name: pii_principal_role
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_principal_role
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: Role of the PII principal in this flow scenario.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_principal_role
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: PIIFlowRole
+  pii_controller_role:
+    name: pii_controller_role
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_controller_role
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: Role of the PII controller in this flow scenario.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_controller_role
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: PIIFlowRole
+  pii_processor_role:
+    name: pii_processor_role
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_processor_role
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: Role of the PII processor in this flow scenario.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_processor_role
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: PIIFlowRole
+  third_party_role:
+    name: third_party_role
+    definition_uri: https://w3id.org/lmodel/iso29100/third_party_role
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: Role of the third party in this flow scenario.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:third_party_role
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: PIIFlowRole
+  scenario_description:
+    name: scenario_description
+    definition_uri: https://w3id.org/lmodel/iso29100/scenario_description
+    description: Description of the PII flow scenario and when it occurs.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:scenario_description
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: string
+  legal_control_retention:
+    name: legal_control_retention
+    definition_uri: https://w3id.org/lmodel/iso29100/legal_control_retention
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: Description of how legal control of PII is retained or transferred,
+      relevant to distinguishing between a PII processor and a third party.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:legal_control_retention
+    owner: PIIFlowScenario
+    domain_of:
+    - PIIFlowScenario
+    range: string
+  requirement_factor:
+    name: requirement_factor
+    definition_uri: https://w3id.org/lmodel/iso29100/requirement_factor
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.5'
+    description: Category of factor driving this safeguarding requirement.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:requirement_factor
+    owner: PrivacySafeguardingRequirement
+    domain_of:
+    - PrivacySafeguardingRequirement
+    range: SafeguardingRequirementFactor
+  requirement_text:
+    name: requirement_text
+    definition_uri: https://w3id.org/lmodel/iso29100/requirement_text
+    description: Organization-authored statement of the safeguarding requirement.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:requirement_text
+    owner: PrivacySafeguardingRequirement
+    domain_of:
+    - PrivacySafeguardingRequirement
+    range: string
+  source_reference:
+    name: source_reference
+    definition_uri: https://w3id.org/lmodel/iso29100/source_reference
+    description: Reference to the source (e.g., law name, regulation, contract, or
+      standard).
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:source_reference
+    owner: PrivacySafeguardingRequirement
+    domain_of:
+    - PrivacySafeguardingRequirement
+    range: string
+  applicable_to_actors:
+    name: applicable_to_actors
+    definition_uri: https://w3id.org/lmodel/iso29100/applicable_to_actors
+    description: Privacy stakeholder roles to which this requirement applies.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:applicable_to_actors
+    owner: PrivacySafeguardingRequirement
+    domain_of:
+    - PrivacySafeguardingRequirement
+    range: string
+    multivalued: true
+  related_controls:
+    name: related_controls
+    definition_uri: https://w3id.org/lmodel/iso29100/related_controls
+    description: Privacy controls that implement or contribute to this requirement.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:related_controls
+    owner: PrivacySafeguardingRequirement
+    domain_of:
+    - PrivacySafeguardingRequirement
+    range: PrivacyControl
+    multivalued: true
+  priority:
+    name: priority
+    definition_uri: https://w3id.org/lmodel/iso29100/priority
+    description: Priority level for addressing this requirement or risk.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:priority
+    owner: PrivacySafeguardingRequirement
+    domain_of:
+    - PrivacySafeguardingRequirement
+    range: string
+  policy_version:
+    name: policy_version
+    definition_uri: https://w3id.org/lmodel/iso29100/policy_version
+    description: Version identifier for the privacy policy.
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - dcterms:hasVersion
+    slot_uri: dcterms:hasVersion
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+  effective_date:
+    name: effective_date
+    definition_uri: https://w3id.org/lmodel/iso29100/effective_date
+    description: Date from which the privacy policy takes effect.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:effective_date
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: date
+  policy_scope:
+    name: policy_scope
+    definition_uri: https://w3id.org/lmodel/iso29100/policy_scope
+    description: Scope of the privacy policy (systems, activities, or organizations
+      covered).
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:policy_scope
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+  processing_purposes_covered:
+    name: processing_purposes_covered
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_purposes_covered
+    description: Processing purposes addressed by this privacy policy.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_purposes_covered
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+    multivalued: true
+  pii_categories_covered:
+    name: pii_categories_covered
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_categories_covered
+    description: Categories of PII addressed by this privacy policy.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_categories_covered
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+    multivalued: true
+  data_retention_statement:
+    name: data_retention_statement
+    definition_uri: https://w3id.org/lmodel/iso29100/data_retention_statement
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.6'
+    description: Statement on how long PII is retained and how it is disposed.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:data_retention_statement
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+  pii_principal_rights:
+    name: pii_principal_rights
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_principal_rights
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.9'
+    description: Rights available to PII principals under this policy.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_principal_rights
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+    multivalued: true
+  contact_for_inquiries:
+    name: contact_for_inquiries
+    definition_uri: https://w3id.org/lmodel/iso29100/contact_for_inquiries
+    description: Contact information for PII-related inquiries from PII principals.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:contact_for_inquiries
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: string
+  last_review_date:
+    name: last_review_date
+    definition_uri: https://w3id.org/lmodel/iso29100/last_review_date
+    description: Date when the policy was last reviewed.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:last_review_date
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: date
+  is_external_notice:
+    name: is_external_notice
+    definition_uri: https://w3id.org/lmodel/iso29100/is_external_notice
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.6'
+    description: Whether this is an external privacy notice (available to PII principals)
+      rather than an internal policy document.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:is_external_notice
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: boolean
+  applicable_principles:
+    name: applicable_principles
+    definition_uri: https://w3id.org/lmodel/iso29100/applicable_principles
+    description: Privacy principles this policy addresses.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:applicable_principles
+    owner: PrivacyPolicy
+    domain_of:
+    - PrivacyPolicy
+    range: PrivacyPrinciple
+    multivalued: true
+  control_type:
+    name: control_type
+    definition_uri: https://w3id.org/lmodel/iso29100/control_type
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.12'
+    description: Category of this privacy control.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:control_type
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: PrivacyControlType
+  control_objective:
+    name: control_objective
+    definition_uri: https://w3id.org/lmodel/iso29100/control_objective
+    description: The privacy objective this control is intended to achieve.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:control_objective
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: string
+  addressed_principles:
+    name: addressed_principles
+    definition_uri: https://w3id.org/lmodel/iso29100/addressed_principles
+    description: Privacy principles this control helps implement.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:addressed_principles
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: PrivacyPrinciple
+    multivalued: true
+  implementation_description:
+    name: implementation_description
+    definition_uri: https://w3id.org/lmodel/iso29100/implementation_description
+    description: Organization-authored description of how the control is implemented.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:implementation_description
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: string
+  responsible_actor:
+    name: responsible_actor
+    definition_uri: https://w3id.org/lmodel/iso29100/responsible_actor
+    description: Actor responsible for implementing and maintaining this control.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:responsible_actor
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: string
+  implementation_status:
+    name: implementation_status
+    definition_uri: https://w3id.org/lmodel/iso29100/implementation_status
+    description: Current implementation status of the control.
+    examples:
+    - value: planned
+    - value: implemented
+    - value: not_applicable
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:implementation_status
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: string
+  effectiveness_evidence:
+    name: effectiveness_evidence
+    definition_uri: https://w3id.org/lmodel/iso29100/effectiveness_evidence
+    description: Evidence of control effectiveness.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:effectiveness_evidence
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: string
+    multivalued: true
+  related_safeguarding_requirements:
+    name: related_safeguarding_requirements
+    definition_uri: https://w3id.org/lmodel/iso29100/related_safeguarding_requirements
+    description: Safeguarding requirements this control addresses.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:related_safeguarding_requirements
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: PrivacySafeguardingRequirement
+    multivalued: true
+  is_pet:
+    name: is_pet
+    definition_uri: https://w3id.org/lmodel/iso29100/is_pet
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.13'
+    description: 'Whether this control qualifies as a Privacy Enhancing Technology
+      (PET): an ICT-based privacy control that protects privacy by minimizing, eliminating,
+      or preventing unnecessary PII processing without reducing the intended functionality
+      of the system.'
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:is_pet
+    owner: PrivacyControl
+    domain_of:
+    - PrivacyControl
+    range: boolean
+  risk_source:
+    name: risk_source
+    definition_uri: https://w3id.org/lmodel/iso29100/risk_source
+    description: Source or origin of the privacy risk.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:risk_source
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: string
+  affected_pii_categories:
+    name: affected_pii_categories
+    definition_uri: https://w3id.org/lmodel/iso29100/affected_pii_categories
+    description: Categories of PII affected by this privacy risk or breach.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:affected_pii_categories
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyRisk
+    - PrivacyBreach
+    range: string
+    multivalued: true
+  affected_principals_description:
+    name: affected_principals_description
+    definition_uri: https://w3id.org/lmodel/iso29100/affected_principals_description
+    description: Description of PII principals who could be adversely affected.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:affected_principals_description
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: string
+  risk_likelihood:
+    name: risk_likelihood
+    definition_uri: https://w3id.org/lmodel/iso29100/risk_likelihood
+    description: Assessed likelihood of this privacy risk materializing.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:risk_likelihood
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: string
+  risk_impact_description:
+    name: risk_impact_description
+    definition_uri: https://w3id.org/lmodel/iso29100/risk_impact_description
+    description: Description of potential adverse consequences for PII principals.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:risk_impact_description
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: string
+  inherent_risk_level:
+    name: inherent_risk_level
+    definition_uri: https://w3id.org/lmodel/iso29100/inherent_risk_level
+    description: Privacy risk level before controls are applied.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:inherent_risk_level
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: PrivacyRiskLevel
+  residual_risk_level:
+    name: residual_risk_level
+    definition_uri: https://w3id.org/lmodel/iso29100/residual_risk_level
+    description: Privacy risk level after controls are applied.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:residual_risk_level
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: PrivacyRiskLevel
+  mitigating_controls:
+    name: mitigating_controls
+    definition_uri: https://w3id.org/lmodel/iso29100/mitigating_controls
+    description: Privacy controls that mitigate this risk.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:mitigating_controls
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: PrivacyControl
+    multivalued: true
+  risk_owner:
+    name: risk_owner
+    definition_uri: https://w3id.org/lmodel/iso29100/risk_owner
+    description: Person accountable for managing this privacy risk.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:risk_owner
+    owner: PrivacyRisk
+    domain_of:
+    - PrivacyRisk
+    range: string
+  assessment_scope:
+    name: assessment_scope
+    definition_uri: https://w3id.org/lmodel/iso29100/assessment_scope
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.18'
+    description: Scope of the privacy impact assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:assessment_scope
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: string
+  assessment_date:
+    name: assessment_date
+    definition_uri: https://w3id.org/lmodel/iso29100/assessment_date
+    description: Date the assessment was conducted.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:assessment_date
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: date
+  assessor:
+    name: assessor
+    definition_uri: https://w3id.org/lmodel/iso29100/assessor
+    description: Person or team who conducted the assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:assessor
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: string
+  processing_activities_assessed:
+    name: processing_activities_assessed
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_activities_assessed
+    description: PII processing activities reviewed in this assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_activities_assessed
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: PIIProcessingActivity
+    multivalued: true
+  risks_identified:
+    name: risks_identified
+    definition_uri: https://w3id.org/lmodel/iso29100/risks_identified
+    description: Privacy risks identified during this assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:risks_identified
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: PrivacyRisk
+    multivalued: true
+  risks_treated:
+    name: risks_treated
+    definition_uri: https://w3id.org/lmodel/iso29100/risks_treated
+    description: Privacy risks for which treatment was planned or applied.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:risks_treated
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: PrivacyRisk
+    multivalued: true
+  residual_risks_accepted:
+    name: residual_risks_accepted
+    definition_uri: https://w3id.org/lmodel/iso29100/residual_risks_accepted
+    description: Privacy risks accepted as residual after treatment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:residual_risks_accepted
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: PrivacyRisk
+    multivalued: true
+  assessment_outcome:
+    name: assessment_outcome
+    definition_uri: https://w3id.org/lmodel/iso29100/assessment_outcome
+    description: Overall outcome and conclusions of the privacy impact assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:assessment_outcome
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: string
+  next_assessment_date:
+    name: next_assessment_date
+    definition_uri: https://w3id.org/lmodel/iso29100/next_assessment_date
+    description: Planned date for the next assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:next_assessment_date
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: date
+  consultation_records:
+    name: consultation_records
+    definition_uri: https://w3id.org/lmodel/iso29100/consultation_records
+    description: Records of stakeholder consultations conducted during the assessment.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:consultation_records
+    owner: PrivacyImpactAssessment
+    domain_of:
+    - PrivacyImpactAssessment
+    range: string
+    multivalued: true
+  breach_datetime:
+    name: breach_datetime
+    definition_uri: https://w3id.org/lmodel/iso29100/breach_datetime
+    description: Date and time when the privacy breach occurred.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:breach_datetime
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: datetime
+  discovery_datetime:
+    name: discovery_datetime
+    definition_uri: https://w3id.org/lmodel/iso29100/discovery_datetime
+    description: Date and time when the privacy breach was discovered.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:discovery_datetime
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: datetime
+  breach_description:
+    name: breach_description
+    definition_uri: https://w3id.org/lmodel/iso29100/breach_description
+    description: Description of the privacy breach and the violated requirements.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:breach_description
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: string
+  affected_principals_count:
+    name: affected_principals_count
+    definition_uri: https://w3id.org/lmodel/iso29100/affected_principals_count
+    description: Estimated number of PII principals whose PII was involved.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:affected_principals_count
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: positive_integer_type
+  violated_requirements:
+    name: violated_requirements
+    definition_uri: https://w3id.org/lmodel/iso29100/violated_requirements
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.11'
+    description: Privacy safeguarding requirements violated by this breach.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:violated_requirements
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: PrivacySafeguardingRequirement
+    multivalued: true
+  breach_severity:
+    name: breach_severity
+    definition_uri: https://w3id.org/lmodel/iso29100/breach_severity
+    description: Assessed severity of the privacy breach.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:breach_severity
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: PrivacyRiskLevel
+  immediate_actions:
+    name: immediate_actions
+    definition_uri: https://w3id.org/lmodel/iso29100/immediate_actions
+    description: Immediate actions taken to contain the breach.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:immediate_actions
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: string
+    multivalued: true
+  notification_required:
+    name: notification_required
+    definition_uri: https://w3id.org/lmodel/iso29100/notification_required
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.10'
+    description: Whether notification to authorities or PII principals was required.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:notification_required
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: boolean
+  notifications_made:
+    name: notifications_made
+    definition_uri: https://w3id.org/lmodel/iso29100/notifications_made
+    description: Notifications made to authorities, PII principals, or other parties.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:notifications_made
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: string
+    multivalued: true
+  remediation_actions:
+    name: remediation_actions
+    definition_uri: https://w3id.org/lmodel/iso29100/remediation_actions
+    description: Actions taken to remediate the breach and prevent recurrence.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:remediation_actions
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: string
+    multivalued: true
+  lessons_learned:
+    name: lessons_learned
+    definition_uri: https://w3id.org/lmodel/iso29100/lessons_learned
+    description: Lessons learned from the breach to improve privacy controls.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:lessons_learned
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: string
+  closure_datetime:
+    name: closure_datetime
+    definition_uri: https://w3id.org/lmodel/iso29100/closure_datetime
+    description: Date and time when the breach record was closed.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:closure_datetime
+    owner: PrivacyBreach
+    domain_of:
+    - PrivacyBreach
+    range: datetime
+  processing_purpose:
+    name: processing_purpose
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_purpose
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.3'
+    description: The specific, explicit, and legitimate purpose for this processing
+      activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_purpose
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: string
+  legal_basis:
+    name: legal_basis
+    definition_uri: https://w3id.org/lmodel/iso29100/legal_basis
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: 5.5.2
+    description: Legal basis relied upon for this processing activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:legal_basis
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: string
+  operations_performed:
+    name: operations_performed
+    definition_uri: https://w3id.org/lmodel/iso29100/operations_performed
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.21'
+    description: Processing operations performed in this activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:operations_performed
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: PIIProcessingOperation
+    multivalued: true
+  pii_categories_processed:
+    name: pii_categories_processed
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_categories_processed
+    description: Categories of PII processed in this activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_categories_processed
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: string
+    multivalued: true
+  sensitivity_levels_involved:
+    name: sensitivity_levels_involved
+    definition_uri: https://w3id.org/lmodel/iso29100/sensitivity_levels_involved
+    description: Sensitivity levels of PII processed in this activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:sensitivity_levels_involved
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: PIISensitivityCategory
+    multivalued: true
+  controller_ref:
+    name: controller_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/controller_ref
+    description: PII controller responsible for this processing activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:controller_ref
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: PIIController
+  processor_ref:
+    name: processor_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/processor_ref
+    description: PII processor performing this processing activity, if applicable.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processor_ref
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: PIIProcessor
+  data_flows:
+    name: data_flows
+    definition_uri: https://w3id.org/lmodel/iso29100/data_flows
+    description: PII flow scenarios applicable to this processing activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:data_flows
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: PIIFlowScenario
+    multivalued: true
+  retention_period:
+    name: retention_period
+    definition_uri: https://w3id.org/lmodel/iso29100/retention_period
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.6'
+    description: Retention period for PII processed in this activity.
+    comments:
+    - Use ISO 8601 duration notation such as P1Y or P90D
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:retention_period
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: duration_type
+  privacy_controls_applied:
+    name: privacy_controls_applied
+    definition_uri: https://w3id.org/lmodel/iso29100/privacy_controls_applied
+    description: Privacy controls applied to this processing activity.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:privacy_controls_applied
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: PrivacyControl
+    multivalued: true
+  cross_border_transfer:
+    name: cross_border_transfer
+    definition_uri: https://w3id.org/lmodel/iso29100/cross_border_transfer
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.6'
+    description: Whether this activity involves cross-border transfer of PII.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:cross_border_transfer
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: boolean
+  transfer_safeguards:
+    name: transfer_safeguards
+    definition_uri: https://w3id.org/lmodel/iso29100/transfer_safeguards
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.6'
+    description: Safeguards in place for cross-border PII transfers.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:transfer_safeguards
+    owner: PIIProcessingActivity
+    domain_of:
+    - PIIProcessingActivity
+    range: string
+    multivalued: true
+  principle:
+    name: principle
+    definition_uri: https://w3id.org/lmodel/iso29100/principle
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6'
+    description: The privacy principle being implemented.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:principle
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: PrivacyPrinciple
+    required: true
+  implementation_measures:
+    name: implementation_measures
+    definition_uri: https://w3id.org/lmodel/iso29100/implementation_measures
+    description: Measures taken to implement this privacy principle.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:implementation_measures
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: string
+    multivalued: true
+  applicable_controls_ref:
+    name: applicable_controls_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/applicable_controls_ref
+    description: Privacy controls that contribute to implementing this principle.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:applicable_controls_ref
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: PrivacyControl
+    multivalued: true
+  evidence_of_adherence:
+    name: evidence_of_adherence
+    definition_uri: https://w3id.org/lmodel/iso29100/evidence_of_adherence
+    description: Evidence demonstrating adherence to this principle.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:evidence_of_adherence
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: string
+    multivalued: true
+  gaps_identified:
+    name: gaps_identified
+    definition_uri: https://w3id.org/lmodel/iso29100/gaps_identified
+    description: Identified gaps in the implementation of this principle.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:gaps_identified
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: string
+    multivalued: true
+  improvement_actions:
+    name: improvement_actions
+    definition_uri: https://w3id.org/lmodel/iso29100/improvement_actions
+    description: Actions planned to address identified implementation gaps.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:improvement_actions
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: string
+    multivalued: true
+  last_assessed_date:
+    name: last_assessed_date
+    definition_uri: https://w3id.org/lmodel/iso29100/last_assessed_date
+    description: Date when adherence to this principle was last assessed.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:last_assessed_date
+    owner: PrivacyPrincipleImplementation
+    domain_of:
+    - PrivacyPrincipleImplementation
+    range: date
+  principal_ref:
+    name: principal_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/principal_ref
+    description: Reference to the PII principal associated with this consent record
+      or privacy preference.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:principal_ref
+    owner: PrivacyPreference
+    domain_of:
+    - ConsentRecord
+    - PrivacyPreference
+    range: string
+  consent_date:
+    name: consent_date
+    definition_uri: https://w3id.org/lmodel/iso29100/consent_date
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.4'
+    description: Date and time when consent was given.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:consent_date
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: datetime
+  consent_mechanism:
+    name: consent_mechanism
+    definition_uri: https://w3id.org/lmodel/iso29100/consent_mechanism
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.6'
+    description: Mechanism by which consent was obtained.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:consent_mechanism
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: ConsentMechanism
+  processing_purposes_consented:
+    name: processing_purposes_consented
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_purposes_consented
+    description: Processing purposes for which consent was given.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_purposes_consented
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: string
+    multivalued: true
+  pii_categories_consented:
+    name: pii_categories_consented
+    definition_uri: https://w3id.org/lmodel/iso29100/pii_categories_consented
+    description: Categories of PII for which consent was given.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pii_categories_consented
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: string
+    multivalued: true
+  withdrawal_date:
+    name: withdrawal_date
+    definition_uri: https://w3id.org/lmodel/iso29100/withdrawal_date
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6.2'
+    description: Date and time when consent was withdrawn, if applicable.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:withdrawal_date
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: datetime
+  consent_status:
+    name: consent_status
+    definition_uri: https://w3id.org/lmodel/iso29100/consent_status
+    description: Current status of the consent.
+    examples:
+    - value: active
+    - value: withdrawn
+    - value: expired
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:consent_status
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: string
+  consent_evidence_ref:
+    name: consent_evidence_ref
+    definition_uri: https://w3id.org/lmodel/iso29100/consent_evidence_ref
+    description: Reference to evidence of consent (e.g., record identifier or URL).
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:consent_evidence_ref
+    owner: ConsentRecord
+    domain_of:
+    - ConsentRecord
+    range: string
+  preference_scope:
+    name: preference_scope
+    definition_uri: https://w3id.org/lmodel/iso29100/preference_scope
+    description: The processing activities or purposes to which these preferences
+      apply.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:preference_scope
+    owner: PrivacyPreference
+    domain_of:
+    - PrivacyPreference
+    range: string
+  anonymity_preference:
+    name: anonymity_preference
+    definition_uri: https://w3id.org/lmodel/iso29100/anonymity_preference
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.1'
+    description: Whether the PII principal prefers anonymous processing where possible.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:anonymity_preference
+    owner: PrivacyPreference
+    domain_of:
+    - PrivacyPreference
+    range: boolean
+  pseudonymity_preference:
+    name: pseudonymity_preference
+    definition_uri: https://w3id.org/lmodel/iso29100/pseudonymity_preference
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.22'
+    description: Whether the PII principal prefers pseudonymous processing where possible.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:pseudonymity_preference
+    owner: PrivacyPreference
+    domain_of:
+    - PrivacyPreference
+    range: boolean
+  processing_restriction_preferences:
+    name: processing_restriction_preferences
+    definition_uri: https://w3id.org/lmodel/iso29100/processing_restriction_preferences
+    description: Specific processing operations the PII principal wishes to restrict.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:processing_restriction_preferences
+    owner: PrivacyPreference
+    domain_of:
+    - PrivacyPreference
+    range: PIIProcessingOperation
+    multivalued: true
+  disclosure_restriction_preferences:
+    name: disclosure_restriction_preferences
+    definition_uri: https://w3id.org/lmodel/iso29100/disclosure_restriction_preferences
+    description: Restrictions on disclosing PII to specific parties or categories
+      of parties.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:disclosure_restriction_preferences
+    owner: PrivacyPreference
+    domain_of:
+    - PrivacyPreference
+    range: string
+    multivalued: true
+  preference_recorded_date:
+    name: preference_recorded_date
+    definition_uri: https://w3id.org/lmodel/iso29100/preference_recorded_date
+    description: Date when these privacy preferences were recorded.
+    from_schema: https://w3id.org/lmodel/iso29100
+    slot_uri: iso29100:preference_recorded_date
+    owner: PrivacyPreference
+    domain_of:
+    - PrivacyPreference
+    range: date
+  NamedEntity_id:
+    name: NamedEntity_id
+    definition_uri: https://w3id.org/lmodel/iso29100/id
+    description: Unique identifier for this entity instance.
+    examples:
+    - value: iso29100:framework-acme-corp
+    - value: iso29100:pii-controller-001
+    from_schema: https://w3id.org/lmodel/iso29100
+    mappings:
+    - dcterms:identifier
+    is_a: id
+    domain: NamedEntity
+    slot_uri: dcterms:identifier
+    identifier: true
+    alias: id
+    owner: NamedEntity
+    domain_of:
+    - NamedEntity
+    is_usage_slot: true
+    usage_slot_name: id
+    range: uriorcurie
+    required: true
+classes:
+  NamedEntity:
+    name: NamedEntity
+    definition_uri: https://w3id.org/lmodel/iso29100/NamedEntity
+    description: Abstract base class for all entities with a unique identifier, name,
+      and description. Provides common identification and documentation slots.
+    comments:
+    - All concrete classes should inherit from this or a subclass
+    - Ensures consistent identification across the schema
+    from_schema: https://w3id.org/lmodel/iso29100
+    abstract: true
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    slot_usage:
+      id:
+        name: id
+        description: Unique identifier for this entity instance.
+        identifier: true
+        required: true
+    class_uri: iso29100:NamedEntity
+  PrivacyFramework:
+    name: PrivacyFramework
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyFramework
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.1'
+    description: Top-level container representing an organization's privacy framework
+      for protecting PII within ICT systems.
+    comments:
+    - Root entity for any ISO 29100 conformance dataset
+    - Aggregates all privacy framework components and their relationships
+    - 'Reference: ISO/IEC 29100:2024 Clause 5.1. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    related_mappings:
+    - iso27001:InformationSecurityManagementSystem
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - organization_name
+    - ict_system_description
+    - applicable_jurisdictions
+    - pii_controllers
+    - pii_processors
+    - third_parties
+    - pii_principals_description
+    - privacy_policy
+    - privacy_controls
+    - safeguarding_requirements
+    - privacy_risks
+    - privacy_impact_assessments
+    - privacy_breaches
+    - pii_processing_activities
+    - principle_implementations
+    class_uri: iso29100:PrivacyFramework
+    tree_root: true
+  PrivacyStakeholder:
+    name: PrivacyStakeholder
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyStakeholder
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.20'
+    description: 'Schema base class for the four actor types recognized by the privacy
+      framework: PII principals, PII controllers, PII processors, and third parties.
+      Provides shared contact and jurisdictional attributes common to all stakeholder
+      roles.'
+    comments:
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.20. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:Entity
+    related_mappings:
+    - iso27001:InterestedParty
+    is_a: NamedEntity
+    abstract: true
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - contact_information
+    - jurisdictions
+    class_uri: iso29100:PrivacyStakeholder
+  PIIPrincipal:
+    name: PIIPrincipal
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIPrincipal
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.9'
+    description: "Schema class for a data subject \u2014 the individual to whom PII\
+      \ belongs. Links consent records and privacy preferences to the natural person\
+      \ whose data is being processed, enabling subject-centric data models."
+    comments:
+    - A PII principal may be identified directly or indirectly through a combination
+      of attributes
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.9 and 5.2.2. ISO/IEC standards text
+      is copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:DataSubject
+    narrow_mappings:
+    - schema:Person
+    is_a: PrivacyStakeholder
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - contact_information
+    - jurisdictions
+    - privacy_preferences
+    - consent_records
+    class_uri: iso29100:PIIPrincipal
+  PIIController:
+    name: PIIController
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIController
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.8'
+    description: Schema class for an organization or individual that determines why
+      and how PII is processed. Captures appointed processors, legal bases relied
+      upon, privacy policy reference, and data protection officer details. Bears ultimate
+      accountability for privacy principle adherence.
+    comments:
+    - May appoint PII processors to process PII on its behalf while retaining responsibility
+    - More than one PII controller may exist for the same PII set
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.8 and 5.2.3. ISO/IEC standards text
+      is copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:DataController
+    related_mappings:
+    - schema:Organization
+    is_a: PrivacyStakeholder
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - contact_information
+    - jurisdictions
+    - processing_purposes
+    - legal_bases
+    - appointed_processors
+    - privacy_policy_ref
+    - data_protection_officer
+    class_uri: iso29100:PIIController
+  PIIProcessor:
+    name: PIIProcessor
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIProcessor
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.10'
+    description: Schema class for an organization engaged to process PII under a PII
+      controller's instructions. Records the instructing controller, data processing
+      agreement reference, and any sub-processors engaged on the controller's behalf.
+    comments:
+    - In some jurisdictions the PII processor is bound by a contract
+    - '{''Distinct from a third party'': ''legal control of PII remains with the original
+      PII controller''}'
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.10 and 5.2.4. ISO/IEC standards text
+      is copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:DataProcessor
+    is_a: PrivacyStakeholder
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - contact_information
+    - jurisdictions
+    - instructing_controller
+    - processing_agreement_ref
+    - sub_processors
+    class_uri: iso29100:PIIProcessor
+  ThirdParty:
+    name: ThirdParty
+    definition_uri: https://w3id.org/lmodel/iso29100/ThirdParty
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.24'
+    description: "Schema class for an external entity that receives PII outside the\
+      \ PII processor relationship \u2014 i.e., as a recipient that typically becomes\
+      \ a PII controller in its own right. Captures the receiving purpose and the\
+      \ legal basis for the transfer."
+    comments:
+    - Third parties do not process PII on behalf of the original PII controller
+    - Upon receiving PII, a third party typically assumes controller responsibilities
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.24 and 5.2.5. ISO/IEC standards text
+      is copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:ThirdParty
+    is_a: PrivacyStakeholder
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - contact_information
+    - jurisdictions
+    - receiving_purpose
+    - transfer_basis
+    class_uri: iso29100:ThirdParty
+  PersonallyIdentifiableInformation:
+    name: PersonallyIdentifiableInformation
+    definition_uri: https://w3id.org/lmodel/iso29100/PersonallyIdentifiableInformation
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.7'
+    description: "Schema class representing a data element or attribute set that can\
+      \ be linked back to a natural person \u2014 either directly or through combination\
+      \ with other attributes. Captures sensitivity classification, identifier type,\
+      \ pseudonymization status, retention schedule, and processing operations applicable\
+      \ to the data."
+    comments:
+    - Encompasses direct identifiers, linkable attributes, and combinations thereof
+    - Sensitivity assessment should consider context and combination of attributes
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.7 and 5.4. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - pii_recognition
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:PersonalData
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - pii_category
+    - sensitivity_level
+    - identifier_type
+    - is_pseudonymized
+    - is_anonymized
+    - linkability_risk
+    - applicable_to_principal
+    - retention_schedule
+    - processing_operations
+    class_uri: iso29100:PersonallyIdentifiableInformation
+  PIIFlowScenario:
+    name: PIIFlowScenario
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIFlowScenario
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '5.3'
+    description: A documented scenario describing the flow of PII among privacy framework
+      actors (PII principal, PII controller, PII processor, and third party), as illustrated
+      in Table 1 of Clause 5.3.
+    comments:
+    - Eight canonical flow scenarios are identified in Table 1 of the standard
+    - 'Reference: ISO/IEC 29100:2024 Clause 5.3 and Table 1. ISO/IEC standards text
+      is copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:PersonalDataHandling
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - scenario_label
+    - pii_principal_role
+    - pii_controller_role
+    - pii_processor_role
+    - third_party_role
+    - scenario_description
+    - legal_control_retention
+    class_uri: iso29100:PIIFlowScenario
+  PrivacySafeguardingRequirement:
+    name: PrivacySafeguardingRequirement
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacySafeguardingRequirement
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.19'
+    description: Schema class for an applicable requirement that drives an organization's
+      PII processing controls. Requirements are identified through the privacy risk
+      management process and arise from legal/regulatory, contractual, business, or
+      other influencing factors.
+    comments:
+    - Identified through the privacy risk management process
+    - Can range from high-level principles to specific control mandates
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.19 and 5.5. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_safeguarding
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:Requirement
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - requirement_factor
+    - requirement_text
+    - source_reference
+    - applicable_to_actors
+    - related_controls
+    - priority
+    class_uri: iso29100:PrivacySafeguardingRequirement
+  PrivacyPolicy:
+    name: PrivacyPolicy
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyPolicy
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.14'
+    description: Schema class for a governing document expressing an organization's
+      intentions and commitments for PII processing. Covers both the internal policy
+      document and any external privacy notice made available to PII principals (referred
+      to as a notice in this framework).
+    comments:
+    - Internal privacy policy expresses the organization's commitments
+    - External privacy policy (notice) provides information to PII principals
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.14 and 5.6. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_governance
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - schema:PrivacyPolicy
+    - dpv:PrivacyNotice
+    related_mappings:
+    - iso27001:InformationSecurityPolicy
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - policy_version
+    - effective_date
+    - policy_scope
+    - processing_purposes_covered
+    - pii_categories_covered
+    - data_retention_statement
+    - pii_principal_rights
+    - contact_for_inquiries
+    - last_review_date
+    - is_external_notice
+    - applicable_principles
+    class_uri: iso29100:PrivacyPolicy
+  PrivacyControl:
+    name: PrivacyControl
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyControl
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.12'
+    description: Schema class for a protective measure that manages privacy risks
+      within the framework. Can be organizational, physical, technical (including
+      Privacy Enhancing Technologies), or legal-contractual in nature; linked to the
+      principles and safeguarding requirements it addresses.
+    comments:
+    - Also used as a synonym for safeguard or countermeasure
+    - Should be identified through privacy risk assessment and treatment
+    - '{''Privacy by design'': ''controls should be integrated at the design phase
+      of ICT systems''}'
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.12 and 5.7. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_governance
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:TechnicalOrganisationalMeasure
+    related_mappings:
+    - iso27001:SecurityControl
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - control_type
+    - control_objective
+    - addressed_principles
+    - implementation_description
+    - responsible_actor
+    - implementation_status
+    - effectiveness_evidence
+    - related_safeguarding_requirements
+    - is_pet
+    class_uri: iso29100:PrivacyControl
+  PrivacyRisk:
+    name: PrivacyRisk
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyRisk
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.17'
+    description: Schema class representing a potential adverse outcome for PII principals
+      from a PII processing activity. Captures the risk source, likelihood and impact
+      assessments, inherent and residual risk levels, and links to mitigating controls
+      and accountable risk owner.
+    comments:
+    - Should be assessed in terms of likelihood and potential consequences for PII
+      principals
+    - Corresponds to risk in ISO/IEC 27000 context (Annex A Table)
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.17 and 5.5. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_risk_management
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:Risk
+    related_mappings:
+    - iso27001:Risk
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - risk_source
+    - affected_pii_categories
+    - affected_principals_description
+    - risk_likelihood
+    - risk_impact_description
+    - inherent_risk_level
+    - residual_risk_level
+    - mitigating_controls
+    - risk_owner
+    class_uri: iso29100:PrivacyRisk
+  PrivacyImpactAssessment:
+    name: PrivacyImpactAssessment
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyImpactAssessment
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.18'
+    description: Schema class for a structured evaluation of the privacy implications
+      of a processing activity or ICT system. Records assessment scope, identified
+      and treated risks, accepted residual risks, stakeholder consultation records,
+      and overall assessment outcome.
+    comments:
+    - Should be conducted before implementing new or substantially modified ICT systems
+    - Should be framed within the organization's broader risk management framework
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.18 and 5.5. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_risk_management
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:PrivacyImpactAssessment
+    related_mappings:
+    - iso27001:RiskAssessment
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - assessment_scope
+    - assessment_date
+    - assessor
+    - processing_activities_assessed
+    - risks_identified
+    - risks_treated
+    - residual_risks_accepted
+    - assessment_outcome
+    - next_assessment_date
+    - consultation_records
+    class_uri: iso29100:PrivacyImpactAssessment
+  PrivacyBreach:
+    name: PrivacyBreach
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyBreach
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.11'
+    description: Schema class for a recorded incident in which PII was processed in
+      a manner that violates applicable privacy safeguarding requirements. Tracks
+      breach details, affected PII categories, notification obligations, remediation
+      actions, and lessons learned.
+    comments:
+    - Corresponds to an information security incident in ISO/IEC 27000 context (Annex
+      A Table)
+    - Remediation measures should be proportionate to the risks associated with the
+      breach
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.11. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
+    in_subset:
+    - privacy_risk_management
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:PersonalDataBreach
+    related_mappings:
+    - iso27001:InformationSecurityIncident
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - breach_datetime
+    - discovery_datetime
+    - breach_description
+    - affected_pii_categories
+    - affected_principals_count
+    - violated_requirements
+    - breach_severity
+    - immediate_actions
+    - notification_required
+    - notifications_made
+    - remediation_actions
+    - lessons_learned
+    - closure_datetime
+    class_uri: iso29100:PrivacyBreach
+  PIIProcessingActivity:
+    name: PIIProcessingActivity
+    definition_uri: https://w3id.org/lmodel/iso29100/PIIProcessingActivity
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.21'
+    description: 'Schema class documenting a PII processing operation: its purpose,
+      legal basis, operation types performed, categories of PII involved, responsible
+      actors, applied controls, retention period, and any cross-border transfer safeguards.'
+    comments:
+    - Processing includes collection, storage, alteration, retrieval, consultation,
+      disclosure, anonymization, pseudonymization, dissemination, deletion, destruction
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.21. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:PersonalDataProcessing
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - processing_purpose
+    - legal_basis
+    - operations_performed
+    - pii_categories_processed
+    - sensitivity_levels_involved
+    - controller_ref
+    - processor_ref
+    - data_flows
+    - retention_period
+    - privacy_controls_applied
+    - cross_border_transfer
+    - transfer_safeguards
+    class_uri: iso29100:PIIProcessingActivity
+  PrivacyPrincipleImplementation:
+    name: PrivacyPrincipleImplementation
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyPrincipleImplementation
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '6'
+    description: Documentation of how a specific privacy principle from Clause 6 has
+      been implemented within the organization's privacy framework, including measures
+      taken and evidence of adherence.
+    comments:
+    - One implementation record per principle per organization or ICT system scope
+    - 'Reference: ISO/IEC 29100:2024 Clause 6. ISO/IEC standards text is copyright
+      ISO - not reproduced here.'
+    in_subset:
+    - privacy_principles
+    from_schema: https://w3id.org/lmodel/iso29100
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - principle
+    - implementation_measures
+    - applicable_controls_ref
+    - evidence_of_adherence
+    - gaps_identified
+    - improvement_actions
+    - last_assessed_date
+    class_uri: iso29100:PrivacyPrincipleImplementation
+  ConsentRecord:
+    name: ConsentRecord
+    definition_uri: https://w3id.org/lmodel/iso29100/ConsentRecord
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.4'
+    description: "Schema class documenting a PII principal's agreement to processing\
+      \ of their PII for stated purposes. Records the consent mechanism used, scope,\
+      \ current status, and withdrawal date \u2014 supporting auditability of the\
+      \ consent and choice privacy principle."
+    comments:
+    - Consent must be freely given, specific, and informed
+    - Opt-in required for sensitive PII unless applicable law permits otherwise
+    - Withdrawal of consent must be easily exercisable and free of charge
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.4 and 6.2. ISO/IEC standards text is
+      copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:Consent
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - principal_ref
+    - consent_date
+    - consent_mechanism
+    - processing_purposes_consented
+    - pii_categories_consented
+    - withdrawal_date
+    - consent_status
+    - consent_evidence_ref
+    class_uri: iso29100:ConsentRecord
+  PrivacyPreference:
+    name: PrivacyPreference
+    definition_uri: https://w3id.org/lmodel/iso29100/PrivacyPreference
+    annotations:
+      iso29100_clause:
+        tag: iso29100_clause
+        value: '3.15'
+    description: 'Schema class capturing a PII principal''s processing choices for
+      a particular purpose scope: preferences for anonymity or pseudonymity, restrictions
+      on specific processing operations, and restrictions on disclosure to named or
+      categorized parties.'
+    comments:
+    - ICT systems should offer meaningful choices where technically feasible
+    - Preferences may include anonymity, pseudonymity, or restriction of specific
+      operations
+    - 'Reference: ISO/IEC 29100:2024 Clause 3.15 and 5.5.5. ISO/IEC standards text
+      is copyright ISO - not reproduced here.'
+    in_subset:
+    - privacy_framework_core
+    from_schema: https://w3id.org/lmodel/iso29100
+    exact_mappings:
+    - dpv:Preference
+    is_a: NamedEntity
+    slots:
+    - NamedEntity_id
+    - name
+    - description
+    - created_date
+    - modified_date
+    - principal_ref
+    - preference_scope
+    - anonymity_preference
+    - pseudonymity_preference
+    - processing_restriction_preferences
+    - disclosure_restriction_preferences
+    - preference_recorded_date
+    class_uri: iso29100:PrivacyPreference
+metamodel_version: 1.7.0
+source_file: iso29100.yaml
+source_file_date: '2026-04-16T12:16:49'
+source_file_size: 60842
+generation_date: '2026-04-16T13:26:39'
+

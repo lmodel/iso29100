@@ -1,8 +1,8 @@
 id: iso29100:breach-2025-001
 name: Customer Email Export Incident 2025-001
 description: Inadvertent disclosure of customer email addresses to an incorrect third-party recipient via misconfigured export job.
-breach_datetime: "2025-09-10T14:32:00"
-discovery_datetime: "2025-09-10T16:05:00"
+breach_datetime: "2025-09-10T14:32:00Z"
+discovery_datetime: "2025-09-10T16:05:00Z"
 breach_description: >-
   A scheduled data export job was misconfigured to send a CSV containing
   12,500 customer email addresses to an external marketing partner instead
@@ -28,4 +28,4 @@ remediation_actions:
 lessons_learned: >-
   Export job destination configuration must undergo two-person review before
   deployment. Automated destination validation to be added to CI/CD pipeline.
-closure_datetime: "2025-10-15T09:00:00"
+closure_datetime: "2025-10-15T09:00:00Z"

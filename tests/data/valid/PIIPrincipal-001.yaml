@@ -8,7 +8,7 @@ consent_records:
   - id: iso29100:consent-alice-marketing
     name: Alice Marketing Consent
     principal_ref: iso29100:principal-alice-001
-    consent_date: "2025-03-15"
+    consent_date: "2025-03-15T00:00:00Z"
     consent_mechanism: opt_in
     processing_purposes_consented:
       - Marketing communications
@@ -24,5 +24,5 @@ privacy_preferences:
     anonymity_preference: false
     pseudonymity_preference: true
     processing_restriction_preferences:
-      - No automated decision-making
+      - consultation
     preference_recorded_date: "2025-03-15"

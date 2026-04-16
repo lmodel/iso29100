@@ -1,0 +1,2578 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix dpv: <https://w3id.org/dpv#> .
+@prefix iso27001: <https://w3id.org/lmodel/iso27001/> .
+@prefix iso29100: <https://w3id.org/lmodel/iso29100/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix schema1: <http://schema.org/> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/lmodel/iso29100.owl.ttl> a owl:Ontology ;
+    rdfs:label "iso29100" ;
+    dcterms:license "https://www.apache.org/licenses/LICENSE-2.0" ;
+    dcterms:title "ISO 29100 / Privacy Framework: LinkML Schema" ;
+    pav:version "1.0.0" ;
+    skos:definition """A comprehensive LinkML schema modeling the ISO/IEC 29100:2024 privacy framework for information and communication technology (ICT) systems. Captures actors and roles, PII recognition, privacy safeguarding requirements, the eleven privacy principles, and the privacy risk management process.
+This schema covers: - Privacy framework actors (PII principal, controller, processor, third party) - Personally identifiable information (PII) and its categories - Privacy principles (11 principles from Clause 6) - Privacy safeguarding requirements and influencing factors - Privacy risk management including privacy impact assessment - Privacy policies, privacy controls, consent records, and privacy preferences""" ;
+    iso29100:previous_edition "ISO/IEC 29100:2011/Amd 1:2018" ;
+    iso29100:rights_notice "This project is licensed under Apache-2.0 for original code and schema structure. ISO/IEC standards text is owned by ISO and is not redistributed by this project license." ;
+    iso29100:schema_maintainer "noel.mcloughlin@gmail.com" ;
+    iso29100:schema_status "stable" ;
+    iso29100:standard_date "2024-02" ;
+    iso29100:standard_edition "Second edition" ;
+    iso29100:standard_reference "ISO/IEC 29100:2024(E)" ;
+    iso29100:standard_title "Information technology — Security techniques — Privacy framework" .
+
+iso29100:PIIPrincipal a owl:Class ;
+    rdfs:label "PIIPrincipal" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:ConsentRecord ;
+            owl:onProperty iso29100:consent_records ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPreference ;
+            owl:onProperty iso29100:privacy_preferences ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:consent_records ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_preferences ],
+        iso29100:PrivacyStakeholder ;
+    skos:definition "Schema class for a data subject — the individual to whom PII belongs. Links consent records and privacy preferences to the natural person whose data is being processed, enabling subject-centric data models." ;
+    skos:exactMatch dpv:DataSubject ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:narrowMatch schema1:Person ;
+    skos:note "A PII principal may be identified directly or indirectly through a combination of attributes",
+        "Reference: ISO/IEC 29100:2024 Clause 3.9 and 5.2.2. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    iso29100:iso29100_clause "3.9" .
+
+iso29100:PersonallyIdentifiableInformation a owl:Class ;
+    rdfs:label "PersonallyIdentifiableInformation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIISensitivityCategory ;
+            owl:onProperty iso29100:sensitivity_level ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:pii_category ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:applicable_to_principal ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:is_anonymized ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:linkability_risk ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:retention_schedule ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:is_anonymized ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:identifier_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:linkability_risk ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_operations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:applicable_to_principal ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:is_pseudonymized ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_category ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:applicable_to_principal ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:identifier_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessingOperation ;
+            owl:onProperty iso29100:processing_operations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:is_pseudonymized ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:sensitivity_level ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:is_anonymized ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:retention_schedule ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:sensitivity_level ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:linkability_risk ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:is_pseudonymized ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:identifier_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:retention_schedule ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class representing a data element or attribute set that can be linked back to a natural person — either directly or through combination with other attributes. Captures sensitivity classification, identifier type, pseudonymization status, retention schedule, and processing operations applicable to the data." ;
+    skos:exactMatch dpv:PersonalData ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Encompasses direct identifiers, linkable attributes, and combinations thereof",
+        "Reference: ISO/IEC 29100:2024 Clause 3.7 and 5.4. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Sensitivity assessment should consider context and combination of attributes" ;
+    iso29100:iso29100_clause "3.7" .
+
+iso29100:PrivacyFramework a owl:Class ;
+    rdfs:label "PrivacyFramework" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:organization_name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:ThirdParty ;
+            owl:onProperty iso29100:third_parties ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_impact_assessments ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_processors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRisk ;
+            owl:onProperty iso29100:privacy_risks ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:pii_principals_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:ict_system_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_controls ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPolicy ;
+            owl:onProperty iso29100:privacy_policy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyBreach ;
+            owl:onProperty iso29100:privacy_breaches ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIController ;
+            owl:onProperty iso29100:pii_controllers ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_controllers ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessingActivity ;
+            owl:onProperty iso29100:pii_processing_activities ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:applicable_jurisdictions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_risks ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:ict_system_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:third_parties ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:organization_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_principals_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:safeguarding_requirements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:ict_system_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:principle_implementations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacySafeguardingRequirement ;
+            owl:onProperty iso29100:safeguarding_requirements ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:organization_name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_processing_activities ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:privacy_policy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyImpactAssessment ;
+            owl:onProperty iso29100:privacy_impact_assessments ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:applicable_jurisdictions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPrincipleImplementation ;
+            owl:onProperty iso29100:principle_implementations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_policy ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyControl ;
+            owl:onProperty iso29100:privacy_controls ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessor ;
+            owl:onProperty iso29100:pii_processors ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_breaches ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:pii_principals_description ],
+        iso29100:NamedEntity ;
+    skos:definition "Top-level container representing an organization's privacy framework for protecting PII within ICT systems." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Aggregates all privacy framework components and their relationships",
+        "Reference: ISO/IEC 29100:2024 Clause 5.1. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Root entity for any ISO 29100 conformance dataset" ;
+    skos:relatedMatch iso27001:InformationSecurityManagementSystem ;
+    iso29100:iso29100_clause "5.1" .
+
+xsd:duration a rdfs:Datatype .
+
+xsd:positiveInteger a rdfs:Datatype .
+
+dpv:Access a owl:Class ;
+    rdfs:label "retrieval" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Accessing or fetching stored PII for use." .
+
+dpv:Accountability a owl:Class ;
+    rdfs:label "accountability" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 9 (Clause 6.10): the organization documents and communicates its privacy obligations, ensures equivalent protection when transferring PII to third parties, and maintains internal complaint-handling and redress procedures." ;
+    iso29100:iso29100_clause "6.10" ;
+    iso29100:principle_number "9" .
+
+dpv:Accuracy a owl:Class ;
+    rdfs:label "accuracy_and_quality" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 6 (Clause 6.7): the organization ensures PII is accurate, complete, current, and fit for purpose, and establishes procedures for verification, correction, and ongoing quality control of processed PII." ;
+    iso29100:iso29100_clause "6.7" ;
+    iso29100:principle_number "6" .
+
+dpv:Anonymise a owl:Class ;
+    rdfs:label "anonymization" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Irreversibly altering PII such that the PII principal can no longer be identified directly or indirectly." .
+
+dpv:Collect a owl:Class ;
+    rdfs:label "collection" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Gathering or acquiring PII from PII principals or other sources." .
+
+dpv:Conformance a owl:Class ;
+    rdfs:label "privacy_compliance" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 11 (Clause 6.12): the organization verifies and demonstrates compliance with data protection and privacy requirements through audits, independent internal controls, and ongoing privacy risk assessments." ;
+    iso29100:iso29100_clause "6.12" ;
+    iso29100:principle_number "11" .
+
+dpv:Contract a owl:Class ;
+    rdfs:label "contractual" ;
+    rdfs:subClassOf iso29100:SafeguardingRequirementFactor ;
+    skos:definition "Safeguarding requirements set out in data processing agreements, company policies, and binding corporate rules agreed between PII controllers, processors, and other parties." ;
+    iso29100:iso29100_clause "5.5.3" .
+
+dpv:DataMinimisation a owl:Class ;
+    rdfs:label "data_minimization" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 4 (Clause 6.5): the organization designs processing procedures and ICT systems to minimize the volume of PII handled and the number of parties with access to it." ;
+    iso29100:iso29100_clause "6.5" ;
+    iso29100:principle_number "4" .
+
+dpv:Destroy a owl:Class ;
+    rdfs:label "destruction" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Permanently and irrecoverably eliminating PII and its carriers." .
+
+dpv:Disclose a owl:Class ;
+    rdfs:label "disclosure" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Making PII available to other parties or making it accessible." .
+
+dpv:Disseminate a owl:Class ;
+    rdfs:label "dissemination" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Widely distributing or publishing PII to multiple recipients." .
+
+dpv:Erase a owl:Class ;
+    rdfs:label "deletion" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Removing PII such that it is no longer accessible or usable." .
+
+dpv:LegalBasis a owl:Class ;
+    rdfs:label "legal_and_regulatory" ;
+    rdfs:subClassOf iso29100:SafeguardingRequirementFactor ;
+    skos:definition "Safeguarding requirements arising from applicable laws (international, national, and local), regulations, judicial decisions, and negotiated labour or work-council agreements." ;
+    iso29100:iso29100_clause "5.5.2" .
+
+dpv:LegalMeasure a owl:Class ;
+    rdfs:label "legal_contractual" ;
+    rdfs:subClassOf iso29100:PrivacyControlType ;
+    skos:definition "Legal contracts, binding corporate rules, or data processing agreements implementing privacy safeguards." .
+
+dpv:OptIn a owl:Class ;
+    rdfs:label "opt_in" ;
+    rdfs:subClassOf iso29100:ConsentMechanism ;
+    skos:definition "The PII principal must take an explicit action to express prior consent for their PII to be processed for a particular purpose." ;
+    iso29100:iso29100_clause "3.6" .
+
+dpv:OptOut a owl:Class ;
+    rdfs:label "opt_out" ;
+    rdfs:subClassOf iso29100:ConsentMechanism ;
+    skos:definition "The PII principal must take a separate action to withhold or withdraw consent; processing is presumed permitted unless that action is taken." .
+
+dpv:OrganisationalMeasure a owl:Class ;
+    rdfs:label "organizational" ;
+    rdfs:subClassOf iso29100:PrivacyControlType ;
+    skos:definition "Policies, procedures, guidelines, management practices, or organizational structures used as privacy controls." .
+
+dpv:PhysicalMeasure a owl:Class ;
+    rdfs:label "physical" ;
+    rdfs:subClassOf iso29100:PrivacyControlType ;
+    skos:definition "Physical measures protecting PII and PII processing infrastructure." .
+
+dpv:Pseudonymise a owl:Class ;
+    rdfs:label "pseudonymization" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Replacing identifying information in PII with an alias, retaining linkability while restricting direct identification." .
+
+dpv:Purpose a owl:Class ;
+    rdfs:label "purpose_legitimacy_and_specification" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 2 (Clause 6.3): the organization ensures each processing purpose is lawful, relies on a valid legal basis, and is communicated to PII principals prior to or at the time of collection." ;
+    iso29100:iso29100_clause "6.3" ;
+    iso29100:principle_number "2" .
+
+dpv:RightToAccess a owl:Class ;
+    rdfs:label "individual_participation_and_access" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 8 (Clause 6.9): the organization gives PII principals the ability to access and review their PII and to challenge its accuracy and completeness, subject to applicable law." ;
+    iso29100:iso29100_clause "6.9" ;
+    iso29100:principle_number "8" .
+
+dpv:SecurityMeasure a owl:Class ;
+    rdfs:label "information_security" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 10 (Clause 6.11): the organization applies appropriate security controls across operational, functional, and strategic levels to protect PII against unauthorized access, loss, or misuse throughout its full lifecycle." ;
+    iso29100:iso29100_clause "6.11" ;
+    iso29100:principle_number "10" .
+
+dpv:SpecialCategoryPersonalData a owl:Class ;
+    rdfs:label "sensitive" ;
+    rdfs:subClassOf iso29100:PIISensitivityCategory ;
+    skos:definition "PII warranting heightened protection due to its potential for significant adverse impact on the individual, or because applicable law classifies it as a special category. Typical examples include health, biometric, financial, racial, religious, political, and sexual orientation data. Processing may require opt-in consent or specific legal authorization." ;
+    iso29100:iso29100_clause "3.23" .
+
+dpv:StorageLimitation a owl:Class ;
+    rdfs:label "use_retention_and_disclosure_limitation" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 5 (Clause 6.6): the organization limits use, retention, and disclosure of PII to the minimum needed for legitimate purposes, and securely disposes of PII once those purposes have been fulfilled." ;
+    iso29100:iso29100_clause "6.6" ;
+    iso29100:principle_number "5" .
+
+dpv:Store a owl:Class ;
+    rdfs:label "storage" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Storing PII in a persistent manner in ICT systems or other media." .
+
+dpv:TechnicalMeasure a owl:Class ;
+    rdfs:label "technical" ;
+    rdfs:subClassOf iso29100:PrivacyControlType ;
+    skos:definition "ICT measures, products, or services that protect privacy, including privacy enhancing technologies (PETs)." .
+
+dpv:Transform a owl:Class ;
+    rdfs:label "alteration" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Modifying or updating existing PII." .
+
+dpv:Transparency a owl:Class ;
+    rdfs:label "openness_transparency_and_notice" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 7 (Clause 6.8): the organization provides PII principals with clear, accessible information about its PII processing policies and practices, and notifies them of material changes to those policies." ;
+    iso29100:iso29100_clause "6.8" ;
+    iso29100:principle_number "7" .
+
+dpv:Use a owl:Class ;
+    rdfs:label "consultation" ;
+    rdfs:subClassOf iso29100:PIIProcessingOperation ;
+    skos:definition "Reviewing or examining PII without necessarily extracting it." .
+
+<https://w3id.org/lmodel/iso29100/ConsentMechanism#implied> a owl:Class ;
+    rdfs:label "implied" ;
+    rdfs:subClassOf iso29100:ConsentMechanism ;
+    skos:definition "Consent implied by some action of the PII principal, such as placing an order or using a service, where applicable law permits." .
+
+iso29100:ConsentRecord a owl:Class ;
+    rdfs:label "ConsentRecord" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:consent_mechanism ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:ConsentMechanism ;
+            owl:onProperty iso29100:consent_mechanism ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:consent_evidence_ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty iso29100:withdrawal_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:consent_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:consent_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:consent_mechanism ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:processing_purposes_consented ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:consent_evidence_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_purposes_consented ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:consent_status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:consent_status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:principal_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:consent_evidence_ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:consent_status ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty iso29100:consent_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_categories_consented ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:withdrawal_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:principal_ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:pii_categories_consented ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:withdrawal_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:principal_ref ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class documenting a PII principal's agreement to processing of their PII for stated purposes. Records the consent mechanism used, scope, current status, and withdrawal date — supporting auditability of the consent and choice privacy principle." ;
+    skos:exactMatch dpv:Consent ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Consent must be freely given, specific, and informed",
+        "Opt-in required for sensitive PII unless applicable law permits otherwise",
+        "Reference: ISO/IEC 29100:2024 Clause 3.4 and 6.2. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Withdrawal of consent must be easily exercisable and free of charge" ;
+    iso29100:iso29100_clause "3.4" .
+
+<https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved> a owl:Class ;
+    rdfs:label "not_involved" ;
+    rdfs:subClassOf iso29100:PIIFlowRole ;
+    skos:definition "Actor not directly involved in this specific PII flow scenario." .
+
+<https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider> a owl:Class ;
+    rdfs:label "pii_provider" ;
+    rdfs:subClassOf iso29100:PIIFlowRole ;
+    skos:definition "Actor that provides PII to another party in this flow scenario." .
+
+<https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient> a owl:Class ;
+    rdfs:label "pii_recipient" ;
+    rdfs:subClassOf iso29100:PIIFlowRole ;
+    skos:definition "Actor that receives PII from another party in this flow scenario." .
+
+iso29100:PIIFlowScenario a owl:Class ;
+    rdfs:label "PIIFlowScenario" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIFlowRole ;
+            owl:onProperty iso29100:pii_controller_role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:scenario_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:legal_control_retention ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:scenario_label ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:scenario_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_controller_role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:pii_principal_role ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:pii_controller_role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:third_party_role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:scenario_label ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:pii_processor_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIFlowRole ;
+            owl:onProperty iso29100:third_party_role ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_processor_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIFlowRole ;
+            owl:onProperty iso29100:pii_principal_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:scenario_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:third_party_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIFlowRole ;
+            owl:onProperty iso29100:pii_processor_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:legal_control_retention ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_principal_role ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:scenario_label ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:legal_control_retention ],
+        iso29100:NamedEntity ;
+    skos:definition "A documented scenario describing the flow of PII among privacy framework actors (PII principal, PII controller, PII processor, and third party), as illustrated in Table 1 of Clause 5.3." ;
+    skos:exactMatch dpv:PersonalDataHandling ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Eight canonical flow scenarios are identified in Table 1 of the standard",
+        "Reference: ISO/IEC 29100:2024 Clause 5.3 and Table 1. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    iso29100:iso29100_clause "5.3" .
+
+<https://w3id.org/lmodel/iso29100/PIISensitivityCategory#standard> a owl:Class ;
+    rdfs:label "standard" ;
+    rdfs:subClassOf iso29100:PIISensitivityCategory ;
+    skos:definition "PII that does not meet the threshold for sensitive PII but still requires appropriate privacy protection measures." .
+
+iso29100:PrivacyBreach a owl:Class ;
+    rdfs:label "PrivacyBreach" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:notifications_made ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty iso29100:discovery_datetime ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:positiveInteger ;
+            owl:onProperty iso29100:affected_principals_count ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:affected_principals_count ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:lessons_learned ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:affected_principals_count ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty iso29100:breach_datetime ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:lessons_learned ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:immediate_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:notification_required ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:discovery_datetime ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:dateTime ;
+            owl:onProperty iso29100:closure_datetime ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:breach_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:breach_severity ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:discovery_datetime ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:breach_datetime ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:remediation_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:notification_required ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:affected_pii_categories ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:closure_datetime ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:notification_required ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:lessons_learned ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacySafeguardingRequirement ;
+            owl:onProperty iso29100:violated_requirements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:closure_datetime ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRiskLevel ;
+            owl:onProperty iso29100:breach_severity ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:remediation_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:affected_pii_categories ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:breach_severity ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:violated_requirements ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:breach_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:immediate_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:breach_datetime ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:notifications_made ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:breach_description ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class for a recorded incident in which PII was processed in a manner that violates applicable privacy safeguarding requirements. Tracks breach details, affected PII categories, notification obligations, remediation actions, and lessons learned." ;
+    skos:exactMatch dpv:PersonalDataBreach ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Corresponds to an information security incident in ISO/IEC 27000 context (Annex A Table)",
+        "Reference: ISO/IEC 29100:2024 Clause 3.11. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Remediation measures should be proportionate to the risks associated with the breach" ;
+    skos:relatedMatch iso27001:InformationSecurityIncident ;
+    iso29100:iso29100_clause "3.11" .
+
+iso29100:PrivacyImpactAssessment a owl:Class ;
+    rdfs:label "PrivacyImpactAssessment" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:assessment_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessingActivity ;
+            owl:onProperty iso29100:processing_activities_assessed ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:assessment_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:next_assessment_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:assessment_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:assessment_scope ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:assessment_scope ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_activities_assessed ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:next_assessment_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRisk ;
+            owl:onProperty iso29100:risks_treated ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:residual_risks_accepted ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:assessment_scope ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:assessor ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:assessment_outcome ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRisk ;
+            owl:onProperty iso29100:residual_risks_accepted ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:assessor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:consultation_records ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:assessor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:assessment_outcome ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:assessment_outcome ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRisk ;
+            owl:onProperty iso29100:risks_identified ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:risks_identified ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:risks_treated ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:next_assessment_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:consultation_records ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class for a structured evaluation of the privacy implications of a processing activity or ICT system. Records assessment scope, identified and treated risks, accepted residual risks, stakeholder consultation records, and overall assessment outcome." ;
+    skos:exactMatch dpv:PrivacyImpactAssessment ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Reference: ISO/IEC 29100:2024 Clause 3.18 and 5.5. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Should be conducted before implementing new or substantially modified ICT systems",
+        "Should be framed within the organization's broader risk management framework" ;
+    skos:relatedMatch iso27001:RiskAssessment ;
+    iso29100:iso29100_clause "3.18" .
+
+iso29100:PrivacyPreference a owl:Class ;
+    rdfs:label "PrivacyPreference" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:anonymity_preference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:principal_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:preference_recorded_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:preference_scope ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pseudonymity_preference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessingOperation ;
+            owl:onProperty iso29100:processing_restriction_preferences ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:pseudonymity_preference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:preference_scope ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:anonymity_preference ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:pseudonymity_preference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:anonymity_preference ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:disclosure_restriction_preferences ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:preference_scope ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_restriction_preferences ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:disclosure_restriction_preferences ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:preference_recorded_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:preference_recorded_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:principal_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:principal_ref ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class capturing a PII principal's processing choices for a particular purpose scope: preferences for anonymity or pseudonymity, restrictions on specific processing operations, and restrictions on disclosure to named or categorized parties." ;
+    skos:exactMatch dpv:Preference ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "ICT systems should offer meaningful choices where technically feasible",
+        "Preferences may include anonymity, pseudonymity, or restriction of specific operations",
+        "Reference: ISO/IEC 29100:2024 Clause 3.15 and 5.5.5. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    iso29100:iso29100_clause "3.15" .
+
+<https://w3id.org/lmodel/iso29100/PrivacyPrinciple#collection_limitation> a owl:Class ;
+    rdfs:label "collection_limitation" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 3 (Clause 6.4): the organization limits PII collection to what is lawful and strictly necessary to fulfil the stated processing purposes." ;
+    iso29100:iso29100_clause "6.4" ;
+    iso29100:principle_number "3" .
+
+iso29100:PrivacyPrincipleImplementation a owl:Class ;
+    rdfs:label "PrivacyPrincipleImplementation" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:implementation_measures ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:gaps_identified ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:last_assessed_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:evidence_of_adherence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:implementation_measures ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:principle ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty iso29100:principle ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:improvement_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:improvement_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPrinciple ;
+            owl:onProperty iso29100:principle ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:last_assessed_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:last_assessed_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:evidence_of_adherence ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyControl ;
+            owl:onProperty iso29100:applicable_controls_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:applicable_controls_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:gaps_identified ],
+        iso29100:NamedEntity ;
+    skos:definition "Documentation of how a specific privacy principle from Clause 6 has been implemented within the organization's privacy framework, including measures taken and evidence of adherence." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "One implementation record per principle per organization or ICT system scope",
+        "Reference: ISO/IEC 29100:2024 Clause 6. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    iso29100:iso29100_clause "6" .
+
+<https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#high> a owl:Class ;
+    rdfs:label "high" ;
+    rdfs:subClassOf iso29100:PrivacyRiskLevel ;
+    skos:definition "Significant risk with potentially serious consequences for PII principals." .
+
+<https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#low> a owl:Class ;
+    rdfs:label "low" ;
+    rdfs:subClassOf iso29100:PrivacyRiskLevel ;
+    skos:definition "Limited potential adverse consequences for PII principals." .
+
+<https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#medium> a owl:Class ;
+    rdfs:label "medium" ;
+    rdfs:subClassOf iso29100:PrivacyRiskLevel ;
+    skos:definition "Moderate risk requiring management attention and planned controls." .
+
+<https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#very_high> a owl:Class ;
+    rdfs:label "very_high" ;
+    rdfs:subClassOf iso29100:PrivacyRiskLevel ;
+    skos:definition "Severe risk with potentially catastrophic or irreversible consequences for PII principals requiring immediate treatment." .
+
+<https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#business> a owl:Class ;
+    rdfs:label "business" ;
+    rdfs:subClassOf iso29100:SafeguardingRequirementFactor ;
+    skos:definition "Safeguarding requirements driven by the application's characteristics, industry guidelines, codes of conduct, or standards voluntarily adopted by the organization as part of its business model." ;
+    iso29100:iso29100_clause "5.5.4" .
+
+<https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#other> a owl:Class ;
+    rdfs:label "other" ;
+    rdfs:subClassOf iso29100:SafeguardingRequirementFactor ;
+    skos:definition "Safeguarding requirements arising from PII principal privacy preferences, internal control frameworks, or technical standards voluntarily adopted by the organization." ;
+    iso29100:iso29100_clause "5.5.5" .
+
+iso29100:ThirdParty a owl:Class ;
+    rdfs:label "ThirdParty" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:transfer_basis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:receiving_purpose ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:receiving_purpose ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:transfer_basis ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:receiving_purpose ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:transfer_basis ],
+        iso29100:PrivacyStakeholder ;
+    skos:definition "Schema class for an external entity that receives PII outside the PII processor relationship — i.e., as a recipient that typically becomes a PII controller in its own right. Captures the receiving purpose and the legal basis for the transfer." ;
+    skos:exactMatch dpv:ThirdParty ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Reference: ISO/IEC 29100:2024 Clause 3.24 and 5.2.5. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Third parties do not process PII on behalf of the original PII controller",
+        "Upon receiving PII, a third party typically assumes controller responsibilities" ;
+    iso29100:iso29100_clause "3.24" .
+
+iso29100:addressed_principles a owl:ObjectProperty ;
+    rdfs:label "addressed_principles" ;
+    rdfs:range iso29100:PrivacyPrinciple ;
+    skos:definition "Privacy principles this control helps implement." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:applicable_controls_ref a owl:ObjectProperty ;
+    rdfs:label "applicable_controls_ref" ;
+    rdfs:range iso29100:PrivacyControl ;
+    skos:definition "Privacy controls that contribute to implementing this principle." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:applicable_jurisdictions a owl:DatatypeProperty ;
+    rdfs:label "applicable_jurisdictions" ;
+    rdfs:range xsd:string ;
+    skos:definition "Legal jurisdictions whose privacy laws apply to the organization." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:applicable_principles a owl:ObjectProperty ;
+    rdfs:label "applicable_principles" ;
+    rdfs:range iso29100:PrivacyPrinciple ;
+    skos:definition "Privacy principles this policy addresses." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:applicable_to_actors a owl:DatatypeProperty ;
+    rdfs:label "applicable_to_actors" ;
+    rdfs:range xsd:string ;
+    skos:definition "Privacy stakeholder roles to which this requirement applies." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:appointed_processors a owl:ObjectProperty ;
+    rdfs:label "appointed_processors" ;
+    rdfs:range iso29100:PIIProcessor ;
+    skos:definition "PII processors appointed by this controller." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.8" .
+
+iso29100:consent_records a owl:ObjectProperty ;
+    rdfs:label "consent_records" ;
+    rdfs:range iso29100:ConsentRecord ;
+    skos:definition "Consent records associated with the PII principal." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.4" .
+
+iso29100:consultation_records a owl:DatatypeProperty ;
+    rdfs:label "consultation_records" ;
+    rdfs:range xsd:string ;
+    skos:definition "Records of stakeholder consultations conducted during the assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:data_flows a owl:ObjectProperty ;
+    rdfs:label "data_flows" ;
+    rdfs:range iso29100:PIIFlowScenario ;
+    skos:definition "PII flow scenarios applicable to this processing activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:disclosure_restriction_preferences a owl:DatatypeProperty ;
+    rdfs:label "disclosure_restriction_preferences" ;
+    rdfs:range xsd:string ;
+    skos:definition "Restrictions on disclosing PII to specific parties or categories of parties." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:effectiveness_evidence a owl:DatatypeProperty ;
+    rdfs:label "effectiveness_evidence" ;
+    rdfs:range xsd:string ;
+    skos:definition "Evidence of control effectiveness." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:evidence_of_adherence a owl:DatatypeProperty ;
+    rdfs:label "evidence_of_adherence" ;
+    rdfs:range xsd:string ;
+    skos:definition "Evidence demonstrating adherence to this principle." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:gaps_identified a owl:DatatypeProperty ;
+    rdfs:label "gaps_identified" ;
+    rdfs:range xsd:string ;
+    skos:definition "Identified gaps in the implementation of this principle." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:immediate_actions a owl:DatatypeProperty ;
+    rdfs:label "immediate_actions" ;
+    rdfs:range xsd:string ;
+    skos:definition "Immediate actions taken to contain the breach." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:implementation_measures a owl:DatatypeProperty ;
+    rdfs:label "implementation_measures" ;
+    rdfs:range xsd:string ;
+    skos:definition "Measures taken to implement this privacy principle." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:improvement_actions a owl:DatatypeProperty ;
+    rdfs:label "improvement_actions" ;
+    rdfs:range xsd:string ;
+    skos:definition "Actions planned to address identified implementation gaps." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:jurisdictions a owl:DatatypeProperty ;
+    rdfs:label "jurisdictions" ;
+    rdfs:range xsd:string ;
+    skos:definition "Jurisdictions in which the privacy stakeholder operates." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:legal_bases a owl:DatatypeProperty ;
+    rdfs:label "legal_bases" ;
+    rdfs:range xsd:string ;
+    skos:definition "Legal bases relied upon for PII processing by this controller." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.5.2" .
+
+iso29100:mitigating_controls a owl:ObjectProperty ;
+    rdfs:label "mitigating_controls" ;
+    rdfs:range iso29100:PrivacyControl ;
+    skos:definition "Privacy controls that mitigate this risk." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:notifications_made a owl:DatatypeProperty ;
+    rdfs:label "notifications_made" ;
+    rdfs:range xsd:string ;
+    skos:definition "Notifications made to authorities, PII principals, or other parties." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:operations_performed a owl:ObjectProperty ;
+    rdfs:label "operations_performed" ;
+    rdfs:range iso29100:PIIProcessingOperation ;
+    skos:definition "Processing operations performed in this activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.21" .
+
+iso29100:pii_categories_consented a owl:DatatypeProperty ;
+    rdfs:label "pii_categories_consented" ;
+    rdfs:range xsd:string ;
+    skos:definition "Categories of PII for which consent was given." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pii_categories_covered a owl:DatatypeProperty ;
+    rdfs:label "pii_categories_covered" ;
+    rdfs:range xsd:string ;
+    skos:definition "Categories of PII addressed by this privacy policy." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pii_categories_processed a owl:DatatypeProperty ;
+    rdfs:label "pii_categories_processed" ;
+    rdfs:range xsd:string ;
+    skos:definition "Categories of PII processed in this activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pii_category a owl:DatatypeProperty ;
+    rdfs:label "pii_category" ;
+    rdfs:range xsd:string ;
+    skos:definition "Category or type of PII (e.g., financial, health, biometric, location)." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "See Table 2 of the standard for informative examples of attributes that can be PII" .
+
+iso29100:pii_controllers a owl:ObjectProperty ;
+    rdfs:label "pii_controllers" ;
+    rdfs:range iso29100:PIIController ;
+    skos:definition "PII controllers operating within this privacy framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pii_principal_rights a owl:DatatypeProperty ;
+    rdfs:label "pii_principal_rights" ;
+    rdfs:range xsd:string ;
+    skos:definition "Rights available to PII principals under this policy." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.9" .
+
+iso29100:pii_processing_activities a owl:ObjectProperty ;
+    rdfs:label "pii_processing_activities" ;
+    rdfs:range iso29100:PIIProcessingActivity ;
+    skos:definition "PII processing activities within the framework scope." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pii_processors a owl:ObjectProperty ;
+    rdfs:label "pii_processors" ;
+    rdfs:range iso29100:PIIProcessor ;
+    skos:definition "PII processors engaged within this privacy framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:principle_implementations a owl:ObjectProperty ;
+    rdfs:label "principle_implementations" ;
+    rdfs:range iso29100:PrivacyPrincipleImplementation ;
+    skos:definition "Implementation records for each of the eleven privacy principles." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:privacy_breaches a owl:ObjectProperty ;
+    rdfs:label "privacy_breaches" ;
+    rdfs:range iso29100:PrivacyBreach ;
+    skos:definition "Privacy breaches recorded within the framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:privacy_controls a owl:ObjectProperty ;
+    rdfs:label "privacy_controls" ;
+    rdfs:range iso29100:PrivacyControl ;
+    skos:definition "Privacy controls implemented within the framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.7" .
+
+iso29100:privacy_controls_applied a owl:ObjectProperty ;
+    rdfs:label "privacy_controls_applied" ;
+    rdfs:range iso29100:PrivacyControl ;
+    skos:definition "Privacy controls applied to this processing activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:privacy_impact_assessments a owl:ObjectProperty ;
+    rdfs:label "privacy_impact_assessments" ;
+    rdfs:range iso29100:PrivacyImpactAssessment ;
+    skos:definition "Privacy impact assessments conducted under this framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:privacy_preferences a owl:ObjectProperty ;
+    rdfs:label "privacy_preferences" ;
+    rdfs:range iso29100:PrivacyPreference ;
+    skos:definition "Privacy preferences expressed by the PII principal." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.15" .
+
+iso29100:privacy_risks a owl:ObjectProperty ;
+    rdfs:label "privacy_risks" ;
+    rdfs:range iso29100:PrivacyRisk ;
+    skos:definition "Privacy risks identified within the framework scope." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:processing_activities_assessed a owl:ObjectProperty ;
+    rdfs:label "processing_activities_assessed" ;
+    rdfs:range iso29100:PIIProcessingActivity ;
+    skos:definition "PII processing activities reviewed in this assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:processing_operations a owl:ObjectProperty ;
+    rdfs:label "processing_operations" ;
+    rdfs:range iso29100:PIIProcessingOperation ;
+    skos:definition "Types of processing operations performed on this PII." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.21" .
+
+iso29100:processing_purposes a owl:DatatypeProperty ;
+    rdfs:label "processing_purposes" ;
+    rdfs:range xsd:string ;
+    skos:definition "Purposes for which the PII controller processes PII." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.3" .
+
+iso29100:processing_purposes_consented a owl:DatatypeProperty ;
+    rdfs:label "processing_purposes_consented" ;
+    rdfs:range xsd:string ;
+    skos:definition "Processing purposes for which consent was given." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:processing_purposes_covered a owl:DatatypeProperty ;
+    rdfs:label "processing_purposes_covered" ;
+    rdfs:range xsd:string ;
+    skos:definition "Processing purposes addressed by this privacy policy." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:processing_restriction_preferences a owl:ObjectProperty ;
+    rdfs:label "processing_restriction_preferences" ;
+    rdfs:range iso29100:PIIProcessingOperation ;
+    skos:definition "Specific processing operations the PII principal wishes to restrict." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:related_controls a owl:ObjectProperty ;
+    rdfs:label "related_controls" ;
+    rdfs:range iso29100:PrivacyControl ;
+    skos:definition "Privacy controls that implement or contribute to this requirement." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:related_safeguarding_requirements a owl:ObjectProperty ;
+    rdfs:label "related_safeguarding_requirements" ;
+    rdfs:range iso29100:PrivacySafeguardingRequirement ;
+    skos:definition "Safeguarding requirements this control addresses." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:remediation_actions a owl:DatatypeProperty ;
+    rdfs:label "remediation_actions" ;
+    rdfs:range xsd:string ;
+    skos:definition "Actions taken to remediate the breach and prevent recurrence." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:residual_risks_accepted a owl:ObjectProperty ;
+    rdfs:label "residual_risks_accepted" ;
+    rdfs:range iso29100:PrivacyRisk ;
+    skos:definition "Privacy risks accepted as residual after treatment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:risks_identified a owl:ObjectProperty ;
+    rdfs:label "risks_identified" ;
+    rdfs:range iso29100:PrivacyRisk ;
+    skos:definition "Privacy risks identified during this assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:risks_treated a owl:ObjectProperty ;
+    rdfs:label "risks_treated" ;
+    rdfs:range iso29100:PrivacyRisk ;
+    skos:definition "Privacy risks for which treatment was planned or applied." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:safeguarding_requirements a owl:ObjectProperty ;
+    rdfs:label "safeguarding_requirements" ;
+    rdfs:range iso29100:PrivacySafeguardingRequirement ;
+    skos:definition "Privacy safeguarding requirements applicable to the organization." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.5" .
+
+iso29100:sensitivity_levels_involved a owl:ObjectProperty ;
+    rdfs:label "sensitivity_levels_involved" ;
+    rdfs:range iso29100:PIISensitivityCategory ;
+    skos:definition "Sensitivity levels of PII processed in this activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:sub_processors a owl:ObjectProperty ;
+    rdfs:label "sub_processors" ;
+    rdfs:range iso29100:PIIProcessor ;
+    skos:definition "Sub-processors engaged by this PII processor." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:third_parties a owl:ObjectProperty ;
+    rdfs:label "third_parties" ;
+    rdfs:range iso29100:ThirdParty ;
+    skos:definition "Third parties that may receive PII within this framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:transfer_safeguards a owl:DatatypeProperty ;
+    rdfs:label "transfer_safeguards" ;
+    rdfs:range xsd:string ;
+    skos:definition "Safeguards in place for cross-border PII transfers." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.6" .
+
+iso29100:violated_requirements a owl:ObjectProperty ;
+    rdfs:label "violated_requirements" ;
+    rdfs:range iso29100:PrivacySafeguardingRequirement ;
+    skos:definition "Privacy safeguarding requirements violated by this breach." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.11" .
+
+dpv:Consent a owl:Class ;
+    rdfs:label "consent_and_choice" ;
+    rdfs:subClassOf iso29100:PrivacyPrinciple ;
+    skos:definition "Schema value for privacy principle 1 (Clause 6.2): the organization gives PII principals meaningful choice over processing of their PII, manages opt-in consent mechanisms, and provides readily accessible means to withdraw consent." ;
+    iso29100:iso29100_clause "6.2" ;
+    iso29100:principle_number "1" .
+
+iso29100:affected_principals_count a owl:DatatypeProperty ;
+    rdfs:label "affected_principals_count" ;
+    rdfs:range xsd:positiveInteger ;
+    skos:definition "Estimated number of PII principals whose PII was involved." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:affected_principals_description a owl:DatatypeProperty ;
+    rdfs:label "affected_principals_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of PII principals who could be adversely affected." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:anonymity_preference a owl:DatatypeProperty ;
+    rdfs:label "anonymity_preference" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether the PII principal prefers anonymous processing where possible." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.1" .
+
+iso29100:applicable_to_principal a owl:DatatypeProperty ;
+    rdfs:label "applicable_to_principal" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference or description of the PII principal(s) to whom this PII relates." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:assessment_date a owl:DatatypeProperty ;
+    rdfs:label "assessment_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date the assessment was conducted." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:assessment_outcome a owl:DatatypeProperty ;
+    rdfs:label "assessment_outcome" ;
+    rdfs:range xsd:string ;
+    skos:definition "Overall outcome and conclusions of the privacy impact assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:assessment_scope a owl:DatatypeProperty ;
+    rdfs:label "assessment_scope" ;
+    rdfs:range xsd:string ;
+    skos:definition "Scope of the privacy impact assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.18" .
+
+iso29100:assessor a owl:DatatypeProperty ;
+    rdfs:label "assessor" ;
+    rdfs:range xsd:string ;
+    skos:definition "Person or team who conducted the assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:breach_datetime a owl:DatatypeProperty ;
+    rdfs:label "breach_datetime" ;
+    rdfs:range xsd:dateTime ;
+    skos:definition "Date and time when the privacy breach occurred." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:breach_description a owl:DatatypeProperty ;
+    rdfs:label "breach_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of the privacy breach and the violated requirements." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:breach_severity a owl:ObjectProperty ;
+    rdfs:label "breach_severity" ;
+    rdfs:range iso29100:PrivacyRiskLevel ;
+    skos:definition "Assessed severity of the privacy breach." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:closure_datetime a owl:DatatypeProperty ;
+    rdfs:label "closure_datetime" ;
+    rdfs:range xsd:dateTime ;
+    skos:definition "Date and time when the breach record was closed." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:consent_date a owl:DatatypeProperty ;
+    rdfs:label "consent_date" ;
+    rdfs:range xsd:dateTime ;
+    skos:definition "Date and time when consent was given." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.4" .
+
+iso29100:consent_evidence_ref a owl:DatatypeProperty ;
+    rdfs:label "consent_evidence_ref" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference to evidence of consent (e.g., record identifier or URL)." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:consent_mechanism a owl:ObjectProperty ;
+    rdfs:label "consent_mechanism" ;
+    rdfs:range iso29100:ConsentMechanism ;
+    skos:definition "Mechanism by which consent was obtained." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.6" .
+
+iso29100:consent_status a owl:DatatypeProperty ;
+    rdfs:label "consent_status" ;
+    rdfs:range xsd:string ;
+    skos:definition "Current status of the consent." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:contact_for_inquiries a owl:DatatypeProperty ;
+    rdfs:label "contact_for_inquiries" ;
+    rdfs:range xsd:string ;
+    skos:definition "Contact information for PII-related inquiries from PII principals." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:contact_information a owl:DatatypeProperty ;
+    rdfs:label "contact_information" ;
+    rdfs:range xsd:string ;
+    skos:definition "Contact details for the privacy stakeholder." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:control_objective a owl:DatatypeProperty ;
+    rdfs:label "control_objective" ;
+    rdfs:range xsd:string ;
+    skos:definition "The privacy objective this control is intended to achieve." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:control_type a owl:ObjectProperty ;
+    rdfs:label "control_type" ;
+    rdfs:range iso29100:PrivacyControlType ;
+    skos:definition "Category of this privacy control." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.12" .
+
+iso29100:controller_ref a owl:ObjectProperty ;
+    rdfs:label "controller_ref" ;
+    rdfs:range iso29100:PIIController ;
+    skos:definition "PII controller responsible for this processing activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:created_date a owl:DatatypeProperty ;
+    rdfs:label "created_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date when the entity record was created." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:cross_border_transfer a owl:DatatypeProperty ;
+    rdfs:label "cross_border_transfer" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether this activity involves cross-border transfer of PII." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.6" .
+
+iso29100:data_protection_officer a owl:DatatypeProperty ;
+    rdfs:label "data_protection_officer" ;
+    rdfs:range xsd:string ;
+    skos:definition "Name or contact of the data protection officer, where applicable." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:data_retention_statement a owl:DatatypeProperty ;
+    rdfs:label "data_retention_statement" ;
+    rdfs:range xsd:string ;
+    skos:definition "Statement on how long PII is retained and how it is disposed." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.6" .
+
+iso29100:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Detailed description of the entity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Should provide sufficient detail for understanding without external reference" .
+
+iso29100:discovery_datetime a owl:DatatypeProperty ;
+    rdfs:label "discovery_datetime" ;
+    rdfs:range xsd:dateTime ;
+    skos:definition "Date and time when the privacy breach was discovered." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:effective_date a owl:DatatypeProperty ;
+    rdfs:label "effective_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date from which the privacy policy takes effect." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:ict_system_description a owl:DatatypeProperty ;
+    rdfs:label "ict_system_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of the ICT system(s) within the scope of the privacy framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:id a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:range xsd:anyURI ;
+    skos:definition "Unique identifier for the entity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:identifier_type a owl:DatatypeProperty ;
+    rdfs:label "identifier_type" ;
+    rdfs:range xsd:string ;
+    skos:definition "Type of identifier (e.g., direct identifier, indirect identifier, linkable attribute, or combination of attributes)." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.4.2" .
+
+iso29100:implementation_description a owl:DatatypeProperty ;
+    rdfs:label "implementation_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Organization-authored description of how the control is implemented." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:implementation_status a owl:DatatypeProperty ;
+    rdfs:label "implementation_status" ;
+    rdfs:range xsd:string ;
+    skos:definition "Current implementation status of the control." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:inherent_risk_level a owl:ObjectProperty ;
+    rdfs:label "inherent_risk_level" ;
+    rdfs:range iso29100:PrivacyRiskLevel ;
+    skos:definition "Privacy risk level before controls are applied." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:instructing_controller a owl:ObjectProperty ;
+    rdfs:label "instructing_controller" ;
+    rdfs:range iso29100:PIIController ;
+    skos:definition "The PII controller on whose behalf this processor acts." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.10" .
+
+iso29100:is_anonymized a owl:DatatypeProperty ;
+    rdfs:label "is_anonymized" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether the PII has been anonymized. Anonymized data is no longer considered PII as the PII principal can no longer be identified." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.2" .
+
+iso29100:is_external_notice a owl:DatatypeProperty ;
+    rdfs:label "is_external_notice" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether this is an external privacy notice (available to PII principals) rather than an internal policy document." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.6" .
+
+iso29100:is_pet a owl:DatatypeProperty ;
+    rdfs:label "is_pet" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether this control qualifies as a Privacy Enhancing Technology (PET): an ICT-based privacy control that protects privacy by minimizing, eliminating, or preventing unnecessary PII processing without reducing the intended functionality of the system." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.13" .
+
+iso29100:is_pseudonymized a owl:DatatypeProperty ;
+    rdfs:label "is_pseudonymized" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether the PII has been pseudonymized." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.22" .
+
+iso29100:last_assessed_date a owl:DatatypeProperty ;
+    rdfs:label "last_assessed_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date when adherence to this principle was last assessed." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:last_review_date a owl:DatatypeProperty ;
+    rdfs:label "last_review_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date when the policy was last reviewed." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:legal_basis a owl:DatatypeProperty ;
+    rdfs:label "legal_basis" ;
+    rdfs:range xsd:string ;
+    skos:definition "Legal basis relied upon for this processing activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.5.2" .
+
+iso29100:legal_control_retention a owl:DatatypeProperty ;
+    rdfs:label "legal_control_retention" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of how legal control of PII is retained or transferred, relevant to distinguishing between a PII processor and a third party." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:lessons_learned a owl:DatatypeProperty ;
+    rdfs:label "lessons_learned" ;
+    rdfs:range xsd:string ;
+    skos:definition "Lessons learned from the breach to improve privacy controls." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:linkability_risk a owl:DatatypeProperty ;
+    rdfs:label "linkability_risk" ;
+    rdfs:range xsd:string ;
+    skos:definition "Assessment of the risk that this data can be linked to identify a PII principal, even if not directly identifying on its own." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.4.5" .
+
+iso29100:modified_date a owl:DatatypeProperty ;
+    rdfs:label "modified_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date when the entity record was last modified." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:name a owl:DatatypeProperty ;
+    rdfs:label "name" ;
+    rdfs:range xsd:string ;
+    skos:definition "Human-readable name or title." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:next_assessment_date a owl:DatatypeProperty ;
+    rdfs:label "next_assessment_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Planned date for the next assessment." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:notification_required a owl:DatatypeProperty ;
+    rdfs:label "notification_required" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether notification to authorities or PII principals was required." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.10" .
+
+iso29100:organization_name a owl:DatatypeProperty ;
+    rdfs:label "organization_name" ;
+    rdfs:range xsd:string ;
+    skos:definition "Name of the organization operating the privacy framework." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.1" .
+
+iso29100:pii_controller_role a owl:ObjectProperty ;
+    rdfs:label "pii_controller_role" ;
+    rdfs:range iso29100:PIIFlowRole ;
+    skos:definition "Role of the PII controller in this flow scenario." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:pii_principal_role a owl:ObjectProperty ;
+    rdfs:label "pii_principal_role" ;
+    rdfs:range iso29100:PIIFlowRole ;
+    skos:definition "Role of the PII principal in this flow scenario." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:pii_principals_description a owl:DatatypeProperty ;
+    rdfs:label "pii_principals_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of the categories of PII principals whose PII is processed." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pii_processor_role a owl:ObjectProperty ;
+    rdfs:label "pii_processor_role" ;
+    rdfs:range iso29100:PIIFlowRole ;
+    skos:definition "Role of the PII processor in this flow scenario." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:policy_scope a owl:DatatypeProperty ;
+    rdfs:label "policy_scope" ;
+    rdfs:range xsd:string ;
+    skos:definition "Scope of the privacy policy (systems, activities, or organizations covered)." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:policy_version a owl:DatatypeProperty ;
+    rdfs:label "policy_version" ;
+    rdfs:range xsd:string ;
+    skos:definition "Version identifier for the privacy policy." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:preference_recorded_date a owl:DatatypeProperty ;
+    rdfs:label "preference_recorded_date" ;
+    rdfs:range xsd:date ;
+    skos:definition "Date when these privacy preferences were recorded." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:preference_scope a owl:DatatypeProperty ;
+    rdfs:label "preference_scope" ;
+    rdfs:range xsd:string ;
+    skos:definition "The processing activities or purposes to which these preferences apply." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:principle a owl:ObjectProperty ;
+    rdfs:label "principle" ;
+    rdfs:range iso29100:PrivacyPrinciple ;
+    skos:definition "The privacy principle being implemented." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6" .
+
+iso29100:priority a owl:DatatypeProperty ;
+    rdfs:label "priority" ;
+    rdfs:range xsd:string ;
+    skos:definition "Priority level for addressing this requirement or risk." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:privacy_policy a owl:ObjectProperty ;
+    rdfs:label "privacy_policy" ;
+    rdfs:range iso29100:PrivacyPolicy ;
+    skos:definition "The organization's privacy policy governing PII processing." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.6" .
+
+iso29100:privacy_policy_ref a owl:ObjectProperty ;
+    rdfs:label "privacy_policy_ref" ;
+    rdfs:range iso29100:PrivacyPolicy ;
+    skos:definition "Reference to the privacy policy of this PII controller." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:processing_agreement_ref a owl:DatatypeProperty ;
+    rdfs:label "processing_agreement_ref" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference to the data processing agreement with the controller." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.5.3" .
+
+iso29100:processing_purpose a owl:DatatypeProperty ;
+    rdfs:label "processing_purpose" ;
+    rdfs:range xsd:string ;
+    skos:definition "The specific, explicit, and legitimate purpose for this processing activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.3" .
+
+iso29100:processor_ref a owl:ObjectProperty ;
+    rdfs:label "processor_ref" ;
+    rdfs:range iso29100:PIIProcessor ;
+    skos:definition "PII processor performing this processing activity, if applicable." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:pseudonymity_preference a owl:DatatypeProperty ;
+    rdfs:label "pseudonymity_preference" ;
+    rdfs:range xsd:boolean ;
+    skos:definition "Whether the PII principal prefers pseudonymous processing where possible." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.22" .
+
+iso29100:receiving_purpose a owl:DatatypeProperty ;
+    rdfs:label "receiving_purpose" ;
+    rdfs:range xsd:string ;
+    skos:definition "Purpose for which the third party receives PII." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:requirement_factor a owl:ObjectProperty ;
+    rdfs:label "requirement_factor" ;
+    rdfs:range iso29100:SafeguardingRequirementFactor ;
+    skos:definition "Category of factor driving this safeguarding requirement." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.5" .
+
+iso29100:requirement_text a owl:DatatypeProperty ;
+    rdfs:label "requirement_text" ;
+    rdfs:range xsd:string ;
+    skos:definition "Organization-authored statement of the safeguarding requirement." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:residual_risk_level a owl:ObjectProperty ;
+    rdfs:label "residual_risk_level" ;
+    rdfs:range iso29100:PrivacyRiskLevel ;
+    skos:definition "Privacy risk level after controls are applied." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:responsible_actor a owl:DatatypeProperty ;
+    rdfs:label "responsible_actor" ;
+    rdfs:range xsd:string ;
+    skos:definition "Actor responsible for implementing and maintaining this control." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:retention_period a owl:DatatypeProperty ;
+    rdfs:label "retention_period" ;
+    rdfs:range xsd:duration ;
+    skos:definition "Retention period for PII processed in this activity." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Use ISO 8601 duration notation such as P1Y or P90D" ;
+    iso29100:iso29100_clause "6.6" .
+
+iso29100:retention_schedule a owl:DatatypeProperty ;
+    rdfs:label "retention_schedule" ;
+    rdfs:range xsd:string ;
+    skos:definition "Schedule defining how long this PII is retained and how it is disposed." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.6" .
+
+iso29100:risk_impact_description a owl:DatatypeProperty ;
+    rdfs:label "risk_impact_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of potential adverse consequences for PII principals." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:risk_likelihood a owl:DatatypeProperty ;
+    rdfs:label "risk_likelihood" ;
+    rdfs:range xsd:string ;
+    skos:definition "Assessed likelihood of this privacy risk materializing." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:risk_owner a owl:DatatypeProperty ;
+    rdfs:label "risk_owner" ;
+    rdfs:range xsd:string ;
+    skos:definition "Person accountable for managing this privacy risk." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:risk_source a owl:DatatypeProperty ;
+    rdfs:label "risk_source" ;
+    rdfs:range xsd:string ;
+    skos:definition "Source or origin of the privacy risk." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:scenario_description a owl:DatatypeProperty ;
+    rdfs:label "scenario_description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Description of the PII flow scenario and when it occurs." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:scenario_label a owl:DatatypeProperty ;
+    rdfs:label "scenario_label" ;
+    rdfs:range xsd:string ;
+    skos:definition "Label for the PII flow scenario (e.g., \"Scenario a\")." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:sensitivity_level a owl:ObjectProperty ;
+    rdfs:label "sensitivity_level" ;
+    rdfs:range iso29100:PIISensitivityCategory ;
+    skos:definition "Sensitivity classification of this PII." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "3.23" .
+
+iso29100:source_reference a owl:DatatypeProperty ;
+    rdfs:label "source_reference" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference to the source (e.g., law name, regulation, contract, or standard)." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:third_party_role a owl:ObjectProperty ;
+    rdfs:label "third_party_role" ;
+    rdfs:range iso29100:PIIFlowRole ;
+    skos:definition "Role of the third party in this flow scenario." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:transfer_basis a owl:DatatypeProperty ;
+    rdfs:label "transfer_basis" ;
+    rdfs:range xsd:string ;
+    skos:definition "Legal or contractual basis for transferring PII to this third party." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "5.5.2" .
+
+iso29100:withdrawal_date a owl:DatatypeProperty ;
+    rdfs:label "withdrawal_date" ;
+    rdfs:range xsd:dateTime ;
+    skos:definition "Date and time when consent was withdrawn, if applicable." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    iso29100:iso29100_clause "6.2" .
+
+iso29100:PIIProcessingActivity a owl:Class ;
+    rdfs:label "PIIProcessingActivity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_categories_processed ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:retention_period ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_purpose ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:legal_basis ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:processor_ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIISensitivityCategory ;
+            owl:onProperty iso29100:sensitivity_levels_involved ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:pii_categories_processed ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:sensitivity_levels_involved ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessingOperation ;
+            owl:onProperty iso29100:operations_performed ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:cross_border_transfer ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyControl ;
+            owl:onProperty iso29100:privacy_controls_applied ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processor_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:data_flows ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessor ;
+            owl:onProperty iso29100:processor_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:legal_basis ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:transfer_safeguards ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:processing_purpose ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:transfer_safeguards ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:processing_purpose ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:controller_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:retention_period ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_controls_applied ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIController ;
+            owl:onProperty iso29100:controller_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:operations_performed ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:cross_border_transfer ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:duration ;
+            owl:onProperty iso29100:retention_period ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:legal_basis ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:controller_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:cross_border_transfer ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIFlowScenario ;
+            owl:onProperty iso29100:data_flows ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class documenting a PII processing operation: its purpose, legal basis, operation types performed, categories of PII involved, responsible actors, applied controls, retention period, and any cross-border transfer safeguards." ;
+    skos:exactMatch dpv:PersonalDataProcessing ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Processing includes collection, storage, alteration, retrieval, consultation, disclosure, anonymization, pseudonymization, dissemination, deletion, destruction",
+        "Reference: ISO/IEC 29100:2024 Clause 3.21. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    iso29100:iso29100_clause "3.21" .
+
+iso29100:PrivacyPolicy a owl:Class ;
+    rdfs:label "PrivacyPolicy" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:effective_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:policy_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:contact_for_inquiries ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:contact_for_inquiries ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:data_retention_statement ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:last_review_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:data_retention_statement ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:contact_for_inquiries ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:is_external_notice ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:last_review_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:effective_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:effective_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:policy_scope ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:policy_version ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPrinciple ;
+            owl:onProperty iso29100:applicable_principles ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:policy_scope ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:policy_version ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:applicable_principles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:pii_categories_covered ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_principal_rights ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:last_review_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:pii_principal_rights ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:processing_purposes_covered ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:is_external_notice ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_purposes_covered ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:pii_categories_covered ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:policy_scope ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:is_external_notice ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:data_retention_statement ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class for a governing document expressing an organization's intentions and commitments for PII processing. Covers both the internal policy document and any external privacy notice made available to PII principals (referred to as a notice in this framework)." ;
+    skos:exactMatch schema1:PrivacyPolicy,
+        dpv:PrivacyNotice ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "External privacy policy (notice) provides information to PII principals",
+        "Internal privacy policy expresses the organization's commitments",
+        "Reference: ISO/IEC 29100:2024 Clause 3.14 and 5.6. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    skos:relatedMatch iso27001:InformationSecurityPolicy ;
+    iso29100:iso29100_clause "3.14" .
+
+iso29100:PrivacyStakeholder a owl:Class ;
+    rdfs:label "PrivacyStakeholder" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:contact_information ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:contact_information ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:jurisdictions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:jurisdictions ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:contact_information ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema base class for the four actor types recognized by the privacy framework: PII principals, PII controllers, PII processors, and third parties. Provides shared contact and jurisdictional attributes common to all stakeholder roles." ;
+    skos:exactMatch dpv:Entity ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Reference: ISO/IEC 29100:2024 Clause 3.20. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    skos:relatedMatch iso27001:InterestedParty ;
+    iso29100:iso29100_clause "3.20" .
+
+iso29100:affected_pii_categories a owl:DatatypeProperty ;
+    rdfs:label "affected_pii_categories" ;
+    rdfs:range xsd:string ;
+    skos:definition "Categories of PII affected by this privacy risk or breach." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:ConsentMechanism a owl:Class ;
+    rdfs:label "ConsentMechanism" ;
+    owl:unionOf ( dpv:OptIn dpv:OptOut <https://w3id.org/lmodel/iso29100/ConsentMechanism#implied> ) ;
+    skos:definition "The mechanism by which a PII principal provides or withholds consent for PII processing, as referenced in Clauses 3.6 and 6.2." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values dpv:OptIn,
+        dpv:OptOut,
+        <https://w3id.org/lmodel/iso29100/ConsentMechanism#implied> ;
+    iso29100:iso29100_clause "3.6" .
+
+iso29100:PIIController a owl:Class ;
+    rdfs:label "PIIController" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:legal_bases ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:privacy_policy_ref ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:data_protection_officer ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:data_protection_officer ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_purposes ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessor ;
+            owl:onProperty iso29100:appointed_processors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPolicy ;
+            owl:onProperty iso29100:privacy_policy_ref ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:processing_purposes ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:appointed_processors ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:privacy_policy_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:legal_bases ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:data_protection_officer ],
+        iso29100:PrivacyStakeholder ;
+    skos:definition "Schema class for an organization or individual that determines why and how PII is processed. Captures appointed processors, legal bases relied upon, privacy policy reference, and data protection officer details. Bears ultimate accountability for privacy principle adherence." ;
+    skos:exactMatch dpv:DataController ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "May appoint PII processors to process PII on its behalf while retaining responsibility",
+        "More than one PII controller may exist for the same PII set",
+        "Reference: ISO/IEC 29100:2024 Clause 3.8 and 5.2.3. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    skos:relatedMatch schema1:Organization ;
+    iso29100:iso29100_clause "3.8" .
+
+iso29100:PIISensitivityCategory a owl:Class ;
+    rdfs:label "PIISensitivityCategory" ;
+    owl:unionOf ( <https://w3id.org/lmodel/iso29100/PIISensitivityCategory#standard> dpv:SpecialCategoryPersonalData ) ;
+    skos:definition "Categories of PII based on sensitivity, distinguishing standard PII from sensitive PII as defined in Clause 3.23." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values dpv:SpecialCategoryPersonalData,
+        <https://w3id.org/lmodel/iso29100/PIISensitivityCategory#standard> ;
+    iso29100:iso29100_clause "3.23" .
+
+iso29100:PrivacyControlType a owl:Class ;
+    rdfs:label "PrivacyControlType" ;
+    owl:unionOf ( dpv:OrganisationalMeasure dpv:PhysicalMeasure dpv:TechnicalMeasure dpv:LegalMeasure ) ;
+    skos:definition "Categories of privacy controls that treat privacy risks by reducing their likelihood or consequences, as noted in Clause 3.12 Note 1." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values dpv:LegalMeasure,
+        dpv:OrganisationalMeasure,
+        dpv:PhysicalMeasure,
+        dpv:TechnicalMeasure ;
+    iso29100:iso29100_clause "3.12" .
+
+iso29100:PrivacySafeguardingRequirement a owl:Class ;
+    rdfs:label "PrivacySafeguardingRequirement" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:requirement_text ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:related_controls ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:requirement_factor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:SafeguardingRequirementFactor ;
+            owl:onProperty iso29100:requirement_factor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:priority ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:applicable_to_actors ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:priority ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:source_reference ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:source_reference ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyControl ;
+            owl:onProperty iso29100:related_controls ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:requirement_text ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:applicable_to_actors ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:requirement_text ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:source_reference ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:requirement_factor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:priority ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class for an applicable requirement that drives an organization's PII processing controls. Requirements are identified through the privacy risk management process and arise from legal/regulatory, contractual, business, or other influencing factors." ;
+    skos:exactMatch dpv:Requirement ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Can range from high-level principles to specific control mandates",
+        "Identified through the privacy risk management process",
+        "Reference: ISO/IEC 29100:2024 Clause 3.19 and 5.5. ISO/IEC standards text is copyright ISO - not reproduced here." ;
+    iso29100:iso29100_clause "3.19" .
+
+iso29100:SafeguardingRequirementFactor a owl:Class ;
+    rdfs:label "SafeguardingRequirementFactor" ;
+    owl:unionOf ( dpv:LegalBasis dpv:Contract <https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#business> <https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#other> ) ;
+    skos:definition "Categories of factors that influence an organization's privacy safeguarding requirements, as described in Clause 5.5 and Figure 1." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values dpv:Contract,
+        dpv:LegalBasis,
+        <https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#business>,
+        <https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#other> ;
+    iso29100:iso29100_clause "5.5" .
+
+iso29100:principal_ref a owl:DatatypeProperty ;
+    rdfs:label "principal_ref" ;
+    rdfs:range xsd:string ;
+    skos:definition "Reference to the PII principal associated with this consent record or privacy preference." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> .
+
+iso29100:PIIProcessor a owl:Class ;
+    rdfs:label "PIIProcessor" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIProcessor ;
+            owl:onProperty iso29100:sub_processors ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:processing_agreement_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:processing_agreement_ref ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:sub_processors ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:instructing_controller ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:instructing_controller ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PIIController ;
+            owl:onProperty iso29100:instructing_controller ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:processing_agreement_ref ],
+        iso29100:PrivacyStakeholder ;
+    skos:definition "Schema class for an organization engaged to process PII under a PII controller's instructions. Records the instructing controller, data processing agreement reference, and any sub-processors engaged on the controller's behalf." ;
+    skos:exactMatch dpv:DataProcessor ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "In some jurisdictions the PII processor is bound by a contract",
+        "Reference: ISO/IEC 29100:2024 Clause 3.10 and 5.2.4. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "{'Distinct from a third party': 'legal control of PII remains with the original PII controller'}" ;
+    iso29100:iso29100_clause "3.10" .
+
+iso29100:PrivacyRisk a owl:Class ;
+    rdfs:label "PrivacyRisk" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:risk_source ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:affected_pii_categories ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRiskLevel ;
+            owl:onProperty iso29100:residual_risk_level ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:affected_principals_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:risk_source ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyRiskLevel ;
+            owl:onProperty iso29100:inherent_risk_level ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:affected_principals_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:inherent_risk_level ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:affected_pii_categories ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:mitigating_controls ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:risk_owner ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:risk_likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:residual_risk_level ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:risk_source ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:risk_owner ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:residual_risk_level ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:risk_likelihood ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:risk_impact_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:risk_owner ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyControl ;
+            owl:onProperty iso29100:mitigating_controls ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:risk_impact_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:risk_impact_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:risk_likelihood ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:affected_principals_description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:inherent_risk_level ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class representing a potential adverse outcome for PII principals from a PII processing activity. Captures the risk source, likelihood and impact assessments, inherent and residual risk levels, and links to mitigating controls and accountable risk owner." ;
+    skos:exactMatch dpv:Risk ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Corresponds to risk in ISO/IEC 27000 context (Annex A Table)",
+        "Reference: ISO/IEC 29100:2024 Clause 3.17 and 5.5. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Should be assessed in terms of likelihood and potential consequences for PII principals" ;
+    skos:relatedMatch iso27001:Risk ;
+    iso29100:iso29100_clause "3.17" .
+
+iso29100:PrivacyControl a owl:Class ;
+    rdfs:label "PrivacyControl" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:addressed_principles ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:boolean ;
+            owl:onProperty iso29100:is_pet ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyControlType ;
+            owl:onProperty iso29100:control_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:responsible_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:implementation_status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:related_safeguarding_requirements ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacySafeguardingRequirement ;
+            owl:onProperty iso29100:related_safeguarding_requirements ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:control_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:control_objective ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom iso29100:PrivacyPrinciple ;
+            owl:onProperty iso29100:addressed_principles ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:is_pet ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:is_pet ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:responsible_actor ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:effectiveness_evidence ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:control_objective ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:control_objective ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:implementation_status ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:implementation_description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:responsible_actor ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:effectiveness_evidence ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:implementation_status ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:control_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:implementation_description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:implementation_description ],
+        iso29100:NamedEntity ;
+    skos:definition "Schema class for a protective measure that manages privacy risks within the framework. Can be organizational, physical, technical (including Privacy Enhancing Technologies), or legal-contractual in nature; linked to the principles and safeguarding requirements it addresses." ;
+    skos:exactMatch dpv:TechnicalOrganisationalMeasure ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "Also used as a synonym for safeguard or countermeasure",
+        "Reference: ISO/IEC 29100:2024 Clause 3.12 and 5.7. ISO/IEC standards text is copyright ISO - not reproduced here.",
+        "Should be identified through privacy risk assessment and treatment",
+        "{'Privacy by design': 'controls should be integrated at the design phase of ICT systems'}" ;
+    skos:relatedMatch iso27001:SecurityControl ;
+    iso29100:iso29100_clause "3.12" .
+
+iso29100:PrivacyRiskLevel a owl:Class ;
+    rdfs:label "PrivacyRiskLevel" ;
+    owl:unionOf ( <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#low> <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#high> <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#very_high> ) ;
+    skos:definition "Qualitative assessment of privacy risk level based on likelihood and potential adverse consequences for PII principals." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#high>,
+        <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#low>,
+        <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#medium>,
+        <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#very_high> .
+
+iso29100:PIIFlowRole a owl:Class ;
+    rdfs:label "PIIFlowRole" ;
+    owl:unionOf ( <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider> <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient> <https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved> ) ;
+    skos:definition "The role played by an actor in a specific PII flow scenario, as described in Table 1 of ISO/IEC 29100:2024 Clause 5.3." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values <https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved>,
+        <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider>,
+        <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient> ;
+    iso29100:iso29100_clause "5.3" .
+
+iso29100:NamedEntity a owl:Class ;
+    rdfs:label "NamedEntity" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:modified_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:date ;
+            owl:onProperty iso29100:created_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:modified_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:modified_date ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty iso29100:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty iso29100:created_date ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty iso29100:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty iso29100:name ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty iso29100:created_date ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty iso29100:description ] ;
+    skos:definition "Abstract base class for all entities with a unique identifier, name, and description. Provides common identification and documentation slots." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    skos:note "All concrete classes should inherit from this or a subclass",
+        "Ensures consistent identification across the schema" .
+
+iso29100:PIIProcessingOperation a owl:Class ;
+    rdfs:label "PIIProcessingOperation" ;
+    owl:unionOf ( dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Destroy ) ;
+    skos:definition "Categories of operations that can be performed on PII, as referenced in the definition of processing of PII (Clause 3.21)." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values dpv:Access,
+        dpv:Anonymise,
+        dpv:Collect,
+        dpv:Destroy,
+        dpv:Disclose,
+        dpv:Disseminate,
+        dpv:Erase,
+        dpv:Pseudonymise,
+        dpv:Store,
+        dpv:Transform,
+        dpv:Use ;
+    iso29100:iso29100_clause "3.21" .
+
+iso29100:PrivacyPrinciple a owl:Class ;
+    rdfs:label "PrivacyPrinciple" ;
+    owl:unionOf ( dpv:Consent dpv:Purpose <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#collection_limitation> dpv:DataMinimisation dpv:StorageLimitation dpv:Accuracy dpv:Transparency dpv:RightToAccess dpv:Accountability dpv:SecurityMeasure dpv:Conformance ) ;
+    skos:definition "The eleven privacy principles defined in ISO/IEC 29100:2024 Clause 6 that govern the processing of PII in ICT systems." ;
+    skos:inScheme <https://w3id.org/lmodel/iso29100> ;
+    linkml:permissible_values dpv:Accountability,
+        dpv:Accuracy,
+        dpv:Conformance,
+        dpv:Consent,
+        dpv:DataMinimisation,
+        dpv:Purpose,
+        dpv:RightToAccess,
+        dpv:SecurityMeasure,
+        dpv:StorageLimitation,
+        dpv:Transparency,
+        <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#collection_limitation> ;
+    iso29100:iso29100_clause "6" ;
+    iso29100:principle_count "11" .
+
+

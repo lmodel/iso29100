@@ -6,8 +6,8 @@ preference_scope: Behavioural analytics, profiling, and automated decision-makin
 anonymity_preference: false
 pseudonymity_preference: true
 processing_restriction_preferences:
-  - No automated decision-making producing legal or similarly significant effects
-  - No cross-context behavioural profiling
+  - consultation
+  - disclosure
 disclosure_restriction_preferences:
   - Do not disclose purchase history to advertising partners
 preference_recorded_date: "2025-03-15"
