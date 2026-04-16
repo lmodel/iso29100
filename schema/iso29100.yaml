@@ -3245,7 +3245,7 @@ classes:
     class_uri: iso29100:PrivacyPreference
 metamodel_version: 1.7.0
 source_file: iso29100.yaml
-source_file_date: '2026-04-16T14:08:20'
+source_file_date: '2026-04-16T14:36:07'
 source_file_size: 60670
-generation_date: '2026-04-16T14:08:32'
+generation_date: '2026-04-16T14:36:17'
 
