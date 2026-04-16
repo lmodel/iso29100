@@ -1,0 +1,4 @@
+id: iso29100:flow-bad-role
+name: Flow Scenario With Invalid Principal Role
+pii_principal_role: observer
+pii_controller_role: pii_recipient

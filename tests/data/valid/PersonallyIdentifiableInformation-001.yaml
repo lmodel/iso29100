@@ -1,0 +1,18 @@
+id: iso29100:pii-email-address
+name: Customer Email Address
+description: Email address collected at account registration; a direct identifier linkable to the PII principal.
+pii_category:
+  - Contact data
+  - Direct identifier
+sensitivity_level: standard
+identifier_type: direct identifier
+is_pseudonymized: false
+is_anonymized: false
+linkability_risk: High — email is a unique direct identifier enabling cross-system linkage.
+applicable_to_principal: Registered ACME Corp customers
+retention_schedule: Retained for the duration of the customer account plus 2 years; deleted on account closure request.
+processing_operations:
+  - collection
+  - storage
+  - retrieval
+  - disclosure

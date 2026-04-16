@@ -1,0 +1,5 @@
+id: iso29100:activity-bad-operation
+name: Processing Activity With Invalid Operation
+processing_purpose: Testing invalid enum value handling.
+operations_performed:
+  - harvesting

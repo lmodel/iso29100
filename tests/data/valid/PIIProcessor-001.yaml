@@ -1,0 +1,8 @@
+id: iso29100:processor-email-svc
+name: TransactMail Email Service
+description: PII processor engaged to deliver transactional and marketing emails under ACME Corp's instructions.
+contact_information: compliance@transactmail.example.com
+jurisdictions:
+  - EU
+instructing_controller: iso29100:controller-acme
+processing_agreement_ref: DPA-TRANSACTMAIL-2024

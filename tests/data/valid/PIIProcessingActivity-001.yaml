@@ -1,0 +1,26 @@
+id: iso29100:activity-order-fulfilment
+name: Order Fulfilment Processing
+description: Processing of customer PII required to accept, process, and fulfil customer orders placed through the ACME Corp portal.
+processing_purpose: Processing customer orders and arranging delivery to the customer's specified address.
+legal_basis: Contract (Art. 6(1)(b) GDPR) — processing necessary for performance of the contract.
+operations_performed:
+  - collection
+  - storage
+  - retrieval
+  - disclosure
+pii_categories_processed:
+  - Name and delivery address
+  - Email address
+  - Payment card data (tokenised)
+  - Order contents and history
+sensitivity_levels_involved:
+  - standard
+controller_ref: iso29100:controller-acme
+processor_ref: iso29100:processor-email-svc
+data_flows:
+  - iso29100:flow-scenario-a
+retention_period: P7Y
+privacy_controls_applied:
+  - iso29100:control-pseudonymisation
+  - iso29100:control-access-management
+cross_border_transfer: false

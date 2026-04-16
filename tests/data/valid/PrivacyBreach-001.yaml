@@ -1,0 +1,31 @@
+id: iso29100:breach-2025-001
+name: Customer Email Export Incident 2025-001
+description: Inadvertent disclosure of customer email addresses to an incorrect third-party recipient via misconfigured export job.
+breach_datetime: "2025-09-10T14:32:00"
+discovery_datetime: "2025-09-10T16:05:00"
+breach_description: >-
+  A scheduled data export job was misconfigured to send a CSV containing
+  12,500 customer email addresses to an external marketing partner instead
+  of the intended internal analytics bucket.
+affected_pii_categories:
+  - Email address
+affected_principals_count: 12500
+violated_requirements:
+  - iso29100:req-gdpr-lawfulness
+breach_severity: medium
+immediate_actions:
+  - Marketing partner instructed to delete the file within 2 hours of discovery
+  - Export job disabled pending investigation
+  - Incident log opened by Security Operations
+notification_required: true
+notifications_made:
+  - Supervisory authority notified 2025-09-13 (within 72 hours — GDPR Art. 33)
+  - Affected PII principals notified 2025-09-17 via email
+remediation_actions:
+  - Export job configuration review completed 2025-09-15
+  - Additional approval gate added to all scheduled export jobs
+  - Staff retraining on data export procedures completed 2025-10-01
+lessons_learned: >-
+  Export job destination configuration must undergo two-person review before
+  deployment. Automated destination validation to be added to CI/CD pipeline.
+closure_datetime: "2025-10-15T09:00:00"

@@ -1,0 +1,15 @@
+id: iso29100:flow-scenario-a
+name: Scenario A — Principal Provides PII to Controller
+description: PII principal provides PII directly to the PII controller; PII processor is not involved; no third-party disclosure.
+scenario_label: Scenario a
+pii_principal_role: pii_provider
+pii_controller_role: pii_recipient
+pii_processor_role: not_involved
+third_party_role: not_involved
+scenario_description: >-
+  The PII principal submits a registration form directly to the PII controller's
+  web portal. The PII controller receives and stores the PII without delegating
+  processing to a PII processor or disclosing PII to third parties.
+legal_control_retention: >-
+  Legal control of the PII remains entirely with the PII controller from the
+  moment of collection. No transfer of legal control occurs in this scenario.

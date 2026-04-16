@@ -1,0 +1,14 @@
+id: iso29100:consent-alice-marketing
+name: Alice Marketing Consent Record
+description: Opt-in consent record for Alice Example agreeing to receive marketing communications from ACME Corp.
+principal_ref: iso29100:principal-alice-001
+consent_date: "2025-03-15"
+consent_mechanism: opt_in
+processing_purposes_consented:
+  - Marketing communications
+  - Product recommendations
+pii_categories_consented:
+  - Email address
+  - Purchase history
+consent_status: active
+consent_evidence_ref: consent-log-entry-2025-03-15-alice-001

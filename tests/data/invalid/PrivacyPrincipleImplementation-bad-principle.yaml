@@ -1,0 +1,5 @@
+id: iso29100:impl-bad-principle
+name: Principle Implementation With Invalid Principle
+principle: data_sovereignty
+implementation_measures:
+  - This principle value is not defined in the PrivacyPrinciple enum.

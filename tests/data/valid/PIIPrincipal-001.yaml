@@ -1,0 +1,28 @@
+id: iso29100:principal-alice-001
+name: Alice Example
+description: Registered customer data subject for order history and marketing consent.
+contact_information: alice@example.com
+jurisdictions:
+  - EU
+consent_records:
+  - id: iso29100:consent-alice-marketing
+    name: Alice Marketing Consent
+    principal_ref: iso29100:principal-alice-001
+    consent_date: "2025-03-15"
+    consent_mechanism: opt_in
+    processing_purposes_consented:
+      - Marketing communications
+    pii_categories_consented:
+      - Email address
+      - Purchase history
+    consent_status: active
+privacy_preferences:
+  - id: iso29100:pref-alice-no-profiling
+    name: Alice No-Profiling Preference
+    principal_ref: iso29100:principal-alice-001
+    preference_scope: Behavioural analytics and profiling
+    anonymity_preference: false
+    pseudonymity_preference: true
+    processing_restriction_preferences:
+      - No automated decision-making
+    preference_recorded_date: "2025-03-15"

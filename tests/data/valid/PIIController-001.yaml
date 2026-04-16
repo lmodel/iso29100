@@ -1,0 +1,16 @@
+id: iso29100:controller-acme
+name: ACME Corp Data Controller
+description: PII controller for all customer-facing ICT systems operated by ACME Corporation.
+contact_information: privacy@acme.example.com
+jurisdictions:
+  - EU
+  - UK
+processing_purposes:
+  - Order fulfilment
+  - Customer support
+  - Marketing (with consent)
+legal_bases:
+  - Contract (Art. 6(1)(b) GDPR)
+  - Legitimate interest (Art. 6(1)(f) GDPR)
+  - Consent (Art. 6(1)(a) GDPR) for marketing
+data_protection_officer: Jane Smith (dpo@acme.example.com)

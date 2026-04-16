@@ -1,0 +1,5 @@
+id: iso29100:consent-bad-mechanism
+name: Consent Record With Invalid Mechanism
+principal_ref: iso29100:principal-alice-001
+consent_date: "2025-03-15"
+consent_mechanism: verbal

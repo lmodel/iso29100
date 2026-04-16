@@ -1,0 +1,20 @@
+id: iso29100:impl-consent-and-choice
+name: Consent and Choice Principle Implementation
+description: Documentation of ACME Corp's implementation of Privacy Principle 1 — Consent and Choice (Clause 6.2).
+principle: consent_and_choice
+implementation_measures:
+  - Opt-in consent banner presented on all new account registration forms
+  - Granular consent options for marketing, analytics, and personalisation
+  - Consent withdrawal link included in every marketing email
+  - Self-service consent management page available in customer account settings
+  - Consent records retained for audit trail
+applicable_controls_ref:
+  - iso29100:control-access-management
+evidence_of_adherence:
+  - Consent management platform audit log export Q1 2026
+  - User acceptance test report confirming opt-in flow 2025-12-01
+gaps_identified:
+  - Consent withdrawal mechanism not yet available via mobile application (planned Q3 2026)
+improvement_actions:
+  - Implement consent withdrawal in mobile app by 2026-09-30
+last_assessed_date: "2026-01-15"

@@ -1,0 +1,22 @@
+id: iso29100:control-pseudonymisation
+name: Database Pseudonymisation Control
+description: Technical control that replaces direct customer identifiers with surrogate keys in analytical data stores.
+control_type: technical
+control_objective: >-
+  Reduce the risk of PII exposure in analytical and reporting systems by
+  ensuring that customer identifiers are replaced with non-identifying
+  surrogate keys before data is loaded into the data warehouse.
+addressed_principles:
+  - data_minimization
+  - information_security
+implementation_description: >-
+  Customer IDs are hashed with a keyed HMAC-SHA-256 function before
+  insertion into the analytics pipeline. The key mapping table is held
+  in a separate, access-controlled service. Re-identification requires
+  explicit authorisation.
+responsible_actor: Data Engineering Team
+implementation_status: implemented
+effectiveness_evidence:
+  - Penetration test report PT-2025-007 confirmed no direct identifiers in data warehouse
+  - Annual access review Q4 2025 confirmed key-mapping service access restricted to 3 individuals
+is_pet: true

@@ -1,0 +1,72 @@
+id: iso29100:framework-acme-corp
+name: ACME Corp Privacy Framework
+description: ISO 29100 privacy framework for ACME Corp's customer-facing ICT systems.
+organization_name: ACME Corporation
+ict_system_description: Customer portal, order management system, and CRM platform.
+applicable_jurisdictions:
+  - EU (GDPR)
+  - UK (UK GDPR)
+pii_principals_description: Registered customers and prospective customers who interact with ACME Corp's online services.
+pii_controllers:
+  - id: iso29100:controller-acme
+    name: ACME Corp Data Controller
+    contact_information: privacy@acme.example.com
+    jurisdictions:
+      - EU
+      - UK
+    processing_purposes:
+      - Order fulfilment
+      - Customer support
+    legal_bases:
+      - Contract (Art. 6(1)(b) GDPR)
+      - Legitimate interest (Art. 6(1)(f) GDPR)
+    data_protection_officer: Jane Smith (dpo@acme.example.com)
+pii_processors:
+  - id: iso29100:processor-email-svc
+    name: TransactMail Email Service
+    contact_information: compliance@transactmail.example.com
+    processing_agreement_ref: DPA-TRANSACTMAIL-2024
+pii_processing_activities:
+  - id: iso29100:activity-order-fulfilment
+    name: Order Fulfilment Processing
+    processing_purpose: Processing customer orders and arranging delivery.
+    legal_basis: Contract (Art. 6(1)(b) GDPR)
+    operations_performed:
+      - collection
+      - storage
+      - retrieval
+      - disclosure
+    pii_categories_processed:
+      - Name and address
+      - Payment card data
+      - Order history
+    sensitivity_levels_involved:
+      - standard
+    controller_ref: iso29100:controller-acme
+    retention_period: P7Y
+    cross_border_transfer: false
+privacy_controls:
+  - id: iso29100:control-access-management
+    name: Access Management Control
+    control_type: technical
+    control_objective: Restrict access to PII to authorised personnel only.
+    addressed_principles:
+      - information_security
+    implementation_status: implemented
+    is_pet: false
+safeguarding_requirements:
+  - id: iso29100:req-gdpr-lawfulness
+    name: GDPR Lawfulness Requirement
+    requirement_factor: legal_and_regulatory
+    requirement_text: All PII processing must have a documented lawful basis under Art. 6 GDPR.
+    source_reference: GDPR Art. 6
+    priority: high
+principle_implementations:
+  - id: iso29100:impl-consent
+    name: Consent and Choice Implementation
+    principle: consent_and_choice
+    implementation_measures:
+      - Opt-in consent banners on all data collection forms
+      - Consent withdrawal link in every transactional email
+    evidence_of_adherence:
+      - Consent audit log export Q1 2026

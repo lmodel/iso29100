@@ -1,0 +1,13 @@
+id: iso29100:req-gdpr-lawfulness
+name: GDPR Lawfulness of Processing
+description: Requirement that all PII processing activities have a documented lawful basis under GDPR Article 6.
+requirement_factor: legal_and_regulatory
+requirement_text: >-
+  All PII processing activities must identify and document a lawful basis under
+  Art. 6 GDPR prior to commencement of processing. Where consent is relied upon,
+  opt-in evidence must be retained and withdrawal must be supported.
+source_reference: Regulation (EU) 2016/679 Art. 5(1)(a) and Art. 6
+applicable_to_actors:
+  - PIIController
+  - PIIProcessor
+priority: high

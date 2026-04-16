@@ -1,0 +1,8 @@
+id: iso29100:third-party-credit-bureau
+name: National Credit Bureau
+description: Third party receiving customer financial PII for credit-scoring purposes; acts as independent PII controller upon receipt.
+contact_information: dataprotection@creditbureau.example.com
+jurisdictions:
+  - EU
+receiving_purpose: Credit risk scoring for loan applications
+transfer_basis: Legitimate interest (Art. 6(1)(f) GDPR) and contractual necessity

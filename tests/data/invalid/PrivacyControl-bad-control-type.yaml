@@ -1,0 +1,4 @@
+id: iso29100:control-bad-type
+name: Control With Invalid Type
+control_type: quantum
+control_objective: This control type does not exist in the schema.

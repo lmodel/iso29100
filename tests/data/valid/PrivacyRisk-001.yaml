@@ -1,0 +1,19 @@
+id: iso29100:risk-data-breach-email
+name: Email Address Data Breach Risk
+description: Risk of unauthorised disclosure of customer email addresses through database compromise or insider threat.
+risk_source: External attacker exploiting web application vulnerability; malicious or negligent insider.
+affected_pii_categories:
+  - Email address
+  - Account credentials
+affected_principals_description: All registered ACME Corp customers (approximately 250,000 individuals).
+risk_likelihood: medium
+risk_impact_description: >-
+  Exposure of email addresses and credentials could enable phishing campaigns,
+  account takeover, and reputational harm to affected PII principals. Regulatory
+  notification obligations would be triggered under GDPR Art. 33/34.
+inherent_risk_level: high
+residual_risk_level: medium
+mitigating_controls:
+  - iso29100:control-pseudonymisation
+  - iso29100:control-access-management
+risk_owner: Chief Information Security Officer

@@ -1,0 +1,35 @@
+id: iso29100:policy-acme-external-2025
+name: ACME Corp External Privacy Notice 2025
+description: External-facing privacy notice published to PII principals describing ACME Corp's PII processing practices.
+policy_version: "2025.1"
+effective_date: "2025-01-01"
+last_review_date: "2024-12-15"
+policy_scope: Applies to all PII processed through ACME Corp's customer-facing web portal and mobile application.
+processing_purposes_covered:
+  - Order fulfilment
+  - Customer support
+  - Marketing communications (with consent)
+pii_categories_covered:
+  - Name and address
+  - Email address
+  - Payment card data
+  - Order history
+data_retention_statement: >-
+  Customer account data is retained for the duration of the active account plus
+  two years. Payment card data is retained only for the period required to
+  complete the transaction. Marketing data is retained until consent is withdrawn.
+pii_principal_rights:
+  - Right of access (Art. 15 GDPR)
+  - Right to rectification (Art. 16 GDPR)
+  - Right to erasure (Art. 17 GDPR)
+  - Right to restriction of processing (Art. 18 GDPR)
+  - Right to data portability (Art. 20 GDPR)
+  - Right to object (Art. 21 GDPR)
+contact_for_inquiries: privacy@acme.example.com
+is_external_notice: true
+applicable_principles:
+  - consent_and_choice
+  - purpose_legitimacy_and_specification
+  - openness_transparency_and_notice
+  - individual_participation_and_access
+  - use_retention_and_disclosure_limitation

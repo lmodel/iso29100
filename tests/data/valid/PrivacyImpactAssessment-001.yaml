@@ -1,0 +1,24 @@
+id: iso29100:pia-customer-analytics-2025
+name: Customer Behavioural Analytics PIA 2025
+description: Privacy impact assessment for the proposed introduction of behavioural analytics processing on the customer portal.
+assessment_scope: >-
+  Evaluation of privacy risks arising from implementing clickstream and
+  behavioural analytics on the ACME Corp customer portal, including
+  cross-session profiling and cohort-based personalisation.
+assessment_date: "2025-06-01"
+assessor: Privacy Team, ACME Corp (lead: Jane Smith DPO)
+processing_activities_assessed:
+  - iso29100:activity-order-fulfilment
+risks_identified:
+  - iso29100:risk-data-breach-email
+risks_treated:
+  - iso29100:risk-data-breach-email
+residual_risks_accepted:
+  - iso29100:risk-data-breach-email
+assessment_outcome: >-
+  Residual risk assessed as medium after application of pseudonymisation and
+  access controls. Risk accepted by the DPO subject to 6-monthly review.
+next_assessment_date: "2025-12-01"
+consultation_records:
+  - DPO review 2025-05-28 — no objections subject to pseudonymisation control
+  - Legal team sign-off 2025-05-30
