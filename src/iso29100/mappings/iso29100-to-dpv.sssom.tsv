@@ -1,0 +1,21 @@
+# mapping_set_id: https://w3id.org/lmodel/iso29100/mappings/iso29100-to-dpv
+# mapping_set_version: "1.0.0"
+# mapping_set_title: "Mapping from ISO/IEC 29100:2024 to Data Privacy Vocabulary (DPV)"
+# mapping_set_description: >-
+#   Mappings between core concepts defined in ISO/IEC 29100:2024 (Privacy
+#   Framework) and their equivalents or broader counterparts in the W3C Data
+#   Privacy Vocabulary (DPV). Derived from https://dev.dpvcg.org/mappings/iso/.
+# license: https://www.apache.org/licenses/LICENSE-2.0
+# mapping_date: 2026-04-16
+# see_also: https://dev.dpvcg.org/mappings/iso/
+# curie_map:
+#   iso29100: https://w3id.org/lmodel/iso29100/
+#   dpv: https://w3id.org/dpv#
+#   skos: http://www.w3.org/2004/02/skos/core#
+#   semapv: https://w3id.org/semapv/vocab/
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification
+iso29100:PersonallyIdentifiableInformation	Personally Identifiable Information (PII)	skos:narrower	dpv:PersonalData	Personal Data	semapv:ManualMappingCuration
+iso29100:PIIController	PII Controller	skos:exactMatch	dpv:DataController	Data Controller	semapv:ManualMappingCuration
+iso29100:PIIPrincipal	PII Principal	skos:exactMatch	dpv:DataSubject	Data Subject	semapv:ManualMappingCuration
+iso29100:PIIProcessor	PII Processor	skos:exactMatch	dpv:DataProcessor	Data Processor	semapv:ManualMappingCuration
+iso29100:ConsentRecord	Consent	skos:exactMatch	dpv:InformedConsent	Informed Consent	semapv:ManualMappingCuration

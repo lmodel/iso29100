@@ -35,6 +35,9 @@ description: >-
 
 license: https://www.apache.org/licenses/LICENSE-2.0
 version: 1.0.0
+see_also:
+  - https://www.iso.org/standard/85938.html
+  - https://dev.dpvcg.org/mappings/iso/
 
 # -----------------------
 # Schema-level Annotations
@@ -57,13 +60,13 @@ annotations:
 # Prefix Declarations
 # -----------------------
 prefixes:
-  linkml:   https://w3id.org/linkml/
-  iso29100: https://w3id.org/lmodel/iso29100/
-  iso27001: https://w3id.org/lmodel/iso27001/
-  schema:   http://schema.org/
-  dcterms:  http://purl.org/dc/terms/
-  rdfs:     http://www.w3.org/2000/01/rdf-schema#
-  dpv:      https://w3id.org/dpv#
+  linkml:   "https://w3id.org/linkml/"
+  iso29100: "https://w3id.org/lmodel/iso29100/"
+  iso27001: "https://w3id.org/lmodel/iso27001/"
+  schema:   "http://schema.org/"
+  dcterms:  "http://purl.org/dc/terms/"
+  rdfs:     "http://www.w3.org/2000/01/rdf-schema#"
+  dpv:      "https://w3id.org/dpv#"
 
 default_prefix: iso29100
 default_range: string
@@ -97,7 +100,7 @@ subsets:
   privacy_framework_core:
     description: >-
       Core privacy framework elements: actors, roles, PII concept, interactions,
-      and the overall framework container (Clauses 5.1–5.3).
+      and the overall framework container (Clauses 5.1-5.3).
     comments:
       - Covers the fundamental building blocks of the privacy framework
 
@@ -115,7 +118,7 @@ subsets:
   privacy_governance:
     description: >-
       Privacy policies, privacy controls, and governance elements that implement
-      safeguarding requirements (Clauses 5.6–5.7).
+      safeguarding requirements (Clauses 5.6-5.7).
 
   privacy_principles:
     description: >-
@@ -127,7 +130,7 @@ subsets:
   privacy_risk_management:
     description: >-
       Elements supporting privacy risk management, including privacy impact
-      assessments and privacy risk treatment (Clauses 3.17–3.18, 5.5).
+      assessments and privacy risk treatment (Clauses 3.17-3.18, 5.5).
 
 # ==============================================================================
 # ENUMERATIONS
@@ -153,7 +156,7 @@ enums:
         annotations:
           iso29100_clause: "6.2"
           principle_number: "1"
-        meaning: dpv:Consent
+        meaning: dpv:InformedConsent
       purpose_legitimacy_and_specification:
         description: >-
           Schema value for privacy principle 2 (Clause 6.3): the organization
@@ -180,7 +183,6 @@ enums:
         annotations:
           iso29100_clause: "6.5"
           principle_number: "4"
-        meaning: dpv:DataMinimisation
       use_retention_and_disclosure_limitation:
         description: >-
           Schema value for privacy principle 5 (Clause 6.6): the organization
@@ -190,7 +192,6 @@ enums:
         annotations:
           iso29100_clause: "6.6"
           principle_number: "5"
-        meaning: dpv:StorageLimitation
       accuracy_and_quality:
         description: >-
           Schema value for privacy principle 6 (Clause 6.7): the organization
@@ -200,7 +201,6 @@ enums:
         annotations:
           iso29100_clause: "6.7"
           principle_number: "6"
-        meaning: dpv:Accuracy
       openness_transparency_and_notice:
         description: >-
           Schema value for privacy principle 7 (Clause 6.8): the organization
@@ -210,7 +210,6 @@ enums:
         annotations:
           iso29100_clause: "6.8"
           principle_number: "7"
-        meaning: dpv:Transparency
       individual_participation_and_access:
         description: >-
           Schema value for privacy principle 8 (Clause 6.9): the organization
@@ -220,7 +219,7 @@ enums:
         annotations:
           iso29100_clause: "6.9"
           principle_number: "8"
-        meaning: dpv:RightToAccess
+        meaning: dpv:DataSubjectRight
       accountability:
         description: >-
           Schema value for privacy principle 9 (Clause 6.10): the organization
@@ -230,7 +229,6 @@ enums:
         annotations:
           iso29100_clause: "6.10"
           principle_number: "9"
-        meaning: dpv:Accountability
       information_security:
         description: >-
           Schema value for privacy principle 10 (Clause 6.11): the organization
@@ -240,7 +238,6 @@ enums:
         annotations:
           iso29100_clause: "6.11"
           principle_number: "10"
-        meaning: dpv:SecurityMeasure
       privacy_compliance:
         description: >-
           Schema value for privacy principle 11 (Clause 6.12): the organization
@@ -250,7 +247,7 @@ enums:
         annotations:
           iso29100_clause: "6.12"
           principle_number: "11"
-        meaning: dpv:Conformance
+        meaning: dpv:ComplianceAssessment
 
   PIIFlowRole:
     description: >-
@@ -313,7 +310,7 @@ enums:
         meaning: dpv:Erase
       destruction:
         description: Permanently and irrecoverably eliminating PII and its carriers.
-        meaning: dpv:Destroy
+        meaning: dpv:Remove
 
   SafeguardingRequirementFactor:
     description: >-
@@ -395,12 +392,12 @@ enums:
           consent for their PII to be processed for a particular purpose.
         annotations:
           iso29100_clause: "3.6"
-        meaning: dpv:OptIn
+        meaning: dpv:ExplicitlyExpressedConsent
       opt_out:
         description: >-
           The PII principal must take a separate action to withhold or withdraw
           consent; processing is presumed permitted unless that action is taken.
-        meaning: dpv:OptOut
+        meaning: dpv:ImpliedConsent
       implied:
         description: >-
           Consent implied by some action of the PII principal, such as
@@ -635,7 +632,7 @@ classes:
       - dpv:ThirdParty
 
   # ---------------------
-  # PII and Flow (Clauses 5.3–5.4)
+  # PII and Flow (Clauses 5.3-5.4)
   # ---------------------
 
   PersonallyIdentifiableInformation:
@@ -664,7 +661,7 @@ classes:
       - applicable_to_principal
       - retention_schedule
       - processing_operations
-    exact_mappings:
+    broad_mappings:
       - dpv:PersonalData
 
   PIIFlowScenario:
@@ -717,11 +714,9 @@ classes:
       - applicable_to_actors
       - related_controls
       - priority
-    exact_mappings:
-      - dpv:Requirement
 
   # ---------------------
-  # Privacy Policies and Controls (Clauses 5.6–5.7)
+  # Privacy Policies and Controls (Clauses 5.6-5.7)
   # ---------------------
 
   PrivacyPolicy:
@@ -849,7 +844,7 @@ classes:
       - next_assessment_date
       - consultation_records
     exact_mappings:
-      - dpv:PrivacyImpactAssessment
+      - dpv:PIA
     related_mappings:
       - iso27001:RiskAssessment
 
@@ -883,7 +878,7 @@ classes:
       - lessons_learned
       - closure_datetime
     exact_mappings:
-      - dpv:PersonalDataBreach
+      - dpv:DataBreachRecord
     related_mappings:
       - iso27001:InformationSecurityIncident
 
@@ -920,7 +915,7 @@ classes:
       - cross_border_transfer
       - transfer_safeguards
     exact_mappings:
-      - dpv:PersonalDataProcessing
+      - dpv:PersonalDataProcess
 
   # ---------------------
   # Privacy Principles Implementation
@@ -978,7 +973,7 @@ classes:
       - consent_status
       - consent_evidence_ref
     exact_mappings:
-      - dpv:Consent
+      - dpv:InformedConsent
 
   PrivacyPreference:
     is_a: NamedEntity
@@ -1003,8 +998,6 @@ classes:
       - processing_restriction_preferences
       - disclosure_restriction_preferences
       - preference_recorded_date
-    exact_mappings:
-      - dpv:Preference
 
 # ==============================================================================
 # SLOTS

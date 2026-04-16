@@ -1,9 +1,0 @@
-{
-   "dcterms": "http://purl.org/dc/terms/",
-   "dpv": "https://w3id.org/dpv#",
-   "iso27001": "https://w3id.org/lmodel/iso27001/",
-   "iso29100": "https://w3id.org/lmodel/iso29100/",
-   "linkml": "https://w3id.org/linkml/",
-   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
-   "schema": "http://schema.org/"
-}
