@@ -37,6 +37,9 @@ description: 'A comprehensive LinkML schema modeling the ISO/IEC 29100:2024 priv
   influencing factors - Privacy risk management including privacy impact assessment
   - Privacy policies, privacy controls, consent records, and privacy preferences'
 title: 'ISO 29100 / Privacy Framework: LinkML Schema'
+see_also:
+- https://www.iso.org/standard/85938.html
+- https://dev.dpvcg.org/mappings/iso/
 id: https://w3id.org/lmodel/iso29100
 version: 1.0.0
 imports:
@@ -70,8 +73,8 @@ subsets:
   privacy_framework_core:
     name: privacy_framework_core
     definition_uri: https://w3id.org/lmodel/iso29100/PrivacyFrameworkCore
-    description: "Core privacy framework elements: actors, roles, PII concept, interactions,\
-      \ and the overall framework container (Clauses 5.1\u20135.3)."
+    description: 'Core privacy framework elements: actors, roles, PII concept, interactions,
+      and the overall framework container (Clauses 5.1-5.3).'
     comments:
     - Covers the fundamental building blocks of the privacy framework
     from_schema: https://w3id.org/lmodel/iso29100
@@ -91,8 +94,8 @@ subsets:
   privacy_governance:
     name: privacy_governance
     definition_uri: https://w3id.org/lmodel/iso29100/PrivacyGovernance
-    description: "Privacy policies, privacy controls, and governance elements that\
-      \ implement safeguarding requirements (Clauses 5.6\u20135.7)."
+    description: Privacy policies, privacy controls, and governance elements that
+      implement safeguarding requirements (Clauses 5.6-5.7).
     from_schema: https://w3id.org/lmodel/iso29100
   privacy_principles:
     name: privacy_principles
@@ -107,8 +110,8 @@ subsets:
   privacy_risk_management:
     name: privacy_risk_management
     definition_uri: https://w3id.org/lmodel/iso29100/PrivacyRiskManagement
-    description: "Elements supporting privacy risk management, including privacy impact\
-      \ assessments and privacy risk treatment (Clauses 3.17\u20133.18, 5.5)."
+    description: Elements supporting privacy risk management, including privacy impact
+      assessments and privacy risk treatment (Clauses 3.17-3.18, 5.5).
     from_schema: https://w3id.org/lmodel/iso29100
 types:
   positive_integer_type:
@@ -416,7 +419,7 @@ enums:
           gives PII principals meaningful choice over processing of their PII, manages
           opt-in consent mechanisms, and provides readily accessible means to withdraw
           consent.'
-        meaning: dpv:Consent
+        meaning: dpv:InformedConsent
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -454,7 +457,6 @@ enums:
         description: 'Schema value for privacy principle 4 (Clause 6.5): the organization
           designs processing procedures and ICT systems to minimize the volume of
           PII handled and the number of parties with access to it.'
-        meaning: dpv:DataMinimisation
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -467,7 +469,6 @@ enums:
         description: 'Schema value for privacy principle 5 (Clause 6.6): the organization
           limits use, retention, and disclosure of PII to the minimum needed for legitimate
           purposes, and securely disposes of PII once those purposes have been fulfilled.'
-        meaning: dpv:StorageLimitation
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -481,7 +482,6 @@ enums:
           ensures PII is accurate, complete, current, and fit for purpose, and establishes
           procedures for verification, correction, and ongoing quality control of
           processed PII.'
-        meaning: dpv:Accuracy
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -495,7 +495,6 @@ enums:
           provides PII principals with clear, accessible information about its PII
           processing policies and practices, and notifies them of material changes
           to those policies.'
-        meaning: dpv:Transparency
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -508,7 +507,7 @@ enums:
         description: 'Schema value for privacy principle 8 (Clause 6.9): the organization
           gives PII principals the ability to access and review their PII and to challenge
           its accuracy and completeness, subject to applicable law.'
-        meaning: dpv:RightToAccess
+        meaning: dpv:DataSubjectRight
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -522,7 +521,6 @@ enums:
           documents and communicates its privacy obligations, ensures equivalent protection
           when transferring PII to third parties, and maintains internal complaint-handling
           and redress procedures.'
-        meaning: dpv:Accountability
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -536,7 +534,6 @@ enums:
           applies appropriate security controls across operational, functional, and
           strategic levels to protect PII against unauthorized access, loss, or misuse
           throughout its full lifecycle.'
-        meaning: dpv:SecurityMeasure
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -550,7 +547,7 @@ enums:
           verifies and demonstrates compliance with data protection and privacy requirements
           through audits, independent internal controls, and ongoing privacy risk
           assessments.'
-        meaning: dpv:Conformance
+        meaning: dpv:ComplianceAssessment
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -638,7 +635,7 @@ enums:
       destruction:
         text: destruction
         description: Permanently and irrecoverably eliminating PII and its carriers.
-        meaning: dpv:Destroy
+        meaning: dpv:Remove
   SafeguardingRequirementFactor:
     name: SafeguardingRequirementFactor
     definition_uri: https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor
@@ -736,7 +733,7 @@ enums:
         text: opt_in
         description: The PII principal must take an explicit action to express prior
           consent for their PII to be processed for a particular purpose.
-        meaning: dpv:OptIn
+        meaning: dpv:ExplicitlyExpressedConsent
         annotations:
           iso29100_clause:
             tag: iso29100_clause
@@ -746,7 +743,7 @@ enums:
         description: The PII principal must take a separate action to withhold or
           withdraw consent; processing is presumed permitted unless that action is
           taken.
-        meaning: dpv:OptOut
+        meaning: dpv:ImpliedConsent
       implied:
         text: implied
         description: Consent implied by some action of the PII principal, such as
@@ -2802,7 +2799,7 @@ classes:
     in_subset:
     - pii_recognition
     from_schema: https://w3id.org/lmodel/iso29100
-    exact_mappings:
+    broad_mappings:
     - dpv:PersonalData
     is_a: NamedEntity
     slots:
@@ -2874,8 +2871,6 @@ classes:
     in_subset:
     - privacy_safeguarding
     from_schema: https://w3id.org/lmodel/iso29100
-    exact_mappings:
-    - dpv:Requirement
     is_a: NamedEntity
     slots:
     - NamedEntity_id
@@ -3036,7 +3031,7 @@ classes:
     - privacy_risk_management
     from_schema: https://w3id.org/lmodel/iso29100
     exact_mappings:
-    - dpv:PrivacyImpactAssessment
+    - dpv:PIA
     related_mappings:
     - iso27001:RiskAssessment
     is_a: NamedEntity
@@ -3079,7 +3074,7 @@ classes:
     - privacy_risk_management
     from_schema: https://w3id.org/lmodel/iso29100
     exact_mappings:
-    - dpv:PersonalDataBreach
+    - dpv:DataBreachRecord
     related_mappings:
     - iso27001:InformationSecurityIncident
     is_a: NamedEntity
@@ -3122,7 +3117,7 @@ classes:
     - privacy_framework_core
     from_schema: https://w3id.org/lmodel/iso29100
     exact_mappings:
-    - dpv:PersonalDataProcessing
+    - dpv:PersonalDataProcess
     is_a: NamedEntity
     slots:
     - NamedEntity_id
@@ -3196,7 +3191,7 @@ classes:
     - privacy_framework_core
     from_schema: https://w3id.org/lmodel/iso29100
     exact_mappings:
-    - dpv:Consent
+    - dpv:InformedConsent
     is_a: NamedEntity
     slots:
     - NamedEntity_id
@@ -3233,8 +3228,6 @@ classes:
     in_subset:
     - privacy_framework_core
     from_schema: https://w3id.org/lmodel/iso29100
-    exact_mappings:
-    - dpv:Preference
     is_a: NamedEntity
     slots:
     - NamedEntity_id
@@ -3252,7 +3245,7 @@ classes:
     class_uri: iso29100:PrivacyPreference
 metamodel_version: 1.7.0
 source_file: iso29100.yaml
-source_file_date: '2026-04-16T12:16:49'
-source_file_size: 60842
-generation_date: '2026-04-16T13:39:45'
+source_file_date: '2026-04-16T14:46:48'
+source_file_size: 60670
+generation_date: '2026-04-16T14:52:31'
 

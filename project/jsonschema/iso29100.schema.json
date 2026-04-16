@@ -1,0 +1,2170 @@
+{
+    "$defs": {
+        "ConsentMechanism": {
+            "description": "The mechanism by which a PII principal provides or withholds consent for PII processing, as referenced in Clauses 3.6 and 6.2.",
+            "enum": [
+                "opt_in",
+                "opt_out",
+                "implied"
+            ],
+            "title": "ConsentMechanism",
+            "type": "string"
+        },
+        "ConsentRecord": {
+            "additionalProperties": false,
+            "description": "Schema class documenting a PII principal's agreement to processing of their PII for stated purposes. Records the consent mechanism used, scope, current status, and withdrawal date \u2014 supporting auditability of the consent and choice privacy principle.",
+            "properties": {
+                "consent_date": {
+                    "description": "Date and time when consent was given.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "consent_evidence_ref": {
+                    "description": "Reference to evidence of consent (e.g., record identifier or URL).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "consent_mechanism": {
+                    "$ref": "#/$defs/ConsentMechanism",
+                    "description": "Mechanism by which consent was obtained."
+                },
+                "consent_status": {
+                    "description": "Current status of the consent.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "pii_categories_consented": {
+                    "description": "Categories of PII for which consent was given.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "principal_ref": {
+                    "description": "Reference to the PII principal associated with this consent record or privacy preference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "processing_purposes_consented": {
+                    "description": "Processing purposes for which consent was given.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "withdrawal_date": {
+                    "description": "Date and time when consent was withdrawn, if applicable.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "ConsentRecord",
+            "type": "object"
+        },
+        "PIIController": {
+            "additionalProperties": false,
+            "description": "Schema class for an organization or individual that determines why and how PII is processed. Captures appointed processors, legal bases relied upon, privacy policy reference, and data protection officer details. Bears ultimate accountability for privacy principle adherence.",
+            "properties": {
+                "appointed_processors": {
+                    "description": "PII processors appointed by this controller.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "contact_information": {
+                    "description": "Contact details for the privacy stakeholder.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "data_protection_officer": {
+                    "description": "Name or contact of the data protection officer, where applicable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "jurisdictions": {
+                    "description": "Jurisdictions in which the privacy stakeholder operates.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "legal_bases": {
+                    "description": "Legal bases relied upon for PII processing by this controller.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "privacy_policy_ref": {
+                    "description": "Reference to the privacy policy of this PII controller.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "processing_purposes": {
+                    "description": "Purposes for which the PII controller processes PII.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PIIController",
+            "type": "object"
+        },
+        "PIIFlowRole": {
+            "description": "The role played by an actor in a specific PII flow scenario, as described in Table 1 of ISO/IEC 29100:2024 Clause 5.3.",
+            "enum": [
+                "pii_provider",
+                "pii_recipient",
+                "not_involved"
+            ],
+            "title": "PIIFlowRole",
+            "type": "string"
+        },
+        "PIIFlowScenario": {
+            "additionalProperties": false,
+            "description": "A documented scenario describing the flow of PII among privacy framework actors (PII principal, PII controller, PII processor, and third party), as illustrated in Table 1 of Clause 5.3.",
+            "properties": {
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "legal_control_retention": {
+                    "description": "Description of how legal control of PII is retained or transferred, relevant to distinguishing between a PII processor and a third party.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "pii_controller_role": {
+                    "$ref": "#/$defs/PIIFlowRole",
+                    "description": "Role of the PII controller in this flow scenario."
+                },
+                "pii_principal_role": {
+                    "$ref": "#/$defs/PIIFlowRole",
+                    "description": "Role of the PII principal in this flow scenario."
+                },
+                "pii_processor_role": {
+                    "$ref": "#/$defs/PIIFlowRole",
+                    "description": "Role of the PII processor in this flow scenario."
+                },
+                "scenario_description": {
+                    "description": "Description of the PII flow scenario and when it occurs.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "scenario_label": {
+                    "description": "Label for the PII flow scenario (e.g., \"Scenario a\").",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "third_party_role": {
+                    "$ref": "#/$defs/PIIFlowRole",
+                    "description": "Role of the third party in this flow scenario."
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PIIFlowScenario",
+            "type": "object"
+        },
+        "PIIPrincipal": {
+            "additionalProperties": false,
+            "description": "Schema class for a data subject \u2014 the individual to whom PII belongs. Links consent records and privacy preferences to the natural person whose data is being processed, enabling subject-centric data models.",
+            "properties": {
+                "consent_records": {
+                    "description": "Consent records associated with the PII principal.",
+                    "items": {
+                        "$ref": "#/$defs/ConsentRecord"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "contact_information": {
+                    "description": "Contact details for the privacy stakeholder.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "jurisdictions": {
+                    "description": "Jurisdictions in which the privacy stakeholder operates.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "privacy_preferences": {
+                    "description": "Privacy preferences expressed by the PII principal.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyPreference"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PIIPrincipal",
+            "type": "object"
+        },
+        "PIIProcessingActivity": {
+            "additionalProperties": false,
+            "description": "Schema class documenting a PII processing operation: its purpose, legal basis, operation types performed, categories of PII involved, responsible actors, applied controls, retention period, and any cross-border transfer safeguards.",
+            "properties": {
+                "controller_ref": {
+                    "description": "PII controller responsible for this processing activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "cross_border_transfer": {
+                    "description": "Whether this activity involves cross-border transfer of PII.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "data_flows": {
+                    "description": "PII flow scenarios applicable to this processing activity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "legal_basis": {
+                    "description": "Legal basis relied upon for this processing activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "operations_performed": {
+                    "description": "Processing operations performed in this activity.",
+                    "items": {
+                        "$ref": "#/$defs/PIIProcessingOperation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "pii_categories_processed": {
+                    "description": "Categories of PII processed in this activity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "privacy_controls_applied": {
+                    "description": "Privacy controls applied to this processing activity.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "processing_purpose": {
+                    "description": "The specific, explicit, and legitimate purpose for this processing activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "processor_ref": {
+                    "description": "PII processor performing this processing activity, if applicable.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "retention_period": {
+                    "description": "Retention period for PII processed in this activity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sensitivity_levels_involved": {
+                    "description": "Sensitivity levels of PII processed in this activity.",
+                    "items": {
+                        "$ref": "#/$defs/PIISensitivityCategory"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "transfer_safeguards": {
+                    "description": "Safeguards in place for cross-border PII transfers.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PIIProcessingActivity",
+            "type": "object"
+        },
+        "PIIProcessingOperation": {
+            "description": "Categories of operations that can be performed on PII, as referenced in the definition of processing of PII (Clause 3.21).",
+            "enum": [
+                "collection",
+                "storage",
+                "alteration",
+                "retrieval",
+                "consultation",
+                "disclosure",
+                "anonymization",
+                "pseudonymization",
+                "dissemination",
+                "deletion",
+                "destruction"
+            ],
+            "title": "PIIProcessingOperation",
+            "type": "string"
+        },
+        "PIIProcessor": {
+            "additionalProperties": false,
+            "description": "Schema class for an organization engaged to process PII under a PII controller's instructions. Records the instructing controller, data processing agreement reference, and any sub-processors engaged on the controller's behalf.",
+            "properties": {
+                "contact_information": {
+                    "description": "Contact details for the privacy stakeholder.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "instructing_controller": {
+                    "description": "The PII controller on whose behalf this processor acts.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "jurisdictions": {
+                    "description": "Jurisdictions in which the privacy stakeholder operates.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "processing_agreement_ref": {
+                    "description": "Reference to the data processing agreement with the controller.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sub_processors": {
+                    "description": "Sub-processors engaged by this PII processor.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PIIProcessor",
+            "type": "object"
+        },
+        "PIISensitivityCategory": {
+            "description": "Categories of PII based on sensitivity, distinguishing standard PII from sensitive PII as defined in Clause 3.23.",
+            "enum": [
+                "standard",
+                "sensitive"
+            ],
+            "title": "PIISensitivityCategory",
+            "type": "string"
+        },
+        "PersonallyIdentifiableInformation": {
+            "additionalProperties": false,
+            "description": "Schema class representing a data element or attribute set that can be linked back to a natural person \u2014 either directly or through combination with other attributes. Captures sensitivity classification, identifier type, pseudonymization status, retention schedule, and processing operations applicable to the data.",
+            "properties": {
+                "applicable_to_principal": {
+                    "description": "Reference or description of the PII principal(s) to whom this PII relates.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "identifier_type": {
+                    "description": "Type of identifier (e.g., direct identifier, indirect identifier, linkable attribute, or combination of attributes).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "is_anonymized": {
+                    "description": "Whether the PII has been anonymized. Anonymized data is no longer considered PII as the PII principal can no longer be identified.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "is_pseudonymized": {
+                    "description": "Whether the PII has been pseudonymized.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "linkability_risk": {
+                    "description": "Assessment of the risk that this data can be linked to identify a PII principal, even if not directly identifying on its own.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "pii_category": {
+                    "description": "Category or type of PII (e.g., financial, health, biometric, location).",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "processing_operations": {
+                    "description": "Types of processing operations performed on this PII.",
+                    "items": {
+                        "$ref": "#/$defs/PIIProcessingOperation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "retention_schedule": {
+                    "description": "Schedule defining how long this PII is retained and how it is disposed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "sensitivity_level": {
+                    "$ref": "#/$defs/PIISensitivityCategory",
+                    "description": "Sensitivity classification of this PII."
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PersonallyIdentifiableInformation",
+            "type": "object"
+        },
+        "PrivacyBreach": {
+            "additionalProperties": false,
+            "description": "Schema class for a recorded incident in which PII was processed in a manner that violates applicable privacy safeguarding requirements. Tracks breach details, affected PII categories, notification obligations, remediation actions, and lessons learned.",
+            "properties": {
+                "affected_pii_categories": {
+                    "description": "Categories of PII affected by this privacy risk or breach.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "affected_principals_count": {
+                    "description": "Estimated number of PII principals whose PII was involved.",
+                    "type": [
+                        "integer",
+                        "null"
+                    ]
+                },
+                "breach_datetime": {
+                    "description": "Date and time when the privacy breach occurred.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "breach_description": {
+                    "description": "Description of the privacy breach and the violated requirements.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "breach_severity": {
+                    "$ref": "#/$defs/PrivacyRiskLevel",
+                    "description": "Assessed severity of the privacy breach."
+                },
+                "closure_datetime": {
+                    "description": "Date and time when the breach record was closed.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "discovery_datetime": {
+                    "description": "Date and time when the privacy breach was discovered.",
+                    "format": "date-time",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "immediate_actions": {
+                    "description": "Immediate actions taken to contain the breach.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "lessons_learned": {
+                    "description": "Lessons learned from the breach to improve privacy controls.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "notification_required": {
+                    "description": "Whether notification to authorities or PII principals was required.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "notifications_made": {
+                    "description": "Notifications made to authorities, PII principals, or other parties.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "remediation_actions": {
+                    "description": "Actions taken to remediate the breach and prevent recurrence.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "violated_requirements": {
+                    "description": "Privacy safeguarding requirements violated by this breach.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyBreach",
+            "type": "object"
+        },
+        "PrivacyControl": {
+            "additionalProperties": false,
+            "description": "Schema class for a protective measure that manages privacy risks within the framework. Can be organizational, physical, technical (including Privacy Enhancing Technologies), or legal-contractual in nature; linked to the principles and safeguarding requirements it addresses.",
+            "properties": {
+                "addressed_principles": {
+                    "description": "Privacy principles this control helps implement.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyPrinciple"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "control_objective": {
+                    "description": "The privacy objective this control is intended to achieve.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "control_type": {
+                    "$ref": "#/$defs/PrivacyControlType",
+                    "description": "Category of this privacy control."
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effectiveness_evidence": {
+                    "description": "Evidence of control effectiveness.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "implementation_description": {
+                    "description": "Organization-authored description of how the control is implemented.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "implementation_status": {
+                    "description": "Current implementation status of the control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "is_pet": {
+                    "description": "Whether this control qualifies as a Privacy Enhancing Technology (PET): an ICT-based privacy control that protects privacy by minimizing, eliminating, or preventing unnecessary PII processing without reducing the intended functionality of the system.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "related_safeguarding_requirements": {
+                    "description": "Safeguarding requirements this control addresses.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "responsible_actor": {
+                    "description": "Actor responsible for implementing and maintaining this control.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyControl",
+            "type": "object"
+        },
+        "PrivacyControlType": {
+            "description": "Categories of privacy controls that treat privacy risks by reducing their likelihood or consequences, as noted in Clause 3.12 Note 1.",
+            "enum": [
+                "organizational",
+                "physical",
+                "technical",
+                "legal_contractual"
+            ],
+            "title": "PrivacyControlType",
+            "type": "string"
+        },
+        "PrivacyFramework": {
+            "additionalProperties": false,
+            "description": "Top-level container representing an organization's privacy framework for protecting PII within ICT systems.",
+            "properties": {
+                "applicable_jurisdictions": {
+                    "description": "Legal jurisdictions whose privacy laws apply to the organization.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ict_system_description": {
+                    "description": "Description of the ICT system(s) within the scope of the privacy framework.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "organization_name": {
+                    "description": "Name of the organization operating the privacy framework.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pii_controllers": {
+                    "description": "PII controllers operating within this privacy framework.",
+                    "items": {
+                        "$ref": "#/$defs/PIIController"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "pii_principals_description": {
+                    "description": "Description of the categories of PII principals whose PII is processed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "pii_processing_activities": {
+                    "description": "PII processing activities within the framework scope.",
+                    "items": {
+                        "$ref": "#/$defs/PIIProcessingActivity"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "pii_processors": {
+                    "description": "PII processors engaged within this privacy framework.",
+                    "items": {
+                        "$ref": "#/$defs/PIIProcessor"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "principle_implementations": {
+                    "description": "Implementation records for each of the eleven privacy principles.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyPrincipleImplementation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "privacy_breaches": {
+                    "description": "Privacy breaches recorded within the framework.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyBreach"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "privacy_controls": {
+                    "description": "Privacy controls implemented within the framework.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyControl"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "privacy_impact_assessments": {
+                    "description": "Privacy impact assessments conducted under this framework.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyImpactAssessment"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "privacy_policy": {
+                    "description": "The organization's privacy policy governing PII processing.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "privacy_risks": {
+                    "description": "Privacy risks identified within the framework scope.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyRisk"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "safeguarding_requirements": {
+                    "description": "Privacy safeguarding requirements applicable to the organization.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacySafeguardingRequirement"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "third_parties": {
+                    "description": "Third parties that may receive PII within this framework.",
+                    "items": {
+                        "$ref": "#/$defs/ThirdParty"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyFramework",
+            "type": "object"
+        },
+        "PrivacyImpactAssessment": {
+            "additionalProperties": false,
+            "description": "Schema class for a structured evaluation of the privacy implications of a processing activity or ICT system. Records assessment scope, identified and treated risks, accepted residual risks, stakeholder consultation records, and overall assessment outcome.",
+            "properties": {
+                "assessment_date": {
+                    "description": "Date the assessment was conducted.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_outcome": {
+                    "description": "Overall outcome and conclusions of the privacy impact assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessment_scope": {
+                    "description": "Scope of the privacy impact assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "assessor": {
+                    "description": "Person or team who conducted the assessment.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "consultation_records": {
+                    "description": "Records of stakeholder consultations conducted during the assessment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "next_assessment_date": {
+                    "description": "Planned date for the next assessment.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "processing_activities_assessed": {
+                    "description": "PII processing activities reviewed in this assessment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "residual_risks_accepted": {
+                    "description": "Privacy risks accepted as residual after treatment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "risks_identified": {
+                    "description": "Privacy risks identified during this assessment.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "risks_treated": {
+                    "description": "Privacy risks for which treatment was planned or applied.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyImpactAssessment",
+            "type": "object"
+        },
+        "PrivacyPolicy": {
+            "additionalProperties": false,
+            "description": "Schema class for a governing document expressing an organization's intentions and commitments for PII processing. Covers both the internal policy document and any external privacy notice made available to PII principals (referred to as a notice in this framework).",
+            "properties": {
+                "applicable_principles": {
+                    "description": "Privacy principles this policy addresses.",
+                    "items": {
+                        "$ref": "#/$defs/PrivacyPrinciple"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "contact_for_inquiries": {
+                    "description": "Contact information for PII-related inquiries from PII principals.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "data_retention_statement": {
+                    "description": "Statement on how long PII is retained and how it is disposed.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "effective_date": {
+                    "description": "Date from which the privacy policy takes effect.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "is_external_notice": {
+                    "description": "Whether this is an external privacy notice (available to PII principals) rather than an internal policy document.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "last_review_date": {
+                    "description": "Date when the policy was last reviewed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "pii_categories_covered": {
+                    "description": "Categories of PII addressed by this privacy policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "pii_principal_rights": {
+                    "description": "Rights available to PII principals under this policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "policy_scope": {
+                    "description": "Scope of the privacy policy (systems, activities, or organizations covered).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "policy_version": {
+                    "description": "Version identifier for the privacy policy.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "processing_purposes_covered": {
+                    "description": "Processing purposes addressed by this privacy policy.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyPolicy",
+            "type": "object"
+        },
+        "PrivacyPreference": {
+            "additionalProperties": false,
+            "description": "Schema class capturing a PII principal's processing choices for a particular purpose scope: preferences for anonymity or pseudonymity, restrictions on specific processing operations, and restrictions on disclosure to named or categorized parties.",
+            "properties": {
+                "anonymity_preference": {
+                    "description": "Whether the PII principal prefers anonymous processing where possible.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "disclosure_restriction_preferences": {
+                    "description": "Restrictions on disclosing PII to specific parties or categories of parties.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "preference_recorded_date": {
+                    "description": "Date when these privacy preferences were recorded.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "preference_scope": {
+                    "description": "The processing activities or purposes to which these preferences apply.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "principal_ref": {
+                    "description": "Reference to the PII principal associated with this consent record or privacy preference.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "processing_restriction_preferences": {
+                    "description": "Specific processing operations the PII principal wishes to restrict.",
+                    "items": {
+                        "$ref": "#/$defs/PIIProcessingOperation"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "pseudonymity_preference": {
+                    "description": "Whether the PII principal prefers pseudonymous processing where possible.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyPreference",
+            "type": "object"
+        },
+        "PrivacyPrinciple": {
+            "description": "The eleven privacy principles defined in ISO/IEC 29100:2024 Clause 6 that govern the processing of PII in ICT systems.",
+            "enum": [
+                "consent_and_choice",
+                "purpose_legitimacy_and_specification",
+                "collection_limitation",
+                "data_minimization",
+                "use_retention_and_disclosure_limitation",
+                "accuracy_and_quality",
+                "openness_transparency_and_notice",
+                "individual_participation_and_access",
+                "accountability",
+                "information_security",
+                "privacy_compliance"
+            ],
+            "title": "PrivacyPrinciple",
+            "type": "string"
+        },
+        "PrivacyPrincipleImplementation": {
+            "additionalProperties": false,
+            "description": "Documentation of how a specific privacy principle from Clause 6 has been implemented within the organization's privacy framework, including measures taken and evidence of adherence.",
+            "properties": {
+                "applicable_controls_ref": {
+                    "description": "Privacy controls that contribute to implementing this principle.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "evidence_of_adherence": {
+                    "description": "Evidence demonstrating adherence to this principle.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gaps_identified": {
+                    "description": "Identified gaps in the implementation of this principle.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "implementation_measures": {
+                    "description": "Measures taken to implement this privacy principle.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "improvement_actions": {
+                    "description": "Actions planned to address identified implementation gaps.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "last_assessed_date": {
+                    "description": "Date when adherence to this principle was last assessed.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "principle": {
+                    "$ref": "#/$defs/PrivacyPrinciple",
+                    "description": "The privacy principle being implemented."
+                }
+            },
+            "required": [
+                "principle",
+                "id",
+                "name"
+            ],
+            "title": "PrivacyPrincipleImplementation",
+            "type": "object"
+        },
+        "PrivacyRisk": {
+            "additionalProperties": false,
+            "description": "Schema class representing a potential adverse outcome for PII principals from a PII processing activity. Captures the risk source, likelihood and impact assessments, inherent and residual risk levels, and links to mitigating controls and accountable risk owner.",
+            "properties": {
+                "affected_pii_categories": {
+                    "description": "Categories of PII affected by this privacy risk or breach.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "affected_principals_description": {
+                    "description": "Description of PII principals who could be adversely affected.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "inherent_risk_level": {
+                    "$ref": "#/$defs/PrivacyRiskLevel",
+                    "description": "Privacy risk level before controls are applied."
+                },
+                "mitigating_controls": {
+                    "description": "Privacy controls that mitigate this risk.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "residual_risk_level": {
+                    "$ref": "#/$defs/PrivacyRiskLevel",
+                    "description": "Privacy risk level after controls are applied."
+                },
+                "risk_impact_description": {
+                    "description": "Description of potential adverse consequences for PII principals.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_likelihood": {
+                    "description": "Assessed likelihood of this privacy risk materializing.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_owner": {
+                    "description": "Person accountable for managing this privacy risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "risk_source": {
+                    "description": "Source or origin of the privacy risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacyRisk",
+            "type": "object"
+        },
+        "PrivacyRiskLevel": {
+            "description": "Qualitative assessment of privacy risk level based on likelihood and potential adverse consequences for PII principals.",
+            "enum": [
+                "low",
+                "medium",
+                "high",
+                "very_high"
+            ],
+            "title": "PrivacyRiskLevel",
+            "type": "string"
+        },
+        "PrivacySafeguardingRequirement": {
+            "additionalProperties": false,
+            "description": "Schema class for an applicable requirement that drives an organization's PII processing controls. Requirements are identified through the privacy risk management process and arise from legal/regulatory, contractual, business, or other influencing factors.",
+            "properties": {
+                "applicable_to_actors": {
+                    "description": "Privacy stakeholder roles to which this requirement applies.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "priority": {
+                    "description": "Priority level for addressing this requirement or risk.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "related_controls": {
+                    "description": "Privacy controls that implement or contribute to this requirement.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "requirement_factor": {
+                    "$ref": "#/$defs/SafeguardingRequirementFactor",
+                    "description": "Category of factor driving this safeguarding requirement."
+                },
+                "requirement_text": {
+                    "description": "Organization-authored statement of the safeguarding requirement.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "source_reference": {
+                    "description": "Reference to the source (e.g., law name, regulation, contract, or standard).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "PrivacySafeguardingRequirement",
+            "type": "object"
+        },
+        "SafeguardingRequirementFactor": {
+            "description": "Categories of factors that influence an organization's privacy safeguarding requirements, as described in Clause 5.5 and Figure 1.",
+            "enum": [
+                "legal_and_regulatory",
+                "contractual",
+                "business",
+                "other"
+            ],
+            "title": "SafeguardingRequirementFactor",
+            "type": "string"
+        },
+        "ThirdParty": {
+            "additionalProperties": false,
+            "description": "Schema class for an external entity that receives PII outside the PII processor relationship \u2014 i.e., as a recipient that typically becomes a PII controller in its own right. Captures the receiving purpose and the legal basis for the transfer.",
+            "properties": {
+                "contact_information": {
+                    "description": "Contact details for the privacy stakeholder.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "created_date": {
+                    "description": "Date when the entity record was created.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "Detailed description of the entity.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "id": {
+                    "description": "Unique identifier for this entity instance.",
+                    "type": "string"
+                },
+                "jurisdictions": {
+                    "description": "Jurisdictions in which the privacy stakeholder operates.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "modified_date": {
+                    "description": "Date when the entity record was last modified.",
+                    "format": "date",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "Human-readable name or title.",
+                    "type": "string"
+                },
+                "receiving_purpose": {
+                    "description": "Purpose for which the third party receives PII.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "transfer_basis": {
+                    "description": "Legal or contractual basis for transferring PII to this third party.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "id",
+                "name"
+            ],
+            "title": "ThirdParty",
+            "type": "object"
+        }
+    },
+    "$id": "https://w3id.org/lmodel/iso29100",
+    "$schema": "https://json-schema.org/draft/2019-09/schema",
+    "additionalProperties": true,
+    "description": "Top-level container representing an organization's privacy framework for protecting PII within ICT systems.",
+    "metamodel_version": "1.7.0",
+    "properties": {
+        "applicable_jurisdictions": {
+            "description": "Legal jurisdictions whose privacy laws apply to the organization.",
+            "items": {
+                "type": "string"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "created_date": {
+            "description": "Date when the entity record was created.",
+            "format": "date",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "description": {
+            "description": "Detailed description of the entity.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "ict_system_description": {
+            "description": "Description of the ICT system(s) within the scope of the privacy framework.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "id": {
+            "description": "Unique identifier for this entity instance.",
+            "type": "string"
+        },
+        "modified_date": {
+            "description": "Date when the entity record was last modified.",
+            "format": "date",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "name": {
+            "description": "Human-readable name or title.",
+            "type": "string"
+        },
+        "organization_name": {
+            "description": "Name of the organization operating the privacy framework.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "pii_controllers": {
+            "description": "PII controllers operating within this privacy framework.",
+            "items": {
+                "$ref": "#/$defs/PIIController"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "pii_principals_description": {
+            "description": "Description of the categories of PII principals whose PII is processed.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "pii_processing_activities": {
+            "description": "PII processing activities within the framework scope.",
+            "items": {
+                "$ref": "#/$defs/PIIProcessingActivity"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "pii_processors": {
+            "description": "PII processors engaged within this privacy framework.",
+            "items": {
+                "$ref": "#/$defs/PIIProcessor"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "principle_implementations": {
+            "description": "Implementation records for each of the eleven privacy principles.",
+            "items": {
+                "$ref": "#/$defs/PrivacyPrincipleImplementation"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "privacy_breaches": {
+            "description": "Privacy breaches recorded within the framework.",
+            "items": {
+                "$ref": "#/$defs/PrivacyBreach"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "privacy_controls": {
+            "description": "Privacy controls implemented within the framework.",
+            "items": {
+                "$ref": "#/$defs/PrivacyControl"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "privacy_impact_assessments": {
+            "description": "Privacy impact assessments conducted under this framework.",
+            "items": {
+                "$ref": "#/$defs/PrivacyImpactAssessment"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "privacy_policy": {
+            "description": "The organization's privacy policy governing PII processing.",
+            "type": [
+                "string",
+                "null"
+            ]
+        },
+        "privacy_risks": {
+            "description": "Privacy risks identified within the framework scope.",
+            "items": {
+                "$ref": "#/$defs/PrivacyRisk"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "safeguarding_requirements": {
+            "description": "Privacy safeguarding requirements applicable to the organization.",
+            "items": {
+                "$ref": "#/$defs/PrivacySafeguardingRequirement"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "third_parties": {
+            "description": "Third parties that may receive PII within this framework.",
+            "items": {
+                "$ref": "#/$defs/ThirdParty"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        }
+    },
+    "required": [
+        "id",
+        "name"
+    ],
+    "title": "iso29100",
+    "type": "object",
+    "version": "1.0.0"
+}
