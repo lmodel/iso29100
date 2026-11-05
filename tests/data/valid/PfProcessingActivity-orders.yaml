@@ -1,5 +1,5 @@
 pf_id: acme:activity-orders
-title: Order fulfilment
+title: Order delivery
 pf_purposes:
   - Deliver orders
 pf_legal_bases:

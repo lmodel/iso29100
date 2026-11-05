@@ -37,9 +37,9 @@ comments:
     Every record that other records refer to has a pf_id, and a reference holds that
     identifier. PfFramework holds each kind of record in a list of its own.
   - >-
-    The mappings to the Data Privacy Vocabulary (DPV) are the five rows DPV publishes for
-    this edition, in upstream/dpv-iso.ttl, with DPV's direction kept. No other mapping is
-    declared, because no source states one.
+    The mappings to the Data Privacy Vocabulary (DPV) are the five rows DPV publishes
+    for this edition, in upstream/dpv-iso.ttl, with DPV's direction kept. No other
+    mapping is declared, because no source states one.
 
 default_prefix: iso29100
 default_range: string
@@ -98,12 +98,14 @@ slots:
   # cannot load one that is required.
   pf_actor_type:
     description: >-
-      The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.
+      The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or
+      PfThirdParty.
     designates_type: true
     range: string
 
   pf_jurisdictions:
-    description: The legal systems that apply to the record, in the organization's terms.
+    description: >-
+      The legal systems that apply to the record, in the organization's terms.
     multivalued: true
 
   pf_purposes:
@@ -155,50 +157,51 @@ enums:
   PfPrinciple:
     description: >-
       The privacy principles by their subclause numbers. A value's title and description
-      are this project's own summary, and the principles' headings and wording are ISO's.
+      are this project's own summary, and the principles' headings and wording are
+      ISO's.
     annotations:
       iso29100_clause: "6.1"
     permissible_values:
       principle_6_2:
         title: 6.2 People decide
         description: >-
-          People get a say in whether their PII is processed, can agree or refuse purpose
-          by purpose, and can change their minds later.
+          People get a say in whether their PII is processed, can agree or refuse
+          purpose by purpose, and can change their minds later.
         annotations:
           iso29100_clause: "6.2"
       principle_6_3:
         title: 6.3 Lawful, stated reasons
         description: >-
-          The law allows each reason for processing, and people are told the reason before
-          their PII is gathered, or at that moment.
+          The law allows each reason for processing, and people are told the reason
+          before their PII is gathered, or at that moment.
         annotations:
           iso29100_clause: "6.3"
       principle_6_4:
         title: 6.4 Gather within bounds
         description: >-
-          The organization gathers only the PII that the law allows and its stated reasons
-          need.
+          The organization gathers only the PII that the law allows and its stated
+          reasons need.
         annotations:
           iso29100_clause: "6.4"
       principle_6_5:
         title: 6.5 A small footprint
         description: >-
-          Systems and procedures are built to touch as little PII as they can, and as few
-          people as possible can reach it.
+          Systems and procedures are built to touch as little PII as they can, and as
+          few people as possible can reach it.
         annotations:
           iso29100_clause: "6.5"
       principle_6_6:
         title: 6.6 Bounded use and keeping
         description: >-
-          PII is used, shared and kept only as far as the stated reasons go, and is safely
-          disposed of afterwards.
+          PII is used, shared and kept only as far as the stated reasons go, and is
+          safely disposed of afterwards.
         annotations:
           iso29100_clause: "6.6"
       principle_6_7:
         title: 6.7 Correct and fit
         description: >-
-          PII stays right, whole, up to date and suited to its use, and there are ways to
-          check and fix it.
+          PII stays right, whole, up to date and suited to its use, and there are ways
+          to check and fix it.
         annotations:
           iso29100_clause: "6.7"
       principle_6_8:
@@ -232,8 +235,8 @@ enums:
       principle_6_12:
         title: 6.12 Show the rules are met
         description: >-
-          The organization checks, and can prove, that it meets its privacy duties, through
-          audits and regular risk assessment.
+          The organization checks, and can prove, that it meets its privacy duties,
+          through audits and regular risk assessment.
         annotations:
           iso29100_clause: "6.12"
 
@@ -266,8 +269,8 @@ enums:
 
   PfPiiRecognition:
     description: >-
-      The ways information turns out to be PII, which a record lists so that a reader can
-      see why the item counts.
+      The ways information turns out to be PII, which a record lists so that a reader
+      can see why the item counts.
     annotations:
       iso29100_clause: "5.4"
     permissible_values:
@@ -275,14 +278,15 @@ enums:
         description: It singles out one person by itself, such as a passport number.
       distinguishing_trait:
         description: >-
-          It sets one person apart, alone or with other details, such as a rare job title
-          in a small town.
+          It sets one person apart, alone or with other details, such as a rare job
+          title in a small town.
       linked_information:
         description: >-
           It says something about a person who is already known, or can be joined to a
           record that does.
       pseudonym:
-        description: It holds an alias in place of an identifier, and the alias can be traced.
+        description: >-
+          It holds an alias in place of an identifier, and the alias can be traced.
       metadata:
         description: >-
           It describes other data, such as a message's sender and time, and so reveals a
@@ -308,19 +312,20 @@ enums:
       iso29100_clause: "5.5"
     permissible_values:
       law:
-        description: A statute, a regulation, a court's ruling or a collective agreement.
+        description: >-
+          A statute, a regulation, a court's ruling or a collective agreement.
       contract:
         description: >-
-          An agreement between parties, such as one with a processor, or rules that bind a
-          group of companies.
+          An agreement between parties, such as one with a processor, or rules that bind
+          a group of companies.
       business:
         description: >-
           How the business or its application works, or a code of practice it chose to
           follow.
       other:
         description: >-
-          Another source, such as what people have said they prefer, or a technical standard
-          the organization adopted.
+          Another source, such as what people have said they prefer, or a technical
+          standard the organization adopted.
 
   PfPolicyAudience:
     description: Who a privacy policy is written for.
@@ -345,10 +350,12 @@ enums:
         description: A system, product or service that protects PII.
       privacy_enhancing_technology:
         description: >-
-          A technical measure built to reduce what is collected or revealed about people.
+          A technical measure built to reduce what is collected or revealed about
+          people.
       contractual:
         description: >-
-          A binding agreement, such as one with a processor or across a group of companies.
+          A binding agreement, such as one with a processor or across a group of
+          companies.
 
   PfImplementationState:
     description: How far a control has been put into effect.
@@ -385,8 +392,8 @@ enums:
         description: The processing goes ahead unless the person acts to refuse it.
       implied:
         description: >-
-          Something the person does shows agreement, such as placing an order, where the law
-          allows that reading.
+          Something the person does shows agreement, such as placing an order, where the
+          law allows that reading.
 
   PfConsentState:
     description: Where a person's agreement stands.
@@ -510,8 +517,8 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      Someone who takes part in handling PII, told apart by the part they play. One party
-      can play different parts for different PII, with a record for each.
+      Someone who takes part in handling PII, told apart by the part they play. One
+      party can play different parts for different PII, with a record for each.
     annotations:
       iso29100_clause: "5.2"
     slots:
@@ -527,8 +534,8 @@ classes:
   PfPiiPrincipal:
     is_a: PfActor
     description: >-
-      The person the PII is about, or a group of such people when the organization records
-      them together.
+      The person the PII is about, or a group of such people when the organization
+      records them together.
     annotations:
       iso29100_clause: "5.2"
     exact_mappings:
@@ -555,11 +562,13 @@ classes:
         description: The privacy policy the controller works under.
         range: PfPolicy
       pf_privacy_officer:
-        description: The person who advises the controller on privacy, where there is one.
+        description: >-
+          The person who advises the controller on privacy, where there is one.
 
   PfPiiProcessor:
     is_a: PfActor
-    description: A party that processes PII for a controller, on that controller's instructions.
+    description: >-
+      A party that processes PII for a controller, on that controller's instructions.
     annotations:
       iso29100_clause: "5.2"
     exact_mappings:
@@ -570,7 +579,8 @@ classes:
         range: PfPiiController
         multivalued: true
       pf_processing_agreement:
-        description: The reference of the agreement that binds the processor, where there is one.
+        description: >-
+          The reference of the agreement that binds the processor, where there is one.
       pf_sub_processors:
         description: The processors this processor has engaged in turn.
         range: PfPiiProcessor
@@ -579,8 +589,8 @@ classes:
   PfThirdParty:
     is_a: PfActor
     description: >-
-      A party outside the controller and its processors that receives PII for its own ends,
-      and usually becomes a controller of that PII.
+      A party outside the controller and its processors that receives PII for its own
+      ends, and usually becomes a controller of that PII.
     annotations:
       iso29100_clause: "5.2"
     attributes:
@@ -593,14 +603,14 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      A piece or set of information that can be tied to a person, why it counts as PII, how
-      sensitive it is and how it is handled.
+      A piece or set of information that can be tied to a person, why it counts as PII,
+      how sensitive it is and how it is handled.
     annotations:
       iso29100_clause: "5.4"
     comments:
       - >-
-        DPV's mapping says dpv:PersonalData is narrower than the standard's PII, and this
-        class keeps that direction.
+        DPV's mapping says dpv:PersonalData is narrower than the standard's PII, and
+        this class keeps that direction.
     narrow_mappings:
       - dpv:PersonalData
     slots:
@@ -623,8 +633,8 @@ classes:
         range: boolean
       pf_linkability:
         description: >-
-          How easily the item could be joined with other data to identify someone, in the
-          organization's words.
+          How easily the item could be joined with other data to identify someone, in
+          the organization's words.
 
   PfPiiFlow:
     mixins:
@@ -655,8 +665,8 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      Something the organization does with PII: why, on what basis, what it does to which
-      PII, who is responsible, and how long the PII is kept.
+      Something the organization does with PII: why, on what basis, what it does to
+      which PII, who is responsible, and how long the PII is kept.
     comments:
       - >-
         The fields are what an adopter keeps. The framework's own subject here is what
@@ -695,7 +705,8 @@ classes:
   PfSafeguardingRequirement:
     mixins:
       - PfRecordMixin
-    description: Something the organization must do to protect PII, and where that duty comes from.
+    description: >-
+      Something the organization must do to protect PII, and where that duty comes from.
     annotations:
       iso29100_clause: "5.5"
     attributes:
@@ -784,8 +795,8 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      How the organization stands against one privacy principle: what it does, what shows
-      it, and what is still missing.
+      How the organization stands against one privacy principle: what it does, what
+      shows it, and what is still missing.
     annotations:
       iso29100_clause: "6.1"
     slots:
@@ -813,8 +824,8 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      A way that handling PII could harm people: where the risk comes from, how likely and
-      how bad it is, and what is done about it.
+      A way that handling PII could harm people: where the risk comes from, how likely
+      and how bad it is, and what is done about it.
     comments:
       - >-
         The framework names privacy risk as an idea and leaves the scale to the
@@ -834,7 +845,8 @@ classes:
         description: The risk's level before controls.
         range: PfRiskLevel
       pf_risk_residual_level:
-        description: The risk's level after controls, which is never above the level before.
+        description: >-
+          The risk's level after controls, which is never above the level before.
         range: PfRiskLevel
       pf_risk_owner:
         description: The person who answers for the risk.
@@ -843,8 +855,8 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      A review of what a system or activity could do to people's privacy, the risks it found
-      and what became of them.
+      A review of what a system or activity could do to people's privacy, the risks it
+      found and what became of them.
     comments:
       - These fields are what an adopter keeps, and go beyond the framework itself.
     attributes:
@@ -868,7 +880,8 @@ classes:
         range: PfRisk
         multivalued: true
       pf_risks_accepted:
-        description: Those of the risks found that the organization has accepted as they stand.
+        description: >-
+          Those of the risks found that the organization has accepted as they stand.
         range: PfRisk
         multivalued: true
       pf_assessment_outcome:
@@ -884,12 +897,12 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      A time when PII was handled against a safeguarding requirement: what happened, who was
-      told and what was done.
+      A time when PII was handled against a safeguarding requirement: what happened, who
+      was told and what was done.
     comments:
       - >-
-        The framework names the idea of a breach. These fields are what an adopter keeps,
-        and go beyond the framework itself.
+        The framework names the idea of a breach. These fields are what an adopter
+        keeps, and go beyond the framework itself.
     slots:
       - pf_concerned_pii
     attributes:
@@ -900,7 +913,8 @@ classes:
         description: When the organization found out, which is not before it happened.
         range: datetime
       pf_breach_closed:
-        description: When the organization closed the matter, which is not before it found out.
+        description: >-
+          When the organization closed the matter, which is not before it found out.
         range: datetime
       pf_principals_affected:
         description: How many people the breach reached, where that is known.
@@ -932,8 +946,8 @@ classes:
     mixins:
       - PfRecordMixin
     description: >-
-      One person's agreement to the processing of their PII for stated purposes, and where
-      it stands.
+      One person's agreement to the processing of their PII for stated purposes, and
+      where it stands.
     comments:
       - >-
         The framework defines consent and its principle, and DPV maps that term to

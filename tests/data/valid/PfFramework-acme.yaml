@@ -76,7 +76,7 @@ pf_flows:
       - acme:pii-delivery-address
 pf_processing_activities:
   - pf_id: acme:activity-orders
-    title: Order fulfilment
+    title: Order delivery
     pf_purposes:
       - Deliver orders
     pf_legal_bases:
