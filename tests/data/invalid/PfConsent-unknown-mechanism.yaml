@@ -1,0 +1,6 @@
+# Fails at: /pf_consent_mechanism
+pf_id: acme:consent
+title: A consent obtained in an unknown way
+pf_principal: acme:principal
+pf_consent_state: given
+pf_consent_mechanism: guessed

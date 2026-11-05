@@ -1,0 +1,5 @@
+# Fails at: /pf_control_state
+pf_id: acme:control
+title: A control in an unknown state
+pf_control_kind: technical
+pf_control_state: finished

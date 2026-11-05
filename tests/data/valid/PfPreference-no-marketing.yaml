@@ -1,0 +1,11 @@
+pf_id: acme:preference-no-marketing
+title: No sharing with partners
+pf_principal: acme:principal-customers
+pf_preference_scope: The online shop
+pf_wants_anonymity: false
+pf_wants_pseudonymity: false
+pf_refused_operations:
+  - disseminate
+pf_refused_recipients:
+  - Marketing partners
+pf_preference_recorded: "2026-02-01"

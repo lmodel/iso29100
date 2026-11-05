@@ -1,0 +1,5 @@
+# Fails at: /pf_crosses_borders
+pf_id: acme:activity
+title: An activity whose flag is not a boolean
+pf_controller: acme:controller
+pf_crosses_borders: sometimes

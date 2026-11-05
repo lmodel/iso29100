@@ -1,0 +1,4 @@
+# Fails at: /
+pf_id: acme:consent
+title: A consent of nobody
+pf_consent_state: given

@@ -1,0 +1,14 @@
+pf_id: acme:risk-address-exposure
+title: Addresses seen by staff who do not need them
+pf_concerned_pii:
+  - acme:pii-delivery-address
+pf_concerned_principals:
+  - acme:principal-customers
+pf_related_controls:
+  - acme:control-access
+pf_risk_source: Too many staff roles can read customer records
+pf_risk_likelihood: Possible
+pf_risk_consequence: Unwanted contact at home
+pf_risk_inherent_level: high
+pf_risk_residual_level: low
+pf_risk_owner: Dana Example

@@ -1,0 +1,4 @@
+# Fails at: /pf_principle
+pf_id: acme:implementation
+title: An implementation of a number outside the principles
+pf_principle: principle_5_2

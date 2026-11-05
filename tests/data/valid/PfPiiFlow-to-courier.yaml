@@ -1,0 +1,7 @@
+pf_id: acme:flow-to-courier
+title: Delivery address to the courier
+pf_provider: acme:controller-acme
+pf_recipient: acme:third-party-courier
+pf_decides_afterwards: acme:third-party-courier
+pf_concerned_pii:
+  - acme:pii-delivery-address

@@ -1,0 +1,14 @@
+pf_id: acme:controller-acme
+pf_actor_type: PfPiiController
+title: ACME Retail Ltd
+pf_jurisdictions:
+  - EU
+pf_contact: privacy@acme.example
+pf_purposes:
+  - Deliver orders
+pf_legal_bases:
+  - Contract
+pf_appointed_processors:
+  - acme:processor-mail
+pf_controller_policy: acme:policy-notice
+pf_privacy_officer: Dana Example

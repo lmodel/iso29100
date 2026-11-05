@@ -1,0 +1,6 @@
+# Fails at: /pf_refused_operations/0
+pf_id: acme:preference
+title: A preference that refuses an unknown operation
+pf_principal: acme:principal
+pf_refused_operations:
+  - shred

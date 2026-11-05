@@ -1,0 +1,7 @@
+# Fails at: /pf_actors/0
+pf_id: acme:framework
+title: A framework
+pf_organization: ACME Retail Ltd
+pf_actors:
+  - pf_id: acme:actor
+    title: An actor of no kind

@@ -1,0 +1,7 @@
+pf_id: acme:principal-customers
+pf_actor_type: PfPiiPrincipal
+title: Registered customers
+description: People with an account at the online shop.
+pf_jurisdictions:
+  - EU
+pf_contact: Through the account page

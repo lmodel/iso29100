@@ -1,0 +1,5 @@
+# Fails at: /
+pf_id: acme:processor
+pf_actor_type: PfPiiProcessor
+title: A processor with a key of a controller
+pf_privacy_officer: Dana Example

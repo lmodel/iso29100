@@ -1,0 +1,6 @@
+# Fails at: /pf_principles/0
+pf_id: acme:policy
+title: A policy naming a principle by its heading
+pf_policy_audience: internal
+pf_principles:
+  - consent_and_choice

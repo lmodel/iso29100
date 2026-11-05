@@ -1,0 +1,25 @@
+pf_id: acme:activity-orders
+title: Order fulfilment
+pf_purposes:
+  - Deliver orders
+pf_legal_bases:
+  - Contract
+pf_operations:
+  - collect
+  - store
+  - disclose
+pf_concerned_pii:
+  - acme:pii-delivery-address
+pf_retention: P7Y
+pf_related_controls:
+  - acme:control-access
+pf_controller: acme:controller-acme
+pf_processors:
+  - acme:processor-mail
+pf_activity_flows:
+  - acme:flow-to-courier
+pf_sensitivities:
+  - ordinary
+pf_crosses_borders: true
+pf_transfer_safeguards:
+  - Standard contractual clauses

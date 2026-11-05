@@ -1,0 +1,17 @@
+pf_id: acme:policy-notice
+title: Customer privacy notice
+pf_purposes:
+  - Deliver orders
+pf_concerned_pii:
+  - acme:pii-delivery-address
+pf_principles:
+  - principle_6_8
+pf_policy_audience: public_notice
+pf_policy_version: "3.1"
+pf_policy_scope: The online shop
+pf_policy_effective_date: "2026-01-15"
+pf_policy_last_reviewed: "2026-06-01"
+pf_retention_statement: Order records are kept for seven years.
+pf_stated_rights:
+  - See the PII held about you
+pf_inquiry_contact: privacy@acme.example

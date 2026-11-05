@@ -1,0 +1,5 @@
+pf_id: acme:third-party-courier
+pf_actor_type: PfThirdParty
+title: Fast Courier Ltd
+pf_receiving_purpose: Deliver parcels under its own terms
+pf_transfer_basis: The customer asked for delivery

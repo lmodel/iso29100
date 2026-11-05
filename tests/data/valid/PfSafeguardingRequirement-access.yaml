@@ -1,0 +1,9 @@
+pf_id: acme:requirement-access
+title: Limit who can read customer records
+description: Only staff who handle orders may read customer records.
+pf_requirement_factor: law
+pf_requirement_source: A data protection law
+pf_applies_to:
+  - acme:controller-acme
+pf_met_by:
+  - acme:control-access
