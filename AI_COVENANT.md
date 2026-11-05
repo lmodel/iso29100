@@ -80,7 +80,7 @@ None of this relaxes anything above: an agent's output is nobody's contribution 
 **Required disclosure:**
 
 - When proposing bug fixes or changes to code you don't fully understand, attribute the idea to AI so reviewers can assess appropriately.
-- When an element under `src/iso29100/schema/` was drafted by AI, as described above, along with the clause of ISO/IEC 29100:2024 it rests on.
+- When an element under `src/iso29100/schema/` was drafted by AI, as described above, along with the source it rests on.
 
 **Appreciated transparency:**
 
@@ -98,7 +98,7 @@ None of this relaxes anything above: an agent's output is nobody's contribution 
 | Writing code with Copilot/Claude | No disclosure needed; you own the result |
 | Submitting AI-suggested fix you fully understand | No disclosure needed |
 | Submitting AI-suggested fix in unfamiliar code | Disclose AI origin for reviewer context |
-| Adding or changing an element under `src/iso29100/schema/` | Cite the clause it models by number, whoever drafted it, and quote none of it |
+| Adding or changing an element under `src/iso29100/schema/` | Cite the clause it models only by a number a public source gives, whoever drafted it, and quote none of it |
 | Drafting issue or PR description with AI | No disclosure needed; ensure it's accurate |
 | Brainstorming in discussions | Be clear about AI-generated vs. expert ideas |
 | Receiving AI review comments | Address or close at your discretion |
