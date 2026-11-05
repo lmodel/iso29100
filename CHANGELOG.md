@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-05
+
 ### Added
 
 - **ISO Open Data's records** of the edition and of the two it replaced, and **DPV's mapping** to the standard, with a weekly watch. It reads only https addresses on a list of hosts and caps what it reads.
