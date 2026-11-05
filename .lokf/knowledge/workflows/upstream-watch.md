@@ -28,7 +28,7 @@ status: draft
 
 The workflow runs every Monday, and a failing check opens an issue or comments on the one already open.[^upstream-watch.yaml]
 
-The script streams ISO Open Data's dataset with no token and compares each pinned record's line by its SHA-256. It reports a changed record, a supplement that is not pinned, a record that replaces a pinned one, and a change to the dataset's licence, which it reads from ISO's open data page through the Internet Archive when iso.org refuses a script. It also reports a change to DPV's mapping file.[^watch]
+The script streams ISO Open Data's dataset with no token and compares each pinned record's line by its SHA-256. It reports a changed record, a supplement that is not pinned, a record that replaces a pinned one, a change to the dataset's licence, and a change to DPV's mapping file. It reads the licence from ISO's open data page, through the Internet Archive when iso.org refuses a script.[^watch]
 
 `tests/test_watch.py` runs it against stubbed answers.[^test_watch.py]
 

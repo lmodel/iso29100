@@ -27,7 +27,7 @@ verified:
 
 # Mappings and the SSSOM set
 
-The schema is the one home for mappings. The SSSOM set is gone: it repeated DPV's rows, and hung DPV's row for consent on a record about consent. The other mappings in the old schema had no source, so they went too.[^readme.md]
+The schema is the one home for mappings. The SSSOM set is gone: it repeated DPV's rows, and put DPV's row for consent on a record about consent. The other mappings in the old schema had no source, so they were removed too.[^readme.md]
 
 `tests/test_upstream.py` holds each mapping to a row of DPV's file and fails on any other.[^test_upstream.py] `PfPiiItem` maps to `dpv:PersonalData` by `narrow_mappings`, because DPV's file states that term as narrower than the standard's PII.[^schema]
 

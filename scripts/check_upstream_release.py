@@ -7,9 +7,9 @@
 mapping to the standard against DPV's repository.
 
 ISO's licence bars giving the text of ISO/IEC 29100 to an AI tool, so this
-repository pins what ISO publishes openly about it instead: its records in ISO Open Data's
-``iso_deliverables_metadata`` dataset, which ISO updates daily under the ODC
-Attribution License (ODC-By) v1.0. Three records matter here:
+repository pins what ISO publishes openly about it instead. Those are its records
+in ISO Open Data's ``iso_deliverables_metadata`` dataset, which ISO updates daily
+under the ODC Attribution License (ODC-By) v1.0. Three records matter here:
 
 - ISO/IEC 29100:2024, the edition the schema models;
 - ISO/IEC 29100:2011 and ISO/IEC 29100:2011/Amd 1:2018, the two it replaced.

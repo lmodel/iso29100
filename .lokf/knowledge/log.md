@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Prose**: reworded 3 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Added**: Adapt copy, from project.justfile.
 * **Added**: The generated artefacts, from CONTRIBUTING.md and docs/index.md.
 * **Added**: Regenerate and test, from CONTRIBUTING.md, main.yaml and the justfile.

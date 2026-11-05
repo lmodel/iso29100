@@ -4,9 +4,10 @@ as DPV's own file does.
 ISO's licence bars giving the text of ISO/IEC 29100 to an AI tool, so
 src/iso29100/schema/iso-open-data/ holds ISO Open Data's records of the edition and
 of the two it replaced instead, which scripts/check_upstream_release.py pins and
-watches. These tests read that extract with the standard library, hold the schema
-header to it and to the watch's pins, hold the principles and the clause citations to
-their numbering, and hold every mapping to the pinned copy of DPV's mapping file.
+watches. These tests read that extract with the standard library, and hold the
+schema header to it and to the watch's pins. They also hold the principles and the
+clause citations to their numbering, and every mapping to the pinned copy of DPV's
+mapping file.
 """
 
 import importlib.util

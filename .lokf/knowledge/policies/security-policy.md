@@ -20,6 +20,6 @@ status: draft
 
 Report through GitHub's private vulnerability reporting. Only the latest release receives fixes.[^security.md]
 
-The watch streams ISO Open Data's file and reads DPV's mapping file with no token, follows a redirect only over https to a listed host, and caps what it reads; the overlap check runs by hand and refuses a copy inside the repository.[^security.md] The surface table in the file says what holds each workflow.[^security.md]
+The watch streams ISO Open Data's file and reads DPV's mapping file with no token. It follows a redirect only over https to a listed host, and caps what it reads. The overlap check runs by hand and refuses a copy inside the repository.[^security.md] The surface table in the file says what holds each workflow.[^security.md]
 
 [^security.md]: SECURITY.md

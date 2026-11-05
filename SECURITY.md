@@ -14,7 +14,7 @@ Use GitHub's [private vulnerability reporting](https://github.com/lmodel/iso2910
 
 It releases a LinkML schema and the Python datamodel generated from it. Nothing is published to PyPI, and nothing released holds text of ISO/IEC 29100. When the bundle or the schema has changed, `knowledge-release.yaml` attaches three assets to the release, each with its `.sha256` and a build-provenance attestation: the schema's `lokf adapt` copy, the knowledge bundle as a zip, and a Microsoft 365 Copilot skill zip. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
 
-`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It streams ISO Open Data's daily metadata file line by line, parses only the lines that name the pinned standards, reads DPV's mapping file from GitHub, follows a redirect only over https to a listed host, caps what it reads, and writes nothing but its report. The tests read the pinned extract with the standard library's JSON parser.
+`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It streams ISO Open Data's daily metadata file line by line, parses only the lines that name the pinned standards, and reads DPV's mapping file from GitHub. It follows a redirect only over https to a listed host, caps what it reads, and writes nothing but its report. The tests read the pinned extract with the standard library's JSON parser.
 
 `scripts/check_overlap.py`, which no workflow runs, reads YAML with `yaml.safe_load` and refuses a source inside the repository.
 

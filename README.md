@@ -22,7 +22,7 @@ ISO's licence bars giving the text to AI tools, so [src/iso29100/schema/iso-open
 
 * **[Data Privacy Vocabulary (DPV)](https://w3id.org/dpv)**: `exact_mappings` and `narrow_mappings` on five classes, which are the rows DPV publishes for this edition in [upstream/dpv-iso.ttl](upstream/dpv-iso.ttl). `tests/test_upstream.py` checks each against that file, and the weekly workflow reports a change to it.
 
-The schema is the one home for mappings. The SSSOM set is gone: it repeated those rows, and hung DPV's row for consent on a record about consent. The other mappings in the old schema had no source, so they went too.
+The schema is the one home for mappings. The SSSOM set is gone: it repeated those rows, and put DPV's row for consent on a record about consent. The other mappings in the old schema had no source, so they were removed too.
 
 ## Repository Structure
 
