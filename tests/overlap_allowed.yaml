@@ -1,0 +1,11 @@
+# Runs of words scripts/check_overlap.py lets through, each with its reason.
+# A run is matched after the script's own normalization: lower case, no
+# punctuation, and a dotted number such as 6.2 as one word.
+- run: ISO/IEC 29100:2024
+  reason: The standard's own reference.
+- run: ISO/IEC 29100:2011/Amd 1:2018
+  reason: The reference of the amendment the edition replaced, in ISO Open Data.
+- run: Information technology Security techniques Privacy framework
+  reason: The standard's own title, which NOTICE cites.
+- run: personally identifiable information (PII)
+  reason: A term the standard defines, used as its name with its abbreviation.
