@@ -63,10 +63,11 @@ skip = [
   "project/*",
   "src/iso29100/datamodel/iso29100_pydantic.py",
   "src/iso29100/datamodel/iso29100.py",
-  # ISO's records, copied as published; the neighbours' adapt copies, copied as
-  # released; and files copied in by the KTL sidecar sync or written by npm,
-  # not by hand.
+  # ISO's records and DPV's mapping, copied as published; the neighbours' adapt
+  # copies, copied as released; and files copied in by the KTL sidecar sync or
+  # written by npm, not by hand.
   "src/iso29100/schema/iso-open-data/*",
+  "upstream/*",
   "tests/neighbours/*",
   ".lokf/scripts/*",
   "website/package-lock.json",
@@ -89,6 +90,7 @@ extend-exclude = [
   "src/iso29100/datamodel/iso29100_pydantic.py",
   "src/iso29100/datamodel/iso29100.py",
   "src/iso29100/schema/iso-open-data/*",
+  "upstream/*",
   "tests/neighbours/*",
   ".lokf/scripts/*",
   "website/package-lock.json",
