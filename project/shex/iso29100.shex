@@ -1,17 +1,13 @@
-# metamodel_version: 1.7.0
-# version: 1.0.0
+# metamodel_version: 1.12.0
+# version: 2024
 BASE <https://w3id.org/lmodel/iso29100/>
-PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
 PREFIX linkml: <https://w3id.org/linkml/>
-PREFIX dpv: <https://w3id.org/dpv#>
+PREFIX schema1: <http://schema.org/>
 
 
-<PositiveIntegerType> xsd:positiveInteger
-
-<DurationType> xsd:duration
+<PfDuration> xsd:duration
 
 linkml:String xsd:string
 
@@ -51,345 +47,387 @@ linkml:Jsonpath xsd:string
 
 linkml:Sparqlpath xsd:string
 
-<ConsentRecord> CLOSED {
-    (  $<ConsentRecord_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <principal_ref> @linkml:String ? ;
-          <consent_date> @linkml:Datetime ? ;
-          <consent_mechanism> [ dpv:ExplicitlyExpressedConsent dpv:ImpliedConsent
-             <https://w3id.org/lmodel/iso29100/ConsentMechanism#implied> ] ? ;
-          <processing_purposes_consented> @linkml:String * ;
-          <pii_categories_consented> @linkml:String * ;
-          <withdrawal_date> @linkml:Datetime ? ;
-          <consent_status> @linkml:String ? ;
-          <consent_evidence_ref> @linkml:String ?
-       ) ;
-       rdf:type [ <ConsentRecord> ]
-    )
-}
-
-<NamedEntity>  (
-    @<ConsentRecord> OR @<PIIFlowScenario> OR @<PIIProcessingActivity> OR @<PersonallyIdentifiableInformation> OR @<PrivacyBreach>
-    OR @<PrivacyControl> OR @<PrivacyFramework> OR @<PrivacyImpactAssessment> OR @<PrivacyPolicy> OR @<PrivacyPreference> OR
-    @<PrivacyPrincipleImplementation> OR @<PrivacyRisk> OR @<PrivacySafeguardingRequirement> OR @<PrivacyStakeholder>
+<PfActor>  (
+    @<PfPiiController> OR @<PfPiiPrincipal> OR @<PfPiiProcessor> OR @<PfThirdParty>
 )
 
-<NamedEntity_struct> {
-    (  $<NamedEntity_tes> (  rdfs:label @linkml:String ;
-          dcterms:description @linkml:String ? ;
-          dcterms:created @linkml:Date ? ;
-          dcterms:modified @linkml:Date ?
+<PfActor_struct> {
+    (  $<PfActor_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_actor_type> @linkml:String ;
+          <pf_jurisdictions> @linkml:String * ;
+          <pf_contact> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <NamedEntity> ]
+       rdf:type [ <PfActor> ]
     )
 }
 
-<PersonallyIdentifiableInformation> CLOSED {
-    (  $<PersonallyIdentifiableInformation_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <pii_category> @linkml:String * ;
-          <sensitivity_level> [ <https://w3id.org/lmodel/iso29100/PIISensitivityCategory#standard> dpv:SpecialCategoryPersonalData
-             ] ? ;
-          <identifier_type> @linkml:String ? ;
-          <is_pseudonymized> @linkml:Boolean ? ;
-          <is_anonymized> @linkml:Boolean ? ;
-          <linkability_risk> @linkml:String ? ;
-          <applicable_to_principal> @linkml:String ? ;
-          <retention_schedule> @linkml:String ? ;
-          <processing_operations> [ dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise
-             dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Remove ] *
+<PfBreach> CLOSED {
+    (  $<PfBreach_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_concerned_pii> @<PfPiiItem> * ;
+          <pf_breach_occurred> @linkml:Datetime ? ;
+          <pf_breach_discovered> @linkml:Datetime ? ;
+          <pf_breach_closed> @linkml:Datetime ? ;
+          <pf_principals_affected> @linkml:Integer ? ;
+          <pf_breached_requirements> @<PfSafeguardingRequirement> * ;
+          <pf_breach_severity> [ <https://w3id.org/lmodel/iso29100/PfRiskLevel#low>
+             <https://w3id.org/lmodel/iso29100/PfRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PfRiskLevel#high>
+             <https://w3id.org/lmodel/iso29100/PfRiskLevel#very_high> ] ? ;
+          <pf_immediate_actions> @linkml:String * ;
+          <pf_notification_required> @linkml:Boolean ? ;
+          <pf_notifications> @linkml:String * ;
+          <pf_remediation> @linkml:String * ;
+          <pf_lessons> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PersonallyIdentifiableInformation> ]
+       rdf:type [ <PfBreach> ]
     )
 }
 
-<PIIController> CLOSED {
-    (  $<PIIController_tes> (  &<PrivacyStakeholder_tes> ;
-          rdf:type [ <PrivacyStakeholder> ] ? ;
-          <processing_purposes> @linkml:String * ;
-          <legal_bases> @linkml:String * ;
-          <appointed_processors> @<PIIProcessor> * ;
-          <privacy_policy_ref> @<PrivacyPolicy> ? ;
-          <data_protection_officer> @linkml:String ?
+<PfConsent> CLOSED {
+    (  $<PfConsent_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_purposes> @linkml:String * ;
+          <pf_concerned_pii> @<PfPiiItem> * ;
+          <pf_evidence> @linkml:String * ;
+          <pf_principal> @<PfPiiPrincipal> ;
+          <pf_consent_mechanism> [ <https://w3id.org/lmodel/iso29100/PfConsentMechanism#opt_in>
+             <https://w3id.org/lmodel/iso29100/PfConsentMechanism#opt_out>
+             <https://w3id.org/lmodel/iso29100/PfConsentMechanism#implied> ] ? ;
+          <pf_consent_given> @linkml:Datetime ? ;
+          <pf_consent_state> [ <https://w3id.org/lmodel/iso29100/PfConsentState#given>
+             <https://w3id.org/lmodel/iso29100/PfConsentState#refused> <https://w3id.org/lmodel/iso29100/PfConsentState#withdrawn>
+             <https://w3id.org/lmodel/iso29100/PfConsentState#expired> ] ;
+          <pf_consent_withdrawn> @linkml:Datetime ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PIIController> ]
+       rdf:type [ <PfConsent> ]
     )
 }
 
-<PIIFlowScenario> CLOSED {
-    (  $<PIIFlowScenario_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <scenario_label> @linkml:String ? ;
-          <pii_principal_role> [ <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved> ] ? ;
-          <pii_controller_role> [ <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved> ] ? ;
-          <pii_processor_role> [ <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved> ] ? ;
-          <third_party_role> [ <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_provider>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#pii_recipient>
-             <https://w3id.org/lmodel/iso29100/PIIFlowRole#not_involved> ] ? ;
-          <scenario_description> @linkml:String ? ;
-          <legal_control_retention> @linkml:String ?
+<PfControl> CLOSED {
+    (  $<PfControl_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_principles> [ <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_2>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_3>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_4>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_5>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_6>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_7>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_8>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_9>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_10>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_11>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_12> ] * ;
+          <pf_evidence> @linkml:String * ;
+          <pf_control_kind> [ <https://w3id.org/lmodel/iso29100/PfControlKind#organizational>
+             <https://w3id.org/lmodel/iso29100/PfControlKind#physical> <https://w3id.org/lmodel/iso29100/PfControlKind#technical>
+             <https://w3id.org/lmodel/iso29100/PfControlKind#privacy_enhancing_technology>
+             <https://w3id.org/lmodel/iso29100/PfControlKind#contractual> ] ;
+          <pf_control_objective> @linkml:String ? ;
+          <pf_control_detail> @linkml:String ? ;
+          <pf_control_responsible> @<PfActor> ? ;
+          <pf_control_state> [ <https://w3id.org/lmodel/iso29100/PfImplementationState#planned>
+             <https://w3id.org/lmodel/iso29100/PfImplementationState#in_progress>
+             <https://w3id.org/lmodel/iso29100/PfImplementationState#in_operation>
+             <https://w3id.org/lmodel/iso29100/PfImplementationState#retired> ] ? ;
+          <pf_answers_requirements> @<PfSafeguardingRequirement> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PIIFlowScenario> ]
+       rdf:type [ <PfControl> ]
     )
 }
 
-<PIIPrincipal> CLOSED {
-    (  $<PIIPrincipal_tes> (  &<PrivacyStakeholder_tes> ;
-          rdf:type [ <PrivacyStakeholder> ] ? ;
-          <privacy_preferences> @<PrivacyPreference> * ;
-          <consent_records> @<ConsentRecord> *
+<PfFramework> CLOSED {
+    (  $<PfFramework_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_jurisdictions> @linkml:String * ;
+          <pf_organization> @linkml:String ;
+          <pf_ict_systems> @linkml:String * ;
+          <pf_actors> @<PfActor> * ;
+          <pf_pii_items> @<PfPiiItem> * ;
+          <pf_flows> @<PfPiiFlow> * ;
+          <pf_processing_activities> @<PfProcessingActivity> * ;
+          <pf_safeguarding_requirements> @<PfSafeguardingRequirement> * ;
+          <pf_policies> @<PfPolicy> * ;
+          <pf_controls> @<PfControl> * ;
+          <pf_principle_implementations> @<PfPrincipleImplementation> * ;
+          <pf_risks> @<PfRisk> * ;
+          <pf_impact_assessments> @<PfImpactAssessment> * ;
+          <pf_breaches> @<PfBreach> * ;
+          <pf_consents> @<PfConsent> * ;
+          <pf_preferences> @<PfPreference> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PIIPrincipal> ]
+       rdf:type [ <PfFramework> ]
     )
 }
 
-<PIIProcessingActivity> CLOSED {
-    (  $<PIIProcessingActivity_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <processing_purpose> @linkml:String ? ;
-          <legal_basis> @linkml:String ? ;
-          <operations_performed> [ dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise
-             dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Remove ] * ;
-          <pii_categories_processed> @linkml:String * ;
-          <sensitivity_levels_involved> [ <https://w3id.org/lmodel/iso29100/PIISensitivityCategory#standard>
-             dpv:SpecialCategoryPersonalData ] * ;
-          <controller_ref> @<PIIController> ? ;
-          <processor_ref> @<PIIProcessor> ? ;
-          <data_flows> @<PIIFlowScenario> * ;
-          <retention_period> @<DurationType> ? ;
-          <privacy_controls_applied> @<PrivacyControl> * ;
-          <cross_border_transfer> @linkml:Boolean ? ;
-          <transfer_safeguards> @linkml:String *
+<PfImpactAssessment> CLOSED {
+    (  $<PfImpactAssessment_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_assessment_scope> @linkml:String ? ;
+          <pf_assessment_date> @linkml:Date ? ;
+          <pf_assessor> @linkml:String ? ;
+          <pf_assessed_activities> @<PfProcessingActivity> * ;
+          <pf_risks_found> @<PfRisk> * ;
+          <pf_risks_treated> @<PfRisk> * ;
+          <pf_risks_accepted> @<PfRisk> * ;
+          <pf_assessment_outcome> @linkml:String ? ;
+          <pf_consultations> @linkml:String * ;
+          <pf_next_assessment> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PIIProcessingActivity> ]
+       rdf:type [ <PfImpactAssessment> ]
     )
 }
 
-<PIIProcessor> CLOSED {
-    (  $<PIIProcessor_tes> (  &<PrivacyStakeholder_tes> ;
-          rdf:type [ <PrivacyStakeholder> ] ? ;
-          <instructing_controller> @<PIIController> ? ;
-          <processing_agreement_ref> @linkml:String ? ;
-          <sub_processors> @<PIIProcessor> *
+<PfPiiController> CLOSED {
+    (  $<PfPiiController_tes> (  &<PfActor_tes> ;
+          rdf:type [ <PfActor> ] ? ;
+          <pf_purposes> @linkml:String * ;
+          <pf_legal_bases> @linkml:String * ;
+          <pf_appointed_processors> @<PfPiiProcessor> * ;
+          <pf_controller_policy> @<PfPolicy> ? ;
+          <pf_privacy_officer> @linkml:String ?
        ) ;
-       rdf:type [ <PIIProcessor> ]
+       rdf:type [ <PfPiiController> ]
     )
 }
 
-<PrivacyBreach> CLOSED {
-    (  $<PrivacyBreach_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <breach_datetime> @linkml:Datetime ? ;
-          <discovery_datetime> @linkml:Datetime ? ;
-          <breach_description> @linkml:String ? ;
-          <affected_pii_categories> @linkml:String * ;
-          <affected_principals_count> @<PositiveIntegerType> ? ;
-          <violated_requirements> @<PrivacySafeguardingRequirement> * ;
-          <breach_severity> [ <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#low>
-             <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#high>
-             <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#very_high> ] ? ;
-          <immediate_actions> @linkml:String * ;
-          <notification_required> @linkml:Boolean ? ;
-          <notifications_made> @linkml:String * ;
-          <remediation_actions> @linkml:String * ;
-          <lessons_learned> @linkml:String ? ;
-          <closure_datetime> @linkml:Datetime ?
+<PfPiiFlow> CLOSED {
+    (  $<PfPiiFlow_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_concerned_pii> @<PfPiiItem> * ;
+          <pf_provider> @<PfActor> ;
+          <pf_recipient> @<PfActor> ;
+          <pf_decides_afterwards> @<PfActor> ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyBreach> ]
+       rdf:type [ <PfPiiFlow> ]
     )
 }
 
-<PrivacyControl> CLOSED {
-    (  $<PrivacyControl_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <control_type> [ dpv:OrganisationalMeasure dpv:PhysicalMeasure dpv:TechnicalMeasure dpv:LegalMeasure ] ? ;
-          <control_objective> @linkml:String ? ;
-          <addressed_principles> [ dpv:InformedConsent dpv:Purpose
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#collection_limitation>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#data_minimization>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#use_retention_and_disclosure_limitation>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#accuracy_and_quality>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#openness_transparency_and_notice> dpv:DataSubjectRight
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#accountability>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#information_security> dpv:ComplianceAssessment ] * ;
-          <implementation_description> @linkml:String ? ;
-          <responsible_actor> @linkml:String ? ;
-          <implementation_status> @linkml:String ? ;
-          <effectiveness_evidence> @linkml:String * ;
-          <related_safeguarding_requirements> @<PrivacySafeguardingRequirement> * ;
-          <is_pet> @linkml:Boolean ?
+<PfPiiItem> CLOSED {
+    (  $<PfPiiItem_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_concerned_principals> @<PfPiiPrincipal> * ;
+          <pf_operations> [ <https://w3id.org/lmodel/iso29100/PfOperation#collect>
+             <https://w3id.org/lmodel/iso29100/PfOperation#store> <https://w3id.org/lmodel/iso29100/PfOperation#retrieve>
+             <https://w3id.org/lmodel/iso29100/PfOperation#consult> <https://w3id.org/lmodel/iso29100/PfOperation#alter>
+             <https://w3id.org/lmodel/iso29100/PfOperation#pseudonymize> <https://w3id.org/lmodel/iso29100/PfOperation#anonymize>
+             <https://w3id.org/lmodel/iso29100/PfOperation#disclose> <https://w3id.org/lmodel/iso29100/PfOperation#disseminate>
+             <https://w3id.org/lmodel/iso29100/PfOperation#delete> <https://w3id.org/lmodel/iso29100/PfOperation#destroy> ] * ;
+          <pf_retention> @<PfDuration> ? ;
+          <pf_pii_categories> @linkml:String * ;
+          <pf_recognized_by> [ <https://w3id.org/lmodel/iso29100/PfPiiRecognition#direct_identifier>
+             <https://w3id.org/lmodel/iso29100/PfPiiRecognition#distinguishing_trait>
+             <https://w3id.org/lmodel/iso29100/PfPiiRecognition#linked_information>
+             <https://w3id.org/lmodel/iso29100/PfPiiRecognition#pseudonym>
+             <https://w3id.org/lmodel/iso29100/PfPiiRecognition#metadata>
+             <https://w3id.org/lmodel/iso29100/PfPiiRecognition#unsolicited> ] * ;
+          <pf_sensitivity> [ <https://w3id.org/lmodel/iso29100/PfSensitivity#ordinary>
+             <https://w3id.org/lmodel/iso29100/PfSensitivity#sensitive> ] ? ;
+          <pf_pseudonymized> @linkml:Boolean ? ;
+          <pf_linkability> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyControl> ]
+       rdf:type [ <PfPiiItem> ]
     )
 }
 
-<PrivacyFramework> CLOSED {
-    (  $<PrivacyFramework_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <organization_name> @linkml:String ? ;
-          <ict_system_description> @linkml:String ? ;
-          <applicable_jurisdictions> @linkml:String * ;
-          <pii_controllers> @<PIIController> * ;
-          <pii_processors> @<PIIProcessor> * ;
-          <third_parties> @<ThirdParty> * ;
-          <pii_principals_description> @linkml:String ? ;
-          <privacy_policy> @<PrivacyPolicy> ? ;
-          <privacy_controls> @<PrivacyControl> * ;
-          <safeguarding_requirements> @<PrivacySafeguardingRequirement> * ;
-          <privacy_risks> @<PrivacyRisk> * ;
-          <privacy_impact_assessments> @<PrivacyImpactAssessment> * ;
-          <privacy_breaches> @<PrivacyBreach> * ;
-          <pii_processing_activities> @<PIIProcessingActivity> * ;
-          <principle_implementations> @<PrivacyPrincipleImplementation> *
+<PfPiiPrincipal> CLOSED {
+    (  $<PfPiiPrincipal_tes> (  &<PfActor_tes> ;
+          rdf:type [ <PfActor> ] ?
        ) ;
-       rdf:type [ <PrivacyFramework> ]
+       rdf:type [ <PfPiiPrincipal> ]
     )
 }
 
-<PrivacyImpactAssessment> CLOSED {
-    (  $<PrivacyImpactAssessment_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <assessment_scope> @linkml:String ? ;
-          <assessment_date> @linkml:Date ? ;
-          <assessor> @linkml:String ? ;
-          <processing_activities_assessed> @<PIIProcessingActivity> * ;
-          <risks_identified> @<PrivacyRisk> * ;
-          <risks_treated> @<PrivacyRisk> * ;
-          <residual_risks_accepted> @<PrivacyRisk> * ;
-          <assessment_outcome> @linkml:String ? ;
-          <next_assessment_date> @linkml:Date ? ;
-          <consultation_records> @linkml:String *
+<PfPiiProcessor> CLOSED {
+    (  $<PfPiiProcessor_tes> (  &<PfActor_tes> ;
+          rdf:type [ <PfActor> ] ? ;
+          <pf_instructing_controllers> @<PfPiiController> * ;
+          <pf_processing_agreement> @linkml:String ? ;
+          <pf_sub_processors> @<PfPiiProcessor> *
        ) ;
-       rdf:type [ <PrivacyImpactAssessment> ]
+       rdf:type [ <PfPiiProcessor> ]
     )
 }
 
-<PrivacyPolicy> CLOSED {
-    (  $<PrivacyPolicy_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          dcterms:hasVersion @linkml:String ? ;
-          <effective_date> @linkml:Date ? ;
-          <policy_scope> @linkml:String ? ;
-          <processing_purposes_covered> @linkml:String * ;
-          <pii_categories_covered> @linkml:String * ;
-          <data_retention_statement> @linkml:String ? ;
-          <pii_principal_rights> @linkml:String * ;
-          <contact_for_inquiries> @linkml:String ? ;
-          <last_review_date> @linkml:Date ? ;
-          <is_external_notice> @linkml:Boolean ? ;
-          <applicable_principles> [ dpv:InformedConsent dpv:Purpose
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#collection_limitation>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#data_minimization>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#use_retention_and_disclosure_limitation>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#accuracy_and_quality>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#openness_transparency_and_notice> dpv:DataSubjectRight
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#accountability>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#information_security> dpv:ComplianceAssessment ] *
+<PfPolicy> CLOSED {
+    (  $<PfPolicy_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_purposes> @linkml:String * ;
+          <pf_concerned_pii> @<PfPiiItem> * ;
+          <pf_principles> [ <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_2>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_3>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_4>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_5>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_6>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_7>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_8>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_9>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_10>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_11>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_12> ] * ;
+          <pf_policy_audience> [ <https://w3id.org/lmodel/iso29100/PfPolicyAudience#internal>
+             <https://w3id.org/lmodel/iso29100/PfPolicyAudience#public_notice> ] ;
+          <pf_policy_version> @linkml:String ? ;
+          <pf_policy_scope> @linkml:String ? ;
+          <pf_policy_effective_date> @linkml:Date ? ;
+          <pf_policy_last_reviewed> @linkml:Date ? ;
+          <pf_retention_statement> @linkml:String ? ;
+          <pf_stated_rights> @linkml:String * ;
+          <pf_inquiry_contact> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyPolicy> ]
+       rdf:type [ <PfPolicy> ]
     )
 }
 
-<PrivacyPreference> CLOSED {
-    (  $<PrivacyPreference_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <principal_ref> @linkml:String ? ;
-          <preference_scope> @linkml:String ? ;
-          <anonymity_preference> @linkml:Boolean ? ;
-          <pseudonymity_preference> @linkml:Boolean ? ;
-          <processing_restriction_preferences> [ dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise
-             dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Remove ] * ;
-          <disclosure_restriction_preferences> @linkml:String * ;
-          <preference_recorded_date> @linkml:Date ?
+<PfPreference> CLOSED {
+    (  $<PfPreference_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_principal> @<PfPiiPrincipal> ;
+          <pf_preference_scope> @linkml:String ? ;
+          <pf_wants_anonymity> @linkml:Boolean ? ;
+          <pf_wants_pseudonymity> @linkml:Boolean ? ;
+          <pf_refused_operations> [ <https://w3id.org/lmodel/iso29100/PfOperation#collect>
+             <https://w3id.org/lmodel/iso29100/PfOperation#store> <https://w3id.org/lmodel/iso29100/PfOperation#retrieve>
+             <https://w3id.org/lmodel/iso29100/PfOperation#consult> <https://w3id.org/lmodel/iso29100/PfOperation#alter>
+             <https://w3id.org/lmodel/iso29100/PfOperation#pseudonymize> <https://w3id.org/lmodel/iso29100/PfOperation#anonymize>
+             <https://w3id.org/lmodel/iso29100/PfOperation#disclose> <https://w3id.org/lmodel/iso29100/PfOperation#disseminate>
+             <https://w3id.org/lmodel/iso29100/PfOperation#delete> <https://w3id.org/lmodel/iso29100/PfOperation#destroy> ] * ;
+          <pf_refused_recipients> @linkml:String * ;
+          <pf_preference_recorded> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyPreference> ]
+       rdf:type [ <PfPreference> ]
     )
 }
 
-<PrivacyPrincipleImplementation> CLOSED {
-    (  $<PrivacyPrincipleImplementation_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <principle> [ dpv:InformedConsent dpv:Purpose <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#collection_limitation>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#data_minimization>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#use_retention_and_disclosure_limitation>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#accuracy_and_quality>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#openness_transparency_and_notice> dpv:DataSubjectRight
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#accountability>
-             <https://w3id.org/lmodel/iso29100/PrivacyPrinciple#information_security> dpv:ComplianceAssessment ] ;
-          <implementation_measures> @linkml:String * ;
-          <applicable_controls_ref> @<PrivacyControl> * ;
-          <evidence_of_adherence> @linkml:String * ;
-          <gaps_identified> @linkml:String * ;
-          <improvement_actions> @linkml:String * ;
-          <last_assessed_date> @linkml:Date ?
+<PfPrincipleImplementation> CLOSED {
+    (  $<PfPrincipleImplementation_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_related_controls> @<PfControl> * ;
+          <pf_evidence> @linkml:String * ;
+          <pf_principle> [ <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_2>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_3>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_4>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_5>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_6>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_7>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_8>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_9>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_10>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_11>
+             <https://w3id.org/lmodel/iso29100/PfPrinciple#principle_6_12> ] ;
+          <pf_measures> @linkml:String * ;
+          <pf_gaps> @linkml:String * ;
+          <pf_improvements> @linkml:String * ;
+          <pf_last_assessed> @linkml:Date ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyPrincipleImplementation> ]
+       rdf:type [ <PfPrincipleImplementation> ]
     )
 }
 
-<PrivacyRisk> CLOSED {
-    (  $<PrivacyRisk_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <risk_source> @linkml:String ? ;
-          <affected_pii_categories> @linkml:String * ;
-          <affected_principals_description> @linkml:String ? ;
-          <risk_likelihood> @linkml:String ? ;
-          <risk_impact_description> @linkml:String ? ;
-          <inherent_risk_level> [ <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#low>
-             <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#high>
-             <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#very_high> ] ? ;
-          <residual_risk_level> [ <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#low>
-             <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#high>
-             <https://w3id.org/lmodel/iso29100/PrivacyRiskLevel#very_high> ] ? ;
-          <mitigating_controls> @<PrivacyControl> * ;
-          <risk_owner> @linkml:String ?
+<PfProcessingActivity> CLOSED {
+    (  $<PfProcessingActivity_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_purposes> @linkml:String * ;
+          <pf_legal_bases> @linkml:String * ;
+          <pf_operations> [ <https://w3id.org/lmodel/iso29100/PfOperation#collect>
+             <https://w3id.org/lmodel/iso29100/PfOperation#store> <https://w3id.org/lmodel/iso29100/PfOperation#retrieve>
+             <https://w3id.org/lmodel/iso29100/PfOperation#consult> <https://w3id.org/lmodel/iso29100/PfOperation#alter>
+             <https://w3id.org/lmodel/iso29100/PfOperation#pseudonymize> <https://w3id.org/lmodel/iso29100/PfOperation#anonymize>
+             <https://w3id.org/lmodel/iso29100/PfOperation#disclose> <https://w3id.org/lmodel/iso29100/PfOperation#disseminate>
+             <https://w3id.org/lmodel/iso29100/PfOperation#delete> <https://w3id.org/lmodel/iso29100/PfOperation#destroy> ] * ;
+          <pf_concerned_pii> @<PfPiiItem> * ;
+          <pf_retention> @<PfDuration> ? ;
+          <pf_related_controls> @<PfControl> * ;
+          <pf_controller> @<PfPiiController> ;
+          <pf_processors> @<PfPiiProcessor> * ;
+          <pf_activity_flows> @<PfPiiFlow> * ;
+          <pf_sensitivities> [ <https://w3id.org/lmodel/iso29100/PfSensitivity#ordinary>
+             <https://w3id.org/lmodel/iso29100/PfSensitivity#sensitive> ] * ;
+          <pf_crosses_borders> @linkml:Boolean ? ;
+          <pf_transfer_safeguards> @linkml:String * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyRisk> ]
+       rdf:type [ <PfProcessingActivity> ]
     )
 }
 
-<PrivacySafeguardingRequirement> CLOSED {
-    (  $<PrivacySafeguardingRequirement_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <requirement_factor> [ dpv:LegalBasis dpv:Contract
-             <https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#business>
-             <https://w3id.org/lmodel/iso29100/SafeguardingRequirementFactor#other> ] ? ;
-          <requirement_text> @linkml:String ? ;
-          <source_reference> @linkml:String ? ;
-          <applicable_to_actors> @linkml:String * ;
-          <related_controls> @<PrivacyControl> * ;
-          <priority> @linkml:String ?
+<PfRecordMixin> {
+    (  $<PfRecordMixin_tes> (  schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacySafeguardingRequirement> ]
+       rdf:type [ <PfRecordMixin> ]
     )
 }
 
-<PrivacyStakeholder>  (
-    @<PIIController> OR @<PIIPrincipal> OR @<PIIProcessor> OR @<ThirdParty>
-)
-
-<PrivacyStakeholder_struct> {
-    (  $<PrivacyStakeholder_tes> (  &<NamedEntity_tes> ;
-          rdf:type [ <NamedEntity> ] ? ;
-          <contact_information> @linkml:String ? ;
-          <jurisdictions> @linkml:String *
+<PfRisk> CLOSED {
+    (  $<PfRisk_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_concerned_pii> @<PfPiiItem> * ;
+          <pf_concerned_principals> @<PfPiiPrincipal> * ;
+          <pf_related_controls> @<PfControl> * ;
+          <pf_risk_source> @linkml:String ? ;
+          <pf_risk_likelihood> @linkml:String ? ;
+          <pf_risk_consequence> @linkml:String ? ;
+          <pf_risk_inherent_level> [ <https://w3id.org/lmodel/iso29100/PfRiskLevel#low>
+             <https://w3id.org/lmodel/iso29100/PfRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PfRiskLevel#high>
+             <https://w3id.org/lmodel/iso29100/PfRiskLevel#very_high> ] ? ;
+          <pf_risk_residual_level> [ <https://w3id.org/lmodel/iso29100/PfRiskLevel#low>
+             <https://w3id.org/lmodel/iso29100/PfRiskLevel#medium> <https://w3id.org/lmodel/iso29100/PfRiskLevel#high>
+             <https://w3id.org/lmodel/iso29100/PfRiskLevel#very_high> ] ? ;
+          <pf_risk_owner> @linkml:String ? ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <PrivacyStakeholder> ]
+       rdf:type [ <PfRisk> ]
     )
 }
 
-<ThirdParty> CLOSED {
-    (  $<ThirdParty_tes> (  &<PrivacyStakeholder_tes> ;
-          rdf:type [ <PrivacyStakeholder> ] ? ;
-          <receiving_purpose> @linkml:String ? ;
-          <transfer_basis> @linkml:String ?
+<PfSafeguardingRequirement> CLOSED {
+    (  $<PfSafeguardingRequirement_tes> (  &<PfRecordMixin_tes> ;
+          rdf:type [ <PfRecordMixin> ] ? ;
+          <pf_requirement_factor> [ <https://w3id.org/lmodel/iso29100/PfRequirementFactor#law>
+             <https://w3id.org/lmodel/iso29100/PfRequirementFactor#contract>
+             <https://w3id.org/lmodel/iso29100/PfRequirementFactor#business>
+             <https://w3id.org/lmodel/iso29100/PfRequirementFactor#other> ] ;
+          <pf_requirement_source> @linkml:String ? ;
+          <pf_applies_to> @<PfActor> * ;
+          <pf_met_by> @<PfControl> * ;
+          schema1:name @linkml:String ;
+          schema1:description @linkml:String ?
        ) ;
-       rdf:type [ <ThirdParty> ]
+       rdf:type [ <PfSafeguardingRequirement> ]
+    )
+}
+
+<PfThirdParty> CLOSED {
+    (  $<PfThirdParty_tes> (  &<PfActor_tes> ;
+          rdf:type [ <PfActor> ] ? ;
+          <pf_receiving_purpose> @linkml:String ? ;
+          <pf_transfer_basis> @linkml:String ?
+       ) ;
+       rdf:type [ <PfThirdParty> ]
     )
 }

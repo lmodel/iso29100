@@ -1,300 +1,558 @@
- syntax="proto3";
- package
-// metamodel_version: 1.7.0
-// version: 1.0.0
-// Schema class documenting a PII principal's agreement to processing of their PII for stated purposes. Records the consent mechanism used, scope, current status, and withdrawal date — supporting auditability of the consent and choice privacy principle.
-message ConsentRecord
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string principalRef = 0
-  datetime consentDate = 0
-  consentMechanism consentMechanism = 0
- repeated  string processingPurposesConsented = 0
- repeated  string piiCategoriesConsented = 0
-  datetime withdrawalDate = 0
-  string consentStatus = 0
-  string consentEvidenceRef = 0
- }
-// Schema class representing a data element or attribute set that can be linked back to a natural person — either directly or through combination with other attributes. Captures sensitivity classification, identifier type, pseudonymization status, retention schedule, and processing operations applicable to the data.
-message PersonallyIdentifiableInformation
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
- repeated  string piiCategory = 0
-  pIISensitivityCategory sensitivityLevel = 0
-  string identifierType = 0
-  boolean isPseudonymized = 0
-  boolean isAnonymized = 0
-  string linkabilityRisk = 0
-  string applicableToPrincipal = 0
-  string retentionSchedule = 0
- repeated  pIIProcessingOperation processingOperations = 0
- }
-// Schema class for an organization or individual that determines why and how PII is processed. Captures appointed processors, legal bases relied upon, privacy policy reference, and data protection officer details. Bears ultimate accountability for privacy principle adherence.
-message PIIController
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string contactInformation = 0
- repeated  string jurisdictions = 0
- repeated  string processingPurposes = 0
- repeated  string legalBases = 0
- repeated  pIIProcessor appointedProcessors = 0
-  privacyPolicy privacyPolicyRef = 0
-  string dataProtectionOfficer = 0
- }
-// A documented scenario describing the flow of PII among privacy framework actors (PII principal, PII controller, PII processor, and third party), as illustrated in Table 1 of Clause 5.3.
-message PIIFlowScenario
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string scenarioLabel = 0
-  pIIFlowRole piiPrincipalRole = 0
-  pIIFlowRole piiControllerRole = 0
-  pIIFlowRole piiProcessorRole = 0
-  pIIFlowRole thirdPartyRole = 0
-  string scenarioDescription = 0
-  string legalControlRetention = 0
- }
-// Schema class for a data subject — the individual to whom PII belongs. Links consent records and privacy preferences to the natural person whose data is being processed, enabling subject-centric data models.
-message PIIPrincipal
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string contactInformation = 0
- repeated  string jurisdictions = 0
- repeated  privacyPreference privacyPreferences = 0
- repeated  consentRecord consentRecords = 0
- }
-// Schema class documenting a PII processing operation: its purpose, legal basis, operation types performed, categories of PII involved, responsible actors, applied controls, retention period, and any cross-border transfer safeguards.
-message PIIProcessingActivity
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string processingPurpose = 0
-  string legalBasis = 0
- repeated  pIIProcessingOperation operationsPerformed = 0
- repeated  string piiCategoriesProcessed = 0
- repeated  pIISensitivityCategory sensitivityLevelsInvolved = 0
-  pIIController controllerRef = 0
-  pIIProcessor processorRef = 0
- repeated  pIIFlowScenario dataFlows = 0
-  durationType retentionPeriod = 0
- repeated  privacyControl privacyControlsApplied = 0
-  boolean crossBorderTransfer = 0
- repeated  string transferSafeguards = 0
- }
-// Schema class for an organization engaged to process PII under a PII controller's instructions. Records the instructing controller, data processing agreement reference, and any sub-processors engaged on the controller's behalf.
-message PIIProcessor
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string contactInformation = 0
- repeated  string jurisdictions = 0
-  pIIController instructingController = 0
-  string processingAgreementRef = 0
- repeated  pIIProcessor subProcessors = 0
- }
-// Schema class for a recorded incident in which PII was processed in a manner that violates applicable privacy safeguarding requirements. Tracks breach details, affected PII categories, notification obligations, remediation actions, and lessons learned.
-message PrivacyBreach
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  datetime breachDatetime = 0
-  datetime discoveryDatetime = 0
-  string breachDescription = 0
- repeated  string affectedPiiCategories = 0
-  positiveIntegerType affectedPrincipalsCount = 0
- repeated  privacySafeguardingRequirement violatedRequirements = 0
-  privacyRiskLevel breachSeverity = 0
- repeated  string immediateActions = 0
-  boolean notificationRequired = 0
- repeated  string notificationsMade = 0
- repeated  string remediationActions = 0
-  string lessonsLearned = 0
-  datetime closureDatetime = 0
- }
-// Schema class for a protective measure that manages privacy risks within the framework. Can be organizational, physical, technical (including Privacy Enhancing Technologies), or legal-contractual in nature; linked to the principles and safeguarding requirements it addresses.
-message PrivacyControl
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  privacyControlType controlType = 0
-  string controlObjective = 0
- repeated  privacyPrinciple addressedPrinciples = 0
-  string implementationDescription = 0
-  string responsibleActor = 0
-  string implementationStatus = 0
- repeated  string effectivenessEvidence = 0
- repeated  privacySafeguardingRequirement relatedSafeguardingRequirements = 0
-  boolean isPet = 0
- }
-// Top-level container representing an organization's privacy framework for protecting PII within ICT systems.
-message PrivacyFramework
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string organizationName = 0
-  string ictSystemDescription = 0
- repeated  string applicableJurisdictions = 0
- repeated  pIIController piiControllers = 0
- repeated  pIIProcessor piiProcessors = 0
- repeated  thirdParty thirdParties = 0
-  string piiPrincipalsDescription = 0
-  privacyPolicy privacyPolicy = 0
- repeated  privacyControl privacyControls = 0
- repeated  privacySafeguardingRequirement safeguardingRequirements = 0
- repeated  privacyRisk privacyRisks = 0
- repeated  privacyImpactAssessment privacyImpactAssessments = 0
- repeated  privacyBreach privacyBreaches = 0
- repeated  pIIProcessingActivity piiProcessingActivities = 0
- repeated  privacyPrincipleImplementation principleImplementations = 0
- }
-// Schema class for a structured evaluation of the privacy implications of a processing activity or ICT system. Records assessment scope, identified and treated risks, accepted residual risks, stakeholder consultation records, and overall assessment outcome.
-message PrivacyImpactAssessment
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string assessmentScope = 0
-  date assessmentDate = 0
-  string assessor = 0
- repeated  pIIProcessingActivity processingActivitiesAssessed = 0
- repeated  privacyRisk risksIdentified = 0
- repeated  privacyRisk risksTreated = 0
- repeated  privacyRisk residualRisksAccepted = 0
-  string assessmentOutcome = 0
-  date nextAssessmentDate = 0
- repeated  string consultationRecords = 0
- }
-// Schema class for a governing document expressing an organization's intentions and commitments for PII processing. Covers both the internal policy document and any external privacy notice made available to PII principals (referred to as a notice in this framework).
-message PrivacyPolicy
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string policyVersion = 0
-  date effectiveDate = 0
-  string policyScope = 0
- repeated  string processingPurposesCovered = 0
- repeated  string piiCategoriesCovered = 0
-  string dataRetentionStatement = 0
- repeated  string piiPrincipalRights = 0
-  string contactForInquiries = 0
-  date lastReviewDate = 0
-  boolean isExternalNotice = 0
- repeated  privacyPrinciple applicablePrinciples = 0
- }
-// Schema class capturing a PII principal's processing choices for a particular purpose scope: preferences for anonymity or pseudonymity, restrictions on specific processing operations, and restrictions on disclosure to named or categorized parties.
-message PrivacyPreference
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string principalRef = 0
-  string preferenceScope = 0
-  boolean anonymityPreference = 0
-  boolean pseudonymityPreference = 0
- repeated  pIIProcessingOperation processingRestrictionPreferences = 0
- repeated  string disclosureRestrictionPreferences = 0
-  date preferenceRecordedDate = 0
- }
-// Documentation of how a specific privacy principle from Clause 6 has been implemented within the organization's privacy framework, including measures taken and evidence of adherence.
-message PrivacyPrincipleImplementation
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  privacyPrinciple principle = 0
- repeated  string implementationMeasures = 0
- repeated  privacyControl applicableControlsRef = 0
- repeated  string evidenceOfAdherence = 0
- repeated  string gapsIdentified = 0
- repeated  string improvementActions = 0
-  date lastAssessedDate = 0
- }
-// Schema class representing a potential adverse outcome for PII principals from a PII processing activity. Captures the risk source, likelihood and impact assessments, inherent and residual risk levels, and links to mitigating controls and accountable risk owner.
-message PrivacyRisk
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string riskSource = 0
- repeated  string affectedPiiCategories = 0
-  string affectedPrincipalsDescription = 0
-  string riskLikelihood = 0
-  string riskImpactDescription = 0
-  privacyRiskLevel inherentRiskLevel = 0
-  privacyRiskLevel residualRiskLevel = 0
- repeated  privacyControl mitigatingControls = 0
-  string riskOwner = 0
- }
-// Schema class for an applicable requirement that drives an organization's PII processing controls. Requirements are identified through the privacy risk management process and arise from legal/regulatory, contractual, business, or other influencing factors.
-message PrivacySafeguardingRequirement
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  safeguardingRequirementFactor requirementFactor = 0
-  string requirementText = 0
-  string sourceReference = 0
- repeated  string applicableToActors = 0
- repeated  privacyControl relatedControls = 0
-  string priority = 0
- }
-// Schema class for an external entity that receives PII outside the PII processor relationship — i.e., as a recipient that typically becomes a PII controller in its own right. Captures the receiving purpose and the legal basis for the transfer.
-message ThirdParty
- {
-  uriorcurie id = 0
-  string name = 0
-  string description = 0
-  date createdDate = 0
-  date modifiedDate = 0
-  string contactInformation = 0
- repeated  string jurisdictions = 0
-  string receivingPurpose = 0
-  string transferBasis = 0
- }
+syntax = "proto3";
+package iso29100;
+// metamodel_version: 1.12.0
+// version: 2024
+// Someone who takes part in handling PII, told apart by the part they play. One party can play different parts for different PII, with a record for each.
+message PfActor {
+  // The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.
+  string pf_actor_type = 1;
+  // The legal systems that apply to the record, in the organization's terms.
+  repeated string pf_jurisdictions = 2;
+  // How to reach the actor about privacy.
+  string pf_contact = 3;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 4;
+  // The name the organization gives the record.
+  string title = 5;
+  // What the record says or describes, in the organization's own words.
+  string description = 6;
+}
+// A time when PII was handled against a safeguarding requirement: what happened, who was told and what was done.
+message PfBreach {
+  // The PII items the record concerns.
+  repeated PfPiiItem pf_concerned_pii = 1;
+  // When the breach happened.
+  string pf_breach_occurred = 2;
+  // When the organization found out, which is not before it happened.
+  string pf_breach_discovered = 3;
+  // When the organization closed the matter, which is not before it found out.
+  string pf_breach_closed = 4;
+  // How many people the breach reached, where that is known.
+  int32 pf_principals_affected = 5;
+  // The safeguarding requirements the breach went against.
+  repeated PfSafeguardingRequirement pf_breached_requirements = 6;
+  // How serious the breach is.
+  PfRiskLevel pf_breach_severity = 7;
+  // What was done straight away.
+  repeated string pf_immediate_actions = 8;
+  // Whether a law or contract requires anyone to be told.
+  bool pf_notification_required = 9;
+  // Who was told, and when.
+  repeated string pf_notifications = 10;
+  // What was done to put things right.
+  repeated string pf_remediation = 11;
+  // What the organization learned.
+  string pf_lessons = 12;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 13;
+  // The name the organization gives the record.
+  string title = 14;
+  // What the record says or describes, in the organization's own words.
+  string description = 15;
+}
+// One person's agreement to the processing of their PII for stated purposes, and where it stands.
+message PfConsent {
+  // The reasons the PII is processed, in the organization's own words.
+  repeated string pf_purposes = 1;
+  // The PII items the record concerns.
+  repeated PfPiiItem pf_concerned_pii = 2;
+  // What shows that the record's claim holds, such as a report or a log.
+  repeated string pf_evidence = 3;
+  // The person the record is about.
+  PfPiiPrincipal pf_principal = 4;
+  // How the agreement was obtained.
+  PfConsentMechanism pf_consent_mechanism = 5;
+  // When the person agreed.
+  string pf_consent_given = 6;
+  // Where the agreement stands.
+  PfConsentState pf_consent_state = 7;
+  // When the person took the agreement back.
+  string pf_consent_withdrawn = 8;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 9;
+  // The name the organization gives the record.
+  string title = 10;
+  // What the record says or describes, in the organization's own words.
+  string description = 11;
+}
+// A measure that treats a privacy risk by making it less likely or less harmful, the principles it serves and how far it has been put into effect.
+message PfControl {
+  // The privacy principles the record bears on.
+  repeated PfPrinciple pf_principles = 1;
+  // What shows that the record's claim holds, such as a report or a log.
+  repeated string pf_evidence = 2;
+  // The form the control takes.
+  PfControlKind pf_control_kind = 3;
+  // What the control is meant to achieve.
+  string pf_control_objective = 4;
+  // How the control is put into effect.
+  string pf_control_detail = 5;
+  // The actor that answers for the control.
+  PfActor pf_control_responsible = 6;
+  // How far the control has been put into effect.
+  PfImplementationState pf_control_state = 7;
+  // The safeguarding requirements the control answers to.
+  repeated PfSafeguardingRequirement pf_answers_requirements = 8;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 9;
+  // The name the organization gives the record.
+  string title = 10;
+  // What the record says or describes, in the organization's own words.
+  string description = 11;
+}
+// One organization's use of the privacy framework: the systems it covers, and every record the organization keeps about them, each kind in a list of its own.
+message PfFramework {
+  // The legal systems that apply to the record, in the organization's terms.
+  repeated string pf_jurisdictions = 1;
+  // The organization that applies the framework.
+  string pf_organization = 2;
+  // The ICT systems the framework covers.
+  repeated string pf_ict_systems = 3;
+  // Those who take part in handling the PII.
+  repeated PfActor pf_actors = 4;
+  // The PII the organization has recognized.
+  repeated PfPiiItem pf_pii_items = 5;
+  // The ways PII passes between the actors.
+  repeated PfPiiFlow pf_flows = 6;
+  // What the organization does with PII.
+  repeated PfProcessingActivity pf_processing_activities = 7;
+  // What the organization must do to safeguard PII.
+  repeated PfSafeguardingRequirement pf_safeguarding_requirements = 8;
+  // The organization's privacy policies.
+  repeated PfPolicy pf_policies = 9;
+  // The organization's controls.
+  repeated PfControl pf_controls = 10;
+  // How the organization stands against each privacy principle.
+  repeated PfPrincipleImplementation pf_principle_implementations = 11;
+  // The risks to people that the organization has identified.
+  repeated PfRisk pf_risks = 12;
+  // The organization's privacy impact assessments.
+  repeated PfImpactAssessment pf_impact_assessments = 13;
+  // The breaches the organization has recorded.
+  repeated PfBreach pf_breaches = 14;
+  // The consents the organization holds.
+  repeated PfConsent pf_consents = 15;
+  // What people have said they prefer.
+  repeated PfPreference pf_preferences = 16;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 17;
+  // The name the organization gives the record.
+  string title = 18;
+  // What the record says or describes, in the organization's own words.
+  string description = 19;
+}
+// A review of what a system or activity could do to people's privacy, the risks it found and what became of them.
+message PfImpactAssessment {
+  // What the assessment looks at.
+  string pf_assessment_scope = 1;
+  // When the assessment was done.
+  string pf_assessment_date = 2;
+  // Who did the assessment.
+  string pf_assessor = 3;
+  // The processing activities it looks at.
+  repeated PfProcessingActivity pf_assessed_activities = 4;
+  // The risks it found.
+  repeated PfRisk pf_risks_found = 5;
+  // Those of the risks found that have been treated.
+  repeated PfRisk pf_risks_treated = 6;
+  // Those of the risks found that the organization has accepted as they stand.
+  repeated PfRisk pf_risks_accepted = 7;
+  // What the assessment concluded.
+  string pf_assessment_outcome = 8;
+  // Who was asked, and what they said.
+  repeated string pf_consultations = 9;
+  // When the next assessment is due, which is after this one.
+  string pf_next_assessment = 10;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 11;
+  // The name the organization gives the record.
+  string title = 12;
+  // What the record says or describes, in the organization's own words.
+  string description = 13;
+}
+// The party that decides why and how PII is processed, and answers for it even when another party does the work.
+message PfPiiController {
+  // The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.
+  string pf_actor_type = 1;
+  // The legal systems that apply to the record, in the organization's terms.
+  repeated string pf_jurisdictions = 2;
+  // How to reach the actor about privacy.
+  string pf_contact = 3;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 4;
+  // The name the organization gives the record.
+  string title = 5;
+  // What the record says or describes, in the organization's own words.
+  string description = 6;
+  // The reasons the PII is processed, in the organization's own words.
+  repeated string pf_purposes = 7;
+  // What makes the processing lawful, in the terms of the law that applies.
+  repeated string pf_legal_bases = 8;
+  // The processors that work for the controller.
+  repeated PfPiiProcessor pf_appointed_processors = 9;
+  // The privacy policy the controller works under.
+  PfPolicy pf_controller_policy = 10;
+  // The person who advises the controller on privacy, where there is one.
+  string pf_privacy_officer = 11;
+}
+// One way PII passes from one actor to another, and who decides what happens to it afterwards.
+message PfPiiFlow {
+  // The PII items the record concerns.
+  repeated PfPiiItem pf_concerned_pii = 1;
+  // The actor the PII comes from.
+  PfActor pf_provider = 2;
+  // The actor the PII goes to.
+  PfActor pf_recipient = 3;
+  // The actor that decides what happens to the PII once it has passed. A processor never holds this position.
+  PfActor pf_decides_afterwards = 4;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 5;
+  // The name the organization gives the record.
+  string title = 6;
+  // What the record says or describes, in the organization's own words.
+  string description = 7;
+}
+// A piece or set of information that can be tied to a person, why it counts as PII, how sensitive it is and how it is handled.
+message PfPiiItem {
+  // The people the PII of the record is about.
+  repeated PfPiiPrincipal pf_concerned_principals = 1;
+  // The things done to the PII.
+  repeated PfOperation pf_operations = 2;
+  // How long the PII is kept, as an ISO 8601 duration.
+  string pf_retention = 3;
+  // What the item holds, in the organization's own words.
+  repeated string pf_pii_categories = 4;
+  // Why the information counts as PII.
+  repeated PfPiiRecognition pf_recognized_by = 5;
+  // How sensitive the item is.
+  PfSensitivity pf_sensitivity = 6;
+  // Whether an alias stands in for the item's identifying details.
+  bool pf_pseudonymized = 7;
+  // How easily the item could be joined with other data to identify someone, in the organization's words.
+  string pf_linkability = 8;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 9;
+  // The name the organization gives the record.
+  string title = 10;
+  // What the record says or describes, in the organization's own words.
+  string description = 11;
+}
+// The person the PII is about, or a group of such people when the organization records them together.
+message PfPiiPrincipal {
+  // The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.
+  string pf_actor_type = 1;
+  // The legal systems that apply to the record, in the organization's terms.
+  repeated string pf_jurisdictions = 2;
+  // How to reach the actor about privacy.
+  string pf_contact = 3;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 4;
+  // The name the organization gives the record.
+  string title = 5;
+  // What the record says or describes, in the organization's own words.
+  string description = 6;
+}
+// A party that processes PII for a controller, on that controller's instructions.
+message PfPiiProcessor {
+  // The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.
+  string pf_actor_type = 1;
+  // The legal systems that apply to the record, in the organization's terms.
+  repeated string pf_jurisdictions = 2;
+  // How to reach the actor about privacy.
+  string pf_contact = 3;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 4;
+  // The name the organization gives the record.
+  string title = 5;
+  // What the record says or describes, in the organization's own words.
+  string description = 6;
+  // The controllers whose instructions the processor follows.
+  repeated PfPiiController pf_instructing_controllers = 7;
+  // The reference of the agreement that binds the processor, where there is one.
+  string pf_processing_agreement = 8;
+  // The processors this processor has engaged in turn.
+  repeated PfPiiProcessor pf_sub_processors = 9;
+}
+// A privacy policy: what the organization commits to about PII, written for its own people or as a notice to the people whose PII it handles.
+message PfPolicy {
+  // The reasons the PII is processed, in the organization's own words.
+  repeated string pf_purposes = 1;
+  // The PII items the record concerns.
+  repeated PfPiiItem pf_concerned_pii = 2;
+  // The privacy principles the record bears on.
+  repeated PfPrinciple pf_principles = 3;
+  // Who the policy is written for.
+  PfPolicyAudience pf_policy_audience = 4;
+  // The version of the policy.
+  string pf_policy_version = 5;
+  // What the policy covers.
+  string pf_policy_scope = 6;
+  // When the policy takes effect.
+  string pf_policy_effective_date = 7;
+  // When the policy was last reviewed.
+  string pf_policy_last_reviewed = 8;
+  // What the policy says about how long PII is kept.
+  string pf_retention_statement = 9;
+  // The rights the policy tells people they have.
+  repeated string pf_stated_rights = 10;
+  // Where people can send questions about the policy.
+  string pf_inquiry_contact = 11;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 12;
+  // The name the organization gives the record.
+  string title = 13;
+  // What the record says or describes, in the organization's own words.
+  string description = 14;
+}
+// What one person has said they want done, or not done, with their PII.
+message PfPreference {
+  // The person the record is about.
+  PfPiiPrincipal pf_principal = 1;
+  // What the preference applies to.
+  string pf_preference_scope = 2;
+  // Whether the person asks not to be identified at all.
+  bool pf_wants_anonymity = 3;
+  // Whether the person asks to appear under an alias.
+  bool pf_wants_pseudonymity = 4;
+  // What the person does not want done to their PII.
+  repeated PfOperation pf_refused_operations = 5;
+  // Who the person does not want their PII passed to.
+  repeated string pf_refused_recipients = 6;
+  // When the organization recorded the preference.
+  string pf_preference_recorded = 7;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 8;
+  // The name the organization gives the record.
+  string title = 9;
+  // What the record says or describes, in the organization's own words.
+  string description = 10;
+}
+// How the organization stands against one privacy principle: what it does, what shows it, and what is still missing.
+message PfPrincipleImplementation {
+  // The organization's controls that act on the record's subject.
+  repeated PfControl pf_related_controls = 1;
+  // What shows that the record's claim holds, such as a report or a log.
+  repeated string pf_evidence = 2;
+  // The principle the record is about.
+  PfPrinciple pf_principle = 3;
+  // What the organization does to follow the principle.
+  repeated string pf_measures = 4;
+  // Where the organization falls short.
+  repeated string pf_gaps = 5;
+  // What the organization will do about the gaps.
+  repeated string pf_improvements = 6;
+  // When the organization last checked its standing.
+  string pf_last_assessed = 7;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 8;
+  // The name the organization gives the record.
+  string title = 9;
+  // What the record says or describes, in the organization's own words.
+  string description = 10;
+}
+// Something the organization does with PII: why, on what basis, what it does to which PII, who is responsible, and how long the PII is kept.
+message PfProcessingActivity {
+  // The reasons the PII is processed, in the organization's own words.
+  repeated string pf_purposes = 1;
+  // What makes the processing lawful, in the terms of the law that applies.
+  repeated string pf_legal_bases = 2;
+  // The things done to the PII.
+  repeated PfOperation pf_operations = 3;
+  // The PII items the record concerns.
+  repeated PfPiiItem pf_concerned_pii = 4;
+  // How long the PII is kept, as an ISO 8601 duration.
+  string pf_retention = 5;
+  // The organization's controls that act on the record's subject.
+  repeated PfControl pf_related_controls = 6;
+  // The controller that answers for the activity.
+  PfPiiController pf_controller = 7;
+  // The processors that do the work.
+  repeated PfPiiProcessor pf_processors = 8;
+  // The flows of PII the activity involves.
+  repeated PfPiiFlow pf_activity_flows = 9;
+  // The levels of sensitivity among the PII involved.
+  repeated PfSensitivity pf_sensitivities = 10;
+  // Whether PII leaves the jurisdiction it was collected in.
+  bool pf_crosses_borders = 11;
+  // What protects the PII when it crosses a border.
+  repeated string pf_transfer_safeguards = 12;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 13;
+  // The name the organization gives the record.
+  string title = 14;
+  // What the record says or describes, in the organization's own words.
+  string description = 15;
+}
+// What every record of the framework has, so that other records can refer to it: an identifier, a title and a description.
+message PfRecordMixin {
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 1;
+  // The name the organization gives the record.
+  string title = 2;
+  // What the record says or describes, in the organization's own words.
+  string description = 3;
+}
+// A way that handling PII could harm people: where the risk comes from, how likely and how bad it is, and what is done about it.
+message PfRisk {
+  // The PII items the record concerns.
+  repeated PfPiiItem pf_concerned_pii = 1;
+  // The people the PII of the record is about.
+  repeated PfPiiPrincipal pf_concerned_principals = 2;
+  // The organization's controls that act on the record's subject.
+  repeated PfControl pf_related_controls = 3;
+  // Where the risk comes from.
+  string pf_risk_source = 4;
+  // How likely the harm is, in the organization's own terms.
+  string pf_risk_likelihood = 5;
+  // What the harm to people would be.
+  string pf_risk_consequence = 6;
+  // The risk's level before controls.
+  PfRiskLevel pf_risk_inherent_level = 7;
+  // The risk's level after controls, which is never above the level before.
+  PfRiskLevel pf_risk_residual_level = 8;
+  // The person who answers for the risk.
+  string pf_risk_owner = 9;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 10;
+  // The name the organization gives the record.
+  string title = 11;
+  // What the record says or describes, in the organization's own words.
+  string description = 12;
+}
+// Something the organization must do to protect PII, and where that duty comes from.
+message PfSafeguardingRequirement {
+  // Where the requirement comes from.
+  PfRequirementFactor pf_requirement_factor = 1;
+  // The law, contract or other document that states it.
+  string pf_requirement_source = 2;
+  // The actors that must meet it.
+  repeated PfActor pf_applies_to = 3;
+  // The controls that meet it.
+  repeated PfControl pf_met_by = 4;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 5;
+  // The name the organization gives the record.
+  string title = 6;
+  // What the record says or describes, in the organization's own words.
+  string description = 7;
+}
+// A party outside the controller and its processors that receives PII for its own ends, and usually becomes a controller of that PII.
+message PfThirdParty {
+  // The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.
+  string pf_actor_type = 1;
+  // The legal systems that apply to the record, in the organization's terms.
+  repeated string pf_jurisdictions = 2;
+  // How to reach the actor about privacy.
+  string pf_contact = 3;
+  // The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.
+  string pf_id = 4;
+  // The name the organization gives the record.
+  string title = 5;
+  // What the record says or describes, in the organization's own words.
+  string description = 6;
+  // What the third party receives the PII for.
+  string pf_receiving_purpose = 7;
+  // What makes the passing of PII to the third party lawful.
+  string pf_transfer_basis = 8;
+}
+
+// How a person's agreement to processing is obtained.
+enum PfConsentMechanism {
+  PF_CONSENT_MECHANISM_UNSPECIFIED = 0;
+  PF_CONSENT_MECHANISM_OPT_IN = 1;
+  PF_CONSENT_MECHANISM_OPT_OUT = 2;
+  PF_CONSENT_MECHANISM_IMPLIED = 3;
+}
+// Where a person's agreement stands.
+enum PfConsentState {
+  PF_CONSENT_STATE_UNSPECIFIED = 0;
+  PF_CONSENT_STATE_GIVEN = 1;
+  PF_CONSENT_STATE_REFUSED = 2;
+  PF_CONSENT_STATE_WITHDRAWN = 3;
+  PF_CONSENT_STATE_EXPIRED = 4;
+}
+// The form a control takes.
+enum PfControlKind {
+  PF_CONTROL_KIND_UNSPECIFIED = 0;
+  PF_CONTROL_KIND_ORGANIZATIONAL = 1;
+  PF_CONTROL_KIND_PHYSICAL = 2;
+  PF_CONTROL_KIND_TECHNICAL = 3;
+  PF_CONTROL_KIND_PRIVACY_ENHANCING_TECHNOLOGY = 4;
+  PF_CONTROL_KIND_CONTRACTUAL = 5;
+}
+// How far a control has been put into effect.
+enum PfImplementationState {
+  PF_IMPLEMENTATION_STATE_UNSPECIFIED = 0;
+  PF_IMPLEMENTATION_STATE_PLANNED = 1;
+  PF_IMPLEMENTATION_STATE_IN_PROGRESS = 2;
+  PF_IMPLEMENTATION_STATE_IN_OPERATION = 3;
+  PF_IMPLEMENTATION_STATE_RETIRED = 4;
+}
+// The things an organization can do to PII.
+enum PfOperation {
+  PF_OPERATION_UNSPECIFIED = 0;
+  PF_OPERATION_COLLECT = 1;
+  PF_OPERATION_STORE = 2;
+  PF_OPERATION_RETRIEVE = 3;
+  PF_OPERATION_CONSULT = 4;
+  PF_OPERATION_ALTER = 5;
+  PF_OPERATION_PSEUDONYMIZE = 6;
+  PF_OPERATION_ANONYMIZE = 7;
+  PF_OPERATION_DISCLOSE = 8;
+  PF_OPERATION_DISSEMINATE = 9;
+  PF_OPERATION_DELETE = 10;
+  PF_OPERATION_DESTROY = 11;
+}
+// The ways information turns out to be PII, which a record lists so that a reader can see why the item counts.
+enum PfPiiRecognition {
+  PF_PII_RECOGNITION_UNSPECIFIED = 0;
+  PF_PII_RECOGNITION_DIRECT_IDENTIFIER = 1;
+  PF_PII_RECOGNITION_DISTINGUISHING_TRAIT = 2;
+  PF_PII_RECOGNITION_LINKED_INFORMATION = 3;
+  PF_PII_RECOGNITION_PSEUDONYM = 4;
+  PF_PII_RECOGNITION_METADATA = 5;
+  PF_PII_RECOGNITION_UNSOLICITED = 6;
+}
+// Who a privacy policy is written for.
+enum PfPolicyAudience {
+  PF_POLICY_AUDIENCE_UNSPECIFIED = 0;
+  PF_POLICY_AUDIENCE_INTERNAL = 1;
+  PF_POLICY_AUDIENCE_PUBLIC_NOTICE = 2;
+}
+// The privacy principles by their subclause numbers. A value's title and description are this project's own summary, and the principles' headings and wording are ISO's.
+enum PfPrinciple {
+  PF_PRINCIPLE_UNSPECIFIED = 0;
+  PF_PRINCIPLE_PRINCIPLE_N6_N2 = 1;
+  PF_PRINCIPLE_PRINCIPLE_N6_N3 = 2;
+  PF_PRINCIPLE_PRINCIPLE_N6_N4 = 3;
+  PF_PRINCIPLE_PRINCIPLE_N6_N5 = 4;
+  PF_PRINCIPLE_PRINCIPLE_N6_N6 = 5;
+  PF_PRINCIPLE_PRINCIPLE_N6_N7 = 6;
+  PF_PRINCIPLE_PRINCIPLE_N6_N8 = 7;
+  PF_PRINCIPLE_PRINCIPLE_N6_N9 = 8;
+  PF_PRINCIPLE_PRINCIPLE_N6_N10 = 9;
+  PF_PRINCIPLE_PRINCIPLE_N6_N11 = 10;
+  PF_PRINCIPLE_PRINCIPLE_N6_N12 = 11;
+}
+// Where a requirement to safeguard PII comes from.
+enum PfRequirementFactor {
+  PF_REQUIREMENT_FACTOR_UNSPECIFIED = 0;
+  PF_REQUIREMENT_FACTOR_LAW = 1;
+  PF_REQUIREMENT_FACTOR_CONTRACT = 2;
+  PF_REQUIREMENT_FACTOR_BUSINESS = 3;
+  PF_REQUIREMENT_FACTOR_OTHER = 4;
+}
+// A qualitative level of risk to people, offered for an organization that adopts it, since the framework leaves the scale to the organization.
+enum PfRiskLevel {
+  PF_RISK_LEVEL_UNSPECIFIED = 0;
+  PF_RISK_LEVEL_LOW = 1;
+  PF_RISK_LEVEL_MEDIUM = 2;
+  PF_RISK_LEVEL_HIGH = 3;
+  PF_RISK_LEVEL_VERY_HIGH = 4;
+}
+// How much harm the PII could do to the person it is about.
+enum PfSensitivity {
+  PF_SENSITIVITY_UNSPECIFIED = 0;
+  PF_SENSITIVITY_ORDINARY = 1;
+  PF_SENSITIVITY_SENSITIVE = 2;
+}

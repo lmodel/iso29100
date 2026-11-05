@@ -29,8 +29,8 @@ from pydantic import (
 )
 
 
-metamodel_version = "1.7.0"
-version = "1.0.0"
+metamodel_version = "1.12.0"
+version = "2024"
 
 
 class ConfiguredBaseModel(BaseModel):
@@ -66,1125 +66,1243 @@ class LinkMLMeta(RootModel):
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'annotations': {'previous_edition': {'tag': 'previous_edition',
-                                          'value': 'ISO/IEC 29100:2011/Amd 1:2018'},
-                     'rights_notice': {'tag': 'rights_notice',
-                                       'value': 'This project is licensed under '
-                                                'Apache-2.0 for original code and '
-                                                'schema structure. ISO/IEC '
-                                                'standards text is owned by ISO '
-                                                'and is not redistributed by this '
-                                                'project license.'},
-                     'schema_maintainer': {'tag': 'schema_maintainer',
-                                           'value': 'noel.mcloughlin@gmail.com'},
-                     'schema_status': {'tag': 'schema_status', 'value': 'stable'},
-                     'standard_date': {'tag': 'standard_date', 'value': '2024-02'},
-                     'standard_edition': {'tag': 'standard_edition',
-                                          'value': 'Second edition'},
-                     'standard_reference': {'tag': 'standard_reference',
-                                            'value': 'ISO/IEC 29100:2024(E)'},
-                     'standard_title': {'tag': 'standard_title',
-                                        'value': 'Information technology — '
-                                                 'Security techniques — Privacy '
-                                                 'framework'}},
+linkml_meta = LinkMLMeta({'annotations': {'edition': {'tag': 'edition', 'value': '2'},
+                     'iso_open_data_date': {'tag': 'iso_open_data_date',
+                                            'value': '2026-11-05'},
+                     'publication_date': {'tag': 'publication_date',
+                                          'value': '2024-02-16'},
+                     'replaces': {'tag': 'replaces',
+                                  'value': 'ISO/IEC 29100:2011, ISO/IEC '
+                                           '29100:2011/Amd 1:2018'},
+                     'standard': {'tag': 'standard',
+                                  'value': 'ISO/IEC 29100:2024'}},
+     'comments': ['The version is the edition the schema models, and source is '
+                  "ISO's page for it. ISO Open Data's records of the edition and "
+                  'of the two it replaced are copied to '
+                  'src/iso29100/schema/iso-open-data/ on the date the annotations '
+                  'give, and scripts/check_upstream_release.py reports when ISO '
+                  "changes them. The release tags are the schema's own versions.",
+                  'ISO/IEC 29100 is copyright ISO and IEC, and none of its text is '
+                  "reproduced here. An element's title and description are this "
+                  "project's own words. An element cites what it models by number "
+                  "in the iso29100_clause annotation only where a third party's "
+                  'public outline of the edition gives that number, so terms and '
+                  'lower subclauses go uncited. A reader with a licensed copy '
+                  'looks the text up there.',
+                  'Every record that other records refer to has a pf_id, and a '
+                  'reference holds that identifier. PfFramework holds each kind of '
+                  'record in a list of its own.',
+                  'The mappings to the Data Privacy Vocabulary (DPV) are the five '
+                  'rows DPV publishes for this edition, in upstream/dpv-iso.ttl, '
+                  "with DPV's direction kept. No other mapping is declared, "
+                  'because no source states one.'],
      'default_prefix': 'iso29100',
      'default_range': 'string',
-     'description': 'A comprehensive LinkML schema modeling the ISO/IEC 29100:2024 '
-                    'privacy framework for information and communication '
-                    'technology (ICT) systems. Captures actors and roles, PII '
-                    'recognition, privacy safeguarding requirements, the eleven '
-                    'privacy principles, and the privacy risk management process.\n'
-                    'This schema covers: - Privacy framework actors (PII '
-                    'principal, controller, processor, third party) - Personally '
-                    'identifiable information (PII) and its categories - Privacy '
-                    'principles (11 principles from Clause 6) - Privacy '
-                    'safeguarding requirements and influencing factors - Privacy '
-                    'risk management including privacy impact assessment - Privacy '
-                    'policies, privacy controls, consent records, and privacy '
-                    'preferences',
+     'description': 'A LinkML model of the records an organization keeps when it '
+                    'applies the privacy framework of ISO/IEC 29100:2024 to the '
+                    'information and communication technology (ICT) systems that '
+                    'handle personally identifiable information (PII). The records '
+                    'say who takes part, which PII is involved and how it moves, '
+                    'what must be safeguarded and how, and how the organization '
+                    'stands against each privacy principle.',
      'id': 'https://w3id.org/lmodel/iso29100',
      'imports': ['linkml:types'],
-     'license': 'https://www.apache.org/licenses/LICENSE-2.0',
+     'license': 'Apache-2.0',
      'name': 'iso29100',
-     'prefixes': {'dcterms': {'prefix_prefix': 'dcterms',
-                              'prefix_reference': 'http://purl.org/dc/terms/'},
-                  'dpv': {'prefix_prefix': 'dpv',
+     'prefixes': {'dpv': {'prefix_prefix': 'dpv',
                           'prefix_reference': 'https://w3id.org/dpv#'},
-                  'iso27001': {'prefix_prefix': 'iso27001',
-                               'prefix_reference': 'https://w3id.org/lmodel/iso27001/'},
                   'iso29100': {'prefix_prefix': 'iso29100',
                                'prefix_reference': 'https://w3id.org/lmodel/iso29100/'},
                   'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
-                  'rdfs': {'prefix_prefix': 'rdfs',
-                           'prefix_reference': 'http://www.w3.org/2000/01/rdf-schema#'},
                   'schema': {'prefix_prefix': 'schema',
-                             'prefix_reference': 'http://schema.org/'}},
-     'see_also': ['https://www.iso.org/standard/85938.html',
-                  'https://dev.dpvcg.org/mappings/iso/'],
+                             'prefix_reference': 'http://schema.org/'},
+                  'xsd': {'prefix_prefix': 'xsd',
+                          'prefix_reference': 'http://www.w3.org/2001/XMLSchema#'}},
+     'see_also': ['https://lmodel.github.io/iso29100',
+                  'https://www.iso.org/standard/85938.html'],
+     'source': 'https://www.iso.org/standard/85938.html',
      'source_file': 'src/iso29100/schema/iso29100.yaml',
-     'subsets': {'pii_recognition': {'description': 'Elements relating to '
-                                                    'recognizing and categorizing '
-                                                    'personally identifiable '
-                                                    'information, including '
-                                                    'identifiers, sensitivity, and '
-                                                    'pseudonymization (Clause '
-                                                    '5.4).',
-                                     'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                     'name': 'pii_recognition'},
-                 'privacy_framework_core': {'comments': ['Covers the fundamental '
-                                                         'building blocks of the '
-                                                         'privacy framework'],
-                                            'description': 'Core privacy framework '
-                                                           'elements: actors, '
-                                                           'roles, PII concept, '
-                                                           'interactions, and the '
-                                                           'overall framework '
-                                                           'container (Clauses '
-                                                           '5.1-5.3).',
-                                            'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                            'name': 'privacy_framework_core'},
-                 'privacy_governance': {'description': 'Privacy policies, privacy '
-                                                       'controls, and governance '
-                                                       'elements that implement '
-                                                       'safeguarding requirements '
-                                                       '(Clauses 5.6-5.7).',
-                                        'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                        'name': 'privacy_governance'},
-                 'privacy_principles': {'annotations': {'principle_count': {'tag': 'principle_count',
-                                                                            'value': '11'}},
-                                        'description': 'The eleven privacy '
-                                                       'principles defined in '
-                                                       'Clause 6 of ISO/IEC '
-                                                       '29100:2024. These '
-                                                       'principles guide the '
-                                                       'design and operation of '
-                                                       'privacy programs.',
-                                        'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                        'name': 'privacy_principles'},
-                 'privacy_risk_management': {'description': 'Elements supporting '
-                                                            'privacy risk '
-                                                            'management, including '
-                                                            'privacy impact '
-                                                            'assessments and '
-                                                            'privacy risk '
-                                                            'treatment (Clauses '
-                                                            '3.17-3.18, 5.5).',
-                                             'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                             'name': 'privacy_risk_management'},
-                 'privacy_safeguarding': {'description': 'Privacy safeguarding '
-                                                         'requirements and their '
-                                                         'influencing factors: '
-                                                         'legal, regulatory, '
-                                                         'contractual, business, '
-                                                         'and other factors '
-                                                         '(Clause 5.5).',
-                                          'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                          'name': 'privacy_safeguarding'}},
-     'title': 'ISO 29100 / Privacy Framework: LinkML Schema',
-     'types': {'duration_type': {'base': 'str',
-                                 'description': 'ISO 8601 duration value such as '
-                                                'P1Y, P30D, or PT4H.',
-                                 'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                 'name': 'duration_type',
-                                 'uri': 'xsd:duration'},
-               'positive_integer_type': {'base': 'int',
-                                         'description': 'Integer greater than '
-                                                        'zero; natural number '
-                                                        'explicitly excluding '
-                                                        'zero.',
-                                         'from_schema': 'https://w3id.org/lmodel/iso29100',
-                                         'name': 'positive_integer_type',
-                                         'uri': 'xsd:positiveInteger'}}} )
+     'title': 'ISO/IEC 29100:2024 privacy framework records',
+     'types': {'pf_duration': {'base': 'str',
+                               'description': 'A length of time as ISO 8601 writes '
+                                              'it, such as P7Y for seven years or '
+                                              'P30D for thirty days.',
+                               'from_schema': 'https://w3id.org/lmodel/iso29100',
+                               'name': 'pf_duration',
+                               'pattern': '^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$',
+                               'typeof': 'string',
+                               'uri': 'xsd:duration'}}} )
 
-class PrivacyPrinciple(str, Enum):
+class PfPrinciple(str, Enum):
     """
-    The eleven privacy principles defined in ISO/IEC 29100:2024 Clause 6 that govern the processing of PII in ICT systems.
+    The privacy principles by their subclause numbers. A value's title and description are this project's own summary, and the principles' headings and wording are ISO's.
     """
-    consent_and_choice = "consent_and_choice"
+    number_6FULL_STOP2_People_decide = "principle_6_2"
     """
-    Schema value for privacy principle 1 (Clause 6.2): the organization gives PII principals meaningful choice over processing of their PII, manages opt-in consent mechanisms, and provides readily accessible means to withdraw consent.
+    People get a say in whether their PII is processed, can agree or refuse purpose by purpose, and can change their minds later.
     """
-    purpose_legitimacy_and_specification = "purpose_legitimacy_and_specification"
+    number_6FULL_STOP3_Lawful_stated_reasons = "principle_6_3"
     """
-    Schema value for privacy principle 2 (Clause 6.3): the organization ensures each processing purpose is lawful, relies on a valid legal basis, and is communicated to PII principals prior to or at the time of collection.
+    The law allows each reason for processing, and people are told the reason before their PII is gathered, or at that moment.
     """
-    collection_limitation = "collection_limitation"
+    number_6FULL_STOP4_Gather_within_bounds = "principle_6_4"
     """
-    Schema value for privacy principle 3 (Clause 6.4): the organization limits PII collection to what is lawful and strictly necessary to fulfil the stated processing purposes.
+    The organization gathers only the PII that the law allows and its stated reasons need.
     """
-    data_minimization = "data_minimization"
+    number_6FULL_STOP5_A_small_footprint = "principle_6_5"
     """
-    Schema value for privacy principle 4 (Clause 6.5): the organization designs processing procedures and ICT systems to minimize the volume of PII handled and the number of parties with access to it.
+    Systems and procedures are built to touch as little PII as they can, and as few people as possible can reach it.
     """
-    use_retention_and_disclosure_limitation = "use_retention_and_disclosure_limitation"
+    number_6FULL_STOP6_Bounded_use_and_keeping = "principle_6_6"
     """
-    Schema value for privacy principle 5 (Clause 6.6): the organization limits use, retention, and disclosure of PII to the minimum needed for legitimate purposes, and securely disposes of PII once those purposes have been fulfilled.
+    PII is used, shared and kept only as far as the stated reasons go, and is safely disposed of afterwards.
     """
-    accuracy_and_quality = "accuracy_and_quality"
+    number_6FULL_STOP7_Correct_and_fit = "principle_6_7"
     """
-    Schema value for privacy principle 6 (Clause 6.7): the organization ensures PII is accurate, complete, current, and fit for purpose, and establishes procedures for verification, correction, and ongoing quality control of processed PII.
+    PII stays right, whole, up to date and suited to its use, and there are ways to check and fix it.
     """
-    openness_transparency_and_notice = "openness_transparency_and_notice"
+    number_6FULL_STOP8_Say_what_happens = "principle_6_8"
     """
-    Schema value for privacy principle 7 (Clause 6.8): the organization provides PII principals with clear, accessible information about its PII processing policies and practices, and notifies them of material changes to those policies.
+    People can easily find out what the organization does with PII, and hear about important changes.
     """
-    individual_participation_and_access = "individual_participation_and_access"
+    number_6FULL_STOP9_People_see_their_own = "principle_6_9"
     """
-    Schema value for privacy principle 8 (Clause 6.9): the organization gives PII principals the ability to access and review their PII and to challenge its accuracy and completeness, subject to applicable law.
+    People can look at the PII held about them and dispute it, within what the law allows.
     """
-    accountability = "accountability"
+    number_6FULL_STOP10_Answer_for_it = "principle_6_10"
     """
-    Schema value for privacy principle 9 (Clause 6.10): the organization documents and communicates its privacy obligations, ensures equivalent protection when transferring PII to third parties, and maintains internal complaint-handling and redress procedures.
+    The organization writes down its duties, keeps protection in place when PII passes to others, and handles complaints and redress.
     """
-    information_security = "information_security"
+    number_6FULL_STOP11_Keep_it_safe = "principle_6_11"
     """
-    Schema value for privacy principle 10 (Clause 6.11): the organization applies appropriate security controls across operational, functional, and strategic levels to protect PII against unauthorized access, loss, or misuse throughout its full lifecycle.
+    Security measures at every level guard PII against loss and unauthorized reach for as long as it is held.
     """
-    privacy_compliance = "privacy_compliance"
+    number_6FULL_STOP12_Show_the_rules_are_met = "principle_6_12"
     """
-    Schema value for privacy principle 11 (Clause 6.12): the organization verifies and demonstrates compliance with data protection and privacy requirements through audits, independent internal controls, and ongoing privacy risk assessments.
+    The organization checks, and can prove, that it meets its privacy duties, through audits and regular risk assessment.
     """
 
 
-class PIIFlowRole(str, Enum):
+class PfOperation(str, Enum):
     """
-    The role played by an actor in a specific PII flow scenario, as described in Table 1 of ISO/IEC 29100:2024 Clause 5.3.
+    The things an organization can do to PII.
     """
-    pii_provider = "pii_provider"
+    collect = "collect"
     """
-    Actor that provides PII to another party in this flow scenario.
+    Get PII from the person it is about, or from another source.
     """
-    pii_recipient = "pii_recipient"
+    store = "store"
     """
-    Actor that receives PII from another party in this flow scenario.
+    Hold PII on a lasting medium.
     """
-    not_involved = "not_involved"
+    retrieve = "retrieve"
     """
-    Actor not directly involved in this specific PII flow scenario.
+    Fetch stored PII for use.
     """
-
-
-class PIIProcessingOperation(str, Enum):
+    consult = "consult"
     """
-    Categories of operations that can be performed on PII, as referenced in the definition of processing of PII (Clause 3.21).
+    Look at PII without taking a copy away.
     """
-    collection = "collection"
+    alter = "alter"
     """
-    Gathering or acquiring PII from PII principals or other sources.
+    Change PII that is already held.
     """
-    storage = "storage"
+    pseudonymize = "pseudonymize"
     """
-    Storing PII in a persistent manner in ICT systems or other media.
+    Swap identifying details for an alias, in a way someone can still trace back.
     """
-    alteration = "alteration"
+    anonymize = "anonymize"
     """
-    Modifying or updating existing PII.
+    Change PII so that nobody can trace it back to a person again.
     """
-    retrieval = "retrieval"
+    disclose = "disclose"
     """
-    Accessing or fetching stored PII for use.
+    Make PII available to another party.
     """
-    consultation = "consultation"
+    disseminate = "disseminate"
     """
-    Reviewing or examining PII without necessarily extracting it.
+    Spread PII widely, such as by publishing it.
     """
-    disclosure = "disclosure"
+    delete = "delete"
     """
-    Making PII available to other parties or making it accessible.
+    Remove PII so that it can no longer be reached or used.
     """
-    anonymization = "anonymization"
+    destroy = "destroy"
     """
-    Irreversibly altering PII such that the PII principal can no longer be identified directly or indirectly.
-    """
-    pseudonymization = "pseudonymization"
-    """
-    Replacing identifying information in PII with an alias, retaining linkability while restricting direct identification.
-    """
-    dissemination = "dissemination"
-    """
-    Widely distributing or publishing PII to multiple recipients.
-    """
-    deletion = "deletion"
-    """
-    Removing PII such that it is no longer accessible or usable.
-    """
-    destruction = "destruction"
-    """
-    Permanently and irrecoverably eliminating PII and its carriers.
+    Remove PII and whatever carried it, beyond recovery.
     """
 
 
-class SafeguardingRequirementFactor(str, Enum):
+class PfPiiRecognition(str, Enum):
     """
-    Categories of factors that influence an organization's privacy safeguarding requirements, as described in Clause 5.5 and Figure 1.
+    The ways information turns out to be PII, which a record lists so that a reader can see why the item counts.
     """
-    legal_and_regulatory = "legal_and_regulatory"
+    direct_identifier = "direct_identifier"
     """
-    Safeguarding requirements arising from applicable laws (international, national, and local), regulations, judicial decisions, and negotiated labour or work-council agreements.
+    It singles out one person by itself, such as a passport number.
     """
-    contractual = "contractual"
+    distinguishing_trait = "distinguishing_trait"
     """
-    Safeguarding requirements set out in data processing agreements, company policies, and binding corporate rules agreed between PII controllers, processors, and other parties.
+    It sets one person apart, alone or with other details, such as a rare job title in a small town.
     """
-    business = "business"
+    linked_information = "linked_information"
     """
-    Safeguarding requirements driven by the application's characteristics, industry guidelines, codes of conduct, or standards voluntarily adopted by the organization as part of its business model.
+    It says something about a person who is already known, or can be joined to a record that does.
     """
-    other = "other"
+    pseudonym = "pseudonym"
     """
-    Safeguarding requirements arising from PII principal privacy preferences, internal control frameworks, or technical standards voluntarily adopted by the organization.
+    It holds an alias in place of an identifier, and the alias can be traced.
+    """
+    metadata = "metadata"
+    """
+    It describes other data, such as a message's sender and time, and so reveals a person.
+    """
+    unsolicited = "unsolicited"
+    """
+    The organization received it without asking for it.
     """
 
 
-class PIISensitivityCategory(str, Enum):
+class PfSensitivity(str, Enum):
     """
-    Categories of PII based on sensitivity, distinguishing standard PII from sensitive PII as defined in Clause 3.23.
+    How much harm the PII could do to the person it is about.
     """
-    standard = "standard"
+    ordinary = "ordinary"
     """
-    PII that does not meet the threshold for sensitive PII but still requires appropriate privacy protection measures.
+    It needs the usual protection for PII.
     """
     sensitive = "sensitive"
     """
-    PII warranting heightened protection due to its potential for significant adverse impact on the individual, or because applicable law classifies it as a special category. Typical examples include health, biometric, financial, racial, religious, political, and sexual orientation data. Processing may require opt-in consent or specific legal authorization.
+    Its misuse could badly harm the person, or a law sets it apart, such as health data, so it needs stronger protection.
     """
 
 
-class ConsentMechanism(str, Enum):
+class PfRequirementFactor(str, Enum):
     """
-    The mechanism by which a PII principal provides or withholds consent for PII processing, as referenced in Clauses 3.6 and 6.2.
+    Where a requirement to safeguard PII comes from.
     """
-    opt_in = "opt_in"
+    law = "law"
     """
-    The PII principal must take an explicit action to express prior consent for their PII to be processed for a particular purpose.
+    A statute, a regulation, a court's ruling or a collective agreement.
     """
-    opt_out = "opt_out"
+    contract = "contract"
     """
-    The PII principal must take a separate action to withhold or withdraw consent; processing is presumed permitted unless that action is taken.
+    An agreement between parties, such as one with a processor, or rules that bind a group of companies.
     """
-    implied = "implied"
+    business = "business"
     """
-    Consent implied by some action of the PII principal, such as placing an order or using a service, where applicable law permits.
+    How the business or its application works, or a code of practice it chose to follow.
     """
-
-
-class PrivacyRiskLevel(str, Enum):
+    other = "other"
     """
-    Qualitative assessment of privacy risk level based on likelihood and potential adverse consequences for PII principals.
-    """
-    low = "low"
-    """
-    Limited potential adverse consequences for PII principals.
-    """
-    medium = "medium"
-    """
-    Moderate risk requiring management attention and planned controls.
-    """
-    high = "high"
-    """
-    Significant risk with potentially serious consequences for PII principals.
-    """
-    very_high = "very_high"
-    """
-    Severe risk with potentially catastrophic or irreversible consequences for PII principals requiring immediate treatment.
+    Another source, such as what people have said they prefer, or a technical standard the organization adopted.
     """
 
 
-class PrivacyControlType(str, Enum):
+class PfPolicyAudience(str, Enum):
     """
-    Categories of privacy controls that treat privacy risks by reducing their likelihood or consequences, as noted in Clause 3.12 Note 1.
+    Who a privacy policy is written for.
+    """
+    internal = "internal"
+    """
+    People inside the organization, who act on its commitments.
+    """
+    public_notice = "public_notice"
+    """
+    The people whose PII it handles, who read it to learn what happens.
+    """
+
+
+class PfControlKind(str, Enum):
+    """
+    The form a control takes.
     """
     organizational = "organizational"
     """
-    Policies, procedures, guidelines, management practices, or organizational structures used as privacy controls.
+    A policy, a procedure, a role or another way of running things.
     """
     physical = "physical"
     """
-    Physical measures protecting PII and PII processing infrastructure.
+    A measure that guards the places and equipment where PII sits.
     """
     technical = "technical"
     """
-    ICT measures, products, or services that protect privacy, including privacy enhancing technologies (PETs).
+    A system, product or service that protects PII.
     """
-    legal_contractual = "legal_contractual"
+    privacy_enhancing_technology = "privacy_enhancing_technology"
     """
-    Legal contracts, binding corporate rules, or data processing agreements implementing privacy safeguards.
+    A technical measure built to reduce what is collected or revealed about people.
+    """
+    contractual = "contractual"
+    """
+    A binding agreement, such as one with a processor or across a group of companies.
+    """
+
+
+class PfImplementationState(str, Enum):
+    """
+    How far a control has been put into effect.
+    """
+    planned = "planned"
+    """
+    It is decided on but not started.
+    """
+    in_progress = "in_progress"
+    """
+    It is being put in place.
+    """
+    in_operation = "in_operation"
+    """
+    It is in place and working.
+    """
+    retired = "retired"
+    """
+    It is no longer in use.
+    """
+
+
+class PfRiskLevel(str, Enum):
+    """
+    A qualitative level of risk to people, offered for an organization that adopts it, since the framework leaves the scale to the organization.
+    """
+    low = "low"
+    """
+    The harm to people would be limited.
+    """
+    medium = "medium"
+    """
+    The harm would call for planned measures.
+    """
+    high = "high"
+    """
+    The harm could be serious.
+    """
+    very_high = "very_high"
+    """
+    The harm could be severe or lasting, and needs treating at once.
+    """
+
+
+class PfConsentMechanism(str, Enum):
+    """
+    How a person's agreement to processing is obtained.
+    """
+    opt_in = "opt_in"
+    """
+    The person acts to agree before the processing starts.
+    """
+    opt_out = "opt_out"
+    """
+    The processing goes ahead unless the person acts to refuse it.
+    """
+    implied = "implied"
+    """
+    Something the person does shows agreement, such as placing an order, where the law allows that reading.
+    """
+
+
+class PfConsentState(str, Enum):
+    """
+    Where a person's agreement stands.
+    """
+    given = "given"
+    """
+    The agreement holds.
+    """
+    refused = "refused"
+    """
+    The person said no.
+    """
+    withdrawn = "withdrawn"
+    """
+    The person took back an agreement they had given.
+    """
+    expired = "expired"
+    """
+    The agreement ran out.
     """
 
 
 
-class NamedEntity(ConfiguredBaseModel):
+class PfRecordMixin(ConfiguredBaseModel):
     """
-    Abstract base class for all entities with a unique identifier, name, and description. Provides common identification and documentation slots.
+    What every record of the framework has, so that other records can refer to it: an identifier, a title and a description.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'comments': ['All concrete classes should inherit from this or a subclass',
-                      'Ensures consistent identification across the schema'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['It is a mixin, not a base class, so that the adapt copy can '
+                      "re-root some record classes on LOKF's Concept and leave the "
+                      "others as they are. lokf adapt replaces pf_id with LOKF's id, "
+                      'and a class that declares id itself must descend from Concept.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'slot_usage': {'id': {'description': 'Unique identifier for this entity '
-                                              'instance.',
-                               'identifier': True,
-                               'name': 'id',
-                               'required': True}}})
+         'mixin': True,
+         'slot_usage': {'title': {'name': 'title',
+                                  'pattern': '^\\s*\\S',
+                                  'required': True}}})
 
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyFramework(NamedEntity):
+class PfFramework(PfRecordMixin):
     """
-    Top-level container representing an organization's privacy framework for protecting PII within ICT systems.
+    One organization's use of the privacy framework: the systems it covers, and every record the organization keeps about them, each kind in a list of its own.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.1'}},
-         'comments': ['Root entity for any ISO 29100 conformance dataset',
-                      'Aggregates all privacy framework components and their '
-                      'relationships',
-                      'Reference: ISO/IEC 29100:2024 Clause 5.1. ISO/IEC standards '
-                      'text is copyright ISO - not reproduced here.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core'],
-         'related_mappings': ['iso27001:InformationSecurityManagementSystem'],
+         'mixins': ['PfRecordMixin'],
          'tree_root': True})
 
-    organization_name: Optional[str] = Field(default=None, description="""Name of the organization operating the privacy framework.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.1'}},
-         'domain_of': ['PrivacyFramework']} })
-    ict_system_description: Optional[str] = Field(default=None, description="""Description of the ICT system(s) within the scope of the privacy framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    applicable_jurisdictions: Optional[list[str]] = Field(default=None, description="""Legal jurisdictions whose privacy laws apply to the organization.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    pii_controllers: Optional[list[PIIController]] = Field(default=None, description="""PII controllers operating within this privacy framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    pii_processors: Optional[list[PIIProcessor]] = Field(default=None, description="""PII processors engaged within this privacy framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    third_parties: Optional[list[ThirdParty]] = Field(default=None, description="""Third parties that may receive PII within this framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    pii_principals_description: Optional[str] = Field(default=None, description="""Description of the categories of PII principals whose PII is processed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    privacy_policy: Optional[str] = Field(default=None, description="""The organization's privacy policy governing PII processing.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.6'}},
-         'domain_of': ['PrivacyFramework']} })
-    privacy_controls: Optional[list[PrivacyControl]] = Field(default=None, description="""Privacy controls implemented within the framework.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.7'}},
-         'domain_of': ['PrivacyFramework']} })
-    safeguarding_requirements: Optional[list[PrivacySafeguardingRequirement]] = Field(default=None, description="""Privacy safeguarding requirements applicable to the organization.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.5'}},
-         'domain_of': ['PrivacyFramework']} })
-    privacy_risks: Optional[list[PrivacyRisk]] = Field(default=None, description="""Privacy risks identified within the framework scope.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    privacy_impact_assessments: Optional[list[PrivacyImpactAssessment]] = Field(default=None, description="""Privacy impact assessments conducted under this framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    privacy_breaches: Optional[list[PrivacyBreach]] = Field(default=None, description="""Privacy breaches recorded within the framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    pii_processing_activities: Optional[list[PIIProcessingActivity]] = Field(default=None, description="""PII processing activities within the framework scope.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    principle_implementations: Optional[list[PrivacyPrincipleImplementation]] = Field(default=None, description="""Implementation records for each of the eleven privacy principles.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyFramework']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_jurisdictions: Optional[list[str]] = Field(default=None, description="""The legal systems that apply to the record, in the organization's terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework', 'PfActor']} })
+    pf_organization: str = Field(default=..., description="""The organization that applies the framework.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_ict_systems: Optional[list[str]] = Field(default=None, description="""The ICT systems the framework covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_actors: Optional[list[Union[PfPiiPrincipal,PfPiiController,PfPiiProcessor,PfThirdParty]]] = Field(default=None, description="""Those who take part in handling the PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_pii_items: Optional[list[PfPiiItem]] = Field(default=None, description="""The PII the organization has recognized.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_flows: Optional[list[PfPiiFlow]] = Field(default=None, description="""The ways PII passes between the actors.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_processing_activities: Optional[list[PfProcessingActivity]] = Field(default=None, description="""What the organization does with PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_safeguarding_requirements: Optional[list[PfSafeguardingRequirement]] = Field(default=None, description="""What the organization must do to safeguard PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_policies: Optional[list[PfPolicy]] = Field(default=None, description="""The organization's privacy policies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_controls: Optional[list[PfControl]] = Field(default=None, description="""The organization's controls.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_principle_implementations: Optional[list[PfPrincipleImplementation]] = Field(default=None, description="""How the organization stands against each privacy principle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_risks: Optional[list[PfRisk]] = Field(default=None, description="""The risks to people that the organization has identified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_impact_assessments: Optional[list[PfImpactAssessment]] = Field(default=None, description="""The organization's privacy impact assessments.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_breaches: Optional[list[PfBreach]] = Field(default=None, description="""The breaches the organization has recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_consents: Optional[list[PfConsent]] = Field(default=None, description="""The consents the organization holds.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_preferences: Optional[list[PfPreference]] = Field(default=None, description="""What people have said they prefer.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyStakeholder(NamedEntity):
+class PfActor(PfRecordMixin):
     """
-    Schema base class for the four actor types recognized by the privacy framework: PII principals, PII controllers, PII processors, and third parties. Provides shared contact and jurisdictional attributes common to all stakeholder roles.
+    Someone who takes part in handling PII, told apart by the part they play. One party can play different parts for different PII, with a record for each.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.20'}},
-         'comments': ['Reference: ISO/IEC 29100:2024 Clause 3.20. ISO/IEC standards '
-                      'text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:Entity'],
+         'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.2'}},
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core'],
-         'related_mappings': ['iso27001:InterestedParty']})
+         'mixins': ['PfRecordMixin'],
+         'slot_usage': {'pf_actor_type': {'name': 'pf_actor_type', 'required': True}}})
 
-    contact_information: Optional[str] = Field(default=None, description="""Contact details for the privacy stakeholder.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    jurisdictions: Optional[list[str]] = Field(default=None, description="""Jurisdictions in which the privacy stakeholder operates.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_actor_type: Literal["PfActor"] = Field(default="PfActor", description="""The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['PfActor']} })
+    pf_jurisdictions: Optional[list[str]] = Field(default=None, description="""The legal systems that apply to the record, in the organization's terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework', 'PfActor']} })
+    pf_contact: Optional[str] = Field(default=None, description="""How to reach the actor about privacy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfActor']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PIIPrincipal(PrivacyStakeholder):
+class PfPiiPrincipal(PfActor):
     """
-    Schema class for a data subject — the individual to whom PII belongs. Links consent records and privacy preferences to the natural person whose data is being processed, enabling subject-centric data models.
+    The person the PII is about, or a group of such people when the organization records them together.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.9'}},
-         'comments': ['A PII principal may be identified directly or indirectly '
-                      'through a combination of attributes',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.9 and 5.2.2. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.2'}},
          'exact_mappings': ['dpv:DataSubject'],
-         'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core'],
-         'narrow_mappings': ['schema:Person']})
+         'from_schema': 'https://w3id.org/lmodel/iso29100'})
 
-    privacy_preferences: Optional[list[PrivacyPreference]] = Field(default=None, description="""Privacy preferences expressed by the PII principal.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.15'}},
-         'domain_of': ['PIIPrincipal']} })
-    consent_records: Optional[list[ConsentRecord]] = Field(default=None, description="""Consent records associated with the PII principal.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.4'}},
-         'domain_of': ['PIIPrincipal']} })
-    contact_information: Optional[str] = Field(default=None, description="""Contact details for the privacy stakeholder.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    jurisdictions: Optional[list[str]] = Field(default=None, description="""Jurisdictions in which the privacy stakeholder operates.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_actor_type: Literal["PfPiiPrincipal"] = Field(default="PfPiiPrincipal", description="""The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['PfActor']} })
+    pf_jurisdictions: Optional[list[str]] = Field(default=None, description="""The legal systems that apply to the record, in the organization's terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework', 'PfActor']} })
+    pf_contact: Optional[str] = Field(default=None, description="""How to reach the actor about privacy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfActor']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PIIController(PrivacyStakeholder):
+class PfPiiController(PfActor):
     """
-    Schema class for an organization or individual that determines why and how PII is processed. Captures appointed processors, legal bases relied upon, privacy policy reference, and data protection officer details. Bears ultimate accountability for privacy principle adherence.
+    The party that decides why and how PII is processed, and answers for it even when another party does the work.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.8'}},
-         'comments': ['May appoint PII processors to process PII on its behalf while '
-                      'retaining responsibility',
-                      'More than one PII controller may exist for the same PII set',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.8 and 5.2.3. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.2'}},
          'exact_mappings': ['dpv:DataController'],
-         'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core'],
-         'related_mappings': ['schema:Organization']})
+         'from_schema': 'https://w3id.org/lmodel/iso29100'})
 
-    processing_purposes: Optional[list[str]] = Field(default=None, description="""Purposes for which the PII controller processes PII.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.3'}},
-         'domain_of': ['PIIController']} })
-    legal_bases: Optional[list[str]] = Field(default=None, description="""Legal bases relied upon for PII processing by this controller.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '5.5.2'}},
-         'domain_of': ['PIIController']} })
-    appointed_processors: Optional[list[str]] = Field(default=None, description="""PII processors appointed by this controller.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.8'}},
-         'domain_of': ['PIIController']} })
-    privacy_policy_ref: Optional[str] = Field(default=None, description="""Reference to the privacy policy of this PII controller.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIController']} })
-    data_protection_officer: Optional[str] = Field(default=None, description="""Name or contact of the data protection officer, where applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIController']} })
-    contact_information: Optional[str] = Field(default=None, description="""Contact details for the privacy stakeholder.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    jurisdictions: Optional[list[str]] = Field(default=None, description="""Jurisdictions in which the privacy stakeholder operates.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_purposes: Optional[list[str]] = Field(default=None, description="""The reasons the PII is processed, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfConsent']} })
+    pf_legal_bases: Optional[list[str]] = Field(default=None, description="""What makes the processing lawful, in the terms of the law that applies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController', 'PfProcessingActivity']} })
+    pf_appointed_processors: Optional[list[str]] = Field(default=None, description="""The processors that work for the controller.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController']} })
+    pf_controller_policy: Optional[str] = Field(default=None, description="""The privacy policy the controller works under.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController']} })
+    pf_privacy_officer: Optional[str] = Field(default=None, description="""The person who advises the controller on privacy, where there is one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController']} })
+    pf_actor_type: Literal["PfPiiController"] = Field(default="PfPiiController", description="""The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['PfActor']} })
+    pf_jurisdictions: Optional[list[str]] = Field(default=None, description="""The legal systems that apply to the record, in the organization's terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework', 'PfActor']} })
+    pf_contact: Optional[str] = Field(default=None, description="""How to reach the actor about privacy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfActor']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PIIProcessor(PrivacyStakeholder):
+class PfPiiProcessor(PfActor):
     """
-    Schema class for an organization engaged to process PII under a PII controller's instructions. Records the instructing controller, data processing agreement reference, and any sub-processors engaged on the controller's behalf.
+    A party that processes PII for a controller, on that controller's instructions.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.10'}},
-         'comments': ['In some jurisdictions the PII processor is bound by a contract',
-                      "{'Distinct from a third party': 'legal control of PII remains "
-                      "with the original PII controller'}",
-                      'Reference: ISO/IEC 29100:2024 Clause 3.10 and 5.2.4. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.2'}},
          'exact_mappings': ['dpv:DataProcessor'],
+         'from_schema': 'https://w3id.org/lmodel/iso29100'})
+
+    pf_instructing_controllers: Optional[list[str]] = Field(default=None, description="""The controllers whose instructions the processor follows.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiProcessor']} })
+    pf_processing_agreement: Optional[str] = Field(default=None, description="""The reference of the agreement that binds the processor, where there is one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiProcessor']} })
+    pf_sub_processors: Optional[list[str]] = Field(default=None, description="""The processors this processor has engaged in turn.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiProcessor']} })
+    pf_actor_type: Literal["PfPiiProcessor"] = Field(default="PfPiiProcessor", description="""The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['PfActor']} })
+    pf_jurisdictions: Optional[list[str]] = Field(default=None, description="""The legal systems that apply to the record, in the organization's terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework', 'PfActor']} })
+    pf_contact: Optional[str] = Field(default=None, description="""How to reach the actor about privacy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfActor']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class PfThirdParty(PfActor):
+    """
+    A party outside the controller and its processors that receives PII for its own ends, and usually becomes a controller of that PII.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.2'}},
+         'from_schema': 'https://w3id.org/lmodel/iso29100'})
+
+    pf_receiving_purpose: Optional[str] = Field(default=None, description="""What the third party receives the PII for.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfThirdParty']} })
+    pf_transfer_basis: Optional[str] = Field(default=None, description="""What makes the passing of PII to the third party lawful.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfThirdParty']} })
+    pf_actor_type: Literal["PfThirdParty"] = Field(default="PfThirdParty", description="""The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['PfActor']} })
+    pf_jurisdictions: Optional[list[str]] = Field(default=None, description="""The legal systems that apply to the record, in the organization's terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfFramework', 'PfActor']} })
+    pf_contact: Optional[str] = Field(default=None, description="""How to reach the actor about privacy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfActor']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class PfPiiItem(PfRecordMixin):
+    """
+    A piece or set of information that can be tied to a person, why it counts as PII, how sensitive it is and how it is handled.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.4'}},
+         'comments': ["DPV's mapping says dpv:PersonalData is narrower than the "
+                      "standard's PII, and this class keeps that direction."],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core']})
+         'mixins': ['PfRecordMixin'],
+         'narrow_mappings': ['dpv:PersonalData']})
 
-    instructing_controller: Optional[str] = Field(default=None, description="""The PII controller on whose behalf this processor acts.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.10'}},
-         'domain_of': ['PIIProcessor']} })
-    processing_agreement_ref: Optional[str] = Field(default=None, description="""Reference to the data processing agreement with the controller.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '5.5.3'}},
-         'domain_of': ['PIIProcessor']} })
-    sub_processors: Optional[list[str]] = Field(default=None, description="""Sub-processors engaged by this PII processor.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessor']} })
-    contact_information: Optional[str] = Field(default=None, description="""Contact details for the privacy stakeholder.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    jurisdictions: Optional[list[str]] = Field(default=None, description="""Jurisdictions in which the privacy stakeholder operates.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_concerned_principals: Optional[list[str]] = Field(default=None, description="""The people the PII of the record is about.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem', 'PfRisk']} })
+    pf_operations: Optional[list[PfOperation]] = Field(default=None, description="""The things done to the PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem', 'PfProcessingActivity']} })
+    pf_retention: Optional[str] = Field(default=None, description="""How long the PII is kept, as an ISO 8601 duration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem', 'PfProcessingActivity']} })
+    pf_pii_categories: Optional[list[str]] = Field(default=None, description="""What the item holds, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem']} })
+    pf_recognized_by: Optional[list[PfPiiRecognition]] = Field(default=None, description="""Why the information counts as PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem']} })
+    pf_sensitivity: Optional[PfSensitivity] = Field(default=None, description="""How sensitive the item is.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem']} })
+    pf_pseudonymized: Optional[bool] = Field(default=None, description="""Whether an alias stands in for the item's identifying details.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem']} })
+    pf_linkability: Optional[str] = Field(default=None, description="""How easily the item could be joined with other data to identify someone, in the organization's words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class ThirdParty(PrivacyStakeholder):
+class PfPiiFlow(PfRecordMixin):
     """
-    Schema class for an external entity that receives PII outside the PII processor relationship — i.e., as a recipient that typically becomes a PII controller in its own right. Captures the receiving purpose and the legal basis for the transfer.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.24'}},
-         'comments': ['Third parties do not process PII on behalf of the original PII '
-                      'controller',
-                      'Upon receiving PII, a third party typically assumes controller '
-                      'responsibilities',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.24 and 5.2.5. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:ThirdParty'],
-         'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core']})
-
-    receiving_purpose: Optional[str] = Field(default=None, description="""Purpose for which the third party receives PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ThirdParty']} })
-    transfer_basis: Optional[str] = Field(default=None, description="""Legal or contractual basis for transferring PII to this third party.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '5.5.2'}},
-         'domain_of': ['ThirdParty']} })
-    contact_information: Optional[str] = Field(default=None, description="""Contact details for the privacy stakeholder.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    jurisdictions: Optional[list[str]] = Field(default=None, description="""Jurisdictions in which the privacy stakeholder operates.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyStakeholder']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
-
-
-class PersonallyIdentifiableInformation(NamedEntity):
-    """
-    Schema class representing a data element or attribute set that can be linked back to a natural person — either directly or through combination with other attributes. Captures sensitivity classification, identifier type, pseudonymization status, retention schedule, and processing operations applicable to the data.
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.7'}},
-         'broad_mappings': ['dpv:PersonalData'],
-         'comments': ['Encompasses direct identifiers, linkable attributes, and '
-                      'combinations thereof',
-                      'Sensitivity assessment should consider context and combination '
-                      'of attributes',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.7 and 5.4. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['pii_recognition']})
-
-    pii_category: Optional[list[str]] = Field(default=None, description="""Category or type of PII (e.g., financial, health, biometric, location).""", json_schema_extra = { "linkml_meta": {'comments': ['See Table 2 of the standard for informative examples of '
-                      'attributes that can be PII'],
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    sensitivity_level: Optional[PIISensitivityCategory] = Field(default=None, description="""Sensitivity classification of this PII.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.23'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    identifier_type: Optional[str] = Field(default=None, description="""Type of identifier (e.g., direct identifier, indirect identifier, linkable attribute, or combination of attributes).""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '5.4.2'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    is_pseudonymized: Optional[bool] = Field(default=None, description="""Whether the PII has been pseudonymized.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.22'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    is_anonymized: Optional[bool] = Field(default=None, description="""Whether the PII has been anonymized. Anonymized data is no longer considered PII as the PII principal can no longer be identified.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.2'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    linkability_risk: Optional[str] = Field(default=None, description="""Assessment of the risk that this data can be linked to identify a PII principal, even if not directly identifying on its own.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '5.4.5'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    applicable_to_principal: Optional[str] = Field(default=None, description="""Reference or description of the PII principal(s) to whom this PII relates.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PersonallyIdentifiableInformation']} })
-    retention_schedule: Optional[str] = Field(default=None, description="""Schedule defining how long this PII is retained and how it is disposed.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.6'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    processing_operations: Optional[list[PIIProcessingOperation]] = Field(default=None, description="""Types of processing operations performed on this PII.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.21'}},
-         'domain_of': ['PersonallyIdentifiableInformation']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
-
-
-class PIIFlowScenario(NamedEntity):
-    """
-    A documented scenario describing the flow of PII among privacy framework actors (PII principal, PII controller, PII processor, and third party), as illustrated in Table 1 of Clause 5.3.
+    One way PII passes from one actor to another, and who decides what happens to it afterwards.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'comments': ['Eight canonical flow scenarios are identified in Table 1 of the '
-                      'standard',
-                      'Reference: ISO/IEC 29100:2024 Clause 5.3 and Table 1. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:PersonalDataHandling'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core']})
+         'mixins': ['PfRecordMixin']})
 
-    scenario_label: Optional[str] = Field(default=None, description="""Label for the PII flow scenario (e.g., \"Scenario a\").""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'domain_of': ['PIIFlowScenario']} })
-    pii_principal_role: Optional[PIIFlowRole] = Field(default=None, description="""Role of the PII principal in this flow scenario.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'domain_of': ['PIIFlowScenario']} })
-    pii_controller_role: Optional[PIIFlowRole] = Field(default=None, description="""Role of the PII controller in this flow scenario.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'domain_of': ['PIIFlowScenario']} })
-    pii_processor_role: Optional[PIIFlowRole] = Field(default=None, description="""Role of the PII processor in this flow scenario.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'domain_of': ['PIIFlowScenario']} })
-    third_party_role: Optional[PIIFlowRole] = Field(default=None, description="""Role of the third party in this flow scenario.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'domain_of': ['PIIFlowScenario']} })
-    scenario_description: Optional[str] = Field(default=None, description="""Description of the PII flow scenario and when it occurs.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIFlowScenario']} })
-    legal_control_retention: Optional[str] = Field(default=None, description="""Description of how legal control of PII is retained or transferred, relevant to distinguishing between a PII processor and a third party.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.3'}},
-         'domain_of': ['PIIFlowScenario']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_concerned_pii: Optional[list[str]] = Field(default=None, description="""The PII items the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfRisk',
+                       'PfBreach',
+                       'PfConsent']} })
+    pf_provider: str = Field(default=..., description="""The actor the PII comes from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow']} })
+    pf_recipient: str = Field(default=..., description="""The actor the PII goes to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow']} })
+    pf_decides_afterwards: Optional[str] = Field(default=None, description="""The actor that decides what happens to the PII once it has passed. A processor never holds this position.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacySafeguardingRequirement(NamedEntity):
+class PfProcessingActivity(PfRecordMixin):
     """
-    Schema class for an applicable requirement that drives an organization's PII processing controls. Requirements are identified through the privacy risk management process and arise from legal/regulatory, contractual, business, or other influencing factors.
+    Something the organization does with PII: why, on what basis, what it does to which PII, who is responsible, and how long the PII is kept.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.19'}},
-         'comments': ['Identified through the privacy risk management process',
-                      'Can range from high-level principles to specific control '
-                      'mandates',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.19 and 5.5. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ["The fields are what an adopter keeps. The framework's own "
+                      'subject here is what counts as processing, which PfOperation '
+                      'lists.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_safeguarding']})
+         'mixins': ['PfRecordMixin']})
 
-    requirement_factor: Optional[SafeguardingRequirementFactor] = Field(default=None, description="""Category of factor driving this safeguarding requirement.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.5'}},
-         'domain_of': ['PrivacySafeguardingRequirement']} })
-    requirement_text: Optional[str] = Field(default=None, description="""Organization-authored statement of the safeguarding requirement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacySafeguardingRequirement']} })
-    source_reference: Optional[str] = Field(default=None, description="""Reference to the source (e.g., law name, regulation, contract, or standard).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacySafeguardingRequirement']} })
-    applicable_to_actors: Optional[list[str]] = Field(default=None, description="""Privacy stakeholder roles to which this requirement applies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacySafeguardingRequirement']} })
-    related_controls: Optional[list[str]] = Field(default=None, description="""Privacy controls that implement or contribute to this requirement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacySafeguardingRequirement']} })
-    priority: Optional[str] = Field(default=None, description="""Priority level for addressing this requirement or risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacySafeguardingRequirement']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_purposes: Optional[list[str]] = Field(default=None, description="""The reasons the PII is processed, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfConsent']} })
+    pf_legal_bases: Optional[list[str]] = Field(default=None, description="""What makes the processing lawful, in the terms of the law that applies.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController', 'PfProcessingActivity']} })
+    pf_operations: Optional[list[PfOperation]] = Field(default=None, description="""The things done to the PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem', 'PfProcessingActivity']} })
+    pf_concerned_pii: Optional[list[str]] = Field(default=None, description="""The PII items the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfRisk',
+                       'PfBreach',
+                       'PfConsent']} })
+    pf_retention: Optional[str] = Field(default=None, description="""How long the PII is kept, as an ISO 8601 duration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem', 'PfProcessingActivity']} })
+    pf_related_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that act on the record's subject.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity', 'PfPrincipleImplementation', 'PfRisk']} })
+    pf_controller: str = Field(default=..., description="""The controller that answers for the activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity']} })
+    pf_processors: Optional[list[str]] = Field(default=None, description="""The processors that do the work.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity']} })
+    pf_activity_flows: Optional[list[str]] = Field(default=None, description="""The flows of PII the activity involves.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity']} })
+    pf_sensitivities: Optional[list[PfSensitivity]] = Field(default=None, description="""The levels of sensitivity among the PII involved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity']} })
+    pf_crosses_borders: Optional[bool] = Field(default=None, description="""Whether PII leaves the jurisdiction it was collected in.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity']} })
+    pf_transfer_safeguards: Optional[list[str]] = Field(default=None, description="""What protects the PII when it crosses a border.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyPolicy(NamedEntity):
+class PfSafeguardingRequirement(PfRecordMixin):
     """
-    Schema class for a governing document expressing an organization's intentions and commitments for PII processing. Covers both the internal policy document and any external privacy notice made available to PII principals (referred to as a notice in this framework).
+    Something the organization must do to protect PII, and where that duty comes from.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.14'}},
-         'comments': ["Internal privacy policy expresses the organization's "
-                      'commitments',
-                      'External privacy policy (notice) provides information to PII '
-                      'principals',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.14 and 5.6. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['schema:PrivacyPolicy', 'dpv:PrivacyNotice'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.5'}},
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_governance'],
-         'related_mappings': ['iso27001:InformationSecurityPolicy']})
+         'mixins': ['PfRecordMixin']})
 
-    policy_version: Optional[str] = Field(default=None, description="""Version identifier for the privacy policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy'], 'slot_uri': 'dcterms:hasVersion'} })
-    effective_date: Optional[date] = Field(default=None, description="""Date from which the privacy policy takes effect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    policy_scope: Optional[str] = Field(default=None, description="""Scope of the privacy policy (systems, activities, or organizations covered).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    processing_purposes_covered: Optional[list[str]] = Field(default=None, description="""Processing purposes addressed by this privacy policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    pii_categories_covered: Optional[list[str]] = Field(default=None, description="""Categories of PII addressed by this privacy policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    data_retention_statement: Optional[str] = Field(default=None, description="""Statement on how long PII is retained and how it is disposed.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.6'}},
-         'domain_of': ['PrivacyPolicy']} })
-    pii_principal_rights: Optional[list[str]] = Field(default=None, description="""Rights available to PII principals under this policy.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.9'}},
-         'domain_of': ['PrivacyPolicy']} })
-    contact_for_inquiries: Optional[str] = Field(default=None, description="""Contact information for PII-related inquiries from PII principals.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    last_review_date: Optional[date] = Field(default=None, description="""Date when the policy was last reviewed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    is_external_notice: Optional[bool] = Field(default=None, description="""Whether this is an external privacy notice (available to PII principals) rather than an internal policy document.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.6'}},
-         'domain_of': ['PrivacyPolicy']} })
-    applicable_principles: Optional[list[PrivacyPrinciple]] = Field(default=None, description="""Privacy principles this policy addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPolicy']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_requirement_factor: PfRequirementFactor = Field(default=..., description="""Where the requirement comes from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfSafeguardingRequirement']} })
+    pf_requirement_source: Optional[str] = Field(default=None, description="""The law, contract or other document that states it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfSafeguardingRequirement']} })
+    pf_applies_to: Optional[list[str]] = Field(default=None, description="""The actors that must meet it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfSafeguardingRequirement']} })
+    pf_met_by: Optional[list[str]] = Field(default=None, description="""The controls that meet it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfSafeguardingRequirement']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyControl(NamedEntity):
+class PfPolicy(PfRecordMixin):
     """
-    Schema class for a protective measure that manages privacy risks within the framework. Can be organizational, physical, technical (including Privacy Enhancing Technologies), or legal-contractual in nature; linked to the principles and safeguarding requirements it addresses.
+    A privacy policy: what the organization commits to about PII, written for its own people or as a notice to the people whose PII it handles.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.12'}},
-         'comments': ['Also used as a synonym for safeguard or countermeasure',
-                      'Should be identified through privacy risk assessment and '
-                      'treatment',
-                      "{'Privacy by design': 'controls should be integrated at the "
-                      "design phase of ICT systems'}",
-                      'Reference: ISO/IEC 29100:2024 Clause 3.12 and 5.7. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:TechnicalOrganisationalMeasure'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.6'}},
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_governance'],
-         'related_mappings': ['iso27001:SecurityControl']})
+         'mixins': ['PfRecordMixin']})
 
-    control_type: Optional[PrivacyControlType] = Field(default=None, description="""Category of this privacy control.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.12'}},
-         'domain_of': ['PrivacyControl']} })
-    control_objective: Optional[str] = Field(default=None, description="""The privacy objective this control is intended to achieve.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl']} })
-    addressed_principles: Optional[list[PrivacyPrinciple]] = Field(default=None, description="""Privacy principles this control helps implement.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl']} })
-    implementation_description: Optional[str] = Field(default=None, description="""Organization-authored description of how the control is implemented.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl']} })
-    responsible_actor: Optional[str] = Field(default=None, description="""Actor responsible for implementing and maintaining this control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl']} })
-    implementation_status: Optional[str] = Field(default=None, description="""Current implementation status of the control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl'],
-         'examples': [{'value': 'planned'},
-                      {'value': 'implemented'},
-                      {'value': 'not_applicable'}]} })
-    effectiveness_evidence: Optional[list[str]] = Field(default=None, description="""Evidence of control effectiveness.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl']} })
-    related_safeguarding_requirements: Optional[list[str]] = Field(default=None, description="""Safeguarding requirements this control addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyControl']} })
-    is_pet: Optional[bool] = Field(default=None, description="""Whether this control qualifies as a Privacy Enhancing Technology (PET): an ICT-based privacy control that protects privacy by minimizing, eliminating, or preventing unnecessary PII processing without reducing the intended functionality of the system.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.13'}},
-         'domain_of': ['PrivacyControl']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_purposes: Optional[list[str]] = Field(default=None, description="""The reasons the PII is processed, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfConsent']} })
+    pf_concerned_pii: Optional[list[str]] = Field(default=None, description="""The PII items the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfRisk',
+                       'PfBreach',
+                       'PfConsent']} })
+    pf_principles: Optional[list[PfPrinciple]] = Field(default=None, description="""The privacy principles the record bears on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy', 'PfControl']} })
+    pf_policy_audience: PfPolicyAudience = Field(default=..., description="""Who the policy is written for.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_policy_version: Optional[str] = Field(default=None, description="""The version of the policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_policy_scope: Optional[str] = Field(default=None, description="""What the policy covers.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_policy_effective_date: Optional[date] = Field(default=None, description="""When the policy takes effect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_policy_last_reviewed: Optional[date] = Field(default=None, description="""When the policy was last reviewed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_retention_statement: Optional[str] = Field(default=None, description="""What the policy says about how long PII is kept.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_stated_rights: Optional[list[str]] = Field(default=None, description="""The rights the policy tells people they have.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_inquiry_contact: Optional[str] = Field(default=None, description="""Where people can send questions about the policy.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyRisk(NamedEntity):
+class PfControl(PfRecordMixin):
     """
-    Schema class representing a potential adverse outcome for PII principals from a PII processing activity. Captures the risk source, likelihood and impact assessments, inherent and residual risk levels, and links to mitigating controls and accountable risk owner.
+    A measure that treats a privacy risk by making it less likely or less harmful, the principles it serves and how far it has been put into effect.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.17'}},
-         'comments': ['Should be assessed in terms of likelihood and potential '
-                      'consequences for PII principals',
-                      'Corresponds to risk in ISO/IEC 27000 context (Annex A Table)',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.17 and 5.5. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:Risk'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '5.7'}},
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_risk_management'],
-         'related_mappings': ['iso27001:Risk']})
+         'mixins': ['PfRecordMixin']})
 
-    risk_source: Optional[str] = Field(default=None, description="""Source or origin of the privacy risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    affected_pii_categories: Optional[list[str]] = Field(default=None, description="""Categories of PII affected by this privacy risk or breach.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk', 'PrivacyBreach']} })
-    affected_principals_description: Optional[str] = Field(default=None, description="""Description of PII principals who could be adversely affected.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    risk_likelihood: Optional[str] = Field(default=None, description="""Assessed likelihood of this privacy risk materializing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    risk_impact_description: Optional[str] = Field(default=None, description="""Description of potential adverse consequences for PII principals.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    inherent_risk_level: Optional[PrivacyRiskLevel] = Field(default=None, description="""Privacy risk level before controls are applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    residual_risk_level: Optional[PrivacyRiskLevel] = Field(default=None, description="""Privacy risk level after controls are applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    mitigating_controls: Optional[list[str]] = Field(default=None, description="""Privacy controls that mitigate this risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    risk_owner: Optional[str] = Field(default=None, description="""Person accountable for managing this privacy risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_principles: Optional[list[PfPrinciple]] = Field(default=None, description="""The privacy principles the record bears on.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPolicy', 'PfControl']} })
+    pf_evidence: Optional[list[str]] = Field(default=None, description="""What shows that the record's claim holds, such as a report or a log.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl', 'PfPrincipleImplementation', 'PfConsent']} })
+    pf_control_kind: PfControlKind = Field(default=..., description="""The form the control takes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl']} })
+    pf_control_objective: Optional[str] = Field(default=None, description="""What the control is meant to achieve.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl']} })
+    pf_control_detail: Optional[str] = Field(default=None, description="""How the control is put into effect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl']} })
+    pf_control_responsible: Optional[str] = Field(default=None, description="""The actor that answers for the control.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl']} })
+    pf_control_state: Optional[PfImplementationState] = Field(default=None, description="""How far the control has been put into effect.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl']} })
+    pf_answers_requirements: Optional[list[str]] = Field(default=None, description="""The safeguarding requirements the control answers to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyImpactAssessment(NamedEntity):
+class PfPrincipleImplementation(PfRecordMixin):
     """
-    Schema class for a structured evaluation of the privacy implications of a processing activity or ICT system. Records assessment scope, identified and treated risks, accepted residual risks, stakeholder consultation records, and overall assessment outcome.
+    How the organization stands against one privacy principle: what it does, what shows it, and what is still missing.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.18'}},
-         'comments': ['Should be conducted before implementing new or substantially '
-                      'modified ICT systems',
-                      "Should be framed within the organization's broader risk "
-                      'management framework',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.18 and 5.5. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:PIA'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.1'}},
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_risk_management'],
-         'related_mappings': ['iso27001:RiskAssessment']})
+         'mixins': ['PfRecordMixin']})
 
-    assessment_scope: Optional[str] = Field(default=None, description="""Scope of the privacy impact assessment.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.18'}},
-         'domain_of': ['PrivacyImpactAssessment']} })
-    assessment_date: Optional[date] = Field(default=None, description="""Date the assessment was conducted.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    assessor: Optional[str] = Field(default=None, description="""Person or team who conducted the assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    processing_activities_assessed: Optional[list[str]] = Field(default=None, description="""PII processing activities reviewed in this assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    risks_identified: Optional[list[str]] = Field(default=None, description="""Privacy risks identified during this assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    risks_treated: Optional[list[str]] = Field(default=None, description="""Privacy risks for which treatment was planned or applied.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    residual_risks_accepted: Optional[list[str]] = Field(default=None, description="""Privacy risks accepted as residual after treatment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    assessment_outcome: Optional[str] = Field(default=None, description="""Overall outcome and conclusions of the privacy impact assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    next_assessment_date: Optional[date] = Field(default=None, description="""Planned date for the next assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    consultation_records: Optional[list[str]] = Field(default=None, description="""Records of stakeholder consultations conducted during the assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyImpactAssessment']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_related_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that act on the record's subject.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity', 'PfPrincipleImplementation', 'PfRisk']} })
+    pf_evidence: Optional[list[str]] = Field(default=None, description="""What shows that the record's claim holds, such as a report or a log.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl', 'PfPrincipleImplementation', 'PfConsent']} })
+    pf_principle: PfPrinciple = Field(default=..., description="""The principle the record is about.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPrincipleImplementation']} })
+    pf_measures: Optional[list[str]] = Field(default=None, description="""What the organization does to follow the principle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPrincipleImplementation']} })
+    pf_gaps: Optional[list[str]] = Field(default=None, description="""Where the organization falls short.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPrincipleImplementation']} })
+    pf_improvements: Optional[list[str]] = Field(default=None, description="""What the organization will do about the gaps.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPrincipleImplementation']} })
+    pf_last_assessed: Optional[date] = Field(default=None, description="""When the organization last checked its standing.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPrincipleImplementation']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyBreach(NamedEntity):
+class PfRisk(PfRecordMixin):
     """
-    Schema class for a recorded incident in which PII was processed in a manner that violates applicable privacy safeguarding requirements. Tracks breach details, affected PII categories, notification obligations, remediation actions, and lessons learned.
+    A way that handling PII could harm people: where the risk comes from, how likely and how bad it is, and what is done about it.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.11'}},
-         'comments': ['Corresponds to an information security incident in ISO/IEC '
-                      '27000 context (Annex A Table)',
-                      'Remediation measures should be proportionate to the risks '
-                      'associated with the breach',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.11. ISO/IEC standards '
-                      'text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:DataBreachRecord'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['The framework names privacy risk as an idea and leaves the '
+                      'scale to the organization. These fields are what an adopter '
+                      'keeps.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_risk_management'],
-         'related_mappings': ['iso27001:InformationSecurityIncident']})
+         'mixins': ['PfRecordMixin']})
 
-    breach_datetime: Optional[datetime ] = Field(default=None, description="""Date and time when the privacy breach occurred.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    discovery_datetime: Optional[datetime ] = Field(default=None, description="""Date and time when the privacy breach was discovered.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    breach_description: Optional[str] = Field(default=None, description="""Description of the privacy breach and the violated requirements.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    affected_pii_categories: Optional[list[str]] = Field(default=None, description="""Categories of PII affected by this privacy risk or breach.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyRisk', 'PrivacyBreach']} })
-    affected_principals_count: Optional[int] = Field(default=None, description="""Estimated number of PII principals whose PII was involved.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    violated_requirements: Optional[list[str]] = Field(default=None, description="""Privacy safeguarding requirements violated by this breach.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.11'}},
-         'domain_of': ['PrivacyBreach']} })
-    breach_severity: Optional[PrivacyRiskLevel] = Field(default=None, description="""Assessed severity of the privacy breach.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    immediate_actions: Optional[list[str]] = Field(default=None, description="""Immediate actions taken to contain the breach.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    notification_required: Optional[bool] = Field(default=None, description="""Whether notification to authorities or PII principals was required.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '6.10'}},
-         'domain_of': ['PrivacyBreach']} })
-    notifications_made: Optional[list[str]] = Field(default=None, description="""Notifications made to authorities, PII principals, or other parties.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    remediation_actions: Optional[list[str]] = Field(default=None, description="""Actions taken to remediate the breach and prevent recurrence.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    lessons_learned: Optional[str] = Field(default=None, description="""Lessons learned from the breach to improve privacy controls.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    closure_datetime: Optional[datetime ] = Field(default=None, description="""Date and time when the breach record was closed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyBreach']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_concerned_pii: Optional[list[str]] = Field(default=None, description="""The PII items the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfRisk',
+                       'PfBreach',
+                       'PfConsent']} })
+    pf_concerned_principals: Optional[list[str]] = Field(default=None, description="""The people the PII of the record is about.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiItem', 'PfRisk']} })
+    pf_related_controls: Optional[list[str]] = Field(default=None, description="""The organization's controls that act on the record's subject.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfProcessingActivity', 'PfPrincipleImplementation', 'PfRisk']} })
+    pf_risk_source: Optional[str] = Field(default=None, description="""Where the risk comes from.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRisk']} })
+    pf_risk_likelihood: Optional[str] = Field(default=None, description="""How likely the harm is, in the organization's own terms.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRisk']} })
+    pf_risk_consequence: Optional[str] = Field(default=None, description="""What the harm to people would be.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRisk']} })
+    pf_risk_inherent_level: Optional[PfRiskLevel] = Field(default=None, description="""The risk's level before controls.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRisk']} })
+    pf_risk_residual_level: Optional[PfRiskLevel] = Field(default=None, description="""The risk's level after controls, which is never above the level before.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRisk']} })
+    pf_risk_owner: Optional[str] = Field(default=None, description="""The person who answers for the risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRisk']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PIIProcessingActivity(NamedEntity):
+class PfImpactAssessment(PfRecordMixin):
     """
-    Schema class documenting a PII processing operation: its purpose, legal basis, operation types performed, categories of PII involved, responsible actors, applied controls, retention period, and any cross-border transfer safeguards.
+    A review of what a system or activity could do to people's privacy, the risks it found and what became of them.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.21'}},
-         'comments': ['Processing includes collection, storage, alteration, retrieval, '
-                      'consultation, disclosure, anonymization, pseudonymization, '
-                      'dissemination, deletion, destruction',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.21. ISO/IEC standards '
-                      'text is copyright ISO - not reproduced here.'],
-         'exact_mappings': ['dpv:PersonalDataProcess'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['These fields are what an adopter keeps, and go beyond the '
+                      'framework itself.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core']})
+         'mixins': ['PfRecordMixin']})
 
-    processing_purpose: Optional[str] = Field(default=None, description="""The specific, explicit, and legitimate purpose for this processing activity.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.3'}},
-         'domain_of': ['PIIProcessingActivity']} })
-    legal_basis: Optional[str] = Field(default=None, description="""Legal basis relied upon for this processing activity.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '5.5.2'}},
-         'domain_of': ['PIIProcessingActivity']} })
-    operations_performed: Optional[list[PIIProcessingOperation]] = Field(default=None, description="""Processing operations performed in this activity.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.21'}},
-         'domain_of': ['PIIProcessingActivity']} })
-    pii_categories_processed: Optional[list[str]] = Field(default=None, description="""Categories of PII processed in this activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessingActivity']} })
-    sensitivity_levels_involved: Optional[list[PIISensitivityCategory]] = Field(default=None, description="""Sensitivity levels of PII processed in this activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessingActivity']} })
-    controller_ref: Optional[str] = Field(default=None, description="""PII controller responsible for this processing activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessingActivity']} })
-    processor_ref: Optional[str] = Field(default=None, description="""PII processor performing this processing activity, if applicable.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessingActivity']} })
-    data_flows: Optional[list[str]] = Field(default=None, description="""PII flow scenarios applicable to this processing activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessingActivity']} })
-    retention_period: Optional[str] = Field(default=None, description="""Retention period for PII processed in this activity.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.6'}},
-         'comments': ['Use ISO 8601 duration notation such as P1Y or P90D'],
-         'domain_of': ['PIIProcessingActivity']} })
-    privacy_controls_applied: Optional[list[str]] = Field(default=None, description="""Privacy controls applied to this processing activity.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PIIProcessingActivity']} })
-    cross_border_transfer: Optional[bool] = Field(default=None, description="""Whether this activity involves cross-border transfer of PII.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.6'}},
-         'domain_of': ['PIIProcessingActivity']} })
-    transfer_safeguards: Optional[list[str]] = Field(default=None, description="""Safeguards in place for cross-border PII transfers.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.6'}},
-         'domain_of': ['PIIProcessingActivity']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_assessment_scope: Optional[str] = Field(default=None, description="""What the assessment looks at.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_assessment_date: Optional[date] = Field(default=None, description="""When the assessment was done.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_assessor: Optional[str] = Field(default=None, description="""Who did the assessment.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_assessed_activities: Optional[list[str]] = Field(default=None, description="""The processing activities it looks at.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_risks_found: Optional[list[str]] = Field(default=None, description="""The risks it found.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_risks_treated: Optional[list[str]] = Field(default=None, description="""Those of the risks found that have been treated.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_risks_accepted: Optional[list[str]] = Field(default=None, description="""Those of the risks found that the organization has accepted as they stand.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_assessment_outcome: Optional[str] = Field(default=None, description="""What the assessment concluded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_consultations: Optional[list[str]] = Field(default=None, description="""Who was asked, and what they said.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_next_assessment: Optional[date] = Field(default=None, description="""When the next assessment is due, which is after this one.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfImpactAssessment']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyPrincipleImplementation(NamedEntity):
+class PfBreach(PfRecordMixin):
     """
-    Documentation of how a specific privacy principle from Clause 6 has been implemented within the organization's privacy framework, including measures taken and evidence of adherence.
+    A time when PII was handled against a safeguarding requirement: what happened, who was told and what was done.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6'}},
-         'comments': ['One implementation record per principle per organization or ICT '
-                      'system scope',
-                      'Reference: ISO/IEC 29100:2024 Clause 6. ISO/IEC standards text '
-                      'is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['The framework names the idea of a breach. These fields are what '
+                      'an adopter keeps, and go beyond the framework itself.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_principles']})
+         'mixins': ['PfRecordMixin']})
 
-    principle: PrivacyPrinciple = Field(default=..., description="""The privacy principle being implemented.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6'}},
-         'domain_of': ['PrivacyPrincipleImplementation']} })
-    implementation_measures: Optional[list[str]] = Field(default=None, description="""Measures taken to implement this privacy principle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPrincipleImplementation']} })
-    applicable_controls_ref: Optional[list[str]] = Field(default=None, description="""Privacy controls that contribute to implementing this principle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPrincipleImplementation']} })
-    evidence_of_adherence: Optional[list[str]] = Field(default=None, description="""Evidence demonstrating adherence to this principle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPrincipleImplementation']} })
-    gaps_identified: Optional[list[str]] = Field(default=None, description="""Identified gaps in the implementation of this principle.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPrincipleImplementation']} })
-    improvement_actions: Optional[list[str]] = Field(default=None, description="""Actions planned to address identified implementation gaps.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPrincipleImplementation']} })
-    last_assessed_date: Optional[date] = Field(default=None, description="""Date when adherence to this principle was last assessed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPrincipleImplementation']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_concerned_pii: Optional[list[str]] = Field(default=None, description="""The PII items the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfRisk',
+                       'PfBreach',
+                       'PfConsent']} })
+    pf_breach_occurred: Optional[datetime ] = Field(default=None, description="""When the breach happened.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_breach_discovered: Optional[datetime ] = Field(default=None, description="""When the organization found out, which is not before it happened.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_breach_closed: Optional[datetime ] = Field(default=None, description="""When the organization closed the matter, which is not before it found out.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_principals_affected: Optional[int] = Field(default=None, description="""How many people the breach reached, where that is known.""", ge=1, json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_breached_requirements: Optional[list[str]] = Field(default=None, description="""The safeguarding requirements the breach went against.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_breach_severity: Optional[PfRiskLevel] = Field(default=None, description="""How serious the breach is.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_immediate_actions: Optional[list[str]] = Field(default=None, description="""What was done straight away.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_notification_required: Optional[bool] = Field(default=None, description="""Whether a law or contract requires anyone to be told.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_notifications: Optional[list[str]] = Field(default=None, description="""Who was told, and when.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_remediation: Optional[list[str]] = Field(default=None, description="""What was done to put things right.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_lessons: Optional[str] = Field(default=None, description="""What the organization learned.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfBreach']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class ConsentRecord(NamedEntity):
+class PfConsent(PfRecordMixin):
     """
-    Schema class documenting a PII principal's agreement to processing of their PII for stated purposes. Records the consent mechanism used, scope, current status, and withdrawal date — supporting auditability of the consent and choice privacy principle.
+    One person's agreement to the processing of their PII for stated purposes, and where it stands.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.4'}},
-         'comments': ['Consent must be freely given, specific, and informed',
-                      'Opt-in required for sensitive PII unless applicable law permits '
-                      'otherwise',
-                      'Withdrawal of consent must be easily exercisable and free of '
-                      'charge',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.4 and 6.2. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['The framework defines consent and its principle, and DPV maps '
+                      'that term to dpv:InformedConsent. The fields are what an '
+                      'adopter keeps, and go beyond the framework itself.'],
          'exact_mappings': ['dpv:InformedConsent'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core']})
+         'mixins': ['PfRecordMixin'],
+         'rules': [{'description': 'A consent with a withdrawal date has the state '
+                                   'withdrawn.',
+                    'postconditions': {'slot_conditions': {'pf_consent_state': {'equals_string': 'withdrawn',
+                                                                                'name': 'pf_consent_state'}}},
+                    'preconditions': {'slot_conditions': {'pf_consent_withdrawn': {'name': 'pf_consent_withdrawn',
+                                                                                   'value_presence': 'PRESENT'}}},
+                    'title': 'a withdrawal date means the consent is withdrawn'}],
+         'slot_usage': {'pf_principal': {'name': 'pf_principal', 'required': True}}})
 
-    principal_ref: Optional[str] = Field(default=None, description="""Reference to the PII principal associated with this consent record or privacy preference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConsentRecord', 'PrivacyPreference']} })
-    consent_date: Optional[datetime ] = Field(default=None, description="""Date and time when consent was given.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.4'}},
-         'domain_of': ['ConsentRecord']} })
-    consent_mechanism: Optional[ConsentMechanism] = Field(default=None, description="""Mechanism by which consent was obtained.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.6'}},
-         'domain_of': ['ConsentRecord']} })
-    processing_purposes_consented: Optional[list[str]] = Field(default=None, description="""Processing purposes for which consent was given.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConsentRecord']} })
-    pii_categories_consented: Optional[list[str]] = Field(default=None, description="""Categories of PII for which consent was given.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConsentRecord']} })
-    withdrawal_date: Optional[datetime ] = Field(default=None, description="""Date and time when consent was withdrawn, if applicable.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '6.2'}},
-         'domain_of': ['ConsentRecord']} })
-    consent_status: Optional[str] = Field(default=None, description="""Current status of the consent.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConsentRecord'],
-         'examples': [{'value': 'active'},
-                      {'value': 'withdrawn'},
-                      {'value': 'expired'}]} })
-    consent_evidence_ref: Optional[str] = Field(default=None, description="""Reference to evidence of consent (e.g., record identifier or URL).""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConsentRecord']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_purposes: Optional[list[str]] = Field(default=None, description="""The reasons the PII is processed, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiController',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfConsent']} })
+    pf_concerned_pii: Optional[list[str]] = Field(default=None, description="""The PII items the record concerns.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPiiFlow',
+                       'PfProcessingActivity',
+                       'PfPolicy',
+                       'PfRisk',
+                       'PfBreach',
+                       'PfConsent']} })
+    pf_evidence: Optional[list[str]] = Field(default=None, description="""What shows that the record's claim holds, such as a report or a log.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfControl', 'PfPrincipleImplementation', 'PfConsent']} })
+    pf_principal: str = Field(default=..., description="""The person the record is about.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfConsent', 'PfPreference']} })
+    pf_consent_mechanism: Optional[PfConsentMechanism] = Field(default=None, description="""How the agreement was obtained.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfConsent']} })
+    pf_consent_given: Optional[datetime ] = Field(default=None, description="""When the person agreed.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfConsent']} })
+    pf_consent_state: PfConsentState = Field(default=..., description="""Where the agreement stands.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfConsent']} })
+    pf_consent_withdrawn: Optional[datetime ] = Field(default=None, description="""When the person took the agreement back.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfConsent']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
-class PrivacyPreference(NamedEntity):
+class PfPreference(PfRecordMixin):
     """
-    Schema class capturing a PII principal's processing choices for a particular purpose scope: preferences for anonymity or pseudonymity, restrictions on specific processing operations, and restrictions on disclosure to named or categorized parties.
+    What one person has said they want done, or not done, with their PII.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.15'}},
-         'comments': ['ICT systems should offer meaningful choices where technically '
-                      'feasible',
-                      'Preferences may include anonymity, pseudonymity, or restriction '
-                      'of specific operations',
-                      'Reference: ISO/IEC 29100:2024 Clause 3.15 and 5.5.5. ISO/IEC '
-                      'standards text is copyright ISO - not reproduced here.'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ['The framework names the idea of a privacy preference. These '
+                      'fields are what an adopter keeps, and go beyond the framework '
+                      'itself.'],
          'from_schema': 'https://w3id.org/lmodel/iso29100',
-         'in_subset': ['privacy_framework_core']})
+         'mixins': ['PfRecordMixin'],
+         'slot_usage': {'pf_principal': {'name': 'pf_principal', 'required': True}}})
 
-    principal_ref: Optional[str] = Field(default=None, description="""Reference to the PII principal associated with this consent record or privacy preference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['ConsentRecord', 'PrivacyPreference']} })
-    preference_scope: Optional[str] = Field(default=None, description="""The processing activities or purposes to which these preferences apply.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPreference']} })
-    anonymity_preference: Optional[bool] = Field(default=None, description="""Whether the PII principal prefers anonymous processing where possible.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause', 'value': '3.1'}},
-         'domain_of': ['PrivacyPreference']} })
-    pseudonymity_preference: Optional[bool] = Field(default=None, description="""Whether the PII principal prefers pseudonymous processing where possible.""", json_schema_extra = { "linkml_meta": {'annotations': {'iso29100_clause': {'tag': 'iso29100_clause',
-                                             'value': '3.22'}},
-         'domain_of': ['PrivacyPreference']} })
-    processing_restriction_preferences: Optional[list[PIIProcessingOperation]] = Field(default=None, description="""Specific processing operations the PII principal wishes to restrict.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPreference']} })
-    disclosure_restriction_preferences: Optional[list[str]] = Field(default=None, description="""Restrictions on disclosing PII to specific parties or categories of parties.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPreference']} })
-    preference_recorded_date: Optional[date] = Field(default=None, description="""Date when these privacy preferences were recorded.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrivacyPreference']} })
-    id: str = Field(default=..., description="""Unique identifier for this entity instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'],
-         'examples': [{'value': 'iso29100:framework-acme-corp'},
-                      {'value': 'iso29100:pii-controller-001'}],
-         'slot_uri': 'dcterms:identifier'} })
-    name: str = Field(default=..., description="""Human-readable name or title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'rdfs:label'} })
-    description: Optional[str] = Field(default=None, description="""Detailed description of the entity.""", json_schema_extra = { "linkml_meta": {'comments': ['Should provide sufficient detail for understanding without '
-                      'external reference'],
-         'domain_of': ['NamedEntity'],
-         'slot_uri': 'dcterms:description'} })
-    created_date: Optional[date] = Field(default=None, description="""Date when the entity record was created.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:created'} })
-    modified_date: Optional[date] = Field(default=None, description="""Date when the entity record was last modified.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedEntity'], 'slot_uri': 'dcterms:modified'} })
+    pf_principal: str = Field(default=..., description="""The person the record is about.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfConsent', 'PfPreference']} })
+    pf_preference_scope: Optional[str] = Field(default=None, description="""What the preference applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPreference']} })
+    pf_wants_anonymity: Optional[bool] = Field(default=None, description="""Whether the person asks not to be identified at all.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPreference']} })
+    pf_wants_pseudonymity: Optional[bool] = Field(default=None, description="""Whether the person asks to appear under an alias.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPreference']} })
+    pf_refused_operations: Optional[list[PfOperation]] = Field(default=None, description="""What the person does not want done to their PII.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPreference']} })
+    pf_refused_recipients: Optional[list[str]] = Field(default=None, description="""Who the person does not want their PII passed to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPreference']} })
+    pf_preference_recorded: Optional[date] = Field(default=None, description="""When the organization recorded the preference.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfPreference']} })
+    pf_id: str = Field(default=..., description="""The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PfRecordMixin']} })
+    title: str = Field(default=..., description="""The name the organization gives the record.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's title means and carries the same IRI, so "
+                      "lokf adapt folds it into LOKF's slot and a knowledge bundle "
+                      'reads one title key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the record says or describes, in the organization's own words.""", json_schema_extra = { "linkml_meta": {'comments': ["It means what LOKF's description means and carries the same "
+                      "IRI, so lokf adapt folds it into LOKF's slot and a knowledge "
+                      'bundle reads one description key.'],
+         'domain_of': ['PfRecordMixin'],
+         'slot_uri': 'schema:description'} })
+
+    @field_validator('title')
+    def pattern_title(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid title format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid title format: {v}"
+            raise ValueError(err_msg)
+        return v
 
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-NamedEntity.model_rebuild()
-PrivacyFramework.model_rebuild()
-PrivacyStakeholder.model_rebuild()
-PIIPrincipal.model_rebuild()
-PIIController.model_rebuild()
-PIIProcessor.model_rebuild()
-ThirdParty.model_rebuild()
-PersonallyIdentifiableInformation.model_rebuild()
-PIIFlowScenario.model_rebuild()
-PrivacySafeguardingRequirement.model_rebuild()
-PrivacyPolicy.model_rebuild()
-PrivacyControl.model_rebuild()
-PrivacyRisk.model_rebuild()
-PrivacyImpactAssessment.model_rebuild()
-PrivacyBreach.model_rebuild()
-PIIProcessingActivity.model_rebuild()
-PrivacyPrincipleImplementation.model_rebuild()
-ConsentRecord.model_rebuild()
-PrivacyPreference.model_rebuild()
+PfRecordMixin.model_rebuild()
+PfFramework.model_rebuild()
+PfActor.model_rebuild()
+PfPiiPrincipal.model_rebuild()
+PfPiiController.model_rebuild()
+PfPiiProcessor.model_rebuild()
+PfThirdParty.model_rebuild()
+PfPiiItem.model_rebuild()
+PfPiiFlow.model_rebuild()
+PfProcessingActivity.model_rebuild()
+PfSafeguardingRequirement.model_rebuild()
+PfPolicy.model_rebuild()
+PfControl.model_rebuild()
+PfPrincipleImplementation.model_rebuild()
+PfRisk.model_rebuild()
+PfImpactAssessment.model_rebuild()
+PfBreach.model_rebuild()
+PfConsent.model_rebuild()
+PfPreference.model_rebuild()

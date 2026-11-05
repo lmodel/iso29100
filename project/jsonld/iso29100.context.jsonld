@@ -1,632 +1,539 @@
 {
    "@context": {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "dcterms": "http://purl.org/dc/terms/",
       "dpv": "https://w3id.org/dpv#",
-      "iso27001": "https://w3id.org/lmodel/iso27001/",
       "iso29100": "https://w3id.org/lmodel/iso29100/",
       "linkml": "https://w3id.org/linkml/",
-      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
       "schema": "http://schema.org/",
       "skos": "http://www.w3.org/2004/02/skos/core#",
       "@vocab": "https://w3id.org/lmodel/iso29100/",
-      "addressed_principles": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "addressed_principles"
-      },
-      "affected_pii_categories": {
-         "@id": "affected_pii_categories"
-      },
-      "affected_principals_count": {
-         "@type": "xsd:positiveInteger",
-         "@id": "affected_principals_count"
-      },
-      "affected_principals_description": {
-         "@id": "affected_principals_description"
-      },
-      "anonymity_preference": {
-         "@type": "xsd:boolean",
-         "@id": "anonymity_preference"
-      },
-      "applicable_controls_ref": {
-         "@type": "@id",
-         "@id": "applicable_controls_ref"
-      },
-      "applicable_jurisdictions": {
-         "@id": "applicable_jurisdictions"
-      },
-      "applicable_principles": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "applicable_principles"
-      },
-      "applicable_to_actors": {
-         "@id": "applicable_to_actors"
-      },
-      "applicable_to_principal": {
-         "@id": "applicable_to_principal"
-      },
-      "appointed_processors": {
-         "@type": "@id",
-         "@id": "appointed_processors"
-      },
-      "assessment_date": {
-         "@type": "xsd:date",
-         "@id": "assessment_date"
-      },
-      "assessment_outcome": {
-         "@id": "assessment_outcome"
-      },
-      "assessment_scope": {
-         "@id": "assessment_scope"
-      },
-      "assessor": {
-         "@id": "assessor"
-      },
-      "breach_datetime": {
-         "@type": "xsd:dateTime",
-         "@id": "breach_datetime"
-      },
-      "breach_description": {
-         "@id": "breach_description"
-      },
-      "breach_severity": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "breach_severity"
-      },
-      "closure_datetime": {
-         "@type": "xsd:dateTime",
-         "@id": "closure_datetime"
-      },
-      "consent_date": {
-         "@type": "xsd:dateTime",
-         "@id": "consent_date"
-      },
-      "consent_evidence_ref": {
-         "@id": "consent_evidence_ref"
-      },
-      "consent_mechanism": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "consent_mechanism"
-      },
-      "consent_records": {
-         "@type": "@id",
-         "@id": "consent_records"
-      },
-      "consent_status": {
-         "@id": "consent_status"
-      },
-      "consultation_records": {
-         "@id": "consultation_records"
-      },
-      "contact_for_inquiries": {
-         "@id": "contact_for_inquiries"
-      },
-      "contact_information": {
-         "@id": "contact_information"
-      },
-      "control_objective": {
-         "@id": "control_objective"
-      },
-      "control_type": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "control_type"
-      },
-      "controller_ref": {
-         "@type": "@id",
-         "@id": "controller_ref"
-      },
-      "created_date": {
-         "@type": "xsd:date",
-         "@id": "dcterms:created"
-      },
-      "cross_border_transfer": {
-         "@type": "xsd:boolean",
-         "@id": "cross_border_transfer"
-      },
-      "data_flows": {
-         "@type": "@id",
-         "@id": "data_flows"
-      },
-      "data_protection_officer": {
-         "@id": "data_protection_officer"
-      },
-      "data_retention_statement": {
-         "@id": "data_retention_statement"
-      },
       "description": {
-         "@id": "dcterms:description"
+         "@id": "schema:description"
       },
-      "disclosure_restriction_preferences": {
-         "@id": "disclosure_restriction_preferences"
+      "pf_actor_type": {
+         "@id": "pf_actor_type"
       },
-      "discovery_datetime": {
-         "@type": "xsd:dateTime",
-         "@id": "discovery_datetime"
+      "pf_concerned_pii": {
+         "@type": "@id",
+         "@id": "pf_concerned_pii"
       },
-      "effective_date": {
-         "@type": "xsd:date",
-         "@id": "effective_date"
+      "pf_concerned_principals": {
+         "@type": "@id",
+         "@id": "pf_concerned_principals"
       },
-      "effectiveness_evidence": {
-         "@id": "effectiveness_evidence"
+      "pf_evidence": {
+         "@id": "pf_evidence"
       },
-      "evidence_of_adherence": {
-         "@id": "evidence_of_adherence"
+      "pf_id": "@id",
+      "pf_jurisdictions": {
+         "@id": "pf_jurisdictions"
       },
-      "gaps_identified": {
-         "@id": "gaps_identified"
+      "pf_legal_bases": {
+         "@id": "pf_legal_bases"
       },
-      "ict_system_description": {
-         "@id": "ict_system_description"
-      },
-      "id": "@id",
-      "identifier_type": {
-         "@id": "identifier_type"
-      },
-      "immediate_actions": {
-         "@id": "immediate_actions"
-      },
-      "implementation_description": {
-         "@id": "implementation_description"
-      },
-      "implementation_measures": {
-         "@id": "implementation_measures"
-      },
-      "implementation_status": {
-         "@id": "implementation_status"
-      },
-      "improvement_actions": {
-         "@id": "improvement_actions"
-      },
-      "inherent_risk_level": {
+      "pf_operations": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "inherent_risk_level"
+         "@id": "pf_operations"
       },
-      "instructing_controller": {
+      "pf_principal": {
          "@type": "@id",
-         "@id": "instructing_controller"
+         "@id": "pf_principal"
       },
-      "is_anonymized": {
-         "@type": "xsd:boolean",
-         "@id": "is_anonymized"
-      },
-      "is_external_notice": {
-         "@type": "xsd:boolean",
-         "@id": "is_external_notice"
-      },
-      "is_pet": {
-         "@type": "xsd:boolean",
-         "@id": "is_pet"
-      },
-      "is_pseudonymized": {
-         "@type": "xsd:boolean",
-         "@id": "is_pseudonymized"
-      },
-      "jurisdictions": {
-         "@id": "jurisdictions"
-      },
-      "last_assessed_date": {
-         "@type": "xsd:date",
-         "@id": "last_assessed_date"
-      },
-      "last_review_date": {
-         "@type": "xsd:date",
-         "@id": "last_review_date"
-      },
-      "legal_bases": {
-         "@id": "legal_bases"
-      },
-      "legal_basis": {
-         "@id": "legal_basis"
-      },
-      "legal_control_retention": {
-         "@id": "legal_control_retention"
-      },
-      "lessons_learned": {
-         "@id": "lessons_learned"
-      },
-      "linkability_risk": {
-         "@id": "linkability_risk"
-      },
-      "mitigating_controls": {
-         "@type": "@id",
-         "@id": "mitigating_controls"
-      },
-      "modified_date": {
-         "@type": "xsd:date",
-         "@id": "dcterms:modified"
-      },
-      "name": {
-         "@id": "rdfs:label"
-      },
-      "next_assessment_date": {
-         "@type": "xsd:date",
-         "@id": "next_assessment_date"
-      },
-      "notification_required": {
-         "@type": "xsd:boolean",
-         "@id": "notification_required"
-      },
-      "notifications_made": {
-         "@id": "notifications_made"
-      },
-      "operations_performed": {
+      "pf_principles": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "operations_performed"
+         "@id": "pf_principles"
       },
-      "organization_name": {
-         "@id": "organization_name"
+      "pf_purposes": {
+         "@id": "pf_purposes"
       },
-      "pii_categories_consented": {
-         "@id": "pii_categories_consented"
-      },
-      "pii_categories_covered": {
-         "@id": "pii_categories_covered"
-      },
-      "pii_categories_processed": {
-         "@id": "pii_categories_processed"
-      },
-      "pii_category": {
-         "@id": "pii_category"
-      },
-      "pii_controller_role": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "pii_controller_role"
-      },
-      "pii_controllers": {
+      "pf_related_controls": {
          "@type": "@id",
-         "@id": "pii_controllers"
+         "@id": "pf_related_controls"
       },
-      "pii_principal_rights": {
-         "@id": "pii_principal_rights"
-      },
-      "pii_principal_role": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "pii_principal_role"
-      },
-      "pii_principals_description": {
-         "@id": "pii_principals_description"
-      },
-      "pii_processing_activities": {
-         "@type": "@id",
-         "@id": "pii_processing_activities"
-      },
-      "pii_processor_role": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "pii_processor_role"
-      },
-      "pii_processors": {
-         "@type": "@id",
-         "@id": "pii_processors"
-      },
-      "policy_scope": {
-         "@id": "policy_scope"
-      },
-      "policy_version": {
-         "@id": "dcterms:hasVersion"
-      },
-      "preference_recorded_date": {
-         "@type": "xsd:date",
-         "@id": "preference_recorded_date"
-      },
-      "preference_scope": {
-         "@id": "preference_scope"
-      },
-      "principal_ref": {
-         "@id": "principal_ref"
-      },
-      "principle": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "principle"
-      },
-      "principle_implementations": {
-         "@type": "@id",
-         "@id": "principle_implementations"
-      },
-      "priority": {
-         "@id": "priority"
-      },
-      "privacy_breaches": {
-         "@type": "@id",
-         "@id": "privacy_breaches"
-      },
-      "privacy_controls": {
-         "@type": "@id",
-         "@id": "privacy_controls"
-      },
-      "privacy_controls_applied": {
-         "@type": "@id",
-         "@id": "privacy_controls_applied"
-      },
-      "privacy_impact_assessments": {
-         "@type": "@id",
-         "@id": "privacy_impact_assessments"
-      },
-      "privacy_policy": {
-         "@type": "@id",
-         "@id": "privacy_policy"
-      },
-      "privacy_policy_ref": {
-         "@type": "@id",
-         "@id": "privacy_policy_ref"
-      },
-      "privacy_preferences": {
-         "@type": "@id",
-         "@id": "privacy_preferences"
-      },
-      "privacy_risks": {
-         "@type": "@id",
-         "@id": "privacy_risks"
-      },
-      "processing_activities_assessed": {
-         "@type": "@id",
-         "@id": "processing_activities_assessed"
-      },
-      "processing_agreement_ref": {
-         "@id": "processing_agreement_ref"
-      },
-      "processing_operations": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "processing_operations"
-      },
-      "processing_purpose": {
-         "@id": "processing_purpose"
-      },
-      "processing_purposes": {
-         "@id": "processing_purposes"
-      },
-      "processing_purposes_consented": {
-         "@id": "processing_purposes_consented"
-      },
-      "processing_purposes_covered": {
-         "@id": "processing_purposes_covered"
-      },
-      "processing_restriction_preferences": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "processing_restriction_preferences"
-      },
-      "processor_ref": {
-         "@type": "@id",
-         "@id": "processor_ref"
-      },
-      "pseudonymity_preference": {
-         "@type": "xsd:boolean",
-         "@id": "pseudonymity_preference"
-      },
-      "receiving_purpose": {
-         "@id": "receiving_purpose"
-      },
-      "related_controls": {
-         "@type": "@id",
-         "@id": "related_controls"
-      },
-      "related_safeguarding_requirements": {
-         "@type": "@id",
-         "@id": "related_safeguarding_requirements"
-      },
-      "remediation_actions": {
-         "@id": "remediation_actions"
-      },
-      "requirement_factor": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "requirement_factor"
-      },
-      "requirement_text": {
-         "@id": "requirement_text"
-      },
-      "residual_risk_level": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "residual_risk_level"
-      },
-      "residual_risks_accepted": {
-         "@type": "@id",
-         "@id": "residual_risks_accepted"
-      },
-      "responsible_actor": {
-         "@id": "responsible_actor"
-      },
-      "retention_period": {
+      "pf_retention": {
          "@type": "xsd:duration",
-         "@id": "retention_period"
+         "@id": "pf_retention"
       },
-      "retention_schedule": {
-         "@id": "retention_schedule"
+      "pf_contact": {
+         "@id": "pf_contact"
       },
-      "risk_impact_description": {
-         "@id": "risk_impact_description"
-      },
-      "risk_likelihood": {
-         "@id": "risk_likelihood"
-      },
-      "risk_owner": {
-         "@id": "risk_owner"
-      },
-      "risk_source": {
-         "@id": "risk_source"
-      },
-      "risks_identified": {
-         "@type": "@id",
-         "@id": "risks_identified"
-      },
-      "risks_treated": {
-         "@type": "@id",
-         "@id": "risks_treated"
-      },
-      "safeguarding_requirements": {
-         "@type": "@id",
-         "@id": "safeguarding_requirements"
-      },
-      "scenario_description": {
-         "@id": "scenario_description"
-      },
-      "scenario_label": {
-         "@id": "scenario_label"
-      },
-      "sensitivity_level": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "sensitivity_level"
-      },
-      "sensitivity_levels_involved": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "sensitivity_levels_involved"
-      },
-      "source_reference": {
-         "@id": "source_reference"
-      },
-      "sub_processors": {
-         "@type": "@id",
-         "@id": "sub_processors"
-      },
-      "third_parties": {
-         "@type": "@id",
-         "@id": "third_parties"
-      },
-      "third_party_role": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "third_party_role"
-      },
-      "transfer_basis": {
-         "@id": "transfer_basis"
-      },
-      "transfer_safeguards": {
-         "@id": "transfer_safeguards"
-      },
-      "violated_requirements": {
-         "@type": "@id",
-         "@id": "violated_requirements"
-      },
-      "withdrawal_date": {
+      "pf_breach_closed": {
          "@type": "xsd:dateTime",
-         "@id": "withdrawal_date"
+         "@id": "pf_breach_closed"
       },
-      "ConsentRecord": {
-         "@id": "ConsentRecord"
+      "pf_breach_discovered": {
+         "@type": "xsd:dateTime",
+         "@id": "pf_breach_discovered"
       },
-      "NamedEntity": {
-         "@id": "NamedEntity"
+      "pf_breach_occurred": {
+         "@type": "xsd:dateTime",
+         "@id": "pf_breach_occurred"
       },
-      "PersonallyIdentifiableInformation": {
-         "@id": "PersonallyIdentifiableInformation"
+      "pf_breach_severity": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_breach_severity"
       },
-      "PIIController": {
-         "@id": "PIIController"
+      "pf_breached_requirements": {
+         "@type": "@id",
+         "@id": "pf_breached_requirements"
       },
-      "PIIFlowScenario": {
-         "@id": "PIIFlowScenario"
+      "pf_immediate_actions": {
+         "@id": "pf_immediate_actions"
       },
-      "PIIPrincipal": {
-         "@id": "PIIPrincipal"
+      "pf_lessons": {
+         "@id": "pf_lessons"
       },
-      "PIIProcessingActivity": {
-         "@id": "PIIProcessingActivity"
+      "pf_notification_required": {
+         "@type": "xsd:boolean",
+         "@id": "pf_notification_required"
       },
-      "PIIProcessor": {
-         "@id": "PIIProcessor"
+      "pf_notifications": {
+         "@id": "pf_notifications"
       },
-      "PrivacyBreach": {
-         "@id": "PrivacyBreach"
+      "pf_principals_affected": {
+         "@type": "xsd:integer",
+         "@id": "pf_principals_affected"
       },
-      "PrivacyControl": {
-         "@id": "PrivacyControl"
+      "pf_remediation": {
+         "@id": "pf_remediation"
       },
-      "PrivacyFramework": {
-         "@id": "PrivacyFramework"
+      "pf_consent_given": {
+         "@type": "xsd:dateTime",
+         "@id": "pf_consent_given"
       },
-      "PrivacyImpactAssessment": {
-         "@id": "PrivacyImpactAssessment"
+      "pf_consent_mechanism": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_consent_mechanism"
       },
-      "PrivacyPolicy": {
-         "@id": "PrivacyPolicy"
+      "pf_consent_state": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_consent_state"
       },
-      "PrivacyPreference": {
-         "@id": "PrivacyPreference"
+      "pf_consent_withdrawn": {
+         "@type": "xsd:dateTime",
+         "@id": "pf_consent_withdrawn"
       },
-      "PrivacyPrincipleImplementation": {
-         "@id": "PrivacyPrincipleImplementation"
+      "pf_answers_requirements": {
+         "@type": "@id",
+         "@id": "pf_answers_requirements"
       },
-      "PrivacyRisk": {
-         "@id": "PrivacyRisk"
+      "pf_control_detail": {
+         "@id": "pf_control_detail"
       },
-      "PrivacySafeguardingRequirement": {
-         "@id": "PrivacySafeguardingRequirement"
+      "pf_control_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_control_kind"
       },
-      "PrivacyStakeholder": {
-         "@id": "PrivacyStakeholder"
+      "pf_control_objective": {
+         "@id": "pf_control_objective"
       },
-      "ThirdParty": {
-         "@id": "ThirdParty"
+      "pf_control_responsible": {
+         "@type": "@id",
+         "@id": "pf_control_responsible"
+      },
+      "pf_control_state": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_control_state"
+      },
+      "pf_actors": {
+         "@type": "@id",
+         "@id": "pf_actors"
+      },
+      "pf_breaches": {
+         "@type": "@id",
+         "@id": "pf_breaches"
+      },
+      "pf_consents": {
+         "@type": "@id",
+         "@id": "pf_consents"
+      },
+      "pf_controls": {
+         "@type": "@id",
+         "@id": "pf_controls"
+      },
+      "pf_flows": {
+         "@type": "@id",
+         "@id": "pf_flows"
+      },
+      "pf_ict_systems": {
+         "@id": "pf_ict_systems"
+      },
+      "pf_impact_assessments": {
+         "@type": "@id",
+         "@id": "pf_impact_assessments"
+      },
+      "pf_organization": {
+         "@id": "pf_organization"
+      },
+      "pf_pii_items": {
+         "@type": "@id",
+         "@id": "pf_pii_items"
+      },
+      "pf_policies": {
+         "@type": "@id",
+         "@id": "pf_policies"
+      },
+      "pf_preferences": {
+         "@type": "@id",
+         "@id": "pf_preferences"
+      },
+      "pf_principle_implementations": {
+         "@type": "@id",
+         "@id": "pf_principle_implementations"
+      },
+      "pf_processing_activities": {
+         "@type": "@id",
+         "@id": "pf_processing_activities"
+      },
+      "pf_risks": {
+         "@type": "@id",
+         "@id": "pf_risks"
+      },
+      "pf_safeguarding_requirements": {
+         "@type": "@id",
+         "@id": "pf_safeguarding_requirements"
+      },
+      "pf_assessed_activities": {
+         "@type": "@id",
+         "@id": "pf_assessed_activities"
+      },
+      "pf_assessment_date": {
+         "@type": "xsd:date",
+         "@id": "pf_assessment_date"
+      },
+      "pf_assessment_outcome": {
+         "@id": "pf_assessment_outcome"
+      },
+      "pf_assessment_scope": {
+         "@id": "pf_assessment_scope"
+      },
+      "pf_assessor": {
+         "@id": "pf_assessor"
+      },
+      "pf_consultations": {
+         "@id": "pf_consultations"
+      },
+      "pf_next_assessment": {
+         "@type": "xsd:date",
+         "@id": "pf_next_assessment"
+      },
+      "pf_risks_accepted": {
+         "@type": "@id",
+         "@id": "pf_risks_accepted"
+      },
+      "pf_risks_found": {
+         "@type": "@id",
+         "@id": "pf_risks_found"
+      },
+      "pf_risks_treated": {
+         "@type": "@id",
+         "@id": "pf_risks_treated"
+      },
+      "pf_appointed_processors": {
+         "@type": "@id",
+         "@id": "pf_appointed_processors"
+      },
+      "pf_controller_policy": {
+         "@type": "@id",
+         "@id": "pf_controller_policy"
+      },
+      "pf_privacy_officer": {
+         "@id": "pf_privacy_officer"
+      },
+      "pf_decides_afterwards": {
+         "@type": "@id",
+         "@id": "pf_decides_afterwards"
+      },
+      "pf_provider": {
+         "@type": "@id",
+         "@id": "pf_provider"
+      },
+      "pf_recipient": {
+         "@type": "@id",
+         "@id": "pf_recipient"
+      },
+      "pf_linkability": {
+         "@id": "pf_linkability"
+      },
+      "pf_pii_categories": {
+         "@id": "pf_pii_categories"
+      },
+      "pf_pseudonymized": {
+         "@type": "xsd:boolean",
+         "@id": "pf_pseudonymized"
+      },
+      "pf_recognized_by": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_recognized_by"
+      },
+      "pf_sensitivity": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_sensitivity"
+      },
+      "pf_instructing_controllers": {
+         "@type": "@id",
+         "@id": "pf_instructing_controllers"
+      },
+      "pf_processing_agreement": {
+         "@id": "pf_processing_agreement"
+      },
+      "pf_sub_processors": {
+         "@type": "@id",
+         "@id": "pf_sub_processors"
+      },
+      "pf_inquiry_contact": {
+         "@id": "pf_inquiry_contact"
+      },
+      "pf_policy_audience": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_policy_audience"
+      },
+      "pf_policy_effective_date": {
+         "@type": "xsd:date",
+         "@id": "pf_policy_effective_date"
+      },
+      "pf_policy_last_reviewed": {
+         "@type": "xsd:date",
+         "@id": "pf_policy_last_reviewed"
+      },
+      "pf_policy_scope": {
+         "@id": "pf_policy_scope"
+      },
+      "pf_policy_version": {
+         "@id": "pf_policy_version"
+      },
+      "pf_retention_statement": {
+         "@id": "pf_retention_statement"
+      },
+      "pf_stated_rights": {
+         "@id": "pf_stated_rights"
+      },
+      "pf_preference_recorded": {
+         "@type": "xsd:date",
+         "@id": "pf_preference_recorded"
+      },
+      "pf_preference_scope": {
+         "@id": "pf_preference_scope"
+      },
+      "pf_refused_operations": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_refused_operations"
+      },
+      "pf_refused_recipients": {
+         "@id": "pf_refused_recipients"
+      },
+      "pf_wants_anonymity": {
+         "@type": "xsd:boolean",
+         "@id": "pf_wants_anonymity"
+      },
+      "pf_wants_pseudonymity": {
+         "@type": "xsd:boolean",
+         "@id": "pf_wants_pseudonymity"
+      },
+      "pf_gaps": {
+         "@id": "pf_gaps"
+      },
+      "pf_improvements": {
+         "@id": "pf_improvements"
+      },
+      "pf_last_assessed": {
+         "@type": "xsd:date",
+         "@id": "pf_last_assessed"
+      },
+      "pf_measures": {
+         "@id": "pf_measures"
+      },
+      "pf_principle": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_principle"
+      },
+      "pf_activity_flows": {
+         "@type": "@id",
+         "@id": "pf_activity_flows"
+      },
+      "pf_controller": {
+         "@type": "@id",
+         "@id": "pf_controller"
+      },
+      "pf_crosses_borders": {
+         "@type": "xsd:boolean",
+         "@id": "pf_crosses_borders"
+      },
+      "pf_processors": {
+         "@type": "@id",
+         "@id": "pf_processors"
+      },
+      "pf_sensitivities": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_sensitivities"
+      },
+      "pf_transfer_safeguards": {
+         "@id": "pf_transfer_safeguards"
+      },
+      "pf_risk_consequence": {
+         "@id": "pf_risk_consequence"
+      },
+      "pf_risk_inherent_level": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_risk_inherent_level"
+      },
+      "pf_risk_likelihood": {
+         "@id": "pf_risk_likelihood"
+      },
+      "pf_risk_owner": {
+         "@id": "pf_risk_owner"
+      },
+      "pf_risk_residual_level": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_risk_residual_level"
+      },
+      "pf_risk_source": {
+         "@id": "pf_risk_source"
+      },
+      "pf_applies_to": {
+         "@type": "@id",
+         "@id": "pf_applies_to"
+      },
+      "pf_met_by": {
+         "@type": "@id",
+         "@id": "pf_met_by"
+      },
+      "pf_requirement_factor": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "pf_requirement_factor"
+      },
+      "pf_requirement_source": {
+         "@id": "pf_requirement_source"
+      },
+      "pf_receiving_purpose": {
+         "@id": "pf_receiving_purpose"
+      },
+      "pf_transfer_basis": {
+         "@id": "pf_transfer_basis"
+      },
+      "title": {
+         "@id": "schema:name"
+      },
+      "PfActor": {
+         "@id": "PfActor"
+      },
+      "PfBreach": {
+         "@id": "PfBreach"
+      },
+      "PfConsent": {
+         "@id": "PfConsent"
+      },
+      "PfControl": {
+         "@id": "PfControl"
+      },
+      "PfFramework": {
+         "@id": "PfFramework"
+      },
+      "PfImpactAssessment": {
+         "@id": "PfImpactAssessment"
+      },
+      "PfPiiController": {
+         "@id": "PfPiiController"
+      },
+      "PfPiiFlow": {
+         "@id": "PfPiiFlow"
+      },
+      "PfPiiItem": {
+         "@id": "PfPiiItem"
+      },
+      "PfPiiPrincipal": {
+         "@id": "PfPiiPrincipal"
+      },
+      "PfPiiProcessor": {
+         "@id": "PfPiiProcessor"
+      },
+      "PfPolicy": {
+         "@id": "PfPolicy"
+      },
+      "PfPreference": {
+         "@id": "PfPreference"
+      },
+      "PfPrincipleImplementation": {
+         "@id": "PfPrincipleImplementation"
+      },
+      "PfProcessingActivity": {
+         "@id": "PfProcessingActivity"
+      },
+      "PfRecordMixin": {
+         "@id": "PfRecordMixin"
+      },
+      "PfRisk": {
+         "@id": "PfRisk"
+      },
+      "PfSafeguardingRequirement": {
+         "@id": "PfSafeguardingRequirement"
+      },
+      "PfThirdParty": {
+         "@id": "PfThirdParty"
       }
    }
 }

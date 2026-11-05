@@ -37,6 +37,9 @@ generator_args:
     mergeimports: true
   jsonschema:
     mergeimports: true
+    # An actor ranges over an abstract class. With its concrete descendants the
+    # schema offers each kind.
+    include_range_class_descendants: true
   jsonldcontext:
     mergeimports: true
   # gen-pydantic is not yet supported by gen-project.
