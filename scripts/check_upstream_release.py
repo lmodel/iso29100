@@ -178,8 +178,9 @@ def _lines(url: str):
 
 
 def _code(text: object) -> str:
-    """Text a site chose, such as an address it redirected to, as a code
-    span, so it cannot mention a person or add a link in the issue."""
+    """Text a site chose, such as an address it redirected to or a record's
+    fields, as a code span, so it cannot mention a person or add a link in the
+    issue the watch opens."""
     return "`" + str(text).replace("`", "'") + "`"
 
 
@@ -295,19 +296,19 @@ def check_records() -> tuple[list[str], bool]:
             if new.get(k) != old.get(k)
         )
         details = "; ".join(
-            f"`{k}` from {json.dumps(old.get(k), ensure_ascii=False)} to "
-            f"{json.dumps(new.get(k), ensure_ascii=False)}"
+            f"`{k}` from {_code(json.dumps(old.get(k), ensure_ascii=False))} to "
+            f"{_code(json.dumps(new.get(k), ensure_ascii=False))}"
             for k in changed
         )
         report.append(f"- **{name} (record {rid}) changed:** {details}.")
         if new.get("currentStage") != PUBLISHED:
             report.append(
-                f"  - Its stage is now {new.get('currentStage')}, not {PUBLISHED} "
+                f"  - Its stage is now {_code(new.get('currentStage'))}, not {PUBLISHED} "
                 "(published); read ISO's stage codes to see what that means."
             )
         if new.get("replacedBy"):
             report.append(
-                f"  - ISO now lists it as replaced by {new['replacedBy']}. Decide "
+                f"  - ISO now lists it as replaced by {_code(new['replacedBy'])}. Decide "
                 "whether the schema moves to the successor."
             )
     report.append(
@@ -318,16 +319,16 @@ def check_records() -> tuple[list[str], bool]:
             attention = True
             report.append(
                 f"- **ISO lists a supplement that is not pinned: "
-                f"{record.get('reference')} (record {rid}, stage "
-                f"{record.get('currentStage')}).** Read it, decide what the schema "
+                f"{_code(record.get('reference'))} (record {_code(rid)}, stage "
+                f"{_code(record.get('currentStage'))}).** Read it, decide what the schema "
                 "changes, and add it to the extract and the watch's pins."
             )
     for rid, record in sorted(replacements.items()):
         attention = True
         replaced = sorted(set(record.get("replaces") or []) & set(PINNED_RECORDS))
         report.append(
-            f"- **{record.get('reference')} (record {rid}, stage "
-            f"{record.get('currentStage')}) replaces record "
+            f"- **{_code(record.get('reference'))} (record {_code(rid)}, stage "
+            f"{_code(record.get('currentStage'))}) replaces record "
             f"{', '.join(map(str, replaced))}.** Decide whether the schema follows it."
         )
     return report, attention

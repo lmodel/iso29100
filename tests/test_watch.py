@@ -149,8 +149,8 @@ def test_a_new_supplement(watch, tmp_path):
     code, text = _run(watch, tmp_path)
     assert code == 1
     assert (
-        f"**ISO lists a supplement that is not pinned: {reference} (record 99999, "
-        "stage 6060).**" in text
+        f"**ISO lists a supplement that is not pinned: `{reference}` (record `99999`, "
+        "stage `6060`).**" in text
     )
 
 
@@ -162,7 +162,7 @@ def test_a_replaced_record_moving_on_is_reported(watch, tmp_path):
     code, text = _run(watch, tmp_path)
     assert code == 1
     assert "**ISO/IEC 29100:2011/Amd 1:2018 (record 73722) changed:**" in text
-    assert "`currentStage` from 9599 to 9999" in text
+    assert "`currentStage` from `9599` to `9999`" in text
 
 
 def test_the_pinned_edition_replacing_its_predecessors_is_no_finding(watch, tmp_path):
@@ -185,10 +185,10 @@ def test_a_stage_change_and_a_replacement(watch, tmp_path):
     code, text = _run(watch, tmp_path)
     assert code == 1
     assert "**ISO/IEC 29100:2024 (record 85938) changed:**" in text
-    assert "`currentStage` from 6060 to 9599" in text
-    assert "`replacedBy` from null to [99998]" in text
-    assert "Its stage is now 9599, not 6060 (published)" in text
-    assert "ISO now lists it as replaced by [99998]" in text
+    assert "`currentStage` from `6060` to `9599`" in text
+    assert "`replacedBy` from `null` to `[99998]`" in text
+    assert "Its stage is now `9599`, not 6060 (published)" in text
+    assert "ISO now lists it as replaced by `[99998]`" in text
     assert "2 of 3 pinned records are unchanged." in text
 
 
@@ -208,7 +208,7 @@ def test_a_new_edition(watch, tmp_path):
     code, text = _run(watch, tmp_path)
     assert code == 1
     assert (
-        "**ISO/IEC DIS 29100 (record 99997, stage 4020) replaces record 85938.**"
+        "**`ISO/IEC DIS 29100` (record `99997`, stage `4020`) replaces record 85938.**"
         in text
     )
 
