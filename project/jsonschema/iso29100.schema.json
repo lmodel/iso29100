@@ -27,6 +27,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_jurisdictions": {
@@ -121,6 +122,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_immediate_actions": {
@@ -260,6 +262,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_principal": {
@@ -391,6 +394,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_principles": {
@@ -515,6 +519,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_impact_assessments": {
@@ -687,6 +692,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_next_assessment": {
@@ -813,6 +819,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_jurisdictions": {
@@ -896,6 +903,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_provider": {
@@ -944,6 +952,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_linkability": {
@@ -1049,6 +1058,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_jurisdictions": {
@@ -1102,6 +1112,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_instructing_controllers": {
@@ -1191,6 +1202,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_inquiry_contact": {
@@ -1307,6 +1319,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_preference_recorded": {
@@ -1427,6 +1440,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_improvements": {
@@ -1529,6 +1543,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_legal_bases": {
@@ -1636,6 +1651,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "title": {
@@ -1695,6 +1711,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_related_controls": {
@@ -1804,6 +1821,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_met_by": {
@@ -1877,6 +1895,7 @@
                 },
                 "pf_id": {
                     "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+                    "pattern": "^\\S+$",
                     "type": "string"
                 },
                 "pf_jurisdictions": {
@@ -2006,6 +2025,7 @@
         },
         "pf_id": {
             "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+            "pattern": "^\\S+$",
             "type": "string"
         },
         "pf_impact_assessments": {

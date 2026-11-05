@@ -1669,7 +1669,8 @@ class slots:
     pass
 
 slots.pf_id = Slot(uri=ISO29100.pf_id, name="pf_id", curie=ISO29100.curie('pf_id'),
-                   model_uri=ISO29100.pf_id, domain=None, range=URIRef)
+                   model_uri=ISO29100.pf_id, domain=None, range=URIRef,
+                   pattern=re.compile(r'^\S+$'))
 
 slots.title = Slot(uri=SCHEMA.name, name="title", curie=SCHEMA.curie('name'),
                    model_uri=ISO29100.title, domain=None, range=Optional[str])

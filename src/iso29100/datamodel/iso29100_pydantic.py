@@ -451,6 +451,19 @@ class PfRecordMixin(ConfiguredBaseModel):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -502,6 +515,19 @@ class PfFramework(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -541,6 +567,19 @@ class PfActor(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -577,6 +616,19 @@ class PfPiiPrincipal(PfActor):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -623,6 +675,19 @@ class PfPiiController(PfActor):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -663,6 +728,19 @@ class PfPiiProcessor(PfActor):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -700,6 +778,19 @@ class PfThirdParty(PfActor):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -746,6 +837,19 @@ class PfPiiItem(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -788,6 +892,19 @@ class PfPiiFlow(PfRecordMixin):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -845,6 +962,19 @@ class PfProcessingActivity(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -882,6 +1012,19 @@ class PfSafeguardingRequirement(PfRecordMixin):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -936,6 +1079,19 @@ class PfPolicy(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -978,6 +1134,19 @@ class PfControl(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -1018,6 +1187,19 @@ class PfPrincipleImplementation(PfRecordMixin):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1069,6 +1251,19 @@ class PfRisk(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -1113,6 +1308,19 @@ class PfImpactAssessment(PfRecordMixin):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1165,6 +1373,19 @@ class PfBreach(PfRecordMixin):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):
@@ -1227,6 +1448,19 @@ class PfConsent(PfRecordMixin):
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
 
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
+
     @field_validator('title')
     def pattern_title(cls, v):
         pattern=re.compile(r"^\s*\S")
@@ -1270,6 +1504,19 @@ class PfPreference(PfRecordMixin):
                       'bundle reads one description key.'],
          'domain_of': ['PfRecordMixin'],
          'slot_uri': 'schema:description'} })
+
+    @field_validator('pf_id')
+    def pattern_pf_id(cls, v):
+        pattern=re.compile(r"^\S+$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid pf_id format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid pf_id format: {v}"
+            raise ValueError(err_msg)
+        return v
 
     @field_validator('title')
     def pattern_title(cls, v):

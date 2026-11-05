@@ -697,6 +697,7 @@ slots:
     - PfRecordMixin
     range: uriorcurie
     required: true
+    pattern: ^\S+$
   title:
     name: title
     definition_uri: https://w3id.org/lmodel/iso29100/title
@@ -2961,6 +2962,6 @@ classes:
     class_uri: iso29100:PfPreference
 metamodel_version: 1.12.0
 source_file: iso29100.yaml
-source_file_date: '2026-11-05T13:56:43'
-source_file_size: 34771
+source_file_date: '2026-11-05T14:19:57'
+source_file_size: 34943
 

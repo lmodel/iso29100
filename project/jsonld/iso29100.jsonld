@@ -827,6 +827,7 @@
       ],
       "range": "uriorcurie",
       "required": true,
+      "pattern": "^\\S+$",
       "@type": "SlotDefinition"
     },
     {
@@ -3749,8 +3750,8 @@
   ],
   "metamodel_version": "1.12.0",
   "source_file": "iso29100.yaml",
-  "source_file_date": "2026-11-05T13:56:43",
-  "source_file_size": 34771,
+  "source_file_date": "2026-11-05T14:19:57",
+  "source_file_size": 34943,
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/iso29100.context.jsonld",

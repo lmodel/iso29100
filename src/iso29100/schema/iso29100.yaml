@@ -76,6 +76,7 @@ slots:
     range: uriorcurie
     identifier: true
     required: true
+    pattern: "^\\S+$"
 
   title:
     description: The name the organization gives the record.

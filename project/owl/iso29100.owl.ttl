@@ -9,7 +9,7 @@
 @prefix dpv: <https://w3id.org/dpv#> .
 @prefix pav: <http://purl.org/pav/> .
 xsd:duration a rdfs:Datatype ;
-	owl:equivalentClass _:c14n52 .
+	owl:equivalentClass _:c14n51 .
 <https://w3id.org/lmodel/iso29100.owl.ttl> dcterms:license "Apache-2.0" ;
 	dcterms:source <https://www.iso.org/standard/85938.html> ;
 	dcterms:title "ISO/IEC 29100:2024 privacy framework records" ;
@@ -26,19 +26,19 @@ xsd:duration a rdfs:Datatype ;
 	iso29100:standard "ISO/IEC 29100:2024" .
 iso29100:PfActor a owl:Class ;
 	rdfs:label "PfActor" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n151 , _:c14n152 , _:c14n268 , _:c14n308 , _:c14n332 , _:c14n410 , _:c14n44 , _:c14n66 , _:c14n71 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n149 , _:c14n150 , _:c14n267 , _:c14n307 , _:c14n331 , _:c14n409 , _:c14n44 , _:c14n64 , _:c14n69 ;
 	skos:definition "Someone who takes part in handling PII, told apart by the part they play. One party can play different parts for different PII, with a record for each." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.2" .
 iso29100:PfBreach a owl:Class ;
 	rdfs:label "PfBreach" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n10 , _:c14n103 , _:c14n119 , _:c14n172 , _:c14n186 , _:c14n195 , _:c14n212 , _:c14n25 , _:c14n26 , _:c14n264 , _:c14n283 , _:c14n297 , _:c14n300 , _:c14n307 , _:c14n317 , _:c14n330 , _:c14n347 , _:c14n355 , _:c14n356 , _:c14n359 , _:c14n360 , _:c14n378 , _:c14n379 , _:c14n383 , _:c14n390 , _:c14n400 , _:c14n43 , _:c14n60 , _:c14n80 , _:c14n89 , _:c14n9 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n10 , _:c14n101 , _:c14n117 , _:c14n170 , _:c14n184 , _:c14n192 , _:c14n209 , _:c14n25 , _:c14n26 , _:c14n263 , _:c14n282 , _:c14n296 , _:c14n299 , _:c14n306 , _:c14n316 , _:c14n329 , _:c14n346 , _:c14n354 , _:c14n355 , _:c14n358 , _:c14n359 , _:c14n377 , _:c14n378 , _:c14n382 , _:c14n389 , _:c14n399 , _:c14n43 , _:c14n59 , _:c14n78 , _:c14n87 , _:c14n9 ;
 	skos:definition "A time when PII was handled against a safeguarding requirement: what happened, who was told and what was done." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:note "The framework names the idea of a breach. These fields are what an adopter keeps, and go beyond the framework itself." .
 iso29100:PfConsent a owl:Class ;
 	rdfs:label "PfConsent" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n101 , _:c14n112 , _:c14n114 , _:c14n120 , _:c14n13 , _:c14n165 , _:c14n181 , _:c14n188 , _:c14n205 , _:c14n211 , _:c14n213 , _:c14n23 , _:c14n234 , _:c14n242 , _:c14n259 , _:c14n326 , _:c14n345 , _:c14n353 , _:c14n36 , _:c14n54 , _:c14n98 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n110 , _:c14n112 , _:c14n118 , _:c14n13 , _:c14n163 , _:c14n179 , _:c14n186 , _:c14n202 , _:c14n208 , _:c14n210 , _:c14n23 , _:c14n232 , _:c14n240 , _:c14n258 , _:c14n325 , _:c14n344 , _:c14n352 , _:c14n36 , _:c14n53 , _:c14n96 , _:c14n99 ;
 	skos:definition "One person's agreement to the processing of their PII for stated purposes, and where it stands." ;
 	skos:exactMatch dpv:InformedConsent ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
@@ -57,7 +57,7 @@ iso29100:PfConsentMechanism\#opt_out a owl:Class ;
 	skos:definition "The processing goes ahead unless the person acts to refuse it." .
 iso29100:PfConsentMechanism a owl:Class ;
 	rdfs:label "PfConsentMechanism" ;
-	owl:unionOf _:c14n257 ;
+	owl:unionOf _:c14n256 ;
 	skos:definition "How a person's agreement to processing is obtained." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfConsentMechanism\#implied , iso29100:PfConsentMechanism\#opt_in , iso29100:PfConsentMechanism\#opt_out .
@@ -79,13 +79,13 @@ iso29100:PfConsentState\#withdrawn a owl:Class ;
 	skos:definition "The person took back an agreement they had given." .
 iso29100:PfConsentState a owl:Class ;
 	rdfs:label "PfConsentState" ;
-	owl:unionOf _:c14n273 ;
+	owl:unionOf _:c14n272 ;
 	skos:definition "Where a person's agreement stands." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfConsentState\#expired , iso29100:PfConsentState\#given , iso29100:PfConsentState\#refused , iso29100:PfConsentState\#withdrawn .
 iso29100:PfControl a owl:Class ;
 	rdfs:label "PfControl" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n0 , _:c14n109 , _:c14n125 , _:c14n126 , _:c14n128 , _:c14n143 , _:c14n192 , _:c14n238 , _:c14n256 , _:c14n269 , _:c14n274 , _:c14n282 , _:c14n287 , _:c14n288 , _:c14n349 , _:c14n363 , _:c14n405 , _:c14n45 , _:c14n68 , _:c14n72 , _:c14n96 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n0 , _:c14n107 , _:c14n123 , _:c14n124 , _:c14n126 , _:c14n141 , _:c14n189 , _:c14n236 , _:c14n255 , _:c14n268 , _:c14n273 , _:c14n281 , _:c14n286 , _:c14n287 , _:c14n348 , _:c14n362 , _:c14n404 , _:c14n45 , _:c14n66 , _:c14n70 , _:c14n94 ;
 	skos:definition "A measure that treats a privacy risk by making it less likely or less harmful, the principles it serves and how far it has been put into effect." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.7" .
@@ -111,20 +111,20 @@ iso29100:PfControlKind\#technical a owl:Class ;
 	skos:definition "A system, product or service that protects PII." .
 iso29100:PfControlKind a owl:Class ;
 	rdfs:label "PfControlKind" ;
-	owl:unionOf _:c14n106 ;
+	owl:unionOf _:c14n104 ;
 	skos:definition "The form a control takes." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfControlKind\#contractual , iso29100:PfControlKind\#organizational , iso29100:PfControlKind\#physical , iso29100:PfControlKind\#privacy_enhancing_technology , iso29100:PfControlKind\#technical ;
 	iso29100:iso29100_clause "5.7" .
 iso29100:PfFramework a owl:Class ;
 	rdfs:label "PfFramework" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n107 , _:c14n124 , _:c14n137 , _:c14n147 , _:c14n155 , _:c14n16 , _:c14n170 , _:c14n198 , _:c14n2 , _:c14n203 , _:c14n215 , _:c14n222 , _:c14n225 , _:c14n245 , _:c14n248 , _:c14n262 , _:c14n270 , _:c14n289 , _:c14n291 , _:c14n298 , _:c14n323 , _:c14n331 , _:c14n350 , _:c14n354 , _:c14n370 , _:c14n374 , _:c14n381 , _:c14n392 , _:c14n402 , _:c14n67 , _:c14n69 , _:c14n75 , _:c14n94 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n105 , _:c14n122 , _:c14n135 , _:c14n145 , _:c14n153 , _:c14n16 , _:c14n168 , _:c14n195 , _:c14n2 , _:c14n200 , _:c14n212 , _:c14n219 , _:c14n222 , _:c14n243 , _:c14n246 , _:c14n261 , _:c14n269 , _:c14n288 , _:c14n290 , _:c14n297 , _:c14n322 , _:c14n330 , _:c14n349 , _:c14n353 , _:c14n369 , _:c14n373 , _:c14n380 , _:c14n391 , _:c14n401 , _:c14n65 , _:c14n67 , _:c14n73 , _:c14n92 ;
 	skos:definition "One organization's use of the privacy framework: the systems it covers, and every record the organization keeps about them, each kind in a list of its own." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.1" .
 iso29100:PfImpactAssessment a owl:Class ;
 	rdfs:label "PfImpactAssessment" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n140 , _:c14n149 , _:c14n150 , _:c14n168 , _:c14n200 , _:c14n21 , _:c14n227 , _:c14n228 , _:c14n253 , _:c14n261 , _:c14n27 , _:c14n29 , _:c14n294 , _:c14n295 , _:c14n3 , _:c14n321 , _:c14n337 , _:c14n342 , _:c14n361 , _:c14n372 , _:c14n38 , _:c14n380 , _:c14n393 , _:c14n397 , _:c14n403 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n138 , _:c14n147 , _:c14n148 , _:c14n166 , _:c14n197 , _:c14n21 , _:c14n224 , _:c14n225 , _:c14n251 , _:c14n260 , _:c14n27 , _:c14n29 , _:c14n293 , _:c14n294 , _:c14n3 , _:c14n320 , _:c14n336 , _:c14n341 , _:c14n360 , _:c14n371 , _:c14n379 , _:c14n38 , _:c14n392 , _:c14n396 , _:c14n402 ;
 	skos:definition "A review of what a system or activity could do to people's privacy, the risks it found and what became of them." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:note "These fields are what an adopter keeps, and go beyond the framework itself." .
@@ -146,7 +146,7 @@ iso29100:PfImplementationState\#retired a owl:Class ;
 	skos:definition "It is no longer in use." .
 iso29100:PfImplementationState a owl:Class ;
 	rdfs:label "PfImplementationState" ;
-	owl:unionOf _:c14n223 ;
+	owl:unionOf _:c14n220 ;
 	skos:definition "How far a control has been put into effect." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfImplementationState\#in_operation , iso29100:PfImplementationState\#in_progress , iso29100:PfImplementationState\#planned , iso29100:PfImplementationState\#retired .
@@ -196,26 +196,26 @@ iso29100:PfOperation\#store a owl:Class ;
 	skos:definition "Hold PII on a lasting medium." .
 iso29100:PfOperation a owl:Class ;
 	rdfs:label "PfOperation" ;
-	owl:unionOf _:c14n411 ;
+	owl:unionOf _:c14n410 ;
 	skos:definition "The things an organization can do to PII." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfOperation\#alter , iso29100:PfOperation\#anonymize , iso29100:PfOperation\#collect , iso29100:PfOperation\#consult , iso29100:PfOperation\#delete , iso29100:PfOperation\#destroy , iso29100:PfOperation\#disclose , iso29100:PfOperation\#disseminate , iso29100:PfOperation\#pseudonymize , iso29100:PfOperation\#retrieve , iso29100:PfOperation\#store .
 iso29100:PfPiiController a owl:Class ;
 	rdfs:label "PfPiiController" ;
-	rdfs:subClassOf iso29100:PfActor , _:c14n166 , _:c14n174 , _:c14n184 , _:c14n210 , _:c14n217 , _:c14n22 , _:c14n239 , _:c14n304 , _:c14n328 , _:c14n339 , _:c14n388 , _:c14n399 ;
+	rdfs:subClassOf iso29100:PfActor , _:c14n164 , _:c14n172 , _:c14n182 , _:c14n207 , _:c14n214 , _:c14n22 , _:c14n237 , _:c14n303 , _:c14n327 , _:c14n338 , _:c14n387 , _:c14n398 ;
 	skos:definition "The party that decides why and how PII is processed, and answers for it even when another party does the work." ;
 	skos:exactMatch dpv:DataController ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.2" .
 iso29100:PfPiiFlow a owl:Class ;
 	rdfs:label "PfPiiFlow" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n139 , _:c14n141 , _:c14n15 , _:c14n191 , _:c14n199 , _:c14n272 , _:c14n334 , _:c14n344 , _:c14n406 , _:c14n55 , _:c14n88 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n137 , _:c14n139 , _:c14n15 , _:c14n188 , _:c14n196 , _:c14n271 , _:c14n333 , _:c14n343 , _:c14n405 , _:c14n54 , _:c14n86 ;
 	skos:definition "One way PII passes from one actor to another, and who decides what happens to it afterwards." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.3" .
 iso29100:PfPiiItem a owl:Class ;
 	rdfs:label "PfPiiItem" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n117 , _:c14n164 , _:c14n169 , _:c14n180 , _:c14n237 , _:c14n250 , _:c14n251 , _:c14n296 , _:c14n367 , _:c14n37 , _:c14n4 , _:c14n404 , _:c14n408 , _:c14n41 , _:c14n56 , _:c14n57 , _:c14n61 , _:c14n7 , _:c14n77 , _:c14n91 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n115 , _:c14n162 , _:c14n167 , _:c14n178 , _:c14n235 , _:c14n248 , _:c14n249 , _:c14n295 , _:c14n366 , _:c14n37 , _:c14n4 , _:c14n403 , _:c14n407 , _:c14n41 , _:c14n55 , _:c14n56 , _:c14n60 , _:c14n7 , _:c14n75 , _:c14n89 ;
 	skos:definition "A piece or set of information that can be tied to a person, why it counts as PII, how sensitive it is and how it is handled." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:narrowMatch dpv:PersonalData ;
@@ -230,7 +230,7 @@ iso29100:PfPiiPrincipal a owl:Class ;
 	iso29100:iso29100_clause "5.2" .
 iso29100:PfPiiProcessor a owl:Class ;
 	rdfs:label "PfPiiProcessor" ;
-	rdfs:subClassOf iso29100:PfActor , _:c14n173 , _:c14n209 , _:c14n229 , _:c14n278 , _:c14n352 , _:c14n6 , _:c14n86 ;
+	rdfs:subClassOf iso29100:PfActor , _:c14n171 , _:c14n206 , _:c14n226 , _:c14n277 , _:c14n351 , _:c14n6 , _:c14n84 ;
 	skos:definition "A party that processes PII for a controller, on that controller's instructions." ;
 	skos:exactMatch dpv:DataProcessor ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
@@ -261,14 +261,14 @@ iso29100:PfPiiRecognition\#unsolicited a owl:Class ;
 	skos:definition "The organization received it without asking for it." .
 iso29100:PfPiiRecognition a owl:Class ;
 	rdfs:label "PfPiiRecognition" ;
-	owl:unionOf _:c14n111 ;
+	owl:unionOf _:c14n109 ;
 	skos:definition "The ways information turns out to be PII, which a record lists so that a reader can see why the item counts." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfPiiRecognition\#direct_identifier , iso29100:PfPiiRecognition\#distinguishing_trait , iso29100:PfPiiRecognition\#linked_information , iso29100:PfPiiRecognition\#metadata , iso29100:PfPiiRecognition\#pseudonym , iso29100:PfPiiRecognition\#unsolicited ;
 	iso29100:iso29100_clause "5.4" .
 iso29100:PfPolicy a owl:Class ;
 	rdfs:label "PfPolicy" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n110 , _:c14n129 , _:c14n131 , _:c14n159 , _:c14n178 , _:c14n18 , _:c14n183 , _:c14n226 , _:c14n230 , _:c14n244 , _:c14n246 , _:c14n276 , _:c14n281 , _:c14n310 , _:c14n313 , _:c14n314 , _:c14n316 , _:c14n318 , _:c14n336 , _:c14n340 , _:c14n357 , _:c14n376 , _:c14n394 , _:c14n48 , _:c14n63 , _:c14n78 , _:c14n83 , _:c14n87 , _:c14n90 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n108 , _:c14n127 , _:c14n129 , _:c14n157 , _:c14n176 , _:c14n18 , _:c14n181 , _:c14n223 , _:c14n228 , _:c14n242 , _:c14n244 , _:c14n275 , _:c14n280 , _:c14n309 , _:c14n312 , _:c14n313 , _:c14n315 , _:c14n317 , _:c14n335 , _:c14n339 , _:c14n356 , _:c14n375 , _:c14n393 , _:c14n47 , _:c14n62 , _:c14n76 , _:c14n81 , _:c14n85 , _:c14n88 ;
 	skos:definition "A privacy policy: what the organization commits to about PII, written for its own people or as a notice to the people whose PII it handles." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.6" .
@@ -282,14 +282,14 @@ iso29100:PfPolicyAudience\#public_notice a owl:Class ;
 	skos:definition "The people whose PII it handles, who read it to learn what happens." .
 iso29100:PfPolicyAudience a owl:Class ;
 	rdfs:label "PfPolicyAudience" ;
-	owl:unionOf _:c14n130 ;
+	owl:unionOf _:c14n128 ;
 	skos:definition "Who a privacy policy is written for." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfPolicyAudience\#internal , iso29100:PfPolicyAudience\#public_notice ;
 	iso29100:iso29100_clause "5.6" .
 iso29100:PfPreference a owl:Class ;
 	rdfs:label "PfPreference" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n160 , _:c14n17 , _:c14n196 , _:c14n202 , _:c14n214 , _:c14n220 , _:c14n235 , _:c14n240 , _:c14n260 , _:c14n290 , _:c14n301 , _:c14n311 , _:c14n346 , _:c14n35 , _:c14n395 , _:c14n396 , _:c14n58 , _:c14n8 , _:c14n85 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n158 , _:c14n17 , _:c14n193 , _:c14n199 , _:c14n211 , _:c14n217 , _:c14n233 , _:c14n238 , _:c14n259 , _:c14n289 , _:c14n300 , _:c14n310 , _:c14n345 , _:c14n35 , _:c14n394 , _:c14n395 , _:c14n57 , _:c14n8 , _:c14n83 ;
 	skos:definition "What one person has said they want done, or not done, with their PII." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:note "The framework names the idea of a privacy preference. These fields are what an adopter keeps, and go beyond the framework itself." .
@@ -361,26 +361,26 @@ iso29100:PfPrinciple\#principle_6_9 dcterms:title "6.9 People see their own" ;
 	iso29100:iso29100_clause "6.9" .
 iso29100:PfPrinciple a owl:Class ;
 	rdfs:label "PfPrinciple" ;
-	owl:unionOf _:c14n189 ;
+	owl:unionOf _:c14n187 ;
 	skos:definition "The privacy principles by their subclause numbers. A value's title and description are this project's own summary, and the principles' headings and wording are ISO's." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfPrinciple\#principle_6_10 , iso29100:PfPrinciple\#principle_6_11 , iso29100:PfPrinciple\#principle_6_12 , iso29100:PfPrinciple\#principle_6_2 , iso29100:PfPrinciple\#principle_6_3 , iso29100:PfPrinciple\#principle_6_4 , iso29100:PfPrinciple\#principle_6_5 , iso29100:PfPrinciple\#principle_6_6 , iso29100:PfPrinciple\#principle_6_7 , iso29100:PfPrinciple\#principle_6_8 , iso29100:PfPrinciple\#principle_6_9 ;
 	iso29100:iso29100_clause "6.1" .
 iso29100:PfPrincipleImplementation a owl:Class ;
 	rdfs:label "PfPrincipleImplementation" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n116 , _:c14n161 , _:c14n163 , _:c14n167 , _:c14n176 , _:c14n206 , _:c14n218 , _:c14n252 , _:c14n267 , _:c14n277 , _:c14n335 , _:c14n366 , _:c14n368 , _:c14n385 , _:c14n40 , _:c14n73 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n114 , _:c14n159 , _:c14n161 , _:c14n165 , _:c14n174 , _:c14n203 , _:c14n215 , _:c14n250 , _:c14n266 , _:c14n276 , _:c14n334 , _:c14n365 , _:c14n367 , _:c14n384 , _:c14n40 , _:c14n71 ;
 	skos:definition "How the organization stands against one privacy principle: what it does, what shows it, and what is still missing." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "6.1" .
 iso29100:PfProcessingActivity a owl:Class ;
 	rdfs:label "PfProcessingActivity" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n11 , _:c14n121 , _:c14n122 , _:c14n127 , _:c14n134 , _:c14n144 , _:c14n179 , _:c14n187 , _:c14n193 , _:c14n197 , _:c14n20 , _:c14n207 , _:c14n216 , _:c14n241 , _:c14n254 , _:c14n303 , _:c14n306 , _:c14n31 , _:c14n32 , _:c14n324 , _:c14n329 , _:c14n369 , _:c14n373 , _:c14n382 , _:c14n384 , _:c14n70 , _:c14n79 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n11 , _:c14n119 , _:c14n120 , _:c14n125 , _:c14n132 , _:c14n142 , _:c14n177 , _:c14n185 , _:c14n190 , _:c14n194 , _:c14n20 , _:c14n204 , _:c14n213 , _:c14n239 , _:c14n252 , _:c14n302 , _:c14n305 , _:c14n31 , _:c14n32 , _:c14n323 , _:c14n328 , _:c14n368 , _:c14n372 , _:c14n381 , _:c14n383 , _:c14n68 , _:c14n77 ;
 	skos:definition "Something the organization does with PII: why, on what basis, what it does to which PII, who is responsible, and how long the PII is kept." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:note "The fields are what an adopter keeps. The framework's own subject here is what counts as processing, which PfOperation lists." .
 iso29100:PfRecordMixin a owl:Class ;
 	rdfs:label "PfRecordMixin" ;
-	rdfs:subClassOf _:c14n113 , _:c14n24 , _:c14n285 , _:c14n341 , _:c14n409 , _:c14n42 , _:c14n64 , _:c14n97 , _:c14n99 ;
+	rdfs:subClassOf _:c14n111 , _:c14n24 , _:c14n253 , _:c14n284 , _:c14n340 , _:c14n408 , _:c14n42 , _:c14n95 , _:c14n97 ;
 	skos:definition "What every record of the framework has, so that other records can refer to it: an identifier, a title and a description." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:note "It is a mixin, not a base class, so that the adapt copy can re-root some record classes on LOKF's Concept and leave the others as they are. lokf adapt replaces pf_id with LOKF's id, and a class that declares id itself must descend from Concept." .
@@ -402,14 +402,14 @@ iso29100:PfRequirementFactor\#other a owl:Class ;
 	skos:definition "Another source, such as what people have said they prefer, or a technical standard the organization adopted." .
 iso29100:PfRequirementFactor a owl:Class ;
 	rdfs:label "PfRequirementFactor" ;
-	owl:unionOf _:c14n162 ;
+	owl:unionOf _:c14n160 ;
 	skos:definition "Where a requirement to safeguard PII comes from." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfRequirementFactor\#business , iso29100:PfRequirementFactor\#contract , iso29100:PfRequirementFactor\#law , iso29100:PfRequirementFactor\#other ;
 	iso29100:iso29100_clause "5.5" .
 iso29100:PfRisk a owl:Class ;
 	rdfs:label "PfRisk" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n123 , _:c14n136 , _:c14n14 , _:c14n145 , _:c14n146 , _:c14n182 , _:c14n194 , _:c14n255 , _:c14n271 , _:c14n312 , _:c14n322 , _:c14n325 , _:c14n327 , _:c14n33 , _:c14n348 , _:c14n371 , _:c14n377 , _:c14n386 , _:c14n401 , _:c14n407 , _:c14n53 , _:c14n59 , _:c14n65 , _:c14n82 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n121 , _:c14n134 , _:c14n14 , _:c14n143 , _:c14n144 , _:c14n180 , _:c14n191 , _:c14n254 , _:c14n270 , _:c14n311 , _:c14n321 , _:c14n324 , _:c14n326 , _:c14n33 , _:c14n347 , _:c14n370 , _:c14n376 , _:c14n385 , _:c14n400 , _:c14n406 , _:c14n52 , _:c14n58 , _:c14n63 , _:c14n80 ;
 	skos:definition "A way that handling PII could harm people: where the risk comes from, how likely and how bad it is, and what is done about it." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	skos:note "The framework names privacy risk as an idea and leaves the scale to the organization. These fields are what an adopter keeps." .
@@ -431,13 +431,13 @@ iso29100:PfRiskLevel\#very_high a owl:Class ;
 	skos:definition "The harm could be severe or lasting, and needs treating at once." .
 iso29100:PfRiskLevel a owl:Class ;
 	rdfs:label "PfRiskLevel" ;
-	owl:unionOf _:c14n92 ;
+	owl:unionOf _:c14n90 ;
 	skos:definition "A qualitative level of risk to people, offered for an organization that adopts it, since the framework leaves the scale to the organization." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	linkml:permissible_values iso29100:PfRiskLevel\#high , iso29100:PfRiskLevel\#low , iso29100:PfRiskLevel\#medium , iso29100:PfRiskLevel\#very_high .
 iso29100:PfSafeguardingRequirement a owl:Class ;
 	rdfs:label "PfSafeguardingRequirement" ;
-	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n105 , _:c14n135 , _:c14n156 , _:c14n201 , _:c14n224 , _:c14n30 , _:c14n315 , _:c14n320 , _:c14n365 , _:c14n81 ;
+	rdfs:subClassOf iso29100:PfRecordMixin , _:c14n103 , _:c14n133 , _:c14n154 , _:c14n198 , _:c14n221 , _:c14n30 , _:c14n314 , _:c14n319 , _:c14n364 , _:c14n79 ;
 	skos:definition "Something the organization must do to protect PII, and where that duty comes from." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.5" .
@@ -458,7 +458,7 @@ iso29100:PfSensitivity a owl:Class ;
 	iso29100:iso29100_clause "5.4" .
 iso29100:PfThirdParty a owl:Class ;
 	rdfs:label "PfThirdParty" ;
-	rdfs:subClassOf iso29100:PfActor , _:c14n185 , _:c14n249 , _:c14n299 , _:c14n34 , _:c14n51 , _:c14n76 ;
+	rdfs:subClassOf iso29100:PfActor , _:c14n183 , _:c14n247 , _:c14n298 , _:c14n34 , _:c14n50 , _:c14n74 ;
 	skos:definition "A party outside the controller and its processors that receives PII for its own ends, and usually becomes a controller of that PII." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> ;
 	iso29100:iso29100_clause "5.2" .
@@ -632,7 +632,7 @@ iso29100:pf_ict_systems a owl:DatatypeProperty ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> .
 iso29100:pf_id a owl:DatatypeProperty ;
 	rdfs:label "pf_id" ;
-	rdfs:range xsd:anyURI ;
+	rdfs:range _:c14n227 ;
 	skos:definition "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
 	skos:inScheme <https://w3id.org/lmodel/iso29100> .
 iso29100:pf_immediate_actions a owl:DatatypeProperty ;
@@ -929,315 +929,317 @@ _:c14n0 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_control_state .
 _:c14n1 rdf:first iso29100:PfControlKind\#privacy_enhancing_technology ;
-	rdf:rest _:c14n95 .
+	rdf:rest _:c14n93 .
 _:c14n10 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_principals_affected .
-_:c14n100 rdf:first iso29100:PfConsentState\#expired ;
-	rdf:rest rdf:nil .
+_:c14n100 rdf:first iso29100:PfPrinciple\#principle_6_11 ;
+	rdf:rest _:c14n72 .
 _:c14n101 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_consent_given .
-_:c14n102 rdf:first iso29100:PfPrinciple\#principle_6_11 ;
-	rdf:rest _:c14n74 .
-_:c14n103 a owl:Restriction ;
-	owl:allValuesFrom _:c14n190 ;
+	owl:allValuesFrom _:c14n425 ;
 	owl:onProperty iso29100:pf_principals_affected .
-_:c14n104 xsd:minInclusive 1 .
-_:c14n105 a owl:Restriction ;
+_:c14n102 xsd:minInclusive 1 .
+_:c14n103 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_requirement_source .
-_:c14n106 rdf:first iso29100:PfControlKind\#organizational ;
-	rdf:rest _:c14n133 .
-_:c14n107 a owl:Restriction ;
+_:c14n104 rdf:first iso29100:PfControlKind\#organizational ;
+	rdf:rest _:c14n131 .
+_:c14n105 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_principle_implementations .
-_:c14n108 rdf:first iso29100:PfPrinciple\#principle_6_7 ;
-	rdf:rest _:c14n338 .
-_:c14n109 a owl:Restriction ;
+_:c14n106 rdf:first iso29100:PfPrinciple\#principle_6_7 ;
+	rdf:rest _:c14n337 .
+_:c14n107 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfControlKind ;
 	owl:onProperty iso29100:pf_control_kind .
+_:c14n108 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfPolicyAudience ;
+	owl:onProperty iso29100:pf_policy_audience .
+_:c14n109 rdf:first iso29100:PfPiiRecognition\#direct_identifier ;
+	rdf:rest _:c14n262 .
 _:c14n11 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_controller .
 _:c14n110 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfPolicyAudience ;
-	owl:onProperty iso29100:pf_policy_audience .
-_:c14n111 rdf:first iso29100:PfPiiRecognition\#direct_identifier ;
-	rdf:rest _:c14n263 .
-_:c14n112 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_consent_state .
-_:c14n113 a owl:Restriction ;
+_:c14n111 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:description .
-_:c14n114 a owl:Restriction ;
+_:c14n112 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfConsentMechanism ;
 	owl:onProperty iso29100:pf_consent_mechanism .
-_:c14n115 rdf:first xsd:string ;
+_:c14n113 rdf:first xsd:string ;
 	rdf:rest _:c14n412 .
-_:c14n116 a owl:Restriction ;
+_:c14n114 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_principle .
-_:c14n117 a owl:Restriction ;
+_:c14n115 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_pii_categories .
-_:c14n118 rdf:first iso29100:PfPiiRecognition\#metadata ;
-	rdf:rest _:c14n389 .
-_:c14n119 a owl:Restriction ;
+_:c14n116 rdf:first iso29100:PfPiiRecognition\#metadata ;
+	rdf:rest _:c14n388 .
+_:c14n117 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_breached_requirements .
-_:c14n12 rdf:first iso29100:PfPiiProcessor ;
-	rdf:rest _:c14n398 .
-_:c14n120 a owl:Restriction ;
+_:c14n118 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_consent_withdrawn .
-_:c14n121 a owl:Restriction ;
+_:c14n119 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_related_controls .
-_:c14n122 a owl:Restriction ;
+_:c14n12 rdf:first iso29100:PfPiiProcessor ;
+	rdf:rest _:c14n397 .
+_:c14n120 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_sensitivities .
-_:c14n123 a owl:Restriction ;
+_:c14n121 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risk_consequence .
-_:c14n124 a owl:Restriction ;
+_:c14n122 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPreference ;
 	owl:onProperty iso29100:pf_preferences .
-_:c14n125 a owl:Restriction ;
+_:c14n123 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_evidence .
-_:c14n126 a owl:Restriction ;
+_:c14n124 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPrinciple ;
 	owl:onProperty iso29100:pf_principles .
-_:c14n127 a owl:Restriction ;
+_:c14n125 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_controller .
-_:c14n128 a owl:Restriction ;
+_:c14n126 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_control_kind .
-_:c14n129 a owl:Restriction ;
+_:c14n127 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_policy_scope .
+_:c14n128 rdf:first iso29100:PfPolicyAudience\#internal ;
+	rdf:rest _:c14n91 .
+_:c14n129 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_policy_version .
 _:c14n13 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_evidence .
-_:c14n130 rdf:first iso29100:PfPolicyAudience\#internal ;
-	rdf:rest _:c14n93 .
-_:c14n131 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_policy_version .
-_:c14n132 rdf:first iso29100:PfImplementationState\#in_progress ;
-	rdf:rest _:c14n258 .
-_:c14n133 rdf:first iso29100:PfControlKind\#physical ;
-	rdf:rest _:c14n375 .
-_:c14n134 a owl:Restriction ;
+_:c14n130 rdf:first iso29100:PfImplementationState\#in_progress ;
+	rdf:rest _:c14n257 .
+_:c14n131 rdf:first iso29100:PfControlKind\#physical ;
+	rdf:rest _:c14n374 .
+_:c14n132 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_crosses_borders .
-_:c14n135 a owl:Restriction ;
+_:c14n133 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRequirementFactor ;
 	owl:onProperty iso29100:pf_requirement_factor .
-_:c14n136 a owl:Restriction ;
+_:c14n134 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_risk_likelihood .
-_:c14n137 a owl:Restriction ;
+_:c14n135 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_consents .
-_:c14n138 rdf:first iso29100:PfRequirementFactor\#other ;
+_:c14n136 rdf:first iso29100:PfRequirementFactor\#other ;
 	rdf:rest rdf:nil .
-_:c14n139 a owl:Restriction ;
+_:c14n137 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfActor ;
 	owl:onProperty iso29100:pf_provider .
+_:c14n138 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfProcessingActivity ;
+	owl:onProperty iso29100:pf_assessed_activities .
+_:c14n139 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_recipient .
 _:c14n14 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risk_inherent_level .
-_:c14n140 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfProcessingActivity ;
-	owl:onProperty iso29100:pf_assessed_activities .
+_:c14n140 rdf:first _:c14n205 ;
+	rdf:rest _:c14n357 .
 _:c14n141 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_recipient .
-_:c14n142 rdf:first _:c14n208 ;
-	rdf:rest _:c14n358 .
-_:c14n143 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_control_detail .
-_:c14n144 a owl:Restriction ;
+_:c14n142 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty iso29100:pf_crosses_borders .
-_:c14n145 a owl:Restriction ;
+_:c14n143 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_risk_residual_level .
-_:c14n146 a owl:Restriction ;
+_:c14n144 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRiskLevel ;
 	owl:onProperty iso29100:pf_risk_inherent_level .
-_:c14n147 a owl:Restriction ;
+_:c14n145 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_processing_activities .
-_:c14n148 rdf:first iso29100:PfPrinciple\#principle_6_3 ;
-	rdf:rest _:c14n302 .
-_:c14n149 a owl:Restriction ;
+_:c14n146 rdf:first iso29100:PfPrinciple\#principle_6_3 ;
+	rdf:rest _:c14n301 .
+_:c14n147 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_assessment_scope .
+_:c14n148 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_assessment_outcome .
+_:c14n149 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_jurisdictions .
 _:c14n15 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_provider .
 _:c14n150 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_assessment_outcome .
-_:c14n151 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_jurisdictions .
-_:c14n152 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_actor_type .
-_:c14n153 a rdfs:Datatype ;
+_:c14n151 a rdfs:Datatype ;
 	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n416 .
-_:c14n154 rdf:first iso29100:PfPiiRecognition\#linked_information ;
-	rdf:rest _:c14n292 .
-_:c14n155 a owl:Restriction ;
+	owl:withRestrictions _:c14n427 .
+_:c14n152 rdf:first iso29100:PfPiiRecognition\#linked_information ;
+	rdf:rest _:c14n291 .
+_:c14n153 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfBreach ;
 	owl:onProperty iso29100:pf_breaches .
-_:c14n156 a owl:Restriction ;
+_:c14n154 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_requirement_source .
-_:c14n157 a owl:Restriction ;
+_:c14n155 a owl:Restriction ;
 	rdfs:subClassOf iso29100:PfPiiPrincipal ;
 	owl:onProperty iso29100:pf_actor_type ;
 	owl:someValuesFrom iso29100:PfPiiPrincipal .
-_:c14n158 rdf:first iso29100:PfRiskLevel\#high ;
-	rdf:rest _:c14n231 .
-_:c14n159 a owl:Restriction ;
+_:c14n156 rdf:first iso29100:PfRiskLevel\#high ;
+	rdf:rest _:c14n229 .
+_:c14n157 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty iso29100:pf_policy_last_reviewed .
+_:c14n158 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_preference_recorded .
+_:c14n159 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfPrinciple ;
+	owl:onProperty iso29100:pf_principle .
 _:c14n16 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risks .
-_:c14n160 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_preference_recorded .
+_:c14n160 rdf:first iso29100:PfRequirementFactor\#law ;
+	rdf:rest _:c14n49 .
 _:c14n161 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfPrinciple ;
-	owl:onProperty iso29100:pf_principle .
-_:c14n162 rdf:first iso29100:PfRequirementFactor\#law ;
-	rdf:rest _:c14n50 .
-_:c14n163 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_measures .
-_:c14n164 a owl:Restriction ;
+_:c14n162 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_recognized_by .
-_:c14n165 a owl:Restriction ;
+_:c14n163 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_purposes .
-_:c14n166 a owl:Restriction ;
+_:c14n164 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_controller_policy .
-_:c14n167 a owl:Restriction ;
+_:c14n165 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_gaps .
-_:c14n168 a owl:Restriction ;
+_:c14n166 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRisk ;
 	owl:onProperty iso29100:pf_risks_found .
-_:c14n169 a owl:Restriction ;
+_:c14n167 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_pseudonymized .
+_:c14n168 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfPolicy ;
+	owl:onProperty iso29100:pf_policies .
+_:c14n169 a owl:Restriction ;
+	rdfs:subClassOf iso29100:PfPiiController ;
+	owl:onProperty iso29100:pf_actor_type ;
+	owl:someValuesFrom iso29100:PfPiiController .
 _:c14n17 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_wants_pseudonymity .
 _:c14n170 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfPolicy ;
-	owl:onProperty iso29100:pf_policies .
-_:c14n171 a owl:Restriction ;
-	rdfs:subClassOf iso29100:PfPiiController ;
-	owl:onProperty iso29100:pf_actor_type ;
-	owl:someValuesFrom iso29100:PfPiiController .
-_:c14n172 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_breach_occurred .
-_:c14n173 a owl:Restriction ;
+_:c14n171 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_processing_agreement .
-_:c14n174 a owl:Restriction ;
+_:c14n172 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_legal_bases .
-_:c14n175 rdf:first iso29100:PfPrinciple\#principle_6_6 ;
-	rdf:rest _:c14n108 .
-_:c14n176 a owl:Restriction ;
+_:c14n173 rdf:first iso29100:PfPrinciple\#principle_6_6 ;
+	rdf:rest _:c14n106 .
+_:c14n174 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty iso29100:pf_last_assessed .
-_:c14n177 rdf:first iso29100:PfOperation\#pseudonymize ;
-	rdf:rest _:c14n62 .
-_:c14n178 a owl:Restriction ;
+_:c14n175 rdf:first iso29100:PfOperation\#pseudonymize ;
+	rdf:rest _:c14n61 .
+_:c14n176 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_policy_version .
-_:c14n179 a owl:Restriction ;
+_:c14n177 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_activity_flows .
+_:c14n178 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_pseudonymized .
+_:c14n179 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty iso29100:pf_principal .
 _:c14n18 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_retention_statement .
 _:c14n180 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_pseudonymized .
-_:c14n181 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty iso29100:pf_principal .
-_:c14n182 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_concerned_principals .
-_:c14n183 a owl:Restriction ;
+_:c14n181 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_stated_rights .
-_:c14n184 a owl:Restriction ;
+_:c14n182 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_purposes .
-_:c14n185 a owl:Restriction ;
+_:c14n183 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_transfer_basis .
-_:c14n186 a owl:Restriction ;
+_:c14n184 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_breach_closed .
-_:c14n187 a owl:Restriction ;
+_:c14n185 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiProcessor ;
 	owl:onProperty iso29100:pf_processors .
-_:c14n188 a owl:Restriction ;
+_:c14n186 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_consent_mechanism .
-_:c14n189 rdf:first iso29100:PfPrinciple\#principle_6_2 ;
-	rdf:rest _:c14n148 .
-_:c14n19 rdf:first iso29100:PfSensitivity\#sensitive ;
-	rdf:rest rdf:nil .
-_:c14n190 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n319 .
-_:c14n191 a owl:Restriction ;
+_:c14n187 rdf:first iso29100:PfPrinciple\#principle_6_2 ;
+	rdf:rest _:c14n146 .
+_:c14n188 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_provider .
-_:c14n192 a owl:Restriction ;
+_:c14n189 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_control_responsible .
-_:c14n193 a owl:Restriction ;
+_:c14n19 rdf:first iso29100:PfSensitivity\#sensitive ;
+	rdf:rest rdf:nil .
+_:c14n190 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n194 a owl:Restriction ;
+_:c14n191 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfControl ;
 	owl:onProperty iso29100:pf_related_controls .
-_:c14n195 a owl:Restriction ;
+_:c14n192 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n196 a owl:Restriction ;
+_:c14n193 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiPrincipal ;
 	owl:onProperty iso29100:pf_principal .
-_:c14n197 a owl:Restriction ;
+_:c14n194 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_purposes .
-_:c14n198 a owl:Restriction ;
+_:c14n195 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfImpactAssessment ;
 	owl:onProperty iso29100:pf_impact_assessments .
-_:c14n199 a owl:Restriction ;
+_:c14n196 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfActor ;
 	owl:onProperty iso29100:pf_recipient .
+_:c14n197 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_next_assessment .
+_:c14n198 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfActor ;
+	owl:onProperty iso29100:pf_applies_to .
+_:c14n199 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_refused_recipients .
 _:c14n2 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_pii_items .
@@ -1245,310 +1247,309 @@ _:c14n20 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_operations .
 _:c14n200 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_next_assessment .
-_:c14n201 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfActor ;
-	owl:onProperty iso29100:pf_applies_to .
-_:c14n202 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_refused_recipients .
-_:c14n203 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_preferences .
-_:c14n204 rdf:first iso29100:PfPiiPrincipal ;
+_:c14n201 rdf:first iso29100:PfPiiPrincipal ;
 	rdf:rest _:c14n12 .
-_:c14n205 a owl:Restriction ;
+_:c14n202 a owl:Restriction ;
 	owl:allValuesFrom xsd:dateTime ;
 	owl:onProperty iso29100:pf_consent_withdrawn .
-_:c14n206 a owl:Restriction ;
+_:c14n203 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_measures .
-_:c14n207 a owl:Restriction ;
+_:c14n204 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiController ;
 	owl:onProperty iso29100:pf_controller .
-_:c14n208 a owl:Restriction ;
+_:c14n205 a owl:Restriction ;
 	owl:onProperty iso29100:pf_consent_withdrawn ;
 	owl:someValuesFrom xsd:string .
-_:c14n209 a owl:Restriction ;
+_:c14n206 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_processing_agreement .
+_:c14n207 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_legal_bases .
+_:c14n208 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_evidence .
+_:c14n209 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_immediate_actions .
 _:c14n21 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_assessment_date .
 _:c14n210 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_legal_bases .
-_:c14n211 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_evidence .
-_:c14n212 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_immediate_actions .
-_:c14n213 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfConsentState ;
 	owl:onProperty iso29100:pf_consent_state .
-_:c14n214 a owl:Restriction ;
+_:c14n211 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty iso29100:pf_preference_recorded .
-_:c14n215 a owl:Restriction ;
+_:c14n212 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfActor ;
 	owl:onProperty iso29100:pf_actors .
-_:c14n216 a owl:Restriction ;
+_:c14n213 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiFlow ;
 	owl:onProperty iso29100:pf_activity_flows .
-_:c14n217 a owl:Restriction ;
+_:c14n214 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPolicy ;
 	owl:onProperty iso29100:pf_controller_policy .
-_:c14n218 a owl:Restriction ;
+_:c14n215 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_last_assessed .
-_:c14n219 xsd:pattern "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$" .
-_:c14n22 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_privacy_officer .
-_:c14n220 a owl:Restriction ;
+_:c14n216 xsd:pattern "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$" .
+_:c14n217 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_refused_operations .
-_:c14n221 a owl:Restriction ;
+_:c14n218 a owl:Restriction ;
 	rdfs:subClassOf iso29100:PfPiiProcessor ;
 	owl:onProperty iso29100:pf_actor_type ;
 	owl:someValuesFrom iso29100:PfPiiProcessor .
-_:c14n222 a owl:Restriction ;
+_:c14n219 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_jurisdictions .
-_:c14n223 rdf:first iso29100:PfImplementationState\#planned ;
-	rdf:rest _:c14n132 .
-_:c14n224 a owl:Restriction ;
+_:c14n22 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_privacy_officer .
+_:c14n220 rdf:first iso29100:PfImplementationState\#planned ;
+	rdf:rest _:c14n130 .
+_:c14n221 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_requirement_factor .
-_:c14n225 a owl:Restriction ;
+_:c14n222 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfSafeguardingRequirement ;
 	owl:onProperty iso29100:pf_safeguarding_requirements .
-_:c14n226 a owl:Restriction ;
+_:c14n223 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPrinciple ;
 	owl:onProperty iso29100:pf_principles .
-_:c14n227 a owl:Restriction ;
+_:c14n224 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_assessment_outcome .
-_:c14n228 a owl:Restriction ;
+_:c14n225 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_assessor .
-_:c14n229 a owl:Restriction ;
+_:c14n226 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_instructing_controllers .
+_:c14n227 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n416 .
+_:c14n228 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_retention_statement .
+_:c14n229 rdf:first iso29100:PfRiskLevel\#very_high ;
+	rdf:rest rdf:nil .
 _:c14n23 a owl:Restriction ;
 	owl:allValuesFrom xsd:dateTime ;
 	owl:onProperty iso29100:pf_consent_given .
-_:c14n230 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_retention_statement .
-_:c14n231 rdf:first iso29100:PfRiskLevel\#very_high ;
+_:c14n230 rdf:first iso29100:PfOperation\#destroy ;
 	rdf:rest rdf:nil .
-_:c14n232 rdf:first iso29100:PfOperation\#destroy ;
+_:c14n231 rdf:first "withdrawn" ;
 	rdf:rest rdf:nil .
-_:c14n233 rdf:first "withdrawn" ;
-	rdf:rest rdf:nil .
-_:c14n234 a owl:Restriction ;
+_:c14n232 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_consent_mechanism .
-_:c14n235 a owl:Restriction ;
+_:c14n233 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfOperation ;
 	owl:onProperty iso29100:pf_refused_operations .
-_:c14n236 rdf:first iso29100:PfConsentMechanism\#implied ;
+_:c14n234 rdf:first iso29100:PfConsentMechanism\#implied ;
 	rdf:rest rdf:nil .
-_:c14n237 a owl:Restriction ;
+_:c14n235 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_linkability .
-_:c14n238 a owl:Restriction ;
+_:c14n236 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_principles .
-_:c14n239 a owl:Restriction ;
+_:c14n237 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_appointed_processors .
+_:c14n238 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_preference_scope .
+_:c14n239 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfOperation ;
+	owl:onProperty iso29100:pf_operations .
 _:c14n24 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:title .
 _:c14n240 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_preference_scope .
-_:c14n241 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfOperation ;
-	owl:onProperty iso29100:pf_operations .
-_:c14n242 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_consent_given .
-_:c14n243 rdf:first iso29100:PfPiiController ;
-	rdf:rest _:c14n204 .
-_:c14n244 a owl:Restriction ;
+_:c14n241 rdf:first iso29100:PfPiiController ;
+	rdf:rest _:c14n201 .
+_:c14n242 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_purposes .
-_:c14n245 a owl:Restriction ;
+_:c14n243 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfProcessingActivity ;
 	owl:onProperty iso29100:pf_processing_activities .
-_:c14n246 a owl:Restriction ;
+_:c14n244 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n247 rdf:first iso29100:PfRiskLevel\#medium ;
-	rdf:rest _:c14n158 .
-_:c14n248 a owl:Restriction ;
+_:c14n245 rdf:first iso29100:PfRiskLevel\#medium ;
+	rdf:rest _:c14n156 .
+_:c14n246 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_pii_items .
-_:c14n249 a owl:Restriction ;
+_:c14n247 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_transfer_basis .
+_:c14n248 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_concerned_principals .
+_:c14n249 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_linkability .
 _:c14n25 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_notifications .
 _:c14n250 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_concerned_principals .
+	owl:onProperty iso29100:pf_last_assessed .
 _:c14n251 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_linkability .
-_:c14n252 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_last_assessed .
-_:c14n253 a owl:Restriction ;
-	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_assessed_activities .
-_:c14n254 a owl:Restriction ;
+_:c14n252 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_crosses_borders .
-_:c14n255 a owl:Restriction ;
+_:c14n253 a owl:Restriction ;
+	owl:allValuesFrom _:c14n422 ;
+	owl:onProperty iso29100:pf_id .
+_:c14n254 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRiskLevel ;
 	owl:onProperty iso29100:pf_risk_residual_level .
-_:c14n256 a owl:Restriction ;
+_:c14n255 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_control_detail .
-_:c14n257 rdf:first iso29100:PfConsentMechanism\#opt_in ;
-	rdf:rest _:c14n364 .
-_:c14n258 rdf:first iso29100:PfImplementationState\#in_operation ;
-	rdf:rest _:c14n333 .
-_:c14n259 a owl:Restriction ;
+_:c14n256 rdf:first iso29100:PfConsentMechanism\#opt_in ;
+	rdf:rest _:c14n363 .
+_:c14n257 rdf:first iso29100:PfImplementationState\#in_operation ;
+	rdf:rest _:c14n332 .
+_:c14n258 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_concerned_pii .
+_:c14n259 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty iso29100:pf_principal .
 _:c14n26 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_immediate_actions .
 _:c14n260 a owl:Restriction ;
-	owl:minCardinality 1 ;
-	owl:onProperty iso29100:pf_principal .
-_:c14n261 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risks_accepted .
-_:c14n262 a owl:Restriction ;
+_:c14n261 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_impact_assessments .
-_:c14n263 rdf:first iso29100:PfPiiRecognition\#distinguishing_trait ;
-	rdf:rest _:c14n154 .
-_:c14n264 a owl:Restriction ;
+_:c14n262 rdf:first iso29100:PfPiiRecognition\#distinguishing_trait ;
+	rdf:rest _:c14n152 .
+_:c14n263 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_lessons .
-_:c14n265 xsd:pattern "^\\s*\\S" .
-_:c14n266 rdf:first iso29100:PfOperation\#alter ;
-	rdf:rest _:c14n177 .
-_:c14n267 a owl:Restriction ;
+_:c14n264 xsd:pattern "^\\s*\\S" .
+_:c14n265 rdf:first iso29100:PfOperation\#alter ;
+	rdf:rest _:c14n175 .
+_:c14n266 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_evidence .
-_:c14n268 a owl:Restriction ;
+_:c14n267 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_contact .
-_:c14n269 a owl:Restriction ;
+_:c14n268 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_control_responsible .
+_:c14n269 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_ict_systems .
 _:c14n27 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risks_found .
 _:c14n270 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_ict_systems .
-_:c14n271 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_risk_source .
-_:c14n272 a owl:Restriction ;
+_:c14n271 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_decides_afterwards .
-_:c14n273 rdf:first iso29100:PfConsentState\#given ;
-	rdf:rest _:c14n280 .
-_:c14n274 a owl:Restriction ;
+_:c14n272 rdf:first iso29100:PfConsentState\#given ;
+	rdf:rest _:c14n279 .
+_:c14n273 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_control_state .
-_:c14n275 a owl:Restriction ;
+_:c14n274 a owl:Restriction ;
 	rdfs:subClassOf iso29100:PfActor ;
 	owl:onProperty iso29100:pf_actor_type ;
 	owl:someValuesFrom iso29100:PfActor .
-_:c14n276 a owl:Restriction ;
+_:c14n275 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_policy_scope .
-_:c14n277 a owl:Restriction ;
+_:c14n276 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_improvements .
-_:c14n278 a owl:Restriction ;
+_:c14n277 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_sub_processors .
-_:c14n279 rdfs:subClassOf _:c14n387 ;
-	owl:intersectionOf _:c14n142 .
+_:c14n278 rdfs:subClassOf _:c14n386 ;
+	owl:intersectionOf _:c14n140 .
+_:c14n279 rdf:first iso29100:PfConsentState\#refused ;
+	rdf:rest _:c14n292 .
 _:c14n28 rdf:first iso29100:PfSensitivity\#ordinary ;
 	rdf:rest _:c14n19 .
-_:c14n280 rdf:first iso29100:PfConsentState\#refused ;
-	rdf:rest _:c14n293 .
-_:c14n281 a owl:Restriction ;
+_:c14n280 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty iso29100:pf_policy_effective_date .
-_:c14n282 a owl:Restriction ;
+_:c14n281 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfImplementationState ;
 	owl:onProperty iso29100:pf_control_state .
-_:c14n283 a owl:Restriction ;
+_:c14n282 a owl:Restriction ;
 	owl:allValuesFrom xsd:dateTime ;
 	owl:onProperty iso29100:pf_breach_discovered .
-_:c14n284 rdf:first iso29100:PfOperation\#delete ;
-	rdf:rest _:c14n232 .
-_:c14n285 a owl:Restriction ;
+_:c14n283 rdf:first iso29100:PfOperation\#delete ;
+	rdf:rest _:c14n230 .
+_:c14n284 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:description .
-_:c14n286 rdf:first iso29100:PfOperation\#consult ;
-	rdf:rest _:c14n266 .
-_:c14n287 a owl:Restriction ;
+_:c14n285 rdf:first iso29100:PfOperation\#consult ;
+	rdf:rest _:c14n265 .
+_:c14n286 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfActor ;
 	owl:onProperty iso29100:pf_control_responsible .
-_:c14n288 a owl:Restriction ;
+_:c14n287 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_control_kind .
-_:c14n289 a owl:Restriction ;
+_:c14n288 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_safeguarding_requirements .
+_:c14n289 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_preference_recorded .
 _:c14n29 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty iso29100:pf_next_assessment .
 _:c14n290 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_preference_recorded .
-_:c14n291 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_organization .
-_:c14n292 rdf:first iso29100:PfPiiRecognition\#pseudonym ;
-	rdf:rest _:c14n118 .
-_:c14n293 rdf:first iso29100:PfConsentState\#withdrawn ;
-	rdf:rest _:c14n100 .
-_:c14n294 a owl:Restriction ;
+_:c14n291 rdf:first iso29100:PfPiiRecognition\#pseudonym ;
+	rdf:rest _:c14n116 .
+_:c14n292 rdf:first iso29100:PfConsentState\#withdrawn ;
+	rdf:rest _:c14n98 .
+_:c14n293 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risks_treated .
-_:c14n295 a owl:Restriction ;
+_:c14n294 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_assessment_date .
-_:c14n296 a owl:Restriction ;
+_:c14n295 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfOperation ;
 	owl:onProperty iso29100:pf_operations .
-_:c14n297 a owl:Restriction ;
+_:c14n296 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRiskLevel ;
 	owl:onProperty iso29100:pf_breach_severity .
-_:c14n298 a owl:Restriction ;
+_:c14n297 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_policies .
-_:c14n299 a owl:Restriction ;
+_:c14n298 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_receiving_purpose .
+_:c14n299 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_remediation .
 _:c14n3 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_assessment_scope .
@@ -1557,313 +1558,313 @@ _:c14n30 a owl:Restriction ;
 	owl:onProperty iso29100:pf_requirement_factor .
 _:c14n300 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_remediation .
-_:c14n301 a owl:Restriction ;
-	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_wants_anonymity .
-_:c14n302 rdf:first iso29100:PfPrinciple\#principle_6_4 ;
-	rdf:rest _:c14n47 .
-_:c14n303 a owl:Restriction ;
+_:c14n301 rdf:first iso29100:PfPrinciple\#principle_6_4 ;
+	rdf:rest _:c14n46 .
+_:c14n302 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_processors .
-_:c14n304 a owl:Restriction ;
+_:c14n303 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_purposes .
-_:c14n305 rdf:first iso29100:PfOperation\#store ;
+_:c14n304 rdf:first iso29100:PfOperation\#store ;
 	rdf:rest _:c14n39 .
-_:c14n306 a owl:Restriction ;
+_:c14n305 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_purposes .
-_:c14n307 a owl:Restriction ;
+_:c14n306 a owl:Restriction ;
 	owl:allValuesFrom xsd:dateTime ;
 	owl:onProperty iso29100:pf_breach_closed .
-_:c14n308 a owl:Restriction ;
+_:c14n307 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_actor_type .
-_:c14n309 a rdfs:Datatype ;
-	owl:oneOf _:c14n233 .
+_:c14n308 a rdfs:Datatype ;
+	owl:oneOf _:c14n231 .
+_:c14n309 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_purposes .
 _:c14n31 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfControl ;
 	owl:onProperty iso29100:pf_related_controls .
 _:c14n310 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_purposes .
+	owl:onProperty iso29100:pf_preference_scope .
 _:c14n311 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_preference_scope .
-_:c14n312 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_risk_owner .
-_:c14n313 a owl:Restriction ;
+_:c14n312 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_policy_audience .
-_:c14n314 a owl:Restriction ;
+_:c14n313 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_policy_effective_date .
-_:c14n315 a owl:Restriction ;
+_:c14n314 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfControl ;
 	owl:onProperty iso29100:pf_met_by .
-_:c14n316 a owl:Restriction ;
+_:c14n315 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_inquiry_contact .
-_:c14n317 a owl:Restriction ;
+_:c14n316 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_breach_closed .
-_:c14n318 a owl:Restriction ;
+_:c14n317 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_inquiry_contact .
-_:c14n319 rdf:first xsd:integer ;
-	rdf:rest _:c14n413 .
+_:c14n318 rdf:first xsd:integer ;
+	rdf:rest _:c14n426 .
+_:c14n319 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_met_by .
 _:c14n32 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_concerned_pii .
 _:c14n320 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_met_by .
-_:c14n321 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_consultations .
+_:c14n321 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_risk_likelihood .
 _:c14n322 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_risk_likelihood .
+	owl:onProperty iso29100:pf_actors .
 _:c14n323 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_actors .
-_:c14n324 a owl:Restriction ;
-	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_transfer_safeguards .
-_:c14n325 a owl:Restriction ;
+_:c14n324 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_risk_consequence .
-_:c14n326 a owl:Restriction ;
+_:c14n325 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_principal .
-_:c14n327 a owl:Restriction ;
+_:c14n326 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_risk_likelihood .
-_:c14n328 a owl:Restriction ;
+_:c14n327 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_privacy_officer .
-_:c14n329 a owl:Restriction ;
+_:c14n328 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_legal_bases .
+_:c14n329 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_breach_severity .
 _:c14n33 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risk_source .
 _:c14n330 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_breach_severity .
-_:c14n331 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPrincipleImplementation ;
 	owl:onProperty iso29100:pf_principle_implementations .
-_:c14n332 owl:unionOf _:c14n243 .
-_:c14n333 rdf:first iso29100:PfImplementationState\#retired ;
+_:c14n331 owl:unionOf _:c14n241 .
+_:c14n332 rdf:first iso29100:PfImplementationState\#retired ;
 	rdf:rest rdf:nil .
-_:c14n334 a owl:Restriction ;
+_:c14n333 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_decides_afterwards .
-_:c14n335 a owl:Restriction ;
+_:c14n334 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_improvements .
-_:c14n336 a owl:Restriction ;
+_:c14n335 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_policy_last_reviewed .
-_:c14n337 a owl:Restriction ;
+_:c14n336 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRisk ;
 	owl:onProperty iso29100:pf_risks_accepted .
-_:c14n338 rdf:first iso29100:PfPrinciple\#principle_6_8 ;
-	rdf:rest _:c14n351 .
-_:c14n339 a owl:Restriction ;
+_:c14n337 rdf:first iso29100:PfPrinciple\#principle_6_8 ;
+	rdf:rest _:c14n350 .
+_:c14n338 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_controller_policy .
+_:c14n339 a owl:Restriction ;
+	owl:minCardinality 1 ;
+	owl:onProperty iso29100:pf_policy_audience .
 _:c14n34 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_receiving_purpose .
 _:c14n340 a owl:Restriction ;
 	owl:minCardinality 1 ;
-	owl:onProperty iso29100:pf_policy_audience .
-_:c14n341 a owl:Restriction ;
-	owl:minCardinality 1 ;
 	owl:onProperty iso29100:title .
-_:c14n342 a owl:Restriction ;
+_:c14n341 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_next_assessment .
-_:c14n343 rdf:first iso29100:PfOperation\#disclose ;
-	rdf:rest _:c14n362 .
-_:c14n344 a owl:Restriction ;
+_:c14n342 rdf:first iso29100:PfOperation\#disclose ;
+	rdf:rest _:c14n361 .
+_:c14n343 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_recipient .
-_:c14n345 a owl:Restriction ;
+_:c14n344 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiPrincipal ;
 	owl:onProperty iso29100:pf_principal .
-_:c14n346 a owl:Restriction ;
+_:c14n345 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty iso29100:pf_wants_pseudonymity .
-_:c14n347 a owl:Restriction ;
+_:c14n346 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfSafeguardingRequirement ;
 	owl:onProperty iso29100:pf_breached_requirements .
-_:c14n348 a owl:Restriction ;
+_:c14n347 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risk_residual_level .
-_:c14n349 a owl:Restriction ;
+_:c14n348 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_answers_requirements .
+_:c14n349 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_jurisdictions .
 _:c14n35 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_wants_anonymity .
-_:c14n350 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_jurisdictions .
-_:c14n351 rdf:first iso29100:PfPrinciple\#principle_6_9 ;
-	rdf:rest _:c14n391 .
-_:c14n352 a owl:Restriction ;
+_:c14n350 rdf:first iso29100:PfPrinciple\#principle_6_9 ;
+	rdf:rest _:c14n390 .
+_:c14n351 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiProcessor ;
 	owl:onProperty iso29100:pf_sub_processors .
-_:c14n353 a owl:Restriction ;
+_:c14n352 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_consent_state .
-_:c14n354 a owl:Restriction ;
+_:c14n353 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiFlow ;
 	owl:onProperty iso29100:pf_flows .
-_:c14n355 a owl:Restriction ;
+_:c14n354 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_breach_occurred .
-_:c14n356 a owl:Restriction ;
+_:c14n355 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_notifications .
-_:c14n357 a owl:Restriction ;
+_:c14n356 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n358 rdf:first iso29100:PfConsent ;
+_:c14n357 rdf:first iso29100:PfConsent ;
 	rdf:rest rdf:nil .
-_:c14n359 a owl:Restriction ;
+_:c14n358 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_concerned_pii .
+_:c14n359 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_remediation .
 _:c14n36 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_purposes .
 _:c14n360 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_remediation .
-_:c14n361 a owl:Restriction ;
 	owl:allValuesFrom xsd:date ;
 	owl:onProperty iso29100:pf_assessment_date .
-_:c14n362 rdf:first iso29100:PfOperation\#disseminate ;
-	rdf:rest _:c14n284 .
-_:c14n363 a owl:Restriction ;
+_:c14n361 rdf:first iso29100:PfOperation\#disseminate ;
+	rdf:rest _:c14n283 .
+_:c14n362 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_evidence .
-_:c14n364 rdf:first iso29100:PfConsentMechanism\#opt_out ;
-	rdf:rest _:c14n236 .
-_:c14n365 a owl:Restriction ;
+_:c14n363 rdf:first iso29100:PfConsentMechanism\#opt_out ;
+	rdf:rest _:c14n234 .
+_:c14n364 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_requirement_source .
-_:c14n366 a owl:Restriction ;
+_:c14n365 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_principle .
-_:c14n367 a owl:Restriction ;
+_:c14n366 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_sensitivity .
-_:c14n368 a owl:Restriction ;
+_:c14n367 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_evidence .
-_:c14n369 a owl:Restriction ;
+_:c14n368 a owl:Restriction ;
 	owl:allValuesFrom xsd:duration ;
 	owl:onProperty iso29100:pf_retention .
+_:c14n369 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfRisk ;
+	owl:onProperty iso29100:pf_risks .
 _:c14n37 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_linkability .
 _:c14n370 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfRisk ;
-	owl:onProperty iso29100:pf_risks .
-_:c14n371 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_risk_consequence .
-_:c14n372 a owl:Restriction ;
+_:c14n371 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_assessor .
-_:c14n373 a owl:Restriction ;
+_:c14n372 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_legal_bases .
-_:c14n374 a owl:Restriction ;
+_:c14n373 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfConsent ;
 	owl:onProperty iso29100:pf_consents .
-_:c14n375 rdf:first iso29100:PfControlKind\#technical ;
+_:c14n374 rdf:first iso29100:PfControlKind\#technical ;
 	rdf:rest _:c14n1 .
-_:c14n376 a owl:Restriction ;
+_:c14n375 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_principles .
-_:c14n377 a owl:Restriction ;
+_:c14n376 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n378 a owl:Restriction ;
+_:c14n377 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty iso29100:pf_notification_required .
-_:c14n379 a owl:Restriction ;
+_:c14n378 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_breach_severity .
+_:c14n379 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_assessor .
 _:c14n38 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_assessment_outcome .
 _:c14n380 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_assessor .
-_:c14n381 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfControl ;
 	owl:onProperty iso29100:pf_controls .
-_:c14n382 a owl:Restriction ;
+_:c14n381 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_transfer_safeguards .
-_:c14n383 a owl:Restriction ;
+_:c14n382 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_notification_required .
-_:c14n384 a owl:Restriction ;
+_:c14n383 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfSensitivity ;
 	owl:onProperty iso29100:pf_sensitivities .
-_:c14n385 a owl:Restriction ;
+_:c14n384 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_gaps .
-_:c14n386 a owl:Restriction ;
+_:c14n385 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_risk_owner .
-_:c14n387 a owl:Restriction ;
+_:c14n386 a owl:Restriction ;
 	owl:onProperty iso29100:pf_consent_state ;
-	owl:someValuesFrom _:c14n309 .
-_:c14n388 a owl:Restriction ;
+	owl:someValuesFrom _:c14n308 .
+_:c14n387 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiProcessor ;
 	owl:onProperty iso29100:pf_appointed_processors .
-_:c14n389 rdf:first iso29100:PfPiiRecognition\#unsolicited ;
+_:c14n388 rdf:first iso29100:PfPiiRecognition\#unsolicited ;
 	rdf:rest rdf:nil .
-_:c14n39 rdf:first iso29100:PfOperation\#retrieve ;
-	rdf:rest _:c14n286 .
-_:c14n390 a owl:Restriction ;
+_:c14n389 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_lessons .
-_:c14n391 rdf:first iso29100:PfPrinciple\#principle_6_10 ;
-	rdf:rest _:c14n102 .
-_:c14n392 a owl:Restriction ;
+_:c14n39 rdf:first iso29100:PfOperation\#retrieve ;
+	rdf:rest _:c14n285 .
+_:c14n390 rdf:first iso29100:PfPrinciple\#principle_6_10 ;
+	rdf:rest _:c14n100 .
+_:c14n391 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_ict_systems .
-_:c14n393 a owl:Restriction ;
+_:c14n392 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_consultations .
-_:c14n394 a owl:Restriction ;
+_:c14n393 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_policy_scope .
-_:c14n395 a owl:Restriction ;
+_:c14n394 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_wants_pseudonymity .
-_:c14n396 a owl:Restriction ;
+_:c14n395 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty iso29100:pf_wants_anonymity .
-_:c14n397 a owl:Restriction ;
+_:c14n396 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfRisk ;
 	owl:onProperty iso29100:pf_risks_treated .
-_:c14n398 rdf:first iso29100:PfThirdParty ;
+_:c14n397 rdf:first iso29100:PfThirdParty ;
 	rdf:rest rdf:nil .
-_:c14n399 a owl:Restriction ;
+_:c14n398 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_privacy_officer .
+_:c14n399 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_lessons .
 _:c14n4 a owl:Restriction ;
 	owl:allValuesFrom xsd:duration ;
 	owl:onProperty iso29100:pf_retention .
@@ -1871,56 +1872,80 @@ _:c14n40 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_related_controls .
 _:c14n400 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_lessons .
-_:c14n401 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiPrincipal ;
 	owl:onProperty iso29100:pf_concerned_principals .
-_:c14n402 a owl:Restriction ;
+_:c14n401 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_organization .
-_:c14n403 a owl:Restriction ;
+_:c14n402 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_assessment_scope .
-_:c14n404 a owl:Restriction ;
+_:c14n403 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_retention .
-_:c14n405 a owl:Restriction ;
+_:c14n404 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_control_detail .
-_:c14n406 a owl:Restriction ;
+_:c14n405 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfActor ;
 	owl:onProperty iso29100:pf_decides_afterwards .
-_:c14n407 a owl:Restriction ;
+_:c14n406 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_risk_source .
-_:c14n408 a owl:Restriction ;
+_:c14n407 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_retention .
-_:c14n409 a owl:Restriction ;
+_:c14n408 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:description .
+_:c14n409 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_contact .
 _:c14n41 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfSensitivity ;
 	owl:onProperty iso29100:pf_sensitivity .
-_:c14n410 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_contact .
-_:c14n411 rdf:first iso29100:PfOperation\#collect ;
-	rdf:rest _:c14n305 .
-_:c14n412 rdf:first _:c14n46 ;
+_:c14n410 rdf:first iso29100:PfOperation\#collect ;
+	rdf:rest _:c14n304 .
+_:c14n411 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n413 .
+_:c14n412 rdf:first _:c14n411 ;
 	rdf:rest rdf:nil .
-_:c14n413 rdf:first _:c14n84 ;
+_:c14n413 rdf:first _:c14n216 ;
 	rdf:rest rdf:nil .
-_:c14n414 rdf:first _:c14n219 ;
+_:c14n414 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n417 .
+_:c14n415 rdf:first _:c14n414 ;
 	rdf:rest rdf:nil .
-_:c14n415 rdf:first _:c14n104 ;
+_:c14n416 rdf:first xsd:anyURI ;
+	rdf:rest _:c14n415 .
+_:c14n417 rdf:first _:c14n418 ;
 	rdf:rest rdf:nil .
-_:c14n416 rdf:first _:c14n265 ;
-	rdf:rest rdf:nil .
+_:c14n418 xsd:pattern "^\\S+$" .
+_:c14n419 a rdfs:Datatype ;
+	owl:onDatatype xsd:string ;
+	owl:withRestrictions _:c14n423 .
 _:c14n42 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_id .
+_:c14n420 rdf:first _:c14n419 ;
+	rdf:rest rdf:nil .
+_:c14n421 rdf:first xsd:anyURI ;
+	rdf:rest _:c14n420 .
+_:c14n422 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n421 .
+_:c14n423 rdf:first _:c14n424 ;
+	rdf:rest rdf:nil .
+_:c14n424 xsd:pattern "^\\S+$" .
+_:c14n425 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n318 .
+_:c14n426 rdf:first _:c14n82 ;
+	rdf:rest rdf:nil .
+_:c14n427 rdf:first _:c14n264 ;
+	rdf:rest rdf:nil .
+_:c14n428 rdf:first _:c14n102 ;
+	rdf:rest rdf:nil .
 _:c14n43 a owl:Restriction ;
 	owl:allValuesFrom xsd:dateTime ;
 	owl:onProperty iso29100:pf_breach_occurred .
@@ -1930,173 +1955,172 @@ _:c14n44 a owl:Restriction ;
 _:c14n45 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfSafeguardingRequirement ;
 	owl:onProperty iso29100:pf_answers_requirements .
-_:c14n46 a rdfs:Datatype ;
-	owl:onDatatype xsd:string ;
-	owl:withRestrictions _:c14n414 .
-_:c14n47 rdf:first iso29100:PfPrinciple\#principle_6_5 ;
-	rdf:rest _:c14n175 .
-_:c14n48 a owl:Restriction ;
+_:c14n46 rdf:first iso29100:PfPrinciple\#principle_6_5 ;
+	rdf:rest _:c14n173 .
+_:c14n47 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_policy_last_reviewed .
-_:c14n49 a owl:Restriction ;
+_:c14n48 a owl:Restriction ;
 	rdfs:subClassOf iso29100:PfThirdParty ;
 	owl:onProperty iso29100:pf_actor_type ;
 	owl:someValuesFrom iso29100:PfThirdParty .
-_:c14n5 rdf:first iso29100:PfRequirementFactor\#business ;
-	rdf:rest _:c14n138 .
-_:c14n50 rdf:first iso29100:PfRequirementFactor\#contract ;
+_:c14n49 rdf:first iso29100:PfRequirementFactor\#contract ;
 	rdf:rest _:c14n5 .
-_:c14n51 a owl:Restriction ;
+_:c14n5 rdf:first iso29100:PfRequirementFactor\#business ;
+	rdf:rest _:c14n136 .
+_:c14n50 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_receiving_purpose .
-_:c14n52 a rdfs:Datatype ;
-	owl:intersectionOf _:c14n115 .
-_:c14n53 a owl:Restriction ;
+_:c14n51 a rdfs:Datatype ;
+	owl:intersectionOf _:c14n113 .
+_:c14n52 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_risk_owner .
-_:c14n54 a owl:Restriction ;
+_:c14n53 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_consent_withdrawn .
+_:c14n54 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_concerned_pii .
 _:c14n55 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n56 a owl:Restriction ;
-	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_operations .
-_:c14n57 a owl:Restriction ;
+_:c14n56 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_sensitivity .
-_:c14n58 a owl:Restriction ;
+_:c14n57 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_refused_recipients .
-_:c14n59 a owl:Restriction ;
+_:c14n58 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_concerned_pii .
+_:c14n59 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_notification_required .
 _:c14n6 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_processing_agreement .
 _:c14n60 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_notification_required .
-_:c14n61 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_pii_categories .
-_:c14n62 rdf:first iso29100:PfOperation\#anonymize ;
-	rdf:rest _:c14n343 .
-_:c14n63 a owl:Restriction ;
+_:c14n61 rdf:first iso29100:PfOperation\#anonymize ;
+	rdf:rest _:c14n342 .
+_:c14n62 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_retention_statement .
-_:c14n64 a owl:Restriction ;
-	owl:allValuesFrom xsd:anyURI ;
-	owl:onProperty iso29100:pf_id .
-_:c14n65 a owl:Restriction ;
+_:c14n63 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_risk_inherent_level .
-_:c14n66 a owl:Restriction ;
+_:c14n64 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_actor_type .
-_:c14n67 a owl:Restriction ;
+_:c14n65 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_breaches .
-_:c14n68 a owl:Restriction ;
+_:c14n66 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_control_objective .
-_:c14n69 a owl:Restriction ;
+_:c14n67 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_flows .
+_:c14n68 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_retention .
+_:c14n69 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_contact .
 _:c14n7 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiRecognition ;
 	owl:onProperty iso29100:pf_recognized_by .
 _:c14n70 a owl:Restriction ;
 	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_retention .
-_:c14n71 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_contact .
-_:c14n72 a owl:Restriction ;
-	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_control_objective .
-_:c14n73 a owl:Restriction ;
+_:c14n71 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfControl ;
 	owl:onProperty iso29100:pf_related_controls .
-_:c14n74 rdf:first iso29100:PfPrinciple\#principle_6_12 ;
+_:c14n72 rdf:first iso29100:PfPrinciple\#principle_6_12 ;
 	rdf:rest rdf:nil .
-_:c14n75 a owl:Restriction ;
+_:c14n73 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_controls .
-_:c14n76 a owl:Restriction ;
+_:c14n74 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_transfer_basis .
-_:c14n77 a owl:Restriction ;
+_:c14n75 a owl:Restriction ;
 	owl:allValuesFrom xsd:boolean ;
 	owl:onProperty iso29100:pf_pseudonymized .
-_:c14n78 a owl:Restriction ;
+_:c14n76 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_policy_version .
-_:c14n79 a owl:Restriction ;
+_:c14n77 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_retention .
+_:c14n78 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_breach_discovered .
+_:c14n79 a owl:Restriction ;
+	owl:minCardinality 0 ;
+	owl:onProperty iso29100:pf_applies_to .
 _:c14n8 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_principal .
 _:c14n80 a owl:Restriction ;
-	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_breach_discovered .
-_:c14n81 a owl:Restriction ;
-	owl:minCardinality 0 ;
-	owl:onProperty iso29100:pf_applies_to .
-_:c14n82 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_related_controls .
-_:c14n83 a owl:Restriction ;
+_:c14n81 a owl:Restriction ;
 	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_policy_effective_date .
-_:c14n84 a rdfs:Datatype ;
+_:c14n82 a rdfs:Datatype ;
 	owl:onDatatype xsd:integer ;
-	owl:withRestrictions _:c14n415 .
-_:c14n85 a owl:Restriction ;
+	owl:withRestrictions _:c14n428 .
+_:c14n83 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_preference_scope .
-_:c14n86 a owl:Restriction ;
+_:c14n84 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiController ;
 	owl:onProperty iso29100:pf_instructing_controllers .
-_:c14n87 a owl:Restriction ;
+_:c14n85 a owl:Restriction ;
 	owl:allValuesFrom xsd:string ;
 	owl:onProperty iso29100:pf_stated_rights .
-_:c14n88 a owl:Restriction ;
+_:c14n86 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n89 a owl:Restriction ;
+_:c14n87 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_principals_affected .
+_:c14n88 a owl:Restriction ;
+	owl:allValuesFrom xsd:string ;
+	owl:onProperty iso29100:pf_inquiry_contact .
+_:c14n89 a owl:Restriction ;
+	owl:allValuesFrom iso29100:PfPiiPrincipal ;
+	owl:onProperty iso29100:pf_concerned_principals .
 _:c14n9 a owl:Restriction ;
 	owl:minCardinality 0 ;
 	owl:onProperty iso29100:pf_breach_discovered .
-_:c14n90 a owl:Restriction ;
-	owl:allValuesFrom xsd:string ;
-	owl:onProperty iso29100:pf_inquiry_contact .
-_:c14n91 a owl:Restriction ;
-	owl:allValuesFrom iso29100:PfPiiPrincipal ;
-	owl:onProperty iso29100:pf_concerned_principals .
-_:c14n92 rdf:first iso29100:PfRiskLevel\#low ;
-	rdf:rest _:c14n247 .
-_:c14n93 rdf:first iso29100:PfPolicyAudience\#public_notice ;
+_:c14n90 rdf:first iso29100:PfRiskLevel\#low ;
+	rdf:rest _:c14n245 .
+_:c14n91 rdf:first iso29100:PfPolicyAudience\#public_notice ;
+	rdf:rest rdf:nil .
+_:c14n92 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_organization .
+_:c14n93 rdf:first iso29100:PfControlKind\#contractual ;
 	rdf:rest rdf:nil .
 _:c14n94 a owl:Restriction ;
 	owl:maxCardinality 1 ;
-	owl:onProperty iso29100:pf_organization .
-_:c14n95 rdf:first iso29100:PfControlKind\#contractual ;
-	rdf:rest rdf:nil .
-_:c14n96 a owl:Restriction ;
-	owl:maxCardinality 1 ;
 	owl:onProperty iso29100:pf_control_objective .
-_:c14n97 a owl:Restriction ;
+_:c14n95 a owl:Restriction ;
 	owl:minCardinality 1 ;
 	owl:onProperty iso29100:pf_id .
-_:c14n98 a owl:Restriction ;
+_:c14n96 a owl:Restriction ;
 	owl:allValuesFrom iso29100:PfPiiItem ;
 	owl:onProperty iso29100:pf_concerned_pii .
-_:c14n99 a owl:Restriction ;
-	owl:allValuesFrom _:c14n153 ;
+_:c14n97 a owl:Restriction ;
+	owl:allValuesFrom _:c14n151 ;
 	owl:onProperty iso29100:title .
+_:c14n98 rdf:first iso29100:PfConsentState\#expired ;
+	rdf:rest rdf:nil .
+_:c14n99 a owl:Restriction ;
+	owl:maxCardinality 1 ;
+	owl:onProperty iso29100:pf_consent_given .
 
