@@ -100,6 +100,9 @@ generated:
   by: process:ktl-librarian
   at: "2026-11-05T14:12:24Z"
 status: draft
+verified:
+  - by: process:ktl-librarian
+    at: "2026-11-05T14:23:23Z"
 ---
 
 # Knowledge sources map
