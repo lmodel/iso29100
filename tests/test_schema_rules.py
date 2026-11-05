@@ -186,6 +186,14 @@ def test_copy_roots_the_concept_classes():
     assert kinds == ACTOR_KINDS
 
 
+def test_the_readme_lists_the_known_types():
+    """The README's block lists each class a concept may name, and only those: every
+    root but the abstract actor, and the actor's four kinds."""
+    text = (ROOT / "README.md").read_text(encoding="utf-8")
+    block = text.partition("```text\n")[2].partition("\n```")[0]
+    assert set(block.split(", ")) == (ROOTS - {"PfActor"}) | ACTOR_KINDS
+
+
 def test_mappings_use_a_bound_prefix():
     """Every mapping in the copy is a CURIE whose prefix the copy binds. A full
     address that no prefix covers makes every `lokf convert --schema` over the

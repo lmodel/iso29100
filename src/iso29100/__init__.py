@@ -1,6 +1,6 @@
 """iso29100.
 
-ISO 29100 / Privacy LinkML Schema
+ISO/IEC 29100:2024 privacy framework records (LinkML)
 """
 
 try:
