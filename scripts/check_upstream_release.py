@@ -6,8 +6,8 @@
 """Check ISO's records of ISO/IEC 29100:2024 against ISO Open Data, and DPV's
 mapping to the standard against DPV's repository.
 
-ISO sells the text of ISO/IEC 29100, so this repository pins what ISO publishes
-openly about it instead: its records in ISO Open Data's
+ISO's licence bars giving the text of ISO/IEC 29100 to an AI tool, so this
+repository pins what ISO publishes openly about it instead: its records in ISO Open Data's
 ``iso_deliverables_metadata`` dataset, which ISO updates daily under the ODC
 Attribution License (ODC-By) v1.0. Three records matter here:
 
