@@ -1,0 +1,10 @@
+# Datasets
+
+* [The generated artefacts](generated-artefacts.md) - What `just gen-project` and `just gen-doc` generate from the schema: the projections in `project/`, the Python models in `src/iso29100/datamodel/`, and the merged schema in `docs/schema/`. None is edited by hand.
+* [The iso29100 LinkML schema](iso29100-linkml-schema.md) - `src/iso29100/schema/iso29100.yaml`: the records an organization keeps when it applies the privacy framework of ISO/IEC 29100:2024, with the `Pf` class prefix, the `pf_` slot prefix and `PfFramework` as its root.
+* [The schema's adapt copy](adapt-copy.md) - `.lokf/iso29100.yaml`, the copy `just lokf-adapt` writes from the schema so that it sits beside LOKF's `lokf.yaml`: nine classes rooted on `Concept`, `pf_id` dropped for LOKF's `id`, `title` and `description` folded into LOKF's, and the actor's designator demoted.
+* [The example data](example-data.md) - `tests/data/`: a valid example per class and a counter-example per constraint, each counter-example naming on its first line where it must fail. `PfFramework-acme` is one whole framework.
+* [A privacy notice as a concept](example-policy.md) - An example written as a concept of type `PfPolicy` in the adapt copy's keys. It shows that the domain schema admits a policy as a concept, naming its audience and the principle it bears on by number.
+* [ISO Open Data's records](iso-open-data-records.md) - `src/iso29100/schema/iso-open-data/`: ISO's records of the edition and of the two it replaced as of 2026-11-05, under ODC-By v1.0, each without its scope and pinned by hash.
+* [DPV's mapping to the standard](dpv-mapping.md) - `upstream/dpv-iso.ttl`: the five rows the Data Privacy Vocabulary (DPV) publishes between its terms and ISO/IEC 29100:2024, copied unchanged at DPV's tag `dpv-2.3` under the W3C Software and Document License, and pinned by git object hash.
+* [The neighbours' adapt copies](neighbour-copies.md) - The adapt copies of 27 released lmodel repositories in `tests/neighbours/`, each pinned by its SHA-256, which a test holds this schema's names apart from.
