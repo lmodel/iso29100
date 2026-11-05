@@ -1,0 +1,8 @@
+pf_id: acme:processor-mail
+pf_actor_type: PfPiiProcessor
+title: TransactMail
+pf_instructing_controllers:
+  - acme:controller-acme
+pf_processing_agreement: DPA-2026-07
+pf_sub_processors:
+  - acme:processor-hosting

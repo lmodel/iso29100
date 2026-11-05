@@ -1,0 +1,4 @@
+# Fails at: /pf_actor_type
+pf_id: acme:controller
+pf_actor_type: PfPiiProcessor
+title: A controller that says it is a processor

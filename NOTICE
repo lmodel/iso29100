@@ -1,6 +1,117 @@
-This project includes original code, schema structure, and documentation licensed under Apache License 2.0.
+ISO/IEC 29100 Privacy Framework LinkML Schema (iso29100)
+Copyright 2026 Noel McLoughlin
 
-ISO/IEC standards publications, including ISO/IEC 29001, are copyrighted by ISO. This repository does not relicense or sublicense
-ISO standards text.
+The code in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). Some of the content it carries is third-party
+work under its own terms, listed below.
 
-If you need to reproduce or redistribute ISO standards text in software, documentation, or generated artifacts, obtain permission from ISO.
+ISO/IEC 29100
+-------------
+
+src/iso29100/schema/*.yaml, src/iso29100/datamodel/ and project/ model the
+records an organization keeps when it applies the privacy framework of
+ISO/IEC 29100:2024, Information technology - Security techniques - Privacy
+framework (second edition, 2024-02). They are this project's own work, and
+they are not endorsed by ISO or IEC.
+
+The standard's text is copyright ISO and IEC. This repository carries none of
+it: no clause or heading, copied or paraphrased sentence by sentence. Each
+title and description is this project's own, written to say what an element is
+for. Copyright protects how the standard is expressed, not the methods and
+facts it describes. The project nevertheless takes the stricter reading that
+European law allows after Infopaq (C-5/08), under which even a short extract
+can be protected when it shows its author's own choices, so it reuses no
+heading or phrase of the standard. The terms the standard defines and the
+privacy field shares, such as PII principal, are used as names. The standard
+remains the authority on what it says, and this project's words do not replace
+it.
+
+This repository's licence grants no right to reproduce or redistribute that
+text. Obtain the standard and any licence to reuse its text from ISO or your
+national standards body. A title or description slot holds whatever its user
+writes: fill it only with text you have the right to use.
+
+Some elements cite the subclause they model by number, so a reader with a
+licensed copy can look the text up there. The numbers come from a third party's
+public outline of the edition, not from the standard. ISO's Customer Licence
+Agreement also restricts use of the text with AI tools, so the standard is never
+given to the agents that maintain this repository's knowledge bundle.
+scripts/check_overlap.py lets a licence holder test this repository's words and
+numbers against their own copy, which stays outside the repository.
+
+ISO Open Data
+-------------
+
+src/iso29100/schema/iso-open-data/iso_deliverables_metadata.jsonl holds ISO's
+records of ISO/IEC 29100:2024, ISO/IEC 29100:2011 and ISO/IEC
+29100:2011/Amd 1:2018, taken on 2026-11-05 from
+https://isopublicstorageprod.blob.core.windows.net/opendata/_latest/iso_deliverables_metadata/json/iso_deliverables_metadata.jsonl.
+Each line is ISO's record as published, without its "scope" field.
+scripts/check_upstream_release.py pins each line by its hash and compares it
+with the live dataset.
+
+  This work is based on the iso_deliverables_metadata dataset from ISO
+  Open Data (https://www.iso.org/open-data.html), licensed under ODC
+  Attribution License (ODC-By) v1.0
+  (https://opendatacommons.org/licenses/by/1-0/)
+
+Data Privacy Vocabulary (DPV)
+-----------------------------
+
+upstream/dpv-iso.ttl is DPV's mapping to ISO/IEC 29100:2024, copied unchanged
+at the tag dpv-2.3 from https://github.com/w3c-cg/dpv/tree/dpv-2.3/mappings/iso.
+The mappings to dpv: terms in the schema, and everything generated from it, are
+derived from that file: this software includes material copied from or derived
+from DPV's mappings to ISO, https://w3id.org/dpv/mappings/iso. Copyright the
+contributors to the Data Privacy Vocabularies and Controls Community Group.
+upstream/DPV-LICENSE.md holds the W3C Software and Document License it is under,
+in full, as DPV publishes it.
+
+linkml-project-copier
+---------------------
+
+This project was generated from linkml-project-copier
+(https://github.com/linkml/linkml-project-copier), and its justfile,
+configuration and documentation scaffolding derive from that template:
+
+  The MIT License (MIT)
+  Copyright (c) 2025 David Linke
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit
+  persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+  USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Knowledge bundle
+----------------
+
+This product maintains its documentation as a Linked Open Knowledge Format
+(LOKF) bundle under .lokf/: https://lokf.nolan-nichols.com/specification/
+
+LOKF is a semantic profile of the Open Knowledge Format (OKF) specification
+by Google Cloud Platform:
+https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
+
+The scripts under .lokf/scripts/ and .lokf/m365/ and the
+knowledge-librarian, knowledge-registrar, knowledge-release and
+knowledge-sync workflows under .github/workflows/ are copies of the
+ktl-sidecar templates in knowledge-trust-ladder
+(https://github.com/noelmcloughlin/knowledge-trust-ladder). The site under
+website/ and the knowledge-website workflow derive from the ktl-website
+templates in the same repository, and website/NOTICE lists the part
+adapted from the LOKF toolkit's site. All of them are licensed under the
+Apache License, Version 2.0.

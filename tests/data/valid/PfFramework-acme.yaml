@@ -1,0 +1,237 @@
+pf_id: acme:framework
+title: ACME Retail privacy framework
+description: How ACME Retail applies the framework to its online shop.
+pf_organization: ACME Retail Ltd
+pf_jurisdictions:
+  - EU
+pf_ict_systems:
+  - Online shop
+  - Order system
+pf_actors:
+  - pf_id: acme:principal-customers
+    pf_actor_type: PfPiiPrincipal
+    title: Registered customers
+    description: People with an account at the online shop.
+    pf_jurisdictions:
+      - EU
+    pf_contact: Through the account page
+  - pf_id: acme:controller-acme
+    pf_actor_type: PfPiiController
+    title: ACME Retail Ltd
+    pf_jurisdictions:
+      - EU
+    pf_contact: privacy@acme.example
+    pf_purposes:
+      - Deliver orders
+    pf_legal_bases:
+      - Contract
+    pf_appointed_processors:
+      - acme:processor-mail
+    pf_controller_policy: acme:policy-notice
+    pf_privacy_officer: Dana Example
+  - pf_id: acme:processor-mail
+    pf_actor_type: PfPiiProcessor
+    title: TransactMail
+    pf_instructing_controllers:
+      - acme:controller-acme
+    pf_processing_agreement: DPA-2026-07
+    pf_sub_processors:
+      - acme:processor-hosting
+  - pf_id: acme:third-party-courier
+    pf_actor_type: PfThirdParty
+    title: Fast Courier Ltd
+    pf_receiving_purpose: Deliver parcels under its own terms
+    pf_transfer_basis: The customer asked for delivery
+  - pf_id: acme:processor-hosting
+    pf_actor_type: PfPiiProcessor
+    title: Hosting provider
+    pf_instructing_controllers:
+      - acme:controller-acme
+pf_pii_items:
+  - pf_id: acme:pii-delivery-address
+    title: Delivery address
+    pf_concerned_principals:
+      - acme:principal-customers
+    pf_operations:
+      - collect
+      - store
+      - disclose
+    pf_retention: P7Y
+    pf_pii_categories:
+      - Name
+      - Postal address
+    pf_recognized_by:
+      - direct_identifier
+      - linked_information
+    pf_sensitivity: ordinary
+    pf_pseudonymized: false
+    pf_linkability: Joins easily with order history
+pf_flows:
+  - pf_id: acme:flow-to-courier
+    title: Delivery address to the courier
+    pf_provider: acme:controller-acme
+    pf_recipient: acme:third-party-courier
+    pf_decides_afterwards: acme:third-party-courier
+    pf_concerned_pii:
+      - acme:pii-delivery-address
+pf_processing_activities:
+  - pf_id: acme:activity-orders
+    title: Order delivery
+    pf_purposes:
+      - Deliver orders
+    pf_legal_bases:
+      - Contract
+    pf_operations:
+      - collect
+      - store
+      - disclose
+    pf_concerned_pii:
+      - acme:pii-delivery-address
+    pf_retention: P7Y
+    pf_related_controls:
+      - acme:control-access
+    pf_controller: acme:controller-acme
+    pf_processors:
+      - acme:processor-mail
+    pf_activity_flows:
+      - acme:flow-to-courier
+    pf_sensitivities:
+      - ordinary
+    pf_crosses_borders: true
+    pf_transfer_safeguards:
+      - Standard contractual clauses
+pf_safeguarding_requirements:
+  - pf_id: acme:requirement-access
+    title: Limit who can read customer records
+    description: Only staff who handle orders may read customer records.
+    pf_requirement_factor: law
+    pf_requirement_source: A data protection law
+    pf_applies_to:
+      - acme:controller-acme
+    pf_met_by:
+      - acme:control-access
+pf_policies:
+  - pf_id: acme:policy-notice
+    title: Customer privacy notice
+    pf_purposes:
+      - Deliver orders
+    pf_concerned_pii:
+      - acme:pii-delivery-address
+    pf_principles:
+      - principle_6_8
+    pf_policy_audience: public_notice
+    pf_policy_version: '3.1'
+    pf_policy_scope: The online shop
+    pf_policy_effective_date: '2026-01-15'
+    pf_policy_last_reviewed: '2026-06-01'
+    pf_retention_statement: Order records are kept for seven years.
+    pf_stated_rights:
+      - See the PII held about you
+    pf_inquiry_contact: privacy@acme.example
+pf_controls:
+  - pf_id: acme:control-access
+    title: Role-based access to customer records
+    pf_principles:
+      - principle_6_5
+      - principle_6_11
+    pf_evidence:
+      - Access review of 2026-05-02
+    pf_control_kind: technical
+    pf_control_objective: Keep customer records from staff who do not need them
+    pf_control_detail: Access follows the role in the staff directory
+    pf_control_responsible: acme:controller-acme
+    pf_control_state: in_operation
+    pf_answers_requirements:
+      - acme:requirement-access
+pf_principle_implementations:
+  - pf_id: acme:principle-people-decide
+    title: How ACME lets people decide
+    pf_principle: principle_6_2
+    pf_related_controls:
+      - acme:control-access
+    pf_evidence:
+      - Log export of the consent platform
+    pf_measures:
+      - Separate choices for marketing and analytics
+    pf_gaps:
+      - The mobile application has no way to withdraw
+    pf_improvements:
+      - Add withdrawal to the mobile application by the third quarter
+    pf_last_assessed: '2026-01-15'
+pf_risks:
+  - pf_id: acme:risk-address-exposure
+    title: Addresses seen by staff who do not need them
+    pf_concerned_pii:
+      - acme:pii-delivery-address
+    pf_concerned_principals:
+      - acme:principal-customers
+    pf_related_controls:
+      - acme:control-access
+    pf_risk_source: Too many staff roles can read customer records
+    pf_risk_likelihood: Possible
+    pf_risk_consequence: Unwanted contact at home
+    pf_risk_inherent_level: high
+    pf_risk_residual_level: low
+    pf_risk_owner: Dana Example
+pf_impact_assessments:
+  - pf_id: acme:assessment-shop-2026
+    title: Privacy impact assessment of the online shop, 2026
+    pf_assessment_scope: The online shop and its order system
+    pf_assessment_date: '2026-03-02'
+    pf_assessor: Dana Example
+    pf_assessed_activities:
+      - acme:activity-orders
+    pf_risks_found:
+      - acme:risk-address-exposure
+    pf_risks_treated:
+      - acme:risk-address-exposure
+    pf_assessment_outcome: The shop may go ahead with the access control in place
+    pf_consultations:
+      - Staff council, which asked for a yearly access review
+    pf_next_assessment: '2027-03-02'
+pf_breaches:
+  - pf_id: acme:breach-mail-export
+    title: A mailing list sent to the wrong supplier
+    pf_concerned_pii:
+      - acme:pii-delivery-address
+    pf_breach_occurred: '2026-04-01T09:30:00Z'
+    pf_breach_discovered: '2026-04-02T10:00:00Z'
+    pf_breach_closed: '2026-04-20T16:00:00Z'
+    pf_principals_affected: 420
+    pf_breached_requirements:
+      - acme:requirement-access
+    pf_breach_severity: medium
+    pf_immediate_actions:
+      - Asked the supplier to delete the file and confirm it
+    pf_notification_required: true
+    pf_notifications:
+      - The supervisory authority, on 2026-04-03
+    pf_remediation:
+      - Exports now need a second person's approval
+    pf_lessons: Check the recipient list before an export leaves
+pf_consents:
+  - pf_id: acme:consent-marketing-1
+    title: Marketing email consent
+    pf_purposes:
+      - Send offers by email
+    pf_concerned_pii:
+      - acme:pii-delivery-address
+    pf_evidence:
+      - Record 8841 of the consent platform
+    pf_principal: acme:principal-customers
+    pf_consent_mechanism: opt_in
+    pf_consent_given: '2026-02-01T12:00:00Z'
+    pf_consent_state: withdrawn
+    pf_consent_withdrawn: '2026-05-01T08:00:00Z'
+pf_preferences:
+  - pf_id: acme:preference-no-marketing
+    title: No sharing with partners
+    pf_principal: acme:principal-customers
+    pf_preference_scope: The online shop
+    pf_wants_anonymity: false
+    pf_wants_pseudonymity: false
+    pf_refused_operations:
+      - disseminate
+    pf_refused_recipients:
+      - Marketing partners
+    pf_preference_recorded: '2026-02-01'

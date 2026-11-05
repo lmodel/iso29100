@@ -1,0 +1,4 @@
+# Fails at: /pf_control_kind
+pf_id: acme:control
+title: A control of an unknown kind
+pf_control_kind: magical

@@ -1,0 +1,19 @@
+pf_id: acme:breach-mail-export
+title: A mailing list sent to the wrong supplier
+pf_concerned_pii:
+  - acme:pii-delivery-address
+pf_breach_occurred: "2026-04-01T09:30:00Z"
+pf_breach_discovered: "2026-04-02T10:00:00Z"
+pf_breach_closed: "2026-04-20T16:00:00Z"
+pf_principals_affected: 420
+pf_breached_requirements:
+  - acme:requirement-access
+pf_breach_severity: medium
+pf_immediate_actions:
+  - Asked the supplier to delete the file and confirm it
+pf_notification_required: true
+pf_notifications:
+  - The supervisory authority, on 2026-04-03
+pf_remediation:
+  - Exports now need a second person's approval
+pf_lessons: Check the recipient list before an export leaves

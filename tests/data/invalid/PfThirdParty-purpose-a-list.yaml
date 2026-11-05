@@ -1,0 +1,7 @@
+# Fails at: /pf_receiving_purpose
+pf_id: acme:third-party
+pf_actor_type: PfThirdParty
+title: A third party with two receiving purposes
+pf_receiving_purpose:
+  - One
+  - Two

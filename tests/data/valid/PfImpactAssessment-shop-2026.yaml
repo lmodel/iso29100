@@ -1,0 +1,15 @@
+pf_id: acme:assessment-shop-2026
+title: Privacy impact assessment of the online shop, 2026
+pf_assessment_scope: The online shop and its order system
+pf_assessment_date: "2026-03-02"
+pf_assessor: Dana Example
+pf_assessed_activities:
+  - acme:activity-orders
+pf_risks_found:
+  - acme:risk-address-exposure
+pf_risks_treated:
+  - acme:risk-address-exposure
+pf_assessment_outcome: The shop may go ahead with the access control in place
+pf_consultations:
+  - Staff council, which asked for a yearly access review
+pf_next_assessment: "2027-03-02"

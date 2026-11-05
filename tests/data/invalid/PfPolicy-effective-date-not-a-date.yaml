@@ -1,0 +1,5 @@
+# Fails at: /pf_policy_effective_date
+pf_id: acme:policy
+title: A policy with a date in words
+pf_policy_audience: internal
+pf_policy_effective_date: next spring

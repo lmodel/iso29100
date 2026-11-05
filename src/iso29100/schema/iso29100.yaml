@@ -1,1846 +1,1024 @@
-# ==============================================================================
-# ISO/IEC 29100:2024 Privacy Framework LinkML Schema
-# ==============================================================================
-# This LinkML schema provides a machine-readable, validatable representation of
-# the ISO/IEC 29100:2024 privacy framework for ICT systems.
-#
-# Intended use cases:
-#   - Modeling privacy frameworks and PII processing activities
-#   - Documenting actors, roles, and interactions in PII processing
-#   - Recording privacy principle adherence and safeguarding requirements
-#   - Privacy impact assessment and risk management documentation
-#   - Integrating privacy data with GRC platforms and linked data systems
-#
-# Schema version aligns with ISO/IEC 29100:2024 (Second edition, 2024-02)
-# which cancels and replaces ISO/IEC 29100:2011 and its Amendment 1:2018.
-# ==============================================================================
-
+---
 id: https://w3id.org/lmodel/iso29100
 name: iso29100
-title: "ISO 29100 / Privacy Framework: LinkML Schema"
+title: ISO/IEC 29100:2024 privacy framework records
 description: >-
-  A comprehensive LinkML schema modeling the ISO/IEC 29100:2024 privacy
-  framework for information and communication technology (ICT) systems.
-  Captures actors and roles, PII recognition, privacy safeguarding
-  requirements, the eleven privacy principles, and the privacy risk
-  management process.
-
-  This schema covers:
-  - Privacy framework actors (PII principal, controller, processor, third party)
-  - Personally identifiable information (PII) and its categories
-  - Privacy principles (11 principles from Clause 6)
-  - Privacy safeguarding requirements and influencing factors
-  - Privacy risk management including privacy impact assessment
-  - Privacy policies, privacy controls, consent records, and privacy preferences
-
-license: https://www.apache.org/licenses/LICENSE-2.0
-version: 1.0.0
+  A LinkML model of the records an organization keeps when it applies the privacy
+  framework of ISO/IEC 29100:2024 to the information and communication technology (ICT)
+  systems that handle personally identifiable information (PII). The records say who
+  takes part, which PII is involved and how it moves, what must be safeguarded and how,
+  and how the organization stands against each privacy principle.
+version: "2024"
+source: https://www.iso.org/standard/85938.html
+license: Apache-2.0
 see_also:
+  - https://lmodel.github.io/iso29100
   - https://www.iso.org/standard/85938.html
-  - https://dev.dpvcg.org/mappings/iso/
-
-# -----------------------
-# Schema-level Annotations
-# -----------------------
 annotations:
-  standard_reference: ISO/IEC 29100:2024(E)
-  standard_title: >-
-    Information technology — Security techniques — Privacy framework
-  standard_edition: Second edition
-  standard_date: 2024-02
-  previous_edition: ISO/IEC 29100:2011/Amd 1:2018
-  rights_notice: >-
-    This project is licensed under Apache-2.0 for original code and schema
-    structure. ISO/IEC standards text is owned by ISO and is not redistributed
-    by this project license.
-  schema_maintainer: noel.mcloughlin@gmail.com
-  schema_status: stable
-
-# -----------------------
-# Prefix Declarations
-# -----------------------
-prefixes:
-  linkml:   "https://w3id.org/linkml/"
-  iso29100: "https://w3id.org/lmodel/iso29100/"
-  iso27001: "https://w3id.org/lmodel/iso27001/"
-  schema:   "http://schema.org/"
-  dcterms:  "http://purl.org/dc/terms/"
-  rdfs:     "http://www.w3.org/2000/01/rdf-schema#"
-  dpv:      "https://w3id.org/dpv#"
+  standard: ISO/IEC 29100:2024
+  edition: "2"
+  publication_date: "2024-02-16"
+  replaces: ISO/IEC 29100:2011, ISO/IEC 29100:2011/Amd 1:2018
+  iso_open_data_date: "2026-11-05"
+comments:
+  - >-
+    The version is the edition the schema models, and source is ISO's page for it. ISO
+    Open Data's records of the edition and of the two it replaced are copied to
+    src/iso29100/schema/iso-open-data/ on the date the annotations give, and
+    scripts/check_upstream_release.py reports when ISO changes them. The release tags
+    are the schema's own versions.
+  - >-
+    ISO/IEC 29100 is copyright ISO and IEC, and none of its text is reproduced here. An
+    element's title and description are this project's own words. An element cites what
+    it models by number in the iso29100_clause annotation only where a third party's
+    public outline of the edition gives that number, so terms and lower subclauses go
+    uncited. A reader with a licensed copy looks the text up there.
+  - >-
+    Every record that other records refer to has a pf_id, and a reference holds that
+    identifier. PfFramework holds each kind of record in a list of its own.
+  - >-
+    The mappings to the Data Privacy Vocabulary (DPV) are the five rows DPV publishes
+    for this edition, in upstream/dpv-iso.ttl, with DPV's direction kept. No other
+    mapping is declared, because no source states one.
 
 default_prefix: iso29100
 default_range: string
 
-# -----------------------
-# Imports
-# -----------------------
+prefixes:
+  linkml: https://w3id.org/linkml/
+  iso29100: https://w3id.org/lmodel/iso29100/
+  dpv: https://w3id.org/dpv#
+  schema: http://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+
 imports:
   - linkml:types
 
-# ----------------------
-# Types
-# ----------------------
 types:
-  positive_integer_type:
-    base: int
-    uri: xsd:positiveInteger
-    description: >-
-      Integer greater than zero; natural number explicitly excluding zero.
-
-  duration_type:
+  pf_duration:
+    typeof: string
     base: str
     uri: xsd:duration
     description: >-
-      ISO 8601 duration value such as P1Y, P30D, or PT4H.
-
-# -----------------------
-# Subsets
-# -----------------------
-subsets:
-  privacy_framework_core:
-    description: >-
-      Core privacy framework elements: actors, roles, PII concept, interactions,
-      and the overall framework container (Clauses 5.1-5.3).
-    comments:
-      - Covers the fundamental building blocks of the privacy framework
-
-  pii_recognition:
-    description: >-
-      Elements relating to recognizing and categorizing personally identifiable
-      information, including identifiers, sensitivity, and pseudonymization
-      (Clause 5.4).
-
-  privacy_safeguarding:
-    description: >-
-      Privacy safeguarding requirements and their influencing factors: legal,
-      regulatory, contractual, business, and other factors (Clause 5.5).
-
-  privacy_governance:
-    description: >-
-      Privacy policies, privacy controls, and governance elements that implement
-      safeguarding requirements (Clauses 5.6-5.7).
-
-  privacy_principles:
-    description: >-
-      The eleven privacy principles defined in Clause 6 of ISO/IEC 29100:2024.
-      These principles guide the design and operation of privacy programs.
-    annotations:
-      principle_count: "11"
-
-  privacy_risk_management:
-    description: >-
-      Elements supporting privacy risk management, including privacy impact
-      assessments and privacy risk treatment (Clauses 3.17-3.18, 5.5).
-
-# ==============================================================================
-# ENUMERATIONS
-# ==============================================================================
-
-enums:
-  PrivacyPrinciple:
-    description: >-
-      The eleven privacy principles defined in ISO/IEC 29100:2024 Clause 6
-      that govern the processing of PII in ICT systems.
-    in_subset:
-      - privacy_principles
-    annotations:
-      iso29100_clause: "6"
-      principle_count: "11"
-    permissible_values:
-      consent_and_choice:
-        description: >-
-          Schema value for privacy principle 1 (Clause 6.2): the organization
-          gives PII principals meaningful choice over processing of their PII,
-          manages opt-in consent mechanisms, and provides readily accessible
-          means to withdraw consent.
-        annotations:
-          iso29100_clause: "6.2"
-          principle_number: "1"
-        meaning: dpv:InformedConsent
-      purpose_legitimacy_and_specification:
-        description: >-
-          Schema value for privacy principle 2 (Clause 6.3): the organization
-          ensures each processing purpose is lawful, relies on a valid legal
-          basis, and is communicated to PII principals prior to or at the time
-          of collection.
-        annotations:
-          iso29100_clause: "6.3"
-          principle_number: "2"
-        meaning: dpv:Purpose
-      collection_limitation:
-        description: >-
-          Schema value for privacy principle 3 (Clause 6.4): the organization
-          limits PII collection to what is lawful and strictly necessary to
-          fulfil the stated processing purposes.
-        annotations:
-          iso29100_clause: "6.4"
-          principle_number: "3"
-      data_minimization:
-        description: >-
-          Schema value for privacy principle 4 (Clause 6.5): the organization
-          designs processing procedures and ICT systems to minimize the volume
-          of PII handled and the number of parties with access to it.
-        annotations:
-          iso29100_clause: "6.5"
-          principle_number: "4"
-      use_retention_and_disclosure_limitation:
-        description: >-
-          Schema value for privacy principle 5 (Clause 6.6): the organization
-          limits use, retention, and disclosure of PII to the minimum needed
-          for legitimate purposes, and securely disposes of PII once those
-          purposes have been fulfilled.
-        annotations:
-          iso29100_clause: "6.6"
-          principle_number: "5"
-      accuracy_and_quality:
-        description: >-
-          Schema value for privacy principle 6 (Clause 6.7): the organization
-          ensures PII is accurate, complete, current, and fit for purpose, and
-          establishes procedures for verification, correction, and ongoing
-          quality control of processed PII.
-        annotations:
-          iso29100_clause: "6.7"
-          principle_number: "6"
-      openness_transparency_and_notice:
-        description: >-
-          Schema value for privacy principle 7 (Clause 6.8): the organization
-          provides PII principals with clear, accessible information about its
-          PII processing policies and practices, and notifies them of material
-          changes to those policies.
-        annotations:
-          iso29100_clause: "6.8"
-          principle_number: "7"
-      individual_participation_and_access:
-        description: >-
-          Schema value for privacy principle 8 (Clause 6.9): the organization
-          gives PII principals the ability to access and review their PII and
-          to challenge its accuracy and completeness, subject to applicable
-          law.
-        annotations:
-          iso29100_clause: "6.9"
-          principle_number: "8"
-        meaning: dpv:DataSubjectRight
-      accountability:
-        description: >-
-          Schema value for privacy principle 9 (Clause 6.10): the organization
-          documents and communicates its privacy obligations, ensures equivalent
-          protection when transferring PII to third parties, and maintains
-          internal complaint-handling and redress procedures.
-        annotations:
-          iso29100_clause: "6.10"
-          principle_number: "9"
-      information_security:
-        description: >-
-          Schema value for privacy principle 10 (Clause 6.11): the organization
-          applies appropriate security controls across operational, functional,
-          and strategic levels to protect PII against unauthorized access, loss,
-          or misuse throughout its full lifecycle.
-        annotations:
-          iso29100_clause: "6.11"
-          principle_number: "10"
-      privacy_compliance:
-        description: >-
-          Schema value for privacy principle 11 (Clause 6.12): the organization
-          verifies and demonstrates compliance with data protection and privacy
-          requirements through audits, independent internal controls, and
-          ongoing privacy risk assessments.
-        annotations:
-          iso29100_clause: "6.12"
-          principle_number: "11"
-        meaning: dpv:ComplianceAssessment
-
-  PIIFlowRole:
-    description: >-
-      The role played by an actor in a specific PII flow scenario, as described
-      in Table 1 of ISO/IEC 29100:2024 Clause 5.3.
-    in_subset:
-      - privacy_framework_core
-    annotations:
-      iso29100_clause: "5.3"
-    permissible_values:
-      pii_provider:
-        description: Actor that provides PII to another party in this flow scenario.
-      pii_recipient:
-        description: Actor that receives PII from another party in this flow scenario.
-      not_involved:
-        description: Actor not directly involved in this specific PII flow scenario.
-
-  PIIProcessingOperation:
-    description: >-
-      Categories of operations that can be performed on PII, as referenced
-      in the definition of processing of PII (Clause 3.21).
-    in_subset:
-      - pii_recognition
-    annotations:
-      iso29100_clause: "3.21"
-    permissible_values:
-      collection:
-        description: Gathering or acquiring PII from PII principals or other sources.
-        meaning: dpv:Collect
-      storage:
-        description: Storing PII in a persistent manner in ICT systems or other media.
-        meaning: dpv:Store
-      alteration:
-        description: Modifying or updating existing PII.
-        meaning: dpv:Transform
-      retrieval:
-        description: Accessing or fetching stored PII for use.
-        meaning: dpv:Access
-      consultation:
-        description: Reviewing or examining PII without necessarily extracting it.
-        meaning: dpv:Use
-      disclosure:
-        description: Making PII available to other parties or making it accessible.
-        meaning: dpv:Disclose
-      anonymization:
-        description: >-
-          Irreversibly altering PII such that the PII principal can no longer
-          be identified directly or indirectly.
-        meaning: dpv:Anonymise
-      pseudonymization:
-        description: >-
-          Replacing identifying information in PII with an alias, retaining
-          linkability while restricting direct identification.
-        meaning: dpv:Pseudonymise
-      dissemination:
-        description: Widely distributing or publishing PII to multiple recipients.
-        meaning: dpv:Disseminate
-      deletion:
-        description: Removing PII such that it is no longer accessible or usable.
-        meaning: dpv:Erase
-      destruction:
-        description: Permanently and irrecoverably eliminating PII and its carriers.
-        meaning: dpv:Remove
-
-  SafeguardingRequirementFactor:
-    description: >-
-      Categories of factors that influence an organization's privacy safeguarding
-      requirements, as described in Clause 5.5 and Figure 1.
-    in_subset:
-      - privacy_safeguarding
-    annotations:
-      iso29100_clause: "5.5"
-    permissible_values:
-      legal_and_regulatory:
-        description: >-
-          Safeguarding requirements arising from applicable laws (international,
-          national, and local), regulations, judicial decisions, and negotiated
-          labour or work-council agreements.
-        annotations:
-          iso29100_clause: "5.5.2"
-        meaning: dpv:LegalBasis
-      contractual:
-        description: >-
-          Safeguarding requirements set out in data processing agreements,
-          company policies, and binding corporate rules agreed between PII
-          controllers, processors, and other parties.
-        annotations:
-          iso29100_clause: "5.5.3"
-        meaning: dpv:Contract
-      business:
-        description: >-
-          Safeguarding requirements driven by the application's characteristics,
-          industry guidelines, codes of conduct, or standards voluntarily
-          adopted by the organization as part of its business model.
-        annotations:
-          iso29100_clause: "5.5.4"
-      other:
-        description: >-
-          Safeguarding requirements arising from PII principal privacy
-          preferences, internal control frameworks, or technical standards
-          voluntarily adopted by the organization.
-        annotations:
-          iso29100_clause: "5.5.5"
-
-  PIISensitivityCategory:
-    description: >-
-      Categories of PII based on sensitivity, distinguishing standard PII from
-      sensitive PII as defined in Clause 3.23.
-    in_subset:
-      - pii_recognition
-    annotations:
-      iso29100_clause: "3.23"
-    permissible_values:
-      standard:
-        description: >-
-          PII that does not meet the threshold for sensitive PII but still
-          requires appropriate privacy protection measures.
-      sensitive:
-        description: >-
-          PII warranting heightened protection due to its potential for
-          significant adverse impact on the individual, or because applicable
-          law classifies it as a special category. Typical examples include
-          health, biometric, financial, racial, religious, political, and
-          sexual orientation data. Processing may require opt-in consent or
-          specific legal authorization.
-        annotations:
-          iso29100_clause: "3.23"
-        meaning: dpv:SpecialCategoryPersonalData
-
-  ConsentMechanism:
-    description: >-
-      The mechanism by which a PII principal provides or withholds consent
-      for PII processing, as referenced in Clauses 3.6 and 6.2.
-    in_subset:
-      - privacy_framework_core
-    annotations:
-      iso29100_clause: "3.6"
-    permissible_values:
-      opt_in:
-        description: >-
-          The PII principal must take an explicit action to express prior
-          consent for their PII to be processed for a particular purpose.
-        annotations:
-          iso29100_clause: "3.6"
-        meaning: dpv:ExplicitlyExpressedConsent
-      opt_out:
-        description: >-
-          The PII principal must take a separate action to withhold or withdraw
-          consent; processing is presumed permitted unless that action is taken.
-        meaning: dpv:ImpliedConsent
-      implied:
-        description: >-
-          Consent implied by some action of the PII principal, such as
-          placing an order or using a service, where applicable law permits.
-
-  PrivacyRiskLevel:
-    description: >-
-      Qualitative assessment of privacy risk level based on likelihood and
-      potential adverse consequences for PII principals.
-    in_subset:
-      - privacy_risk_management
-    permissible_values:
-      low:
-        description: Limited potential adverse consequences for PII principals.
-      medium:
-        description: Moderate risk requiring management attention and planned controls.
-      high:
-        description: Significant risk with potentially serious consequences for PII principals.
-      very_high:
-        description: >-
-          Severe risk with potentially catastrophic or irreversible consequences
-          for PII principals requiring immediate treatment.
-
-  PrivacyControlType:
-    description: >-
-      Categories of privacy controls that treat privacy risks by reducing
-      their likelihood or consequences, as noted in Clause 3.12 Note 1.
-    in_subset:
-      - privacy_governance
-    annotations:
-      iso29100_clause: "3.12"
-    permissible_values:
-      organizational:
-        description: >-
-          Policies, procedures, guidelines, management practices, or organizational
-          structures used as privacy controls.
-        meaning: dpv:OrganisationalMeasure
-      physical:
-        description: Physical measures protecting PII and PII processing infrastructure.
-        meaning: dpv:PhysicalMeasure
-      technical:
-        description: >-
-          ICT measures, products, or services that protect privacy, including
-          privacy enhancing technologies (PETs).
-        meaning: dpv:TechnicalMeasure
-      legal_contractual:
-        description: >-
-          Legal contracts, binding corporate rules, or data processing agreements
-          implementing privacy safeguards.
-        meaning: dpv:LegalMeasure
-
-# ==============================================================================
-# CLASSES
-# ==============================================================================
-
-classes:
-  # ---------------------
-  # Abstract Base Class
-  # ---------------------
-
-  NamedEntity:
-    abstract: true
-    description: >-
-      Abstract base class for all entities with a unique identifier, name,
-      and description. Provides common identification and documentation slots.
-    comments:
-      - All concrete classes should inherit from this or a subclass
-      - Ensures consistent identification across the schema
-    slots:
-      - id
-      - name
-      - description
-      - created_date
-      - modified_date
-    slot_usage:
-      id:
-        identifier: true
-        required: true
-        description: Unique identifier for this entity instance.
-
-  # ---------------------
-  # Privacy Framework Container
-  # ---------------------
-
-  PrivacyFramework:
-    is_a: NamedEntity
-    tree_root: true
-    description: >-
-      Top-level container representing an organization's privacy framework
-      for protecting PII within ICT systems.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - Root entity for any ISO 29100 conformance dataset
-      - Aggregates all privacy framework components and their relationships
-      - "Reference: ISO/IEC 29100:2024 Clause 5.1. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "5.1"
-    slots:
-      - organization_name
-      - ict_system_description
-      - applicable_jurisdictions
-      - pii_controllers
-      - pii_processors
-      - third_parties
-      - pii_principals_description
-      - privacy_policy
-      - privacy_controls
-      - safeguarding_requirements
-      - privacy_risks
-      - privacy_impact_assessments
-      - privacy_breaches
-      - pii_processing_activities
-      - principle_implementations
-    related_mappings:
-      - iso27001:InformationSecurityManagementSystem
-
-  # ---------------------
-  # Actors and Roles (Clause 5.2)
-  # ---------------------
-
-  PrivacyStakeholder:
-    is_a: NamedEntity
-    abstract: true
-    description: >-
-      Schema base class for the four actor types recognized by the privacy
-      framework: PII principals, PII controllers, PII processors, and third
-      parties. Provides shared contact and jurisdictional attributes common
-      to all stakeholder roles.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - "Reference: ISO/IEC 29100:2024 Clause 3.20. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.20"
-    slots:
-      - contact_information
-      - jurisdictions
-    exact_mappings:
-      - dpv:Entity
-    related_mappings:
-      - iso27001:InterestedParty
-
-  PIIPrincipal:
-    is_a: PrivacyStakeholder
-    description: >-
-      Schema class for a data subject — the individual to whom PII belongs.
-      Links consent records and privacy preferences to the natural person
-      whose data is being processed, enabling subject-centric data models.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - A PII principal may be identified directly or indirectly through a combination of attributes
-      - "Reference: ISO/IEC 29100:2024 Clause 3.9 and 5.2.2. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.9"
-    slots:
-      - privacy_preferences
-      - consent_records
-    exact_mappings:
-      - dpv:DataSubject
-    narrow_mappings:
-      - schema:Person
-
-  PIIController:
-    is_a: PrivacyStakeholder
-    description: >-
-      Schema class for an organization or individual that determines why
-      and how PII is processed. Captures appointed processors, legal bases
-      relied upon, privacy policy reference, and data protection officer
-      details. Bears ultimate accountability for privacy principle adherence.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - May appoint PII processors to process PII on its behalf while retaining responsibility
-      - More than one PII controller may exist for the same PII set
-      - "Reference: ISO/IEC 29100:2024 Clause 3.8 and 5.2.3. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.8"
-    slots:
-      - processing_purposes
-      - legal_bases
-      - appointed_processors
-      - privacy_policy_ref
-      - data_protection_officer
-    exact_mappings:
-      - dpv:DataController
-    related_mappings:
-      - schema:Organization
-
-  PIIProcessor:
-    is_a: PrivacyStakeholder
-    description: >-
-      Schema class for an organization engaged to process PII under a PII
-      controller's instructions. Records the instructing controller, data
-      processing agreement reference, and any sub-processors engaged on
-      the controller's behalf.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - In some jurisdictions the PII processor is bound by a contract
-      - Distinct from a third party: legal control of PII remains with the original PII controller
-      - "Reference: ISO/IEC 29100:2024 Clause 3.10 and 5.2.4. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.10"
-    slots:
-      - instructing_controller
-      - processing_agreement_ref
-      - sub_processors
-    exact_mappings:
-      - dpv:DataProcessor
-
-  ThirdParty:
-    is_a: PrivacyStakeholder
-    description: >-
-      Schema class for an external entity that receives PII outside the
-      PII processor relationship — i.e., as a recipient that typically
-      becomes a PII controller in its own right. Captures the receiving
-      purpose and the legal basis for the transfer.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - Third parties do not process PII on behalf of the original PII controller
-      - Upon receiving PII, a third party typically assumes controller responsibilities
-      - "Reference: ISO/IEC 29100:2024 Clause 3.24 and 5.2.5. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.24"
-    slots:
-      - receiving_purpose
-      - transfer_basis
-    exact_mappings:
-      - dpv:ThirdParty
-
-  # ---------------------
-  # PII and Flow (Clauses 5.3-5.4)
-  # ---------------------
-
-  PersonallyIdentifiableInformation:
-    is_a: NamedEntity
-    description: >-
-      Schema class representing a data element or attribute set that can be
-      linked back to a natural person — either directly or through combination
-      with other attributes. Captures sensitivity classification, identifier
-      type, pseudonymization status, retention schedule, and processing
-      operations applicable to the data.
-    in_subset:
-      - pii_recognition
-    comments:
-      - Encompasses direct identifiers, linkable attributes, and combinations thereof
-      - Sensitivity assessment should consider context and combination of attributes
-      - "Reference: ISO/IEC 29100:2024 Clause 3.7 and 5.4. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.7"
-    slots:
-      - pii_category
-      - sensitivity_level
-      - identifier_type
-      - is_pseudonymized
-      - is_anonymized
-      - linkability_risk
-      - applicable_to_principal
-      - retention_schedule
-      - processing_operations
-    broad_mappings:
-      - dpv:PersonalData
-
-  PIIFlowScenario:
-    is_a: NamedEntity
-    description: >-
-      A documented scenario describing the flow of PII among privacy framework
-      actors (PII principal, PII controller, PII processor, and third party),
-      as illustrated in Table 1 of Clause 5.3.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - Eight canonical flow scenarios are identified in Table 1 of the standard
-      - "Reference: ISO/IEC 29100:2024 Clause 5.3 and Table 1. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "5.3"
-    slots:
-      - scenario_label
-      - pii_principal_role
-      - pii_controller_role
-      - pii_processor_role
-      - third_party_role
-      - scenario_description
-      - legal_control_retention
-    exact_mappings:
-      - dpv:PersonalDataHandling
-
-  # ---------------------
-  # Privacy Safeguarding Requirements (Clause 5.5)
-  # ---------------------
-
-  PrivacySafeguardingRequirement:
-    is_a: NamedEntity
-    description: >-
-      Schema class for an applicable requirement that drives an organization's
-      PII processing controls. Requirements are identified through the privacy
-      risk management process and arise from legal/regulatory, contractual,
-      business, or other influencing factors.
-    in_subset:
-      - privacy_safeguarding
-    comments:
-      - Identified through the privacy risk management process
-      - Can range from high-level principles to specific control mandates
-      - "Reference: ISO/IEC 29100:2024 Clause 3.19 and 5.5. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.19"
-    slots:
-      - requirement_factor
-      - requirement_text
-      - source_reference
-      - applicable_to_actors
-      - related_controls
-      - priority
-
-  # ---------------------
-  # Privacy Policies and Controls (Clauses 5.6-5.7)
-  # ---------------------
-
-  PrivacyPolicy:
-    is_a: NamedEntity
-    description: >-
-      Schema class for a governing document expressing an organization's
-      intentions and commitments for PII processing. Covers both the internal
-      policy document and any external privacy notice made available to PII
-      principals (referred to as a notice in this framework).
-    in_subset:
-      - privacy_governance
-    comments:
-      - Internal privacy policy expresses the organization's commitments
-      - External privacy policy (notice) provides information to PII principals
-      - "Reference: ISO/IEC 29100:2024 Clause 3.14 and 5.6. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.14"
-    slots:
-      - policy_version
-      - effective_date
-      - policy_scope
-      - processing_purposes_covered
-      - pii_categories_covered
-      - data_retention_statement
-      - pii_principal_rights
-      - contact_for_inquiries
-      - last_review_date
-      - is_external_notice
-      - applicable_principles
-    exact_mappings:
-      - schema:PrivacyPolicy
-      - dpv:PrivacyNotice
-    related_mappings:
-      - iso27001:InformationSecurityPolicy
-
-  PrivacyControl:
-    is_a: NamedEntity
-    description: >-
-      Schema class for a protective measure that manages privacy risks within
-      the framework. Can be organizational, physical, technical (including
-      Privacy Enhancing Technologies), or legal-contractual in nature; linked
-      to the principles and safeguarding requirements it addresses.
-    in_subset:
-      - privacy_governance
-    comments:
-      - Also used as a synonym for safeguard or countermeasure
-      - Should be identified through privacy risk assessment and treatment
-      - Privacy by design: controls should be integrated at the design phase of ICT systems
-      - "Reference: ISO/IEC 29100:2024 Clause 3.12 and 5.7. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.12"
-    slots:
-      - control_type
-      - control_objective
-      - addressed_principles
-      - implementation_description
-      - responsible_actor
-      - implementation_status
-      - effectiveness_evidence
-      - related_safeguarding_requirements
-      - is_pet
-    exact_mappings:
-      - dpv:TechnicalOrganisationalMeasure
-    related_mappings:
-      - iso27001:SecurityControl
-
-  # ---------------------
-  # Privacy Risk Management
-  # ---------------------
-
-  PrivacyRisk:
-    is_a: NamedEntity
-    description: >-
-      Schema class representing a potential adverse outcome for PII principals
-      from a PII processing activity. Captures the risk source, likelihood
-      and impact assessments, inherent and residual risk levels, and links
-      to mitigating controls and accountable risk owner.
-    in_subset:
-      - privacy_risk_management
-    comments:
-      - Should be assessed in terms of likelihood and potential consequences for PII principals
-      - Corresponds to risk in ISO/IEC 27000 context (Annex A Table)
-      - "Reference: ISO/IEC 29100:2024 Clause 3.17 and 5.5. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.17"
-    slots:
-      - risk_source
-      - affected_pii_categories
-      - affected_principals_description
-      - risk_likelihood
-      - risk_impact_description
-      - inherent_risk_level
-      - residual_risk_level
-      - mitigating_controls
-      - risk_owner
-    exact_mappings:
-      - dpv:Risk
-    related_mappings:
-      - iso27001:Risk
-
-  PrivacyImpactAssessment:
-    is_a: NamedEntity
-    description: >-
-      Schema class for a structured evaluation of the privacy implications
-      of a processing activity or ICT system. Records assessment scope,
-      identified and treated risks, accepted residual risks, stakeholder
-      consultation records, and overall assessment outcome.
-    in_subset:
-      - privacy_risk_management
-    comments:
-      - Should be conducted before implementing new or substantially modified ICT systems
-      - Should be framed within the organization's broader risk management framework
-      - "Reference: ISO/IEC 29100:2024 Clause 3.18 and 5.5. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.18"
-    slots:
-      - assessment_scope
-      - assessment_date
-      - assessor
-      - processing_activities_assessed
-      - risks_identified
-      - risks_treated
-      - residual_risks_accepted
-      - assessment_outcome
-      - next_assessment_date
-      - consultation_records
-    exact_mappings:
-      - dpv:PIA
-    related_mappings:
-      - iso27001:RiskAssessment
-
-  PrivacyBreach:
-    is_a: NamedEntity
-    description: >-
-      Schema class for a recorded incident in which PII was processed in
-      a manner that violates applicable privacy safeguarding requirements.
-      Tracks breach details, affected PII categories, notification obligations,
-      remediation actions, and lessons learned.
-    in_subset:
-      - privacy_risk_management
-    comments:
-      - Corresponds to an information security incident in ISO/IEC 27000 context (Annex A Table)
-      - Remediation measures should be proportionate to the risks associated with the breach
-      - "Reference: ISO/IEC 29100:2024 Clause 3.11. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.11"
-    slots:
-      - breach_datetime
-      - discovery_datetime
-      - breach_description
-      - affected_pii_categories
-      - affected_principals_count
-      - violated_requirements
-      - breach_severity
-      - immediate_actions
-      - notification_required
-      - notifications_made
-      - remediation_actions
-      - lessons_learned
-      - closure_datetime
-    exact_mappings:
-      - dpv:DataBreachRecord
-    related_mappings:
-      - iso27001:InformationSecurityIncident
-
-  # ---------------------
-  # PII Processing Activity
-  # ---------------------
-
-  PIIProcessingActivity:
-    is_a: NamedEntity
-    description: >-
-      Schema class documenting a PII processing operation: its purpose, legal
-      basis, operation types performed, categories of PII involved, responsible
-      actors, applied controls, retention period, and any cross-border transfer
-      safeguards.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - Processing includes collection, storage, alteration, retrieval, consultation,
-        disclosure, anonymization, pseudonymization, dissemination, deletion, destruction
-      - "Reference: ISO/IEC 29100:2024 Clause 3.21. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.21"
-    slots:
-      - processing_purpose
-      - legal_basis
-      - operations_performed
-      - pii_categories_processed
-      - sensitivity_levels_involved
-      - controller_ref
-      - processor_ref
-      - data_flows
-      - retention_period
-      - privacy_controls_applied
-      - cross_border_transfer
-      - transfer_safeguards
-    exact_mappings:
-      - dpv:PersonalDataProcess
-
-  # ---------------------
-  # Privacy Principles Implementation
-  # ---------------------
-
-  PrivacyPrincipleImplementation:
-    is_a: NamedEntity
-    description: >-
-      Documentation of how a specific privacy principle from Clause 6 has been
-      implemented within the organization's privacy framework, including
-      measures taken and evidence of adherence.
-    in_subset:
-      - privacy_principles
-    comments:
-      - One implementation record per principle per organization or ICT system scope
-      - "Reference: ISO/IEC 29100:2024 Clause 6. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "6"
-    slots:
-      - principle
-      - implementation_measures
-      - applicable_controls_ref
-      - evidence_of_adherence
-      - gaps_identified
-      - improvement_actions
-      - last_assessed_date
-
-  # ---------------------
-  # Consent Records and Privacy Preferences
-  # ---------------------
-
-  ConsentRecord:
-    is_a: NamedEntity
-    description: >-
-      Schema class documenting a PII principal's agreement to processing of
-      their PII for stated purposes. Records the consent mechanism used,
-      scope, current status, and withdrawal date — supporting auditability
-      of the consent and choice privacy principle.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - Consent must be freely given, specific, and informed
-      - Opt-in required for sensitive PII unless applicable law permits otherwise
-      - Withdrawal of consent must be easily exercisable and free of charge
-      - "Reference: ISO/IEC 29100:2024 Clause 3.4 and 6.2. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.4"
-    slots:
-      - principal_ref
-      - consent_date
-      - consent_mechanism
-      - processing_purposes_consented
-      - pii_categories_consented
-      - withdrawal_date
-      - consent_status
-      - consent_evidence_ref
-    exact_mappings:
-      - dpv:InformedConsent
-
-  PrivacyPreference:
-    is_a: NamedEntity
-    description: >-
-      Schema class capturing a PII principal's processing choices for a
-      particular purpose scope: preferences for anonymity or pseudonymity,
-      restrictions on specific processing operations, and restrictions on
-      disclosure to named or categorized parties.
-    in_subset:
-      - privacy_framework_core
-    comments:
-      - ICT systems should offer meaningful choices where technically feasible
-      - Preferences may include anonymity, pseudonymity, or restriction of specific operations
-      - "Reference: ISO/IEC 29100:2024 Clause 3.15 and 5.5.5. ISO/IEC standards text is copyright ISO - not reproduced here."
-    annotations:
-      iso29100_clause: "3.15"
-    slots:
-      - principal_ref
-      - preference_scope
-      - anonymity_preference
-      - pseudonymity_preference
-      - processing_restriction_preferences
-      - disclosure_restriction_preferences
-      - preference_recorded_date
-
-# ==============================================================================
-# SLOTS
-# ==============================================================================
+      A length of time as ISO 8601 writes it, such as P7Y for seven years or P30D for
+      thirty days.
+    pattern: "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$"
 
 slots:
-  # ---------------------
-  # Common Identification Slots
-  # ---------------------
-
-  id:
-    description: Unique identifier for the entity.
+  # pf_id is a slot, not an attribute, so every record shares one identifier key
+  # and every reference ranges over a class that has one. PfRecordMixin lists it
+  # first, so the generated Python dataclasses key an inlined list by it. The
+  # adapt copy replaces it with LOKF's id.
+  pf_id:
+    description: >-
+      The record's identifier, unique among the records of the framework, such as a URI
+      or a CURIE. Other records refer to the record by it.
     range: uriorcurie
     identifier: true
     required: true
-    slot_uri: dcterms:identifier
-    examples:
-      - value: "iso29100:framework-acme-corp"
-      - value: "iso29100:pii-controller-001"
+    pattern: "^\\S+$"
 
-  name:
-    description: Human-readable name or title.
-    range: string
-    required: true
-    slot_uri: rdfs:label
+  title:
+    description: The name the organization gives the record.
+    slot_uri: schema:name
+    comments:
+      - >-
+        It means what LOKF's title means and carries the same IRI, so lokf adapt folds
+        it into LOKF's slot and a knowledge bundle reads one title key.
 
   description:
-    description: Detailed description of the entity.
-    range: string
-    slot_uri: dcterms:description
+    description: What the record says or describes, in the organization's own words.
+    slot_uri: schema:description
     comments:
-      - Should provide sufficient detail for understanding without external reference
+      - >-
+        It means what LOKF's description means and carries the same IRI, so lokf adapt
+        folds it into LOKF's slot and a knowledge bundle reads one description key.
 
-  created_date:
-    description: Date when the entity record was created.
-    range: date
-    slot_uri: dcterms:created
-
-  modified_date:
-    description: Date when the entity record was last modified.
-    range: date
-    slot_uri: dcterms:modified
-
-  # ---------------------
-  # Privacy Framework Slots
-  # ---------------------
-
-  organization_name:
-    description: Name of the organization operating the privacy framework.
-    range: string
-    annotations:
-      iso29100_clause: "5.1"
-
-  ict_system_description:
+  # The designator is a slot, not an attribute: for a designator a class declares
+  # as an attribute the generated dataclasses write an unknown_ field, and they
+  # cannot load one that is required.
+  pf_actor_type:
     description: >-
-      Description of the ICT system(s) within the scope of the privacy framework.
+      The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or
+      PfThirdParty.
+    designates_type: true
     range: string
 
-  applicable_jurisdictions:
-    description: Legal jurisdictions whose privacy laws apply to the organization.
-    range: string
+  pf_jurisdictions:
+    description: >-
+      The legal systems that apply to the record, in the organization's terms.
     multivalued: true
 
-  pii_controllers:
-    description: PII controllers operating within this privacy framework.
-    range: PIIController
+  pf_purposes:
+    description: The reasons the PII is processed, in the organization's own words.
     multivalued: true
-    inlined_as_list: true
 
-  pii_processors:
-    description: PII processors engaged within this privacy framework.
-    range: PIIProcessor
+  pf_legal_bases:
+    description: What makes the processing lawful, in the terms of the law that applies.
     multivalued: true
-    inlined_as_list: true
 
-  third_parties:
-    description: Third parties that may receive PII within this framework.
-    range: ThirdParty
+  pf_operations:
+    description: The things done to the PII.
+    range: PfOperation
     multivalued: true
-    inlined_as_list: true
 
-  pii_principals_description:
-    description: Description of the categories of PII principals whose PII is processed.
-    range: string
+  pf_retention:
+    description: How long the PII is kept, as an ISO 8601 duration.
+    range: pf_duration
 
-  privacy_policy:
-    description: The organization's privacy policy governing PII processing.
-    range: PrivacyPolicy
+  pf_principles:
+    description: The privacy principles the record bears on.
+    range: PfPrinciple
+    multivalued: true
+
+  pf_concerned_pii:
+    description: The PII items the record concerns.
+    range: PfPiiItem
+    multivalued: true
+
+  pf_concerned_principals:
+    description: The people the PII of the record is about.
+    range: PfPiiPrincipal
+    multivalued: true
+
+  pf_principal:
+    description: The person the record is about.
+    range: PfPiiPrincipal
+
+  pf_related_controls:
+    description: The organization's controls that act on the record's subject.
+    range: PfControl
+    multivalued: true
+
+  pf_evidence:
+    description: What shows that the record's claim holds, such as a report or a log.
+    multivalued: true
+
+enums:
+  PfPrinciple:
+    description: >-
+      The privacy principles by their subclause numbers. A value's title and description
+      are this project's own summary, and the principles' headings and wording are
+      ISO's.
+    annotations:
+      iso29100_clause: "6.1"
+    permissible_values:
+      principle_6_2:
+        title: 6.2 People decide
+        description: >-
+          People get a say in whether their PII is processed, can agree or refuse
+          purpose by purpose, and can change their minds later.
+        annotations:
+          iso29100_clause: "6.2"
+      principle_6_3:
+        title: 6.3 Lawful, stated reasons
+        description: >-
+          The law allows each reason for processing, and people are told the reason
+          before their PII is gathered, or at that moment.
+        annotations:
+          iso29100_clause: "6.3"
+      principle_6_4:
+        title: 6.4 Gather within bounds
+        description: >-
+          The organization gathers only the PII that the law allows and its stated
+          reasons need.
+        annotations:
+          iso29100_clause: "6.4"
+      principle_6_5:
+        title: 6.5 A small footprint
+        description: >-
+          Systems and procedures are built to touch as little PII as they can, and as
+          few people as possible can reach it.
+        annotations:
+          iso29100_clause: "6.5"
+      principle_6_6:
+        title: 6.6 Bounded use and keeping
+        description: >-
+          PII is used, shared and kept only as far as the stated reasons go, and is
+          safely disposed of afterwards.
+        annotations:
+          iso29100_clause: "6.6"
+      principle_6_7:
+        title: 6.7 Correct and fit
+        description: >-
+          PII stays right, whole, up to date and suited to its use, and there are ways
+          to check and fix it.
+        annotations:
+          iso29100_clause: "6.7"
+      principle_6_8:
+        title: 6.8 Say what happens
+        description: >-
+          People can easily find out what the organization does with PII, and hear about
+          important changes.
+        annotations:
+          iso29100_clause: "6.8"
+      principle_6_9:
+        title: 6.9 People see their own
+        description: >-
+          People can look at the PII held about them and dispute it, within what the law
+          allows.
+        annotations:
+          iso29100_clause: "6.9"
+      principle_6_10:
+        title: 6.10 Answer for it
+        description: >-
+          The organization writes down its duties, keeps protection in place when PII
+          passes to others, and handles complaints and redress.
+        annotations:
+          iso29100_clause: "6.10"
+      principle_6_11:
+        title: 6.11 Keep it safe
+        description: >-
+          Security measures at every level guard PII against loss and unauthorized reach
+          for as long as it is held.
+        annotations:
+          iso29100_clause: "6.11"
+      principle_6_12:
+        title: 6.12 Show the rules are met
+        description: >-
+          The organization checks, and can prove, that it meets its privacy duties,
+          through audits and regular risk assessment.
+        annotations:
+          iso29100_clause: "6.12"
+
+  PfOperation:
+    description: The things an organization can do to PII.
+    permissible_values:
+      collect:
+        description: Get PII from the person it is about, or from another source.
+      store:
+        description: Hold PII on a lasting medium.
+      retrieve:
+        description: Fetch stored PII for use.
+      consult:
+        description: Look at PII without taking a copy away.
+      alter:
+        description: Change PII that is already held.
+      pseudonymize:
+        description: >-
+          Swap identifying details for an alias, in a way someone can still trace back.
+      anonymize:
+        description: Change PII so that nobody can trace it back to a person again.
+      disclose:
+        description: Make PII available to another party.
+      disseminate:
+        description: Spread PII widely, such as by publishing it.
+      delete:
+        description: Remove PII so that it can no longer be reached or used.
+      destroy:
+        description: Remove PII and whatever carried it, beyond recovery.
+
+  PfPiiRecognition:
+    description: >-
+      The ways information turns out to be PII, which a record lists so that a reader
+      can see why the item counts.
+    annotations:
+      iso29100_clause: "5.4"
+    permissible_values:
+      direct_identifier:
+        description: It singles out one person by itself, such as a passport number.
+      distinguishing_trait:
+        description: >-
+          It sets one person apart, alone or with other details, such as a rare job
+          title in a small town.
+      linked_information:
+        description: >-
+          It says something about a person who is already known, or can be joined to a
+          record that does.
+      pseudonym:
+        description: >-
+          It holds an alias in place of an identifier, and the alias can be traced.
+      metadata:
+        description: >-
+          It describes other data, such as a message's sender and time, and so reveals a
+          person.
+      unsolicited:
+        description: The organization received it without asking for it.
+
+  PfSensitivity:
+    description: How much harm the PII could do to the person it is about.
+    annotations:
+      iso29100_clause: "5.4"
+    permissible_values:
+      ordinary:
+        description: It needs the usual protection for PII.
+      sensitive:
+        description: >-
+          Its misuse could badly harm the person, or a law sets it apart, such as health
+          data, so it needs stronger protection.
+
+  PfRequirementFactor:
+    description: Where a requirement to safeguard PII comes from.
+    annotations:
+      iso29100_clause: "5.5"
+    permissible_values:
+      law:
+        description: >-
+          A statute, a regulation, a court's ruling or a collective agreement.
+      contract:
+        description: >-
+          An agreement between parties, such as one with a processor, or rules that bind
+          a group of companies.
+      business:
+        description: >-
+          How the business or its application works, or a code of practice it chose to
+          follow.
+      other:
+        description: >-
+          Another source, such as what people have said they prefer, or a technical
+          standard the organization adopted.
+
+  PfPolicyAudience:
+    description: Who a privacy policy is written for.
     annotations:
       iso29100_clause: "5.6"
+    permissible_values:
+      internal:
+        description: People inside the organization, who act on its commitments.
+      public_notice:
+        description: The people whose PII it handles, who read it to learn what happens.
 
-  privacy_controls:
-    description: Privacy controls implemented within the framework.
-    range: PrivacyControl
-    multivalued: true
-    inlined_as_list: true
+  PfControlKind:
+    description: The form a control takes.
     annotations:
       iso29100_clause: "5.7"
+    permissible_values:
+      organizational:
+        description: A policy, a procedure, a role or another way of running things.
+      physical:
+        description: A measure that guards the places and equipment where PII sits.
+      technical:
+        description: A system, product or service that protects PII.
+      privacy_enhancing_technology:
+        description: >-
+          A technical measure built to reduce what is collected or revealed about
+          people.
+      contractual:
+        description: >-
+          A binding agreement, such as one with a processor or across a group of
+          companies.
 
-  safeguarding_requirements:
-    description: Privacy safeguarding requirements applicable to the organization.
-    range: PrivacySafeguardingRequirement
-    multivalued: true
-    inlined_as_list: true
-    annotations:
-      iso29100_clause: "5.5"
+  PfImplementationState:
+    description: How far a control has been put into effect.
+    permissible_values:
+      planned:
+        description: It is decided on but not started.
+      in_progress:
+        description: It is being put in place.
+      in_operation:
+        description: It is in place and working.
+      retired:
+        description: It is no longer in use.
 
-  privacy_risks:
-    description: Privacy risks identified within the framework scope.
-    range: PrivacyRisk
-    multivalued: true
-    inlined_as_list: true
+  PfRiskLevel:
+    description: >-
+      A qualitative level of risk to people, offered for an organization that adopts it,
+      since the framework leaves the scale to the organization.
+    permissible_values:
+      low:
+        description: The harm to people would be limited.
+      medium:
+        description: The harm would call for planned measures.
+      high:
+        description: The harm could be serious.
+      very_high:
+        description: The harm could be severe or lasting, and needs treating at once.
 
-  privacy_impact_assessments:
-    description: Privacy impact assessments conducted under this framework.
-    range: PrivacyImpactAssessment
-    multivalued: true
-    inlined_as_list: true
+  PfConsentMechanism:
+    description: How a person's agreement to processing is obtained.
+    permissible_values:
+      opt_in:
+        description: The person acts to agree before the processing starts.
+      opt_out:
+        description: The processing goes ahead unless the person acts to refuse it.
+      implied:
+        description: >-
+          Something the person does shows agreement, such as placing an order, where the
+          law allows that reading.
 
-  privacy_breaches:
-    description: Privacy breaches recorded within the framework.
-    range: PrivacyBreach
-    multivalued: true
-    inlined_as_list: true
+  PfConsentState:
+    description: Where a person's agreement stands.
+    permissible_values:
+      given:
+        description: The agreement holds.
+      refused:
+        description: The person said no.
+      withdrawn:
+        description: The person took back an agreement they had given.
+      expired:
+        description: The agreement ran out.
 
-  pii_processing_activities:
-    description: PII processing activities within the framework scope.
-    range: PIIProcessingActivity
-    multivalued: true
-    inlined_as_list: true
-
-  principle_implementations:
-    description: Implementation records for each of the eleven privacy principles.
-    range: PrivacyPrincipleImplementation
-    multivalued: true
-    inlined_as_list: true
-
-  # ---------------------
-  # Privacy Stakeholder Slots
-  # ---------------------
-
-  contact_information:
-    description: Contact details for the privacy stakeholder.
-    range: string
-
-  jurisdictions:
-    description: Jurisdictions in which the privacy stakeholder operates.
-    range: string
-    multivalued: true
-
-  # ---------------------
-  # PII Principal Slots
-  # ---------------------
-
-  privacy_preferences:
-    description: Privacy preferences expressed by the PII principal.
-    range: PrivacyPreference
-    multivalued: true
-    inlined_as_list: true
-    annotations:
-      iso29100_clause: "3.15"
-
-  consent_records:
-    description: Consent records associated with the PII principal.
-    range: ConsentRecord
-    multivalued: true
-    inlined_as_list: true
-    annotations:
-      iso29100_clause: "3.4"
-
-  # ---------------------
-  # PII Controller Slots
-  # ---------------------
-
-  processing_purposes:
-    description: Purposes for which the PII controller processes PII.
-    range: string
-    multivalued: true
-    annotations:
-      iso29100_clause: "6.3"
-
-  legal_bases:
-    description: Legal bases relied upon for PII processing by this controller.
-    range: string
-    multivalued: true
-    annotations:
-      iso29100_clause: "5.5.2"
-
-  appointed_processors:
-    description: PII processors appointed by this controller.
-    range: PIIProcessor
-    multivalued: true
-    annotations:
-      iso29100_clause: "3.8"
-
-  privacy_policy_ref:
-    description: Reference to the privacy policy of this PII controller.
-    range: PrivacyPolicy
-
-  data_protection_officer:
-    description: Name or contact of the data protection officer, where applicable.
-    range: string
-
-  # ---------------------
-  # PII Processor Slots
-  # ---------------------
-
-  instructing_controller:
-    description: The PII controller on whose behalf this processor acts.
-    range: PIIController
-    annotations:
-      iso29100_clause: "3.10"
-
-  processing_agreement_ref:
-    description: Reference to the data processing agreement with the controller.
-    range: string
-    annotations:
-      iso29100_clause: "5.5.3"
-
-  sub_processors:
-    description: Sub-processors engaged by this PII processor.
-    range: PIIProcessor
-    multivalued: true
-
-  # ---------------------
-  # Third Party Slots
-  # ---------------------
-
-  receiving_purpose:
-    description: Purpose for which the third party receives PII.
-    range: string
-
-  transfer_basis:
-    description: Legal or contractual basis for transferring PII to this third party.
-    range: string
-    annotations:
-      iso29100_clause: "5.5.2"
-
-  # ---------------------
-  # PII Slots
-  # ---------------------
-
-  pii_category:
-    description: Category or type of PII (e.g., financial, health, biometric, location).
-    range: string
-    multivalued: true
+classes:
+  PfRecordMixin:
+    mixin: true
+    description: >-
+      What every record of the framework has, so that other records can refer to it: an
+      identifier, a title and a description.
     comments:
-      - See Table 2 of the standard for informative examples of attributes that can be PII
+      - >-
+        It is a mixin, not a base class, so that the adapt copy can re-root some record
+        classes on LOKF's Concept and leave the others as they are. lokf adapt replaces
+        pf_id with LOKF's id, and a class that declares id itself must descend from
+        Concept.
+    slots:
+      - pf_id
+      - title
+      - description
+    slot_usage:
+      title:
+        required: true
+        pattern: "^\\s*\\S"
 
-  sensitivity_level:
-    description: Sensitivity classification of this PII.
-    range: PIISensitivityCategory
-    annotations:
-      iso29100_clause: "3.23"
-
-  identifier_type:
+  PfFramework:
+    tree_root: true
+    mixins:
+      - PfRecordMixin
     description: >-
-      Type of identifier (e.g., direct identifier, indirect identifier,
-      linkable attribute, or combination of attributes).
-    range: string
+      One organization's use of the privacy framework: the systems it covers, and every
+      record the organization keeps about them, each kind in a list of its own.
     annotations:
-      iso29100_clause: "5.4.2"
+      iso29100_clause: "5.1"
+    slots:
+      - pf_jurisdictions
+    attributes:
+      pf_organization:
+        description: The organization that applies the framework.
+        required: true
+      pf_ict_systems:
+        description: The ICT systems the framework covers.
+        multivalued: true
+      pf_actors:
+        description: Those who take part in handling the PII.
+        range: PfActor
+        multivalued: true
+        inlined_as_list: true
+      pf_pii_items:
+        description: The PII the organization has recognized.
+        range: PfPiiItem
+        multivalued: true
+        inlined_as_list: true
+      pf_flows:
+        description: The ways PII passes between the actors.
+        range: PfPiiFlow
+        multivalued: true
+        inlined_as_list: true
+      pf_processing_activities:
+        description: What the organization does with PII.
+        range: PfProcessingActivity
+        multivalued: true
+        inlined_as_list: true
+      pf_safeguarding_requirements:
+        description: What the organization must do to safeguard PII.
+        range: PfSafeguardingRequirement
+        multivalued: true
+        inlined_as_list: true
+      pf_policies:
+        description: The organization's privacy policies.
+        range: PfPolicy
+        multivalued: true
+        inlined_as_list: true
+      pf_controls:
+        description: The organization's controls.
+        range: PfControl
+        multivalued: true
+        inlined_as_list: true
+      pf_principle_implementations:
+        description: How the organization stands against each privacy principle.
+        range: PfPrincipleImplementation
+        multivalued: true
+        inlined_as_list: true
+      pf_risks:
+        description: The risks to people that the organization has identified.
+        range: PfRisk
+        multivalued: true
+        inlined_as_list: true
+      pf_impact_assessments:
+        description: The organization's privacy impact assessments.
+        range: PfImpactAssessment
+        multivalued: true
+        inlined_as_list: true
+      pf_breaches:
+        description: The breaches the organization has recorded.
+        range: PfBreach
+        multivalued: true
+        inlined_as_list: true
+      pf_consents:
+        description: The consents the organization holds.
+        range: PfConsent
+        multivalued: true
+        inlined_as_list: true
+      pf_preferences:
+        description: What people have said they prefer.
+        range: PfPreference
+        multivalued: true
+        inlined_as_list: true
 
-  is_pseudonymized:
-    description: Whether the PII has been pseudonymized.
-    range: boolean
-    annotations:
-      iso29100_clause: "3.22"
-
-  is_anonymized:
+  PfActor:
+    abstract: true
+    mixins:
+      - PfRecordMixin
     description: >-
-      Whether the PII has been anonymized. Anonymized data is no longer
-      considered PII as the PII principal can no longer be identified.
-    range: boolean
+      Someone who takes part in handling PII, told apart by the part they play. One
+      party can play different parts for different PII, with a record for each.
     annotations:
-      iso29100_clause: "3.2"
+      iso29100_clause: "5.2"
+    slots:
+      - pf_actor_type
+      - pf_jurisdictions
+    slot_usage:
+      pf_actor_type:
+        required: true
+    attributes:
+      pf_contact:
+        description: How to reach the actor about privacy.
 
-  linkability_risk:
+  PfPiiPrincipal:
+    is_a: PfActor
     description: >-
-      Assessment of the risk that this data can be linked to identify a
-      PII principal, even if not directly identifying on its own.
-    range: string
+      The person the PII is about, or a group of such people when the organization
+      records them together.
     annotations:
-      iso29100_clause: "5.4.5"
+      iso29100_clause: "5.2"
+    exact_mappings:
+      - dpv:DataSubject
 
-  applicable_to_principal:
+  PfPiiController:
+    is_a: PfActor
     description: >-
-      Reference or description of the PII principal(s) to whom this PII relates.
-    range: string
-
-  retention_schedule:
-    description: Schedule defining how long this PII is retained and how it is disposed.
-    range: string
+      The party that decides why and how PII is processed, and answers for it even when
+      another party does the work.
     annotations:
-      iso29100_clause: "6.6"
+      iso29100_clause: "5.2"
+    exact_mappings:
+      - dpv:DataController
+    slots:
+      - pf_purposes
+      - pf_legal_bases
+    attributes:
+      pf_appointed_processors:
+        description: The processors that work for the controller.
+        range: PfPiiProcessor
+        multivalued: true
+      pf_controller_policy:
+        description: The privacy policy the controller works under.
+        range: PfPolicy
+      pf_privacy_officer:
+        description: >-
+          The person who advises the controller on privacy, where there is one.
 
-  processing_operations:
-    description: Types of processing operations performed on this PII.
-    range: PIIProcessingOperation
-    multivalued: true
-    annotations:
-      iso29100_clause: "3.21"
-
-  # ---------------------
-  # PII Flow Scenario Slots
-  # ---------------------
-
-  scenario_label:
-    description: Label for the PII flow scenario (e.g., "Scenario a").
-    range: string
-    annotations:
-      iso29100_clause: "5.3"
-
-  pii_principal_role:
-    description: Role of the PII principal in this flow scenario.
-    range: PIIFlowRole
-    annotations:
-      iso29100_clause: "5.3"
-
-  pii_controller_role:
-    description: Role of the PII controller in this flow scenario.
-    range: PIIFlowRole
-    annotations:
-      iso29100_clause: "5.3"
-
-  pii_processor_role:
-    description: Role of the PII processor in this flow scenario.
-    range: PIIFlowRole
-    annotations:
-      iso29100_clause: "5.3"
-
-  third_party_role:
-    description: Role of the third party in this flow scenario.
-    range: PIIFlowRole
-    annotations:
-      iso29100_clause: "5.3"
-
-  scenario_description:
-    description: Description of the PII flow scenario and when it occurs.
-    range: string
-
-  legal_control_retention:
+  PfPiiProcessor:
+    is_a: PfActor
     description: >-
-      Description of how legal control of PII is retained or transferred,
-      relevant to distinguishing between a PII processor and a third party.
-    range: string
+      A party that processes PII for a controller, on that controller's instructions.
+    annotations:
+      iso29100_clause: "5.2"
+    exact_mappings:
+      - dpv:DataProcessor
+    attributes:
+      pf_instructing_controllers:
+        description: The controllers whose instructions the processor follows.
+        range: PfPiiController
+        multivalued: true
+      pf_processing_agreement:
+        description: >-
+          The reference of the agreement that binds the processor, where there is one.
+      pf_sub_processors:
+        description: The processors this processor has engaged in turn.
+        range: PfPiiProcessor
+        multivalued: true
+
+  PfThirdParty:
+    is_a: PfActor
+    description: >-
+      A party outside the controller and its processors that receives PII for its own
+      ends, and usually becomes a controller of that PII.
+    annotations:
+      iso29100_clause: "5.2"
+    attributes:
+      pf_receiving_purpose:
+        description: What the third party receives the PII for.
+      pf_transfer_basis:
+        description: What makes the passing of PII to the third party lawful.
+
+  PfPiiItem:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      A piece or set of information that can be tied to a person, why it counts as PII,
+      how sensitive it is and how it is handled.
+    annotations:
+      iso29100_clause: "5.4"
+    comments:
+      - >-
+        DPV's mapping says dpv:PersonalData is narrower than the standard's PII, and
+        this class keeps that direction.
+    narrow_mappings:
+      - dpv:PersonalData
+    slots:
+      - pf_concerned_principals
+      - pf_operations
+      - pf_retention
+    attributes:
+      pf_pii_categories:
+        description: What the item holds, in the organization's own words.
+        multivalued: true
+      pf_recognized_by:
+        description: Why the information counts as PII.
+        range: PfPiiRecognition
+        multivalued: true
+      pf_sensitivity:
+        description: How sensitive the item is.
+        range: PfSensitivity
+      pf_pseudonymized:
+        description: Whether an alias stands in for the item's identifying details.
+        range: boolean
+      pf_linkability:
+        description: >-
+          How easily the item could be joined with other data to identify someone, in
+          the organization's words.
+
+  PfPiiFlow:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      One way PII passes from one actor to another, and who decides what happens to it
+      afterwards.
     annotations:
       iso29100_clause: "5.3"
+    slots:
+      - pf_concerned_pii
+    attributes:
+      pf_provider:
+        description: The actor the PII comes from.
+        range: PfActor
+        required: true
+      pf_recipient:
+        description: The actor the PII goes to.
+        range: PfActor
+        required: true
+      pf_decides_afterwards:
+        description: >-
+          The actor that decides what happens to the PII once it has passed. A processor
+          never holds this position.
+        range: PfActor
 
-  # ---------------------
-  # Privacy Safeguarding Requirement Slots
-  # ---------------------
+  PfProcessingActivity:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      Something the organization does with PII: why, on what basis, what it does to
+      which PII, who is responsible, and how long the PII is kept.
+    comments:
+      - >-
+        The fields are what an adopter keeps. The framework's own subject here is what
+        counts as processing, which PfOperation lists.
+    slots:
+      - pf_purposes
+      - pf_legal_bases
+      - pf_operations
+      - pf_concerned_pii
+      - pf_retention
+      - pf_related_controls
+    attributes:
+      pf_controller:
+        description: The controller that answers for the activity.
+        range: PfPiiController
+        required: true
+      pf_processors:
+        description: The processors that do the work.
+        range: PfPiiProcessor
+        multivalued: true
+      pf_activity_flows:
+        description: The flows of PII the activity involves.
+        range: PfPiiFlow
+        multivalued: true
+      pf_sensitivities:
+        description: The levels of sensitivity among the PII involved.
+        range: PfSensitivity
+        multivalued: true
+      pf_crosses_borders:
+        description: Whether PII leaves the jurisdiction it was collected in.
+        range: boolean
+      pf_transfer_safeguards:
+        description: What protects the PII when it crosses a border.
+        multivalued: true
 
-  requirement_factor:
-    description: Category of factor driving this safeguarding requirement.
-    range: SafeguardingRequirementFactor
+  PfSafeguardingRequirement:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      Something the organization must do to protect PII, and where that duty comes from.
     annotations:
       iso29100_clause: "5.5"
+    attributes:
+      pf_requirement_factor:
+        description: Where the requirement comes from.
+        range: PfRequirementFactor
+        required: true
+      pf_requirement_source:
+        description: The law, contract or other document that states it.
+      pf_applies_to:
+        description: The actors that must meet it.
+        range: PfActor
+        multivalued: true
+      pf_met_by:
+        description: The controls that meet it.
+        range: PfControl
+        multivalued: true
 
-  requirement_text:
-    description: Organization-authored statement of the safeguarding requirement.
-    range: string
-
-  source_reference:
+  PfPolicy:
+    mixins:
+      - PfRecordMixin
     description: >-
-      Reference to the source (e.g., law name, regulation, contract, or standard).
-    range: string
-
-  applicable_to_actors:
-    description: Privacy stakeholder roles to which this requirement applies.
-    range: string
-    multivalued: true
-
-  related_controls:
-    description: Privacy controls that implement or contribute to this requirement.
-    range: PrivacyControl
-    multivalued: true
-
-  priority:
-    description: Priority level for addressing this requirement or risk.
-    range: string
-
-  # ---------------------
-  # Privacy Policy Slots
-  # ---------------------
-
-  policy_version:
-    description: Version identifier for the privacy policy.
-    range: string
-    slot_uri: dcterms:hasVersion
-
-  effective_date:
-    description: Date from which the privacy policy takes effect.
-    range: date
-
-  policy_scope:
-    description: Scope of the privacy policy (systems, activities, or organizations covered).
-    range: string
-
-  processing_purposes_covered:
-    description: Processing purposes addressed by this privacy policy.
-    range: string
-    multivalued: true
-
-  pii_categories_covered:
-    description: Categories of PII addressed by this privacy policy.
-    range: string
-    multivalued: true
-
-  data_retention_statement:
-    description: Statement on how long PII is retained and how it is disposed.
-    range: string
-    annotations:
-      iso29100_clause: "6.6"
-
-  pii_principal_rights:
-    description: Rights available to PII principals under this policy.
-    range: string
-    multivalued: true
-    annotations:
-      iso29100_clause: "6.9"
-
-  contact_for_inquiries:
-    description: Contact information for PII-related inquiries from PII principals.
-    range: string
-
-  last_review_date:
-    description: Date when the policy was last reviewed.
-    range: date
-
-  is_external_notice:
-    description: >-
-      Whether this is an external privacy notice (available to PII principals)
-      rather than an internal policy document.
-    range: boolean
+      A privacy policy: what the organization commits to about PII, written for its own
+      people or as a notice to the people whose PII it handles.
     annotations:
       iso29100_clause: "5.6"
+    slots:
+      - pf_purposes
+      - pf_concerned_pii
+      - pf_principles
+    attributes:
+      pf_policy_audience:
+        description: Who the policy is written for.
+        range: PfPolicyAudience
+        required: true
+      pf_policy_version:
+        description: The version of the policy.
+      pf_policy_scope:
+        description: What the policy covers.
+      pf_policy_effective_date:
+        description: When the policy takes effect.
+        range: date
+      pf_policy_last_reviewed:
+        description: When the policy was last reviewed.
+        range: date
+      pf_retention_statement:
+        description: What the policy says about how long PII is kept.
+      pf_stated_rights:
+        description: The rights the policy tells people they have.
+        multivalued: true
+      pf_inquiry_contact:
+        description: Where people can send questions about the policy.
 
-  applicable_principles:
-    description: Privacy principles this policy addresses.
-    range: PrivacyPrinciple
-    multivalued: true
-
-  # ---------------------
-  # Privacy Control Slots
-  # ---------------------
-
-  control_type:
-    description: Category of this privacy control.
-    range: PrivacyControlType
-    annotations:
-      iso29100_clause: "3.12"
-
-  control_objective:
-    description: The privacy objective this control is intended to achieve.
-    range: string
-
-  addressed_principles:
-    description: Privacy principles this control helps implement.
-    range: PrivacyPrinciple
-    multivalued: true
-
-  implementation_description:
-    description: Organization-authored description of how the control is implemented.
-    range: string
-
-  responsible_actor:
-    description: Actor responsible for implementing and maintaining this control.
-    range: string
-
-  implementation_status:
-    description: Current implementation status of the control.
-    range: string
-    examples:
-      - value: "planned"
-      - value: "implemented"
-      - value: "not_applicable"
-
-  effectiveness_evidence:
-    description: Evidence of control effectiveness.
-    range: string
-    multivalued: true
-
-  related_safeguarding_requirements:
-    description: Safeguarding requirements this control addresses.
-    range: PrivacySafeguardingRequirement
-    multivalued: true
-
-  is_pet:
+  PfControl:
+    mixins:
+      - PfRecordMixin
     description: >-
-      Whether this control qualifies as a Privacy Enhancing Technology (PET):
-      an ICT-based privacy control that protects privacy by minimizing,
-      eliminating, or preventing unnecessary PII processing without reducing
-      the intended functionality of the system.
-    range: boolean
+      A measure that treats a privacy risk by making it less likely or less harmful, the
+      principles it serves and how far it has been put into effect.
     annotations:
-      iso29100_clause: "3.13"
+      iso29100_clause: "5.7"
+    slots:
+      - pf_principles
+      - pf_evidence
+    attributes:
+      pf_control_kind:
+        description: The form the control takes.
+        range: PfControlKind
+        required: true
+      pf_control_objective:
+        description: What the control is meant to achieve.
+      pf_control_detail:
+        description: How the control is put into effect.
+      pf_control_responsible:
+        description: The actor that answers for the control.
+        range: PfActor
+      pf_control_state:
+        description: How far the control has been put into effect.
+        range: PfImplementationState
+      pf_answers_requirements:
+        description: The safeguarding requirements the control answers to.
+        range: PfSafeguardingRequirement
+        multivalued: true
 
-  # ---------------------
-  # Privacy Risk Slots
-  # ---------------------
-
-  risk_source:
-    description: Source or origin of the privacy risk.
-    range: string
-
-  affected_pii_categories:
-    description: Categories of PII affected by this privacy risk or breach.
-    range: string
-    multivalued: true
-
-  affected_principals_description:
-    description: Description of PII principals who could be adversely affected.
-    range: string
-
-  risk_likelihood:
-    description: Assessed likelihood of this privacy risk materializing.
-    range: string
-
-  risk_impact_description:
-    description: Description of potential adverse consequences for PII principals.
-    range: string
-
-  inherent_risk_level:
-    description: Privacy risk level before controls are applied.
-    range: PrivacyRiskLevel
-
-  residual_risk_level:
-    description: Privacy risk level after controls are applied.
-    range: PrivacyRiskLevel
-
-  mitigating_controls:
-    description: Privacy controls that mitigate this risk.
-    range: PrivacyControl
-    multivalued: true
-
-  risk_owner:
-    description: Person accountable for managing this privacy risk.
-    range: string
-
-  # ---------------------
-  # Privacy Impact Assessment Slots
-  # ---------------------
-
-  assessment_scope:
-    description: Scope of the privacy impact assessment.
-    range: string
+  PfPrincipleImplementation:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      How the organization stands against one privacy principle: what it does, what
+      shows it, and what is still missing.
     annotations:
-      iso29100_clause: "3.18"
+      iso29100_clause: "6.1"
+    slots:
+      - pf_related_controls
+      - pf_evidence
+    attributes:
+      pf_principle:
+        description: The principle the record is about.
+        range: PfPrinciple
+        required: true
+      pf_measures:
+        description: What the organization does to follow the principle.
+        multivalued: true
+      pf_gaps:
+        description: Where the organization falls short.
+        multivalued: true
+      pf_improvements:
+        description: What the organization will do about the gaps.
+        multivalued: true
+      pf_last_assessed:
+        description: When the organization last checked its standing.
+        range: date
 
-  assessment_date:
-    description: Date the assessment was conducted.
-    range: date
-
-  assessor:
-    description: Person or team who conducted the assessment.
-    range: string
-
-  processing_activities_assessed:
-    description: PII processing activities reviewed in this assessment.
-    range: PIIProcessingActivity
-    multivalued: true
-
-  risks_identified:
-    description: Privacy risks identified during this assessment.
-    range: PrivacyRisk
-    multivalued: true
-
-  risks_treated:
-    description: Privacy risks for which treatment was planned or applied.
-    range: PrivacyRisk
-    multivalued: true
-
-  residual_risks_accepted:
-    description: Privacy risks accepted as residual after treatment.
-    range: PrivacyRisk
-    multivalued: true
-
-  assessment_outcome:
-    description: Overall outcome and conclusions of the privacy impact assessment.
-    range: string
-
-  next_assessment_date:
-    description: Planned date for the next assessment.
-    range: date
-
-  consultation_records:
-    description: Records of stakeholder consultations conducted during the assessment.
-    range: string
-    multivalued: true
-
-  # ---------------------
-  # Privacy Breach Slots
-  # ---------------------
-
-  breach_datetime:
-    description: Date and time when the privacy breach occurred.
-    range: datetime
-
-  discovery_datetime:
-    description: Date and time when the privacy breach was discovered.
-    range: datetime
-
-  breach_description:
-    description: Description of the privacy breach and the violated requirements.
-    range: string
-
-  affected_principals_count:
-    description: Estimated number of PII principals whose PII was involved.
-    range: positive_integer_type
-
-  violated_requirements:
-    description: Privacy safeguarding requirements violated by this breach.
-    range: PrivacySafeguardingRequirement
-    multivalued: true
-    annotations:
-      iso29100_clause: "3.11"
-
-  breach_severity:
-    description: Assessed severity of the privacy breach.
-    range: PrivacyRiskLevel
-
-  immediate_actions:
-    description: Immediate actions taken to contain the breach.
-    range: string
-    multivalued: true
-
-  notification_required:
-    description: Whether notification to authorities or PII principals was required.
-    range: boolean
-    annotations:
-      iso29100_clause: "6.10"
-
-  notifications_made:
-    description: Notifications made to authorities, PII principals, or other parties.
-    range: string
-    multivalued: true
-
-  remediation_actions:
-    description: Actions taken to remediate the breach and prevent recurrence.
-    range: string
-    multivalued: true
-
-  lessons_learned:
-    description: Lessons learned from the breach to improve privacy controls.
-    range: string
-
-  closure_datetime:
-    description: Date and time when the breach record was closed.
-    range: datetime
-
-  # ---------------------
-  # PII Processing Activity Slots
-  # ---------------------
-
-  processing_purpose:
-    description: The specific, explicit, and legitimate purpose for this processing activity.
-    range: string
-    annotations:
-      iso29100_clause: "6.3"
-
-  legal_basis:
-    description: Legal basis relied upon for this processing activity.
-    range: string
-    annotations:
-      iso29100_clause: "5.5.2"
-
-  operations_performed:
-    description: Processing operations performed in this activity.
-    range: PIIProcessingOperation
-    multivalued: true
-    annotations:
-      iso29100_clause: "3.21"
-
-  pii_categories_processed:
-    description: Categories of PII processed in this activity.
-    range: string
-    multivalued: true
-
-  sensitivity_levels_involved:
-    description: Sensitivity levels of PII processed in this activity.
-    range: PIISensitivityCategory
-    multivalued: true
-
-  controller_ref:
-    description: PII controller responsible for this processing activity.
-    range: PIIController
-
-  processor_ref:
-    description: PII processor performing this processing activity, if applicable.
-    range: PIIProcessor
-
-  data_flows:
-    description: PII flow scenarios applicable to this processing activity.
-    range: PIIFlowScenario
-    multivalued: true
-
-  retention_period:
-    description: Retention period for PII processed in this activity.
-    range: duration_type
-    annotations:
-      iso29100_clause: "6.6"
+  PfRisk:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      A way that handling PII could harm people: where the risk comes from, how likely
+      and how bad it is, and what is done about it.
     comments:
-      - Use ISO 8601 duration notation such as P1Y or P90D
+      - >-
+        The framework names privacy risk as an idea and leaves the scale to the
+        organization. These fields are what an adopter keeps.
+    slots:
+      - pf_concerned_pii
+      - pf_concerned_principals
+      - pf_related_controls
+    attributes:
+      pf_risk_source:
+        description: Where the risk comes from.
+      pf_risk_likelihood:
+        description: How likely the harm is, in the organization's own terms.
+      pf_risk_consequence:
+        description: What the harm to people would be.
+      pf_risk_inherent_level:
+        description: The risk's level before controls.
+        range: PfRiskLevel
+      pf_risk_residual_level:
+        description: >-
+          The risk's level after controls, which is never above the level before.
+        range: PfRiskLevel
+      pf_risk_owner:
+        description: The person who answers for the risk.
 
-  privacy_controls_applied:
-    description: Privacy controls applied to this processing activity.
-    range: PrivacyControl
-    multivalued: true
-
-  cross_border_transfer:
-    description: Whether this activity involves cross-border transfer of PII.
-    range: boolean
-    annotations:
-      iso29100_clause: "6.6"
-
-  transfer_safeguards:
-    description: Safeguards in place for cross-border PII transfers.
-    range: string
-    multivalued: true
-    annotations:
-      iso29100_clause: "6.6"
-
-  # ---------------------
-  # Privacy Principle Implementation Slots
-  # ---------------------
-
-  principle:
-    description: The privacy principle being implemented.
-    range: PrivacyPrinciple
-    required: true
-    annotations:
-      iso29100_clause: "6"
-
-  implementation_measures:
-    description: Measures taken to implement this privacy principle.
-    range: string
-    multivalued: true
-
-  applicable_controls_ref:
-    description: Privacy controls that contribute to implementing this principle.
-    range: PrivacyControl
-    multivalued: true
-
-  evidence_of_adherence:
-    description: Evidence demonstrating adherence to this principle.
-    range: string
-    multivalued: true
-
-  gaps_identified:
-    description: Identified gaps in the implementation of this principle.
-    range: string
-    multivalued: true
-
-  improvement_actions:
-    description: Actions planned to address identified implementation gaps.
-    range: string
-    multivalued: true
-
-  last_assessed_date:
-    description: Date when adherence to this principle was last assessed.
-    range: date
-
-  # ---------------------
-  # Consent Record Slots
-  # ---------------------
-
-  principal_ref:
+  PfImpactAssessment:
+    mixins:
+      - PfRecordMixin
     description: >-
-      Reference to the PII principal associated with this consent record
-      or privacy preference.
-    range: string
+      A review of what a system or activity could do to people's privacy, the risks it
+      found and what became of them.
+    comments:
+      - These fields are what an adopter keeps, and go beyond the framework itself.
+    attributes:
+      pf_assessment_scope:
+        description: What the assessment looks at.
+      pf_assessment_date:
+        description: When the assessment was done.
+        range: date
+      pf_assessor:
+        description: Who did the assessment.
+      pf_assessed_activities:
+        description: The processing activities it looks at.
+        range: PfProcessingActivity
+        multivalued: true
+      pf_risks_found:
+        description: The risks it found.
+        range: PfRisk
+        multivalued: true
+      pf_risks_treated:
+        description: Those of the risks found that have been treated.
+        range: PfRisk
+        multivalued: true
+      pf_risks_accepted:
+        description: >-
+          Those of the risks found that the organization has accepted as they stand.
+        range: PfRisk
+        multivalued: true
+      pf_assessment_outcome:
+        description: What the assessment concluded.
+      pf_consultations:
+        description: Who was asked, and what they said.
+        multivalued: true
+      pf_next_assessment:
+        description: When the next assessment is due, which is after this one.
+        range: date
 
-  consent_date:
-    description: Date and time when consent was given.
-    range: datetime
-    annotations:
-      iso29100_clause: "3.4"
+  PfBreach:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      A time when PII was handled against a safeguarding requirement: what happened, who
+      was told and what was done.
+    comments:
+      - >-
+        The framework names the idea of a breach. These fields are what an adopter
+        keeps, and go beyond the framework itself.
+    slots:
+      - pf_concerned_pii
+    attributes:
+      pf_breach_occurred:
+        description: When the breach happened.
+        range: datetime
+      pf_breach_discovered:
+        description: When the organization found out, which is not before it happened.
+        range: datetime
+      pf_breach_closed:
+        description: >-
+          When the organization closed the matter, which is not before it found out.
+        range: datetime
+      pf_principals_affected:
+        description: How many people the breach reached, where that is known.
+        range: integer
+        minimum_value: 1
+      pf_breached_requirements:
+        description: The safeguarding requirements the breach went against.
+        range: PfSafeguardingRequirement
+        multivalued: true
+      pf_breach_severity:
+        description: How serious the breach is.
+        range: PfRiskLevel
+      pf_immediate_actions:
+        description: What was done straight away.
+        multivalued: true
+      pf_notification_required:
+        description: Whether a law or contract requires anyone to be told.
+        range: boolean
+      pf_notifications:
+        description: Who was told, and when.
+        multivalued: true
+      pf_remediation:
+        description: What was done to put things right.
+        multivalued: true
+      pf_lessons:
+        description: What the organization learned.
 
-  consent_mechanism:
-    description: Mechanism by which consent was obtained.
-    range: ConsentMechanism
-    annotations:
-      iso29100_clause: "3.6"
+  PfConsent:
+    mixins:
+      - PfRecordMixin
+    description: >-
+      One person's agreement to the processing of their PII for stated purposes, and
+      where it stands.
+    comments:
+      - >-
+        The framework defines consent and its principle, and DPV maps that term to
+        dpv:InformedConsent. The fields are what an adopter keeps, and go beyond the
+        framework itself.
+    exact_mappings:
+      - dpv:InformedConsent
+    rules:
+      - title: a withdrawal date means the consent is withdrawn
+        description: A consent with a withdrawal date has the state withdrawn.
+        preconditions:
+          slot_conditions:
+            pf_consent_withdrawn:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            pf_consent_state:
+              equals_string: withdrawn
+    slots:
+      - pf_purposes
+      - pf_concerned_pii
+      - pf_evidence
+      - pf_principal
+    slot_usage:
+      pf_principal:
+        required: true
+    attributes:
+      pf_consent_mechanism:
+        description: How the agreement was obtained.
+        range: PfConsentMechanism
+      pf_consent_given:
+        description: When the person agreed.
+        range: datetime
+      pf_consent_state:
+        description: Where the agreement stands.
+        range: PfConsentState
+        required: true
+      pf_consent_withdrawn:
+        description: When the person took the agreement back.
+        range: datetime
 
-  processing_purposes_consented:
-    description: Processing purposes for which consent was given.
-    range: string
-    multivalued: true
-
-  pii_categories_consented:
-    description: Categories of PII for which consent was given.
-    range: string
-    multivalued: true
-
-  withdrawal_date:
-    description: Date and time when consent was withdrawn, if applicable.
-    range: datetime
-    annotations:
-      iso29100_clause: "6.2"
-
-  consent_status:
-    description: Current status of the consent.
-    range: string
-    examples:
-      - value: "active"
-      - value: "withdrawn"
-      - value: "expired"
-
-  consent_evidence_ref:
-    description: Reference to evidence of consent (e.g., record identifier or URL).
-    range: string
-
-  # ---------------------
-  # Privacy Preference Slots
-  # ---------------------
-
-  preference_scope:
-    description: The processing activities or purposes to which these preferences apply.
-    range: string
-
-  anonymity_preference:
-    description: Whether the PII principal prefers anonymous processing where possible.
-    range: boolean
-    annotations:
-      iso29100_clause: "3.1"
-
-  pseudonymity_preference:
-    description: Whether the PII principal prefers pseudonymous processing where possible.
-    range: boolean
-    annotations:
-      iso29100_clause: "3.22"
-
-  processing_restriction_preferences:
-    description: Specific processing operations the PII principal wishes to restrict.
-    range: PIIProcessingOperation
-    multivalued: true
-
-  disclosure_restriction_preferences:
-    description: Restrictions on disclosing PII to specific parties or categories of parties.
-    range: string
-    multivalued: true
-
-  preference_recorded_date:
-    description: Date when these privacy preferences were recorded.
-    range: date
+  PfPreference:
+    mixins:
+      - PfRecordMixin
+    description: What one person has said they want done, or not done, with their PII.
+    comments:
+      - >-
+        The framework names the idea of a privacy preference. These fields are what an
+        adopter keeps, and go beyond the framework itself.
+    slots:
+      - pf_principal
+    slot_usage:
+      pf_principal:
+        required: true
+    attributes:
+      pf_preference_scope:
+        description: What the preference applies to.
+      pf_wants_anonymity:
+        description: Whether the person asks not to be identified at all.
+        range: boolean
+      pf_wants_pseudonymity:
+        description: Whether the person asks to appear under an alias.
+        range: boolean
+      pf_refused_operations:
+        description: What the person does not want done to their PII.
+        range: PfOperation
+        multivalued: true
+      pf_refused_recipients:
+        description: Who the person does not want their PII passed to.
+        multivalued: true
+      pf_preference_recorded:
+        description: When the organization recorded the preference.
+        range: date

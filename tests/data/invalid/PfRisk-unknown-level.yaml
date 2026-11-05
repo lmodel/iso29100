@@ -1,0 +1,4 @@
+# Fails at: /pf_risk_inherent_level
+pf_id: acme:risk
+title: A risk at an unknown level
+pf_risk_inherent_level: extreme

@@ -1,0 +1,6 @@
+# linkml-lint reads this file from the directory `just lint` runs in.
+# The recommended rules apply unchanged, and `just lint` fails on a warning
+# as on an error. Nothing is relaxed: the classes and enums carry the Pf
+# prefix in UpperCamelCase, the slots, types and enum values are snake_case,
+# and every element has a description.
+extends: recommended

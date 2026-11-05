@@ -1,0 +1,4 @@
+# Fails at: /pf_sensitivity
+pf_id: acme:pii
+title: An item of unknown sensitivity
+pf_sensitivity: secret

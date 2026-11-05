@@ -1,0 +1,4 @@
+# Fails at: /pf_requirement_factor
+pf_id: acme:requirement
+title: A requirement from an unknown source
+pf_requirement_factor: rumour

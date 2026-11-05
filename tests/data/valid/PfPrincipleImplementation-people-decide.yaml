@@ -1,0 +1,14 @@
+pf_id: acme:principle-people-decide
+title: How ACME lets people decide
+pf_principle: principle_6_2
+pf_related_controls:
+  - acme:control-access
+pf_evidence:
+  - Log export of the consent platform
+pf_measures:
+  - Separate choices for marketing and analytics
+pf_gaps:
+  - The mobile application has no way to withdraw
+pf_improvements:
+  - Add withdrawal to the mobile application by the third quarter
+pf_last_assessed: "2026-01-15"

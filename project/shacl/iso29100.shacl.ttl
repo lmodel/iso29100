@@ -1,1523 +1,1554 @@
-@prefix dcterms: <http://purl.org/dc/terms/> .
-@prefix dpv: <https://w3id.org/dpv#> .
-@prefix iso29100: <https://w3id.org/lmodel/iso29100/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
 @prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
-@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix iso29100: <https://w3id.org/lmodel/iso29100/> .
 @prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
-
-iso29100:NamedEntity a sh:NodeShape ;
-    rdfs:comment "Abstract base class for all entities with a unique identifier, name, and description. Provides common identification and documentation slots." ;
-    sh:closed false ;
-    sh:ignoredProperties ( iso29100:data_retention_statement iso29100:gaps_identified iso29100:applicable_to_principal iso29100:disclosure_restriction_preferences iso29100:priority iso29100:consultation_records iso29100:pii_category iso29100:privacy_controls_applied iso29100:residual_risks_accepted iso29100:requirement_factor iso29100:linkability_risk iso29100:contact_information iso29100:notifications_made iso29100:transfer_safeguards iso29100:processing_agreement_ref iso29100:evidence_of_adherence iso29100:effectiveness_evidence iso29100:processing_purpose iso29100:receiving_purpose iso29100:data_flows iso29100:mitigating_controls iso29100:violated_requirements iso29100:privacy_controls iso29100:lessons_learned iso29100:retention_period iso29100:risk_source iso29100:ict_system_description iso29100:pii_categories_processed iso29100:requirement_text dcterms:hasVersion iso29100:privacy_preferences iso29100:pii_principal_role iso29100:last_review_date iso29100:pii_categories_covered iso29100:pii_processor_role iso29100:safeguarding_requirements iso29100:affected_principals_description iso29100:residual_risk_level iso29100:data_protection_officer iso29100:operations_performed iso29100:pii_principal_rights iso29100:is_pet iso29100:sub_processors iso29100:related_safeguarding_requirements iso29100:sensitivity_levels_involved iso29100:implementation_description iso29100:sensitivity_level iso29100:risk_owner iso29100:control_type iso29100:principle_implementations iso29100:legal_control_retention iso29100:privacy_risks iso29100:applicable_controls_ref iso29100:is_pseudonymized iso29100:immediate_actions iso29100:principle iso29100:related_controls iso29100:applicable_to_actors iso29100:retention_schedule iso29100:implementation_measures iso29100:breach_severity iso29100:risk_impact_description iso29100:improvement_actions iso29100:transfer_basis iso29100:processing_purposes_consented iso29100:anonymity_preference iso29100:legal_bases iso29100:risks_treated iso29100:appointed_processors iso29100:is_anonymized iso29100:consent_records iso29100:inherent_risk_level iso29100:identifier_type iso29100:pseudonymity_preference iso29100:scenario_description iso29100:privacy_policy iso29100:applicable_principles iso29100:assessor iso29100:instructing_controller iso29100:discovery_datetime iso29100:pii_principals_description iso29100:jurisdictions iso29100:pii_controllers iso29100:notification_required iso29100:privacy_impact_assessments iso29100:affected_principals_count iso29100:consent_evidence_ref iso29100:cross_border_transfer iso29100:addressed_principles iso29100:third_party_role iso29100:breach_description iso29100:control_objective iso29100:processing_operations iso29100:risks_identified iso29100:affected_pii_categories iso29100:processing_purposes iso29100:controller_ref iso29100:remediation_actions iso29100:organization_name iso29100:next_assessment_date iso29100:assessment_outcome iso29100:privacy_breaches iso29100:responsible_actor iso29100:assessment_date iso29100:third_parties iso29100:pii_processing_activities iso29100:last_assessed_date iso29100:consent_mechanism iso29100:withdrawal_date iso29100:pii_processors iso29100:applicable_jurisdictions iso29100:effective_date iso29100:scenario_label iso29100:implementation_status iso29100:pii_controller_role iso29100:is_external_notice rdf:type iso29100:closure_datetime iso29100:privacy_policy_ref iso29100:processing_restriction_preferences iso29100:legal_basis iso29100:breach_datetime iso29100:consent_status iso29100:risk_likelihood iso29100:source_reference iso29100:assessment_scope iso29100:processing_purposes_covered iso29100:preference_recorded_date iso29100:processing_activities_assessed iso29100:principal_ref iso29100:preference_scope iso29100:contact_for_inquiries iso29100:processor_ref iso29100:pii_categories_consented iso29100:policy_scope iso29100:consent_date ) ;
-    sh:property [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path dcterms:description ] ;
-    sh:targetClass iso29100:NamedEntity .
-
-iso29100:PIIPrincipal a sh:NodeShape ;
-    rdfs:comment "Schema class for a data subject — the individual to whom PII belongs. Links consent records and privacy preferences to the natural person whose data is being processed, enabling subject-centric data models." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Contact details for the privacy stakeholder." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:contact_information ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:created ],
-        [ sh:class iso29100:ConsentRecord ;
-            sh:description "Consent records associated with the PII principal." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 1 ;
-            sh:path iso29100:consent_records ],
-        [ sh:class iso29100:PrivacyPreference ;
-            sh:description "Privacy preferences expressed by the PII principal." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 0 ;
-            sh:path iso29100:privacy_preferences ],
-        [ sh:datatype xsd:string ;
-            sh:description "Jurisdictions in which the privacy stakeholder operates." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:jurisdictions ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:identifier ] ;
-    sh:targetClass iso29100:PIIPrincipal .
-
-iso29100:PersonallyIdentifiableInformation a sh:NodeShape ;
-    rdfs:comment "Schema class representing a data element or attribute set that can be linked back to a natural person — either directly or through combination with other attributes. Captures sensitivity classification, identifier type, pseudonymization status, retention schedule, and processing operations applicable to the data." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Category or type of PII (e.g., financial, health, biometric, location)." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:pii_category ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Reference or description of the PII principal(s) to whom this PII relates." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:applicable_to_principal ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:modified ],
-        [ sh:description "Types of processing operations performed on this PII." ;
-            sh:in ( dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Remove ) ;
-            sh:order 8 ;
-            sh:path iso29100:processing_operations ],
-        [ sh:description "Sensitivity classification of this PII." ;
-            sh:in ( "standard" dpv:SpecialCategoryPersonalData ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path iso29100:sensitivity_level ],
-        [ sh:datatype xsd:string ;
-            sh:description "Schedule defining how long this PII is retained and how it is disposed." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path iso29100:retention_schedule ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Type of identifier (e.g., direct identifier, indirect identifier, linkable attribute, or combination of attributes)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:identifier_type ],
-        [ sh:datatype xsd:string ;
-            sh:description "Assessment of the risk that this data can be linked to identify a PII principal, even if not directly identifying on its own." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:linkability_risk ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether the PII has been anonymized. Anonymized data is no longer considered PII as the PII principal can no longer be identified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:is_anonymized ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether the PII has been pseudonymized." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:is_pseudonymized ] ;
-    sh:targetClass iso29100:PersonallyIdentifiableInformation .
-
-iso29100:PrivacyFramework a sh:NodeShape ;
-    rdfs:comment "Top-level container representing an organization's privacy framework for protecting PII within ICT systems." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class iso29100:PrivacyPrincipleImplementation ;
-            sh:description "Implementation records for each of the eleven privacy principles." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 14 ;
-            sh:path iso29100:principle_implementations ],
-        [ sh:datatype xsd:string ;
-            sh:description "Name of the organization operating the privacy framework." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:organization_name ],
-        [ sh:class iso29100:PrivacySafeguardingRequirement ;
-            sh:description "Privacy safeguarding requirements applicable to the organization." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 9 ;
-            sh:path iso29100:safeguarding_requirements ],
-        [ sh:class iso29100:PIIProcessor ;
-            sh:description "PII processors engaged within this privacy framework." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path iso29100:pii_processors ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 17 ;
-            sh:path dcterms:description ],
-        [ sh:class iso29100:PrivacyControl ;
-            sh:description "Privacy controls implemented within the framework." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 8 ;
-            sh:path iso29100:privacy_controls ],
-        [ sh:class iso29100:PrivacyPolicy ;
-            sh:description "The organization's privacy policy governing PII processing." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path iso29100:privacy_policy ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of the ICT system(s) within the scope of the privacy framework." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:ict_system_description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of the categories of PII principals whose PII is processed." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:pii_principals_description ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 15 ;
-            sh:path dcterms:identifier ],
-        [ sh:class iso29100:PIIController ;
-            sh:description "PII controllers operating within this privacy framework." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path iso29100:pii_controllers ],
-        [ sh:class iso29100:PrivacyImpactAssessment ;
-            sh:description "Privacy impact assessments conducted under this framework." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 11 ;
-            sh:path iso29100:privacy_impact_assessments ],
-        [ sh:datatype xsd:string ;
-            sh:description "Legal jurisdictions whose privacy laws apply to the organization." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:applicable_jurisdictions ],
-        [ sh:class iso29100:PIIProcessingActivity ;
-            sh:description "PII processing activities within the framework scope." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 13 ;
-            sh:path iso29100:pii_processing_activities ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 16 ;
-            sh:path rdfs:label ],
-        [ sh:class iso29100:PrivacyRisk ;
-            sh:description "Privacy risks identified within the framework scope." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 10 ;
-            sh:path iso29100:privacy_risks ],
-        [ sh:class iso29100:ThirdParty ;
-            sh:description "Third parties that may receive PII within this framework." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path iso29100:third_parties ],
-        [ sh:class iso29100:PrivacyBreach ;
-            sh:description "Privacy breaches recorded within the framework." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 12 ;
-            sh:path iso29100:privacy_breaches ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 19 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 18 ;
-            sh:path dcterms:created ] ;
-    sh:targetClass iso29100:PrivacyFramework .
-
-iso29100:PrivacyStakeholder a sh:NodeShape ;
-    rdfs:comment "Schema base class for the four actor types recognized by the privacy framework: PII principals, PII controllers, PII processors, and third parties. Provides shared contact and jurisdictional attributes common to all stakeholder roles." ;
-    sh:closed false ;
-    sh:ignoredProperties ( iso29100:processing_purposes iso29100:data_protection_officer iso29100:instructing_controller iso29100:privacy_preferences iso29100:legal_bases iso29100:receiving_purpose iso29100:appointed_processors iso29100:sub_processors iso29100:consent_records rdf:type iso29100:privacy_policy_ref iso29100:transfer_basis iso29100:processing_agreement_ref ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Contact details for the privacy stakeholder." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:contact_information ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Jurisdictions in which the privacy stakeholder operates." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:jurisdictions ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:modified ] ;
-    sh:targetClass iso29100:PrivacyStakeholder .
-
-iso29100:ConsentRecord a sh:NodeShape ;
-    rdfs:comment "Schema class documenting a PII principal's agreement to processing of their PII for stated purposes. Records the consent mechanism used, scope, current status, and withdrawal date — supporting auditability of the consent and choice privacy principle." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Categories of PII for which consent was given." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:pii_categories_consented ],
-        [ sh:datatype xsd:string ;
-            sh:description "Reference to evidence of consent (e.g., record identifier or URL)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path iso29100:consent_evidence_ref ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Current status of the consent." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:consent_status ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date and time when consent was given." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:consent_date ],
-        [ sh:datatype xsd:string ;
-            sh:description "Processing purposes for which consent was given." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:processing_purposes_consented ],
-        [ sh:datatype xsd:string ;
-            sh:description "Reference to the PII principal associated with this consent record or privacy preference." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:principal_ref ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date and time when consent was withdrawn, if applicable." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:withdrawal_date ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path rdfs:label ],
-        [ sh:description "Mechanism by which consent was obtained." ;
-            sh:in ( dpv:ExplicitlyExpressedConsent dpv:ImpliedConsent "implied" ) ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path iso29100:consent_mechanism ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:modified ] ;
-    sh:targetClass iso29100:ConsentRecord .
-
-iso29100:PIIFlowScenario a sh:NodeShape ;
-    rdfs:comment "A documented scenario describing the flow of PII among privacy framework actors (PII principal, PII controller, PII processor, and third party), as illustrated in Table 1 of Clause 5.3." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:description "Role of the PII principal in this flow scenario." ;
-            sh:in ( "pii_provider" "pii_recipient" "not_involved" ) ;
-            sh:maxCount 1 ;
-            sh:order 1 ;
-            sh:path iso29100:pii_principal_role ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of the PII flow scenario and when it occurs." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:scenario_description ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:created ],
-        [ sh:description "Role of the PII controller in this flow scenario." ;
-            sh:in ( "pii_provider" "pii_recipient" "not_involved" ) ;
-            sh:maxCount 1 ;
-            sh:order 2 ;
-            sh:path iso29100:pii_controller_role ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of how legal control of PII is retained or transferred, relevant to distinguishing between a PII processor and a third party." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:legal_control_retention ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:modified ],
-        [ sh:description "Role of the third party in this flow scenario." ;
-            sh:in ( "pii_provider" "pii_recipient" "not_involved" ) ;
-            sh:maxCount 1 ;
-            sh:order 4 ;
-            sh:path iso29100:third_party_role ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path rdfs:label ],
-        [ sh:description "Role of the PII processor in this flow scenario." ;
-            sh:in ( "pii_provider" "pii_recipient" "not_involved" ) ;
-            sh:maxCount 1 ;
-            sh:order 3 ;
-            sh:path iso29100:pii_processor_role ],
-        [ sh:datatype xsd:string ;
-            sh:description "Label for the PII flow scenario (e.g., \"Scenario a\")." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:scenario_label ] ;
-    sh:targetClass iso29100:PIIFlowScenario .
-
-iso29100:PrivacyBreach a sh:NodeShape ;
-    rdfs:comment "Schema class for a recorded incident in which PII was processed in a manner that violates applicable privacy safeguarding requirements. Tracks breach details, affected PII categories, notification obligations, remediation actions, and lessons learned." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:boolean ;
-            sh:description "Whether notification to authorities or PII principals was required." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path iso29100:notification_required ],
-        [ sh:class iso29100:PrivacySafeguardingRequirement ;
-            sh:description "Privacy safeguarding requirements violated by this breach." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path iso29100:violated_requirements ],
-        [ sh:datatype xsd:string ;
-            sh:description "Notifications made to authorities, PII principals, or other parties." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path iso29100:notifications_made ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Actions taken to remediate the breach and prevent recurrence." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path iso29100:remediation_actions ],
-        [ sh:description "Assessed severity of the privacy breach." ;
-            sh:in ( "low" "medium" "high" "very_high" ) ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path iso29100:breach_severity ],
-        [ sh:datatype xsd:string ;
-            sh:description "Categories of PII affected by this privacy risk or breach." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:affected_pii_categories ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date and time when the privacy breach occurred." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:breach_datetime ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date and time when the privacy breach was discovered." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:discovery_datetime ],
-        [ sh:datatype xsd:positiveInteger ;
-            sh:description "Estimated number of PII principals whose PII was involved." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:affected_principals_count ],
-        [ sh:datatype xsd:dateTime ;
-            sh:description "Date and time when the breach record was closed." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path iso29100:closure_datetime ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 15 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Lessons learned from the breach to improve privacy controls." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path iso29100:lessons_learned ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 16 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 17 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of the privacy breach and the violated requirements." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:breach_description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Immediate actions taken to contain the breach." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path iso29100:immediate_actions ] ;
-    sh:targetClass iso29100:PrivacyBreach .
-
-iso29100:PrivacyImpactAssessment a sh:NodeShape ;
-    rdfs:comment "Schema class for a structured evaluation of the privacy implications of a processing activity or ICT system. Records assessment scope, identified and treated risks, accepted residual risks, stakeholder consultation records, and overall assessment outcome." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path rdfs:label ],
-        [ sh:class iso29100:PrivacyRisk ;
-            sh:description "Privacy risks for which treatment was planned or applied." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path iso29100:risks_treated ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:date ;
-            sh:description "Planned date for the next assessment." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path iso29100:next_assessment_date ],
-        [ sh:datatype xsd:string ;
-            sh:description "Overall outcome and conclusions of the privacy impact assessment." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path iso29100:assessment_outcome ],
-        [ sh:datatype xsd:string ;
-            sh:description "Scope of the privacy impact assessment." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:assessment_scope ],
-        [ sh:class iso29100:PrivacyRisk ;
-            sh:description "Privacy risks identified during this assessment." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path iso29100:risks_identified ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date the assessment was conducted." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:assessment_date ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path dcterms:modified ],
-        [ sh:class iso29100:PrivacyRisk ;
-            sh:description "Privacy risks accepted as residual after treatment." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 6 ;
-            sh:path iso29100:residual_risks_accepted ],
-        [ sh:datatype xsd:string ;
-            sh:description "Person or team who conducted the assessment." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:assessor ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Records of stakeholder consultations conducted during the assessment." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path iso29100:consultation_records ],
-        [ sh:class iso29100:PIIProcessingActivity ;
-            sh:description "PII processing activities reviewed in this assessment." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path iso29100:processing_activities_assessed ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:identifier ] ;
-    sh:targetClass iso29100:PrivacyImpactAssessment .
-
-iso29100:PrivacyPreference a sh:NodeShape ;
-    rdfs:comment "Schema class capturing a PII principal's processing choices for a particular purpose scope: preferences for anonymity or pseudonymity, restrictions on specific processing operations, and restrictions on disclosure to named or categorized parties." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Restrictions on disclosing PII to specific parties or categories of parties." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:disclosure_restriction_preferences ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "The processing activities or purposes to which these preferences apply." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:preference_scope ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether the PII principal prefers pseudonymous processing where possible." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:pseudonymity_preference ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when these privacy preferences were recorded." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:preference_recorded_date ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether the PII principal prefers anonymous processing where possible." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:anonymity_preference ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Reference to the PII principal associated with this consent record or privacy preference." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:principal_ref ],
-        [ sh:description "Specific processing operations the PII principal wishes to restrict." ;
-            sh:in ( dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Remove ) ;
-            sh:order 4 ;
-            sh:path iso29100:processing_restriction_preferences ] ;
-    sh:targetClass iso29100:PrivacyPreference .
-
-iso29100:PrivacyPrincipleImplementation a sh:NodeShape ;
-    rdfs:comment "Documentation of how a specific privacy principle from Clause 6 has been implemented within the organization's privacy framework, including measures taken and evidence of adherence." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Measures taken to implement this privacy principle." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:implementation_measures ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:description ],
-        [ sh:class iso29100:PrivacyControl ;
-            sh:description "Privacy controls that contribute to implementing this principle." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path iso29100:applicable_controls_ref ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Identified gaps in the implementation of this principle." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:gaps_identified ],
-        [ sh:description "The privacy principle being implemented." ;
-            sh:in ( dpv:InformedConsent dpv:Purpose "collection_limitation" "data_minimization" "use_retention_and_disclosure_limitation" "accuracy_and_quality" "openness_transparency_and_notice" dpv:DataSubjectRight "accountability" "information_security" dpv:ComplianceAssessment ) ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:order 0 ;
-            sh:path iso29100:principle ],
-        [ sh:datatype xsd:string ;
-            sh:description "Evidence demonstrating adherence to this principle." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:evidence_of_adherence ],
-        [ sh:datatype xsd:string ;
-            sh:description "Actions planned to address identified implementation gaps." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:improvement_actions ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when adherence to this principle was last assessed." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:last_assessed_date ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:created ] ;
-    sh:targetClass iso29100:PrivacyPrincipleImplementation .
-
-iso29100:ThirdParty a sh:NodeShape ;
-    rdfs:comment "Schema class for an external entity that receives PII outside the PII processor relationship — i.e., as a recipient that typically becomes a PII controller in its own right. Captures the receiving purpose and the legal basis for the transfer." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Jurisdictions in which the privacy stakeholder operates." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:jurisdictions ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Purpose for which the third party receives PII." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:receiving_purpose ],
-        [ sh:datatype xsd:string ;
-            sh:description "Contact details for the privacy stakeholder." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:contact_information ],
-        [ sh:datatype xsd:string ;
-            sh:description "Legal or contractual basis for transferring PII to this third party." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:transfer_basis ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:created ] ;
-    sh:targetClass iso29100:ThirdParty .
-
-iso29100:PIIProcessingActivity a sh:NodeShape ;
-    rdfs:comment "Schema class documenting a PII processing operation: its purpose, legal basis, operation types performed, categories of PII involved, responsible actors, applied controls, retention period, and any cross-border transfer safeguards." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:class iso29100:PIIFlowScenario ;
-            sh:description "PII flow scenarios applicable to this processing activity." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path iso29100:data_flows ],
-        [ sh:description "Processing operations performed in this activity." ;
-            sh:in ( dpv:Collect dpv:Store dpv:Transform dpv:Access dpv:Use dpv:Disclose dpv:Anonymise dpv:Pseudonymise dpv:Disseminate dpv:Erase dpv:Remove ) ;
-            sh:order 2 ;
-            sh:path iso29100:operations_performed ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Legal basis relied upon for this processing activity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:legal_basis ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether this activity involves cross-border transfer of PII." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path iso29100:cross_border_transfer ],
-        [ sh:class iso29100:PrivacyControl ;
-            sh:description "Privacy controls applied to this processing activity." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 9 ;
-            sh:path iso29100:privacy_controls_applied ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 15 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "Categories of PII processed in this activity." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:pii_categories_processed ],
-        [ sh:datatype xsd:duration ;
-            sh:description "Retention period for PII processed in this activity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path iso29100:retention_period ],
-        [ sh:class iso29100:PIIProcessor ;
-            sh:description "PII processor performing this processing activity, if applicable." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 6 ;
-            sh:path iso29100:processor_ref ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path dcterms:description ],
-        [ sh:description "Sensitivity levels of PII processed in this activity." ;
-            sh:in ( "standard" dpv:SpecialCategoryPersonalData ) ;
-            sh:order 4 ;
-            sh:path iso29100:sensitivity_levels_involved ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 16 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:identifier ],
-        [ sh:class iso29100:PIIController ;
-            sh:description "PII controller responsible for this processing activity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 5 ;
-            sh:path iso29100:controller_ref ],
-        [ sh:datatype xsd:string ;
-            sh:description "Safeguards in place for cross-border PII transfers." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path iso29100:transfer_safeguards ],
-        [ sh:datatype xsd:string ;
-            sh:description "The specific, explicit, and legitimate purpose for this processing activity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:processing_purpose ] ;
-    sh:targetClass iso29100:PIIProcessingActivity .
-
-iso29100:PrivacyPolicy a sh:NodeShape ;
-    rdfs:comment "Schema class for a governing document expressing an organization's intentions and commitments for PII processing. Covers both the internal policy document and any external privacy notice made available to PII principals (referred to as a notice in this framework)." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Statement on how long PII is retained and how it is disposed." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:data_retention_statement ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 14 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date from which the privacy policy takes effect." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:effective_date ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 15 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Version identifier for the privacy policy." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path dcterms:hasVersion ],
-        [ sh:datatype xsd:string ;
-            sh:description "Scope of the privacy policy (systems, activities, or organizations covered)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:policy_scope ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path rdfs:label ],
-        [ sh:description "Privacy principles this policy addresses." ;
-            sh:in ( dpv:InformedConsent dpv:Purpose "collection_limitation" "data_minimization" "use_retention_and_disclosure_limitation" "accuracy_and_quality" "openness_transparency_and_notice" dpv:DataSubjectRight "accountability" "information_security" dpv:ComplianceAssessment ) ;
-            sh:order 10 ;
-            sh:path iso29100:applicable_principles ],
-        [ sh:datatype xsd:string ;
-            sh:description "Contact information for PII-related inquiries from PII principals." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path iso29100:contact_for_inquiries ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether this is an external privacy notice (available to PII principals) rather than an internal policy document." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path iso29100:is_external_notice ],
-        [ sh:datatype xsd:string ;
-            sh:description "Processing purposes addressed by this privacy policy." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:processing_purposes_covered ],
-        [ sh:datatype xsd:string ;
-            sh:description "Categories of PII addressed by this privacy policy." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:pii_categories_covered ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Rights available to PII principals under this policy." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:pii_principal_rights ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the policy was last reviewed." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path iso29100:last_review_date ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:description ] ;
-    sh:targetClass iso29100:PrivacyPolicy .
-
-iso29100:PIIController a sh:NodeShape ;
-    rdfs:comment "Schema class for an organization or individual that determines why and how PII is processed. Captures appointed processors, legal bases relied upon, privacy policy reference, and data protection officer details. Bears ultimate accountability for privacy principle adherence." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Contact details for the privacy stakeholder." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:contact_information ],
-        [ sh:class iso29100:PIIProcessor ;
-            sh:description "PII processors appointed by this controller." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path iso29100:appointed_processors ],
-        [ sh:class iso29100:PrivacyPolicy ;
-            sh:description "Reference to the privacy policy of this PII controller." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 3 ;
-            sh:path iso29100:privacy_policy_ref ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Purposes for which the PII controller processes PII." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:processing_purposes ],
-        [ sh:datatype xsd:string ;
-            sh:description "Legal bases relied upon for PII processing by this controller." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:legal_bases ],
-        [ sh:datatype xsd:string ;
-            sh:description "Name or contact of the data protection officer, where applicable." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:data_protection_officer ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "Jurisdictions in which the privacy stakeholder operates." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:jurisdictions ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:identifier ] ;
-    sh:targetClass iso29100:PIIController .
-
-iso29100:PrivacySafeguardingRequirement a sh:NodeShape ;
-    rdfs:comment "Schema class for an applicable requirement that drives an organization's PII processing controls. Requirements are identified through the privacy risk management process and arise from legal/regulatory, contractual, business, or other influencing factors." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Privacy stakeholder roles to which this requirement applies." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:applicable_to_actors ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Reference to the source (e.g., law name, regulation, contract, or standard)." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:source_reference ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path dcterms:modified ],
-        [ sh:description "Category of factor driving this safeguarding requirement." ;
-            sh:in ( dpv:LegalBasis dpv:Contract "business" "other" ) ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path iso29100:requirement_factor ],
-        [ sh:datatype xsd:string ;
-            sh:description "Organization-authored statement of the safeguarding requirement." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:requirement_text ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:created ],
-        [ sh:class iso29100:PrivacyControl ;
-            sh:description "Privacy controls that implement or contribute to this requirement." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 4 ;
-            sh:path iso29100:related_controls ],
-        [ sh:datatype xsd:string ;
-            sh:description "Priority level for addressing this requirement or risk." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:priority ] ;
-    sh:targetClass iso29100:PrivacySafeguardingRequirement .
-
-iso29100:PIIProcessor a sh:NodeShape ;
-    rdfs:comment "Schema class for an organization engaged to process PII under a PII controller's instructions. Records the instructing controller, data processing agreement reference, and any sub-processors engaged on the controller's behalf." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Jurisdictions in which the privacy stakeholder operates." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:jurisdictions ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path rdfs:label ],
-        [ sh:class iso29100:PIIController ;
-            sh:description "The PII controller on whose behalf this processor acts." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:IRI ;
-            sh:order 0 ;
-            sh:path iso29100:instructing_controller ],
-        [ sh:datatype xsd:string ;
-            sh:description "Contact details for the privacy stakeholder." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:contact_information ],
-        [ sh:datatype xsd:string ;
-            sh:description "Reference to the data processing agreement with the controller." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:processing_agreement_ref ],
-        [ sh:class iso29100:PIIProcessor ;
-            sh:description "Sub-processors engaged by this PII processor." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 2 ;
-            sh:path iso29100:sub_processors ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 7 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:modified ] ;
-    sh:targetClass iso29100:PIIProcessor .
-
-iso29100:PrivacyRisk a sh:NodeShape ;
-    rdfs:comment "Schema class representing a potential adverse outcome for PII principals from a PII processing activity. Captures the risk source, likelihood and impact assessments, inherent and residual risk levels, and links to mitigating controls and accountable risk owner." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:string ;
-            sh:description "Categories of PII affected by this privacy risk or breach." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:affected_pii_categories ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Assessed likelihood of this privacy risk materializing." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:risk_likelihood ],
-        [ sh:description "Privacy risk level after controls are applied." ;
-            sh:in ( "low" "medium" "high" "very_high" ) ;
-            sh:maxCount 1 ;
-            sh:order 6 ;
-            sh:path iso29100:residual_risk_level ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:string ;
-            sh:description "Source or origin of the privacy risk." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 0 ;
-            sh:path iso29100:risk_source ],
-        [ sh:description "Privacy risk level before controls are applied." ;
-            sh:in ( "low" "medium" "high" "very_high" ) ;
-            sh:maxCount 1 ;
-            sh:order 5 ;
-            sh:path iso29100:inherent_risk_level ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of PII principals who could be adversely affected." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 2 ;
-            sh:path iso29100:affected_principals_description ],
-        [ sh:class iso29100:PrivacyControl ;
-            sh:description "Privacy controls that mitigate this risk." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path iso29100:mitigating_controls ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path rdfs:label ],
-        [ sh:datatype xsd:string ;
-            sh:description "Person accountable for managing this privacy risk." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path iso29100:risk_owner ],
-        [ sh:datatype xsd:string ;
-            sh:description "Description of potential adverse consequences for PII principals." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:risk_impact_description ] ;
-    sh:targetClass iso29100:PrivacyRisk .
-
-iso29100:PrivacyControl a sh:NodeShape ;
-    rdfs:comment "Schema class for a protective measure that manages privacy risks within the framework. Can be organizational, physical, technical (including Privacy Enhancing Technologies), or legal-contractual in nature; linked to the principles and safeguarding requirements it addresses." ;
-    sh:closed true ;
-    sh:ignoredProperties ( rdf:type ) ;
-    sh:property [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was created." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 12 ;
-            sh:path dcterms:created ],
-        [ sh:datatype xsd:string ;
-            sh:description "Detailed description of the entity." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 11 ;
-            sh:path dcterms:description ],
-        [ sh:datatype xsd:boolean ;
-            sh:description "Whether this control qualifies as a Privacy Enhancing Technology (PET): an ICT-based privacy control that protects privacy by minimizing, eliminating, or preventing unnecessary PII processing without reducing the intended functionality of the system." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 8 ;
-            sh:path iso29100:is_pet ],
-        [ sh:datatype xsd:string ;
-            sh:description "Current implementation status of the control." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 5 ;
-            sh:path iso29100:implementation_status ],
-        [ sh:datatype xsd:string ;
-            sh:description "Human-readable name or title." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 10 ;
-            sh:path rdfs:label ],
-        [ sh:description "Category of this privacy control." ;
-            sh:in ( dpv:OrganisationalMeasure dpv:PhysicalMeasure dpv:TechnicalMeasure dpv:LegalMeasure ) ;
-            sh:maxCount 1 ;
-            sh:order 0 ;
-            sh:path iso29100:control_type ],
-        [ sh:datatype xsd:anyURI ;
-            sh:description "Unique identifier for this entity instance." ;
-            sh:maxCount 1 ;
-            sh:minCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 9 ;
-            sh:path dcterms:identifier ],
-        [ sh:datatype xsd:date ;
-            sh:description "Date when the entity record was last modified." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 13 ;
-            sh:path dcterms:modified ],
-        [ sh:datatype xsd:string ;
-            sh:description "Organization-authored description of how the control is implemented." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 3 ;
-            sh:path iso29100:implementation_description ],
-        [ sh:datatype xsd:string ;
-            sh:description "Actor responsible for implementing and maintaining this control." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 4 ;
-            sh:path iso29100:responsible_actor ],
-        [ sh:datatype xsd:string ;
-            sh:description "Evidence of control effectiveness." ;
-            sh:nodeKind sh:Literal ;
-            sh:order 6 ;
-            sh:path iso29100:effectiveness_evidence ],
-        [ sh:description "Privacy principles this control helps implement." ;
-            sh:in ( dpv:InformedConsent dpv:Purpose "collection_limitation" "data_minimization" "use_retention_and_disclosure_limitation" "accuracy_and_quality" "openness_transparency_and_notice" dpv:DataSubjectRight "accountability" "information_security" dpv:ComplianceAssessment ) ;
-            sh:order 2 ;
-            sh:path iso29100:addressed_principles ],
-        [ sh:datatype xsd:string ;
-            sh:description "The privacy objective this control is intended to achieve." ;
-            sh:maxCount 1 ;
-            sh:nodeKind sh:Literal ;
-            sh:order 1 ;
-            sh:path iso29100:control_objective ],
-        [ sh:class iso29100:PrivacySafeguardingRequirement ;
-            sh:description "Safeguarding requirements this control addresses." ;
-            sh:nodeKind sh:IRI ;
-            sh:order 7 ;
-            sh:path iso29100:related_safeguarding_requirements ] ;
-    sh:targetClass iso29100:PrivacyControl .
-
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix schema1: <http://schema.org/> .
+iso29100:PfActor a sh:NodeShape ;
+	rdfs:comment "Someone who takes part in handling PII, told apart by the part they play. One party can play different parts for different PII, with a record for each." ;
+	sh:closed false ;
+	sh:ignoredProperties _:c14n74 ;
+	sh:property _:c14n163 , _:c14n168 , _:c14n179 , _:c14n188 , _:c14n56 , _:c14n73 ;
+	sh:targetClass iso29100:PfActor .
+iso29100:PfBreach a sh:NodeShape ;
+	rdfs:comment "A time when PII was handled against a safeguarding requirement: what happened, who was told and what was done." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n126 ;
+	sh:property _:c14n101 , _:c14n11 , _:c14n118 , _:c14n135 , _:c14n138 , _:c14n173 , _:c14n184 , _:c14n209 , _:c14n252 , _:c14n254 , _:c14n60 , _:c14n9 , _:c14n92 , _:c14n95 , _:c14n96 ;
+	sh:targetClass iso29100:PfBreach .
+iso29100:PfConsent a sh:NodeShape ;
+	rdfs:comment "One person's agreement to the processing of their PII for stated purposes, and where it stands." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n156 ;
+	sh:property _:c14n100 , _:c14n115 , _:c14n13 , _:c14n159 , _:c14n18 , _:c14n247 , _:c14n26 , _:c14n44 , _:c14n46 , _:c14n50 , _:c14n91 ;
+	sh:targetClass iso29100:PfConsent .
+iso29100:PfControl a sh:NodeShape ;
+	rdfs:comment "A measure that treats a privacy risk by making it less likely or less harmful, the principles it serves and how far it has been put into effect." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n197 ;
+	sh:property _:c14n112 , _:c14n130 , _:c14n145 , _:c14n157 , _:c14n166 , _:c14n182 , _:c14n204 , _:c14n218 , _:c14n248 , _:c14n250 , _:c14n30 ;
+	sh:targetClass iso29100:PfControl .
+iso29100:PfFramework a sh:NodeShape ;
+	rdfs:comment "One organization's use of the privacy framework: the systems it covers, and every record the organization keeps about them, each kind in a list of its own." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n3 ;
+	sh:property _:c14n12 , _:c14n125 , _:c14n134 , _:c14n161 , _:c14n164 , _:c14n174 , _:c14n195 , _:c14n217 , _:c14n220 , _:c14n226 , _:c14n228 , _:c14n241 , _:c14n25 , _:c14n253 , _:c14n49 , _:c14n61 , _:c14n67 , _:c14n76 , _:c14n97 ;
+	sh:targetClass iso29100:PfFramework .
+iso29100:PfImpactAssessment a sh:NodeShape ;
+	rdfs:comment "A review of what a system or activity could do to people's privacy, the risks it found and what became of them." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n39 ;
+	sh:property _:c14n104 , _:c14n137 , _:c14n144 , _:c14n153 , _:c14n20 , _:c14n213 , _:c14n22 , _:c14n227 , _:c14n29 , _:c14n38 , _:c14n5 , _:c14n64 , _:c14n86 ;
+	sh:targetClass iso29100:PfImpactAssessment .
+iso29100:PfPiiController a sh:NodeShape ;
+	rdfs:comment "The party that decides why and how PII is processed, and answers for it even when another party does the work." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n88 ;
+	sh:property _:c14n114 , _:c14n123 , _:c14n131 , _:c14n148 , _:c14n155 , _:c14n172 , _:c14n244 , _:c14n62 , _:c14n69 , _:c14n82 , _:c14n98 ;
+	sh:targetClass iso29100:PfPiiController .
+iso29100:PfPiiFlow a sh:NodeShape ;
+	rdfs:comment "One way PII passes from one actor to another, and who decides what happens to it afterwards." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n23 ;
+	sh:property _:c14n140 , _:c14n152 , _:c14n208 , _:c14n231 , _:c14n37 , _:c14n52 , _:c14n68 ;
+	sh:targetClass iso29100:PfPiiFlow .
+iso29100:PfPiiItem a sh:NodeShape ;
+	rdfs:comment "A piece or set of information that can be tied to a person, why it counts as PII, how sensitive it is and how it is handled." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n120 ;
+	sh:property _:c14n108 , _:c14n146 , _:c14n177 , _:c14n178 , _:c14n198 , _:c14n242 , _:c14n35 , _:c14n54 , _:c14n63 , _:c14n65 , _:c14n70 ;
+	sh:targetClass iso29100:PfPiiItem .
+iso29100:PfPiiPrincipal a sh:NodeShape ;
+	rdfs:comment "The person the PII is about, or a group of such people when the organization records them together." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n47 ;
+	sh:property _:c14n102 , _:c14n154 , _:c14n180 , _:c14n211 , _:c14n223 , _:c14n235 ;
+	sh:targetClass iso29100:PfPiiPrincipal .
+iso29100:PfPiiProcessor a sh:NodeShape ;
+	rdfs:comment "A party that processes PII for a controller, on that controller's instructions." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n0 ;
+	sh:property _:c14n2 , _:c14n221 , _:c14n229 , _:c14n236 , _:c14n246 , _:c14n32 , _:c14n33 , _:c14n83 , _:c14n85 ;
+	sh:targetClass iso29100:PfPiiProcessor .
+iso29100:PfPolicy a sh:NodeShape ;
+	rdfs:comment "A privacy policy: what the organization commits to about PII, written for its own people or as a notice to the people whose PII it handles." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n175 ;
+	sh:property _:c14n106 , _:c14n117 , _:c14n122 , _:c14n133 , _:c14n17 , _:c14n170 , _:c14n186 , _:c14n224 , _:c14n233 , _:c14n34 , _:c14n51 , _:c14n6 , _:c14n81 , _:c14n93 ;
+	sh:targetClass iso29100:PfPolicy .
+iso29100:PfPreference a sh:NodeShape ;
+	rdfs:comment "What one person has said they want done, or not done, with their PII." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n210 ;
+	sh:property _:c14n109 , _:c14n132 , _:c14n150 , _:c14n151 , _:c14n187 , _:c14n19 , _:c14n215 , _:c14n24 , _:c14n28 , _:c14n8 ;
+	sh:targetClass iso29100:PfPreference .
+iso29100:PfPrincipleImplementation a sh:NodeShape ;
+	rdfs:comment "How the organization stands against one privacy principle: what it does, what shows it, and what is still missing." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n80 ;
+	sh:property _:c14n116 , _:c14n14 , _:c14n147 , _:c14n21 , _:c14n225 , _:c14n240 , _:c14n251 , _:c14n36 , _:c14n77 , _:c14n99 ;
+	sh:targetClass iso29100:PfPrincipleImplementation .
+iso29100:PfProcessingActivity a sh:NodeShape ;
+	rdfs:comment "Something the organization does with PII: why, on what basis, what it does to which PII, who is responsible, and how long the PII is kept." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n41 ;
+	sh:property _:c14n1 , _:c14n10 , _:c14n110 , _:c14n128 , _:c14n129 , _:c14n136 , _:c14n139 , _:c14n149 , _:c14n16 , _:c14n176 , _:c14n190 , _:c14n194 , _:c14n43 , _:c14n53 , _:c14n71 ;
+	sh:targetClass iso29100:PfProcessingActivity .
+iso29100:PfRecordMixin a sh:NodeShape ;
+	rdfs:comment "What every record of the framework has, so that other records can refer to it: an identifier, a title and a description." ;
+	sh:closed false ;
+	sh:ignoredProperties _:c14n162 ;
+	sh:property _:c14n191 , _:c14n55 , _:c14n66 ;
+	sh:targetClass iso29100:PfRecordMixin .
+iso29100:PfRisk a sh:NodeShape ;
+	rdfs:comment "A way that handling PII could harm people: where the risk comes from, how likely and how bad it is, and what is done about it." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n79 ;
+	sh:property _:c14n127 , _:c14n141 , _:c14n143 , _:c14n15 , _:c14n181 , _:c14n189 , _:c14n214 , _:c14n219 , _:c14n222 , _:c14n249 , _:c14n57 , _:c14n90 ;
+	sh:targetClass iso29100:PfRisk .
+iso29100:PfSafeguardingRequirement a sh:NodeShape ;
+	rdfs:comment "Something the organization must do to protect PII, and where that duty comes from." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n58 ;
+	sh:property _:c14n103 , _:c14n124 , _:c14n196 , _:c14n202 , _:c14n205 , _:c14n27 , _:c14n40 ;
+	sh:targetClass iso29100:PfSafeguardingRequirement .
+iso29100:PfThirdParty a sh:NodeShape ;
+	rdfs:comment "A party outside the controller and its processors that receives PII for its own ends, and usually becomes a controller of that PII." ;
+	sh:closed true ;
+	sh:ignoredProperties _:c14n89 ;
+	sh:property _:c14n158 , _:c14n160 , _:c14n199 , _:c14n212 , _:c14n243 , _:c14n4 , _:c14n48 , _:c14n94 ;
+	sh:targetClass iso29100:PfThirdParty .
+_:c14n0 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n1 sh:class iso29100:PfPiiFlow ;
+	sh:description "The flows of PII the activity involves." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 8 ;
+	sh:path iso29100:pf_activity_flows .
+_:c14n10 sh:class iso29100:PfControl ;
+	sh:description "The organization's controls that act on the record's subject." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 5 ;
+	sh:path iso29100:pf_related_controls .
+_:c14n100 sh:class iso29100:PfPiiPrincipal ;
+	sh:description "The person the record is about." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_principal .
+_:c14n101 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 14 ;
+	sh:path schema1:description .
+_:c14n102 sh:datatype xsd:string ;
+	sh:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_actor_type .
+_:c14n103 sh:datatype xsd:string ;
+	sh:description "The law, contract or other document that states it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_requirement_source .
+_:c14n104 sh:class iso29100:PfProcessingActivity ;
+	sh:description "The processing activities it looks at." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_assessed_activities .
+_:c14n105 rdf:first iso29100:pf_legal_bases ;
+	rdf:rest _:c14n113 .
+_:c14n106 sh:description "The privacy principles the record bears on." ;
+	sh:in _:c14n309 ;
+	sh:order 2 ;
+	sh:path iso29100:pf_principles .
+_:c14n107 rdf:first "privacy_enhancing_technology" ;
+	rdf:rest _:c14n234 .
+_:c14n108 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path schema1:description .
+_:c14n109 sh:class iso29100:PfPiiPrincipal ;
+	sh:description "The person the record is about." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_principal .
+_:c14n11 sh:datatype xsd:string ;
+	sh:description "What was done to put things right." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path iso29100:pf_remediation .
+_:c14n110 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 13 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n111 rdf:first "physical" ;
+	rdf:rest _:c14n171 .
+_:c14n112 sh:class iso29100:PfSafeguardingRequirement ;
+	sh:description "The safeguarding requirements the control answers to." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 7 ;
+	sh:path iso29100:pf_answers_requirements .
+_:c14n113 rdf:first iso29100:pf_privacy_officer ;
+	rdf:rest _:c14n75 .
+_:c14n114 sh:class iso29100:PfPolicy ;
+	sh:description "The privacy policy the controller works under." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_controller_policy .
+_:c14n115 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path schema1:description .
+_:c14n116 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 7 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n117 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII items the record concerns." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 1 ;
+	sh:path iso29100:pf_concerned_pii .
+_:c14n118 sh:datatype xsd:dateTime ;
+	sh:description "When the organization found out, which is not before it happened." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_breach_discovered .
+_:c14n119 rdf:first "contract" ;
+	rdf:rest _:c14n207 .
+_:c14n12 sh:class iso29100:PfConsent ;
+	sh:description "The consents the organization holds." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 14 ;
+	sh:path iso29100:pf_consents .
+_:c14n120 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n121 rdf:first "other" ;
+	rdf:rest rdf:nil .
+_:c14n122 sh:datatype xsd:date ;
+	sh:description "When the policy takes effect." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path iso29100:pf_policy_effective_date .
+_:c14n123 sh:datatype xsd:string ;
+	sh:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_actor_type .
+_:c14n124 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path schema1:description .
+_:c14n125 sh:class iso29100:PfPreference ;
+	sh:description "What people have said they prefer." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 15 ;
+	sh:path iso29100:pf_preferences .
+_:c14n126 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n127 sh:class iso29100:PfPiiPrincipal ;
+	sh:description "The people the PII of the record is about." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 1 ;
+	sh:path iso29100:pf_concerned_principals .
+_:c14n128 sh:datatype xsd:duration ;
+	sh:description "How long the PII is kept, as an ISO 8601 duration." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_retention ;
+	sh:pattern "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$" .
+_:c14n129 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 14 ;
+	sh:path schema1:description .
+_:c14n13 sh:datatype xsd:dateTime ;
+	sh:description "When the person took the agreement back." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path iso29100:pf_consent_withdrawn .
+_:c14n130 sh:description "The form the control takes." ;
+	sh:in _:c14n239 ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:order 2 ;
+	sh:path iso29100:pf_control_kind .
+_:c14n131 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n132 sh:datatype xsd:date ;
+	sh:description "When the organization recorded the preference." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path iso29100:pf_preference_recorded .
+_:c14n133 sh:datatype xsd:string ;
+	sh:description "The version of the policy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_policy_version .
+_:c14n134 sh:class iso29100:PfRisk ;
+	sh:description "The risks to people that the organization has identified." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 11 ;
+	sh:path iso29100:pf_risks .
+_:c14n135 sh:description "How serious the breach is." ;
+	sh:in _:c14n295 ;
+	sh:maxCount 1 ;
+	sh:order 6 ;
+	sh:path iso29100:pf_breach_severity .
+_:c14n136 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 12 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n137 sh:class iso29100:PfRisk ;
+	sh:description "Those of the risks found that the organization has accepted as they stand." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 6 ;
+	sh:path iso29100:pf_risks_accepted .
+_:c14n138 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII items the record concerns." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_concerned_pii .
+_:c14n139 sh:datatype xsd:string ;
+	sh:description "What makes the processing lawful, in the terms of the law that applies." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_legal_bases .
+_:c14n14 sh:datatype xsd:date ;
+	sh:description "When the organization last checked its standing." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path iso29100:pf_last_assessed .
+_:c14n140 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n141 sh:datatype xsd:string ;
+	sh:description "Where the risk comes from." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_risk_source .
+_:c14n142 rdf:first "implied" ;
+	rdf:rest rdf:nil .
+_:c14n143 sh:class iso29100:PfControl ;
+	sh:description "The organization's controls that act on the record's subject." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 2 ;
+	sh:path iso29100:pf_related_controls .
+_:c14n144 sh:datatype xsd:string ;
+	sh:description "What the assessment looks at." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_assessment_scope .
+_:c14n145 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n146 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n147 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n148 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path schema1:description .
+_:c14n149 sh:datatype xsd:string ;
+	sh:description "What protects the PII when it crosses a border." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 11 ;
+	sh:path iso29100:pf_transfer_safeguards .
+_:c14n15 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII items the record concerns." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_concerned_pii .
+_:c14n150 sh:datatype xsd:string ;
+	sh:description "Who the person does not want their PII passed to." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_refused_recipients .
+_:c14n151 sh:datatype xsd:boolean ;
+	sh:description "Whether the person asks not to be identified at all." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_wants_anonymity .
+_:c14n152 sh:class iso29100:PfActor ;
+	sh:description "The actor that decides what happens to the PII once it has passed. A processor never holds this position." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_decides_afterwards .
+_:c14n153 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 10 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n154 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n155 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 8 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n156 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n157 sh:description "The privacy principles the record bears on." ;
+	sh:in _:c14n320 ;
+	sh:order 0 ;
+	sh:path iso29100:pf_principles .
+_:c14n158 sh:datatype xsd:string ;
+	sh:description "What the third party receives the PII for." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_receiving_purpose .
+_:c14n159 sh:datatype xsd:dateTime ;
+	sh:description "When the person agreed." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_consent_given .
+_:c14n16 sh:description "The levels of sensitivity among the PII involved." ;
+	sh:in _:c14n333 ;
+	sh:order 9 ;
+	sh:path iso29100:pf_sensitivities .
+_:c14n160 sh:datatype xsd:string ;
+	sh:description "How to reach the actor about privacy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_contact .
+_:c14n161 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 18 ;
+	sh:path schema1:description .
+_:c14n162 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n163 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path schema1:description .
+_:c14n164 sh:class iso29100:PfPolicy ;
+	sh:description "The organization's privacy policies." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 8 ;
+	sh:path iso29100:pf_policies .
+_:c14n165 rdf:first "pseudonym" ;
+	rdf:rest _:c14n169 .
+_:c14n166 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path schema1:description .
+_:c14n167 rdf:first iso29100:pf_sub_processors ;
+	rdf:rest _:c14n245 .
+_:c14n168 sh:datatype xsd:string ;
+	sh:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_actor_type .
+_:c14n169 rdf:first "metadata" ;
+	rdf:rest _:c14n206 .
+_:c14n17 sh:datatype xsd:string ;
+	sh:description "Where people can send questions about the policy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path iso29100:pf_inquiry_contact .
+_:c14n170 sh:datatype xsd:string ;
+	sh:description "The reasons the PII is processed, in the organization's own words." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_purposes .
+_:c14n171 rdf:first "technical" ;
+	rdf:rest _:c14n107 .
+_:c14n172 sh:datatype xsd:string ;
+	sh:description "How to reach the actor about privacy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path iso29100:pf_contact .
+_:c14n173 sh:class iso29100:PfSafeguardingRequirement ;
+	sh:description "The safeguarding requirements the breach went against." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 5 ;
+	sh:path iso29100:pf_breached_requirements .
+_:c14n174 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 16 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n175 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n176 sh:description "The things done to the PII." ;
+	sh:in _:c14n257 ;
+	sh:order 2 ;
+	sh:path iso29100:pf_operations .
+_:c14n177 sh:description "How sensitive the item is." ;
+	sh:in _:c14n335 ;
+	sh:maxCount 1 ;
+	sh:order 5 ;
+	sh:path iso29100:pf_sensitivity .
+_:c14n178 sh:description "The things done to the PII." ;
+	sh:in _:c14n279 ;
+	sh:order 1 ;
+	sh:path iso29100:pf_operations .
+_:c14n179 sh:datatype xsd:string ;
+	sh:description "How to reach the actor about privacy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_contact .
+_:c14n18 sh:description "Where the agreement stands." ;
+	sh:in _:c14n216 ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:order 6 ;
+	sh:path iso29100:pf_consent_state .
+_:c14n180 sh:datatype xsd:string ;
+	sh:description "The legal systems that apply to the record, in the organization's terms." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_jurisdictions .
+_:c14n181 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 9 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n182 sh:datatype xsd:string ;
+	sh:description "What shows that the record's claim holds, such as a report or a log." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_evidence .
+_:c14n183 rdf:first "opt_in" ;
+	rdf:rest _:c14n230 .
+_:c14n184 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 13 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n185 rdf:first "direct_identifier" ;
+	rdf:rest _:c14n42 .
+_:c14n186 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 11 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n187 sh:datatype xsd:boolean ;
+	sh:description "Whether the person asks to appear under an alias." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_wants_pseudonymity .
+_:c14n188 sh:datatype xsd:string ;
+	sh:description "The legal systems that apply to the record, in the organization's terms." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_jurisdictions .
+_:c14n189 sh:description "The risk's level before controls." ;
+	sh:in _:c14n299 ;
+	sh:maxCount 1 ;
+	sh:order 6 ;
+	sh:path iso29100:pf_risk_inherent_level .
+_:c14n19 sh:description "What the person does not want done to their PII." ;
+	sh:in _:c14n268 ;
+	sh:order 4 ;
+	sh:path iso29100:pf_refused_operations .
+_:c14n190 sh:datatype xsd:boolean ;
+	sh:description "Whether PII leaves the jurisdiction it was collected in." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path iso29100:pf_crosses_borders .
+_:c14n191 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n192 rdf:first "in_operation" ;
+	rdf:rest _:c14n45 .
+_:c14n193 rdf:first "public_notice" ;
+	rdf:rest rdf:nil .
+_:c14n194 sh:datatype xsd:string ;
+	sh:description "The reasons the PII is processed, in the organization's own words." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_purposes .
+_:c14n195 sh:datatype xsd:string ;
+	sh:description "The legal systems that apply to the record, in the organization's terms." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_jurisdictions .
+_:c14n196 sh:description "Where the requirement comes from." ;
+	sh:in _:c14n59 ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:order 0 ;
+	sh:path iso29100:pf_requirement_factor .
+_:c14n197 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n198 sh:description "Why the information counts as PII." ;
+	sh:in _:c14n185 ;
+	sh:order 4 ;
+	sh:path iso29100:pf_recognized_by .
+_:c14n199 sh:datatype xsd:string ;
+	sh:description "What makes the passing of PII to the third party lawful." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_transfer_basis .
+_:c14n2 sh:datatype xsd:string ;
+	sh:description "How to reach the actor about privacy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_contact .
+_:c14n20 sh:class iso29100:PfRisk ;
+	sh:description "Those of the risks found that have been treated." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 5 ;
+	sh:path iso29100:pf_risks_treated .
+_:c14n200 rdf:first "in_progress" ;
+	rdf:rest _:c14n192 .
+_:c14n201 rdf:first iso29100:pf_instructing_controllers ;
+	rdf:rest _:c14n105 .
+_:c14n202 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n203 rdf:first iso29100:pf_appointed_processors ;
+	rdf:rest _:c14n7 .
+_:c14n204 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 8 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n205 sh:class iso29100:PfActor ;
+	sh:description "The actors that must meet it." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 2 ;
+	sh:path iso29100:pf_applies_to .
+_:c14n206 rdf:first "unsolicited" ;
+	rdf:rest rdf:nil .
+_:c14n207 rdf:first "business" ;
+	rdf:rest _:c14n121 .
+_:c14n208 sh:class iso29100:PfActor ;
+	sh:description "The actor the PII goes to." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 2 ;
+	sh:path iso29100:pf_recipient .
+_:c14n209 sh:datatype xsd:string ;
+	sh:description "What the organization learned." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 11 ;
+	sh:path iso29100:pf_lessons .
+_:c14n21 sh:datatype xsd:string ;
+	sh:description "What shows that the record's claim holds, such as a report or a log." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_evidence .
+_:c14n210 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n211 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path schema1:description .
+_:c14n212 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n213 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 12 ;
+	sh:path schema1:description .
+_:c14n214 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 10 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n215 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path schema1:description .
+_:c14n216 rdf:first "given" ;
+	rdf:rest _:c14n87 .
+_:c14n217 sh:class iso29100:PfPiiFlow ;
+	sh:description "The ways PII passes between the actors." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 5 ;
+	sh:path iso29100:pf_flows .
+_:c14n218 sh:datatype xsd:string ;
+	sh:description "How the control is put into effect." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_control_detail .
+_:c14n219 sh:datatype xsd:string ;
+	sh:description "The person who answers for the risk." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path iso29100:pf_risk_owner .
+_:c14n22 sh:datatype xsd:string ;
+	sh:description "What the assessment concluded." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path iso29100:pf_assessment_outcome .
+_:c14n220 sh:class iso29100:PfActor ;
+	sh:description "Those who take part in handling the PII." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_actors .
+_:c14n221 sh:datatype xsd:string ;
+	sh:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_actor_type .
+_:c14n222 sh:description "The risk's level after controls, which is never above the level before." ;
+	sh:in _:c14n291 ;
+	sh:maxCount 1 ;
+	sh:order 7 ;
+	sh:path iso29100:pf_risk_residual_level .
+_:c14n223 sh:datatype xsd:string ;
+	sh:description "How to reach the actor about privacy." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_contact .
+_:c14n224 sh:datatype xsd:string ;
+	sh:description "What the policy says about how long PII is kept." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path iso29100:pf_retention_statement .
+_:c14n225 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path schema1:description .
+_:c14n226 sh:datatype xsd:string ;
+	sh:description "The organization that applies the framework." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_organization .
+_:c14n227 sh:datatype xsd:date ;
+	sh:description "When the assessment was done." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_assessment_date .
+_:c14n228 sh:class iso29100:PfImpactAssessment ;
+	sh:description "The organization's privacy impact assessments." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 12 ;
+	sh:path iso29100:pf_impact_assessments .
+_:c14n229 sh:class iso29100:PfPiiProcessor ;
+	sh:description "The processors this processor has engaged in turn." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 2 ;
+	sh:path iso29100:pf_sub_processors .
+_:c14n23 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n230 rdf:first "opt_out" ;
+	rdf:rest _:c14n142 .
+_:c14n231 sh:class iso29100:PfActor ;
+	sh:description "The actor the PII comes from." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 1 ;
+	sh:path iso29100:pf_provider .
+_:c14n232 rdf:first "linked_information" ;
+	rdf:rest _:c14n165 .
+_:c14n233 sh:description "Who the policy is written for." ;
+	sh:in _:c14n78 ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:order 3 ;
+	sh:path iso29100:pf_policy_audience .
+_:c14n234 rdf:first "contractual" ;
+	rdf:rest rdf:nil .
+_:c14n235 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n236 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path schema1:description .
+_:c14n237 rdf:first iso29100:pf_purposes ;
+	rdf:rest _:c14n84 .
+_:c14n238 rdf:first "withdrawn" ;
+	rdf:rest _:c14n31 .
+_:c14n239 rdf:first "organizational" ;
+	rdf:rest _:c14n111 .
+_:c14n24 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 7 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n240 sh:datatype xsd:string ;
+	sh:description "Where the organization falls short." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_gaps .
+_:c14n241 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 17 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n242 sh:datatype xsd:string ;
+	sh:description "What the item holds, in the organization's own words." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_pii_categories .
+_:c14n243 sh:datatype xsd:string ;
+	sh:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_actor_type .
+_:c14n244 sh:datatype xsd:string ;
+	sh:description "The person who advises the controller on privacy, where there is one." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_privacy_officer .
+_:c14n245 rdf:first iso29100:pf_transfer_basis ;
+	rdf:rest rdf:nil .
+_:c14n246 sh:datatype xsd:string ;
+	sh:description "The reference of the agreement that binds the processor, where there is one." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_processing_agreement .
+_:c14n247 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n248 sh:class iso29100:PfActor ;
+	sh:description "The actor that answers for the control." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 5 ;
+	sh:path iso29100:pf_control_responsible .
+_:c14n249 sh:datatype xsd:string ;
+	sh:description "How likely the harm is, in the organization's own terms." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_risk_likelihood .
+_:c14n25 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII the organization has recognized." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 4 ;
+	sh:path iso29100:pf_pii_items .
+_:c14n250 sh:description "How far the control has been put into effect." ;
+	sh:in _:c14n72 ;
+	sh:maxCount 1 ;
+	sh:order 6 ;
+	sh:path iso29100:pf_control_state .
+_:c14n251 sh:class iso29100:PfControl ;
+	sh:description "The organization's controls that act on the record's subject." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_related_controls .
+_:c14n252 sh:datatype xsd:string ;
+	sh:description "Who was told, and when." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path iso29100:pf_notifications .
+_:c14n253 sh:class iso29100:PfProcessingActivity ;
+	sh:description "What the organization does with PII." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 6 ;
+	sh:path iso29100:pf_processing_activities .
+_:c14n254 sh:datatype xsd:dateTime ;
+	sh:description "When the organization closed the matter, which is not before it found out." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_breach_closed .
+_:c14n255 rdf:first "retrieve" ;
+	rdf:rest _:c14n258 .
+_:c14n256 rdf:first "store" ;
+	rdf:rest _:c14n255 .
+_:c14n257 rdf:first "collect" ;
+	rdf:rest _:c14n256 .
+_:c14n258 rdf:first "consult" ;
+	rdf:rest _:c14n259 .
+_:c14n259 rdf:first "alter" ;
+	rdf:rest _:c14n260 .
+_:c14n26 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII items the record concerns." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 1 ;
+	sh:path iso29100:pf_concerned_pii .
+_:c14n260 rdf:first "pseudonymize" ;
+	rdf:rest _:c14n261 .
+_:c14n261 rdf:first "anonymize" ;
+	rdf:rest _:c14n262 .
+_:c14n262 rdf:first "disclose" ;
+	rdf:rest _:c14n263 .
+_:c14n263 rdf:first "disseminate" ;
+	rdf:rest _:c14n264 .
+_:c14n264 rdf:first "delete" ;
+	rdf:rest _:c14n265 .
+_:c14n265 rdf:first "destroy" ;
+	rdf:rest rdf:nil .
+_:c14n266 rdf:first "retrieve" ;
+	rdf:rest _:c14n269 .
+_:c14n267 rdf:first "store" ;
+	rdf:rest _:c14n266 .
+_:c14n268 rdf:first "collect" ;
+	rdf:rest _:c14n267 .
+_:c14n269 rdf:first "consult" ;
+	rdf:rest _:c14n270 .
+_:c14n27 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 4 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n270 rdf:first "alter" ;
+	rdf:rest _:c14n271 .
+_:c14n271 rdf:first "pseudonymize" ;
+	rdf:rest _:c14n272 .
+_:c14n272 rdf:first "anonymize" ;
+	rdf:rest _:c14n273 .
+_:c14n273 rdf:first "disclose" ;
+	rdf:rest _:c14n274 .
+_:c14n274 rdf:first "disseminate" ;
+	rdf:rest _:c14n275 .
+_:c14n275 rdf:first "delete" ;
+	rdf:rest _:c14n276 .
+_:c14n276 rdf:first "destroy" ;
+	rdf:rest rdf:nil .
+_:c14n277 rdf:first "retrieve" ;
+	rdf:rest _:c14n280 .
+_:c14n278 rdf:first "store" ;
+	rdf:rest _:c14n277 .
+_:c14n279 rdf:first "collect" ;
+	rdf:rest _:c14n278 .
+_:c14n28 sh:datatype xsd:string ;
+	sh:description "What the preference applies to." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_preference_scope .
+_:c14n280 rdf:first "consult" ;
+	rdf:rest _:c14n281 .
+_:c14n281 rdf:first "alter" ;
+	rdf:rest _:c14n282 .
+_:c14n282 rdf:first "pseudonymize" ;
+	rdf:rest _:c14n283 .
+_:c14n283 rdf:first "anonymize" ;
+	rdf:rest _:c14n284 .
+_:c14n284 rdf:first "disclose" ;
+	rdf:rest _:c14n285 .
+_:c14n285 rdf:first "disseminate" ;
+	rdf:rest _:c14n286 .
+_:c14n286 rdf:first "delete" ;
+	rdf:rest _:c14n287 .
+_:c14n287 rdf:first "destroy" ;
+	rdf:rest rdf:nil .
+_:c14n288 rdf:first "high" ;
+	rdf:rest _:c14n289 .
+_:c14n289 rdf:first "very_high" ;
+	rdf:rest rdf:nil .
+_:c14n29 sh:class iso29100:PfRisk ;
+	sh:description "The risks it found." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 4 ;
+	sh:path iso29100:pf_risks_found .
+_:c14n290 rdf:first "medium" ;
+	rdf:rest _:c14n288 .
+_:c14n291 rdf:first "low" ;
+	rdf:rest _:c14n290 .
+_:c14n292 rdf:first "high" ;
+	rdf:rest _:c14n293 .
+_:c14n293 rdf:first "very_high" ;
+	rdf:rest rdf:nil .
+_:c14n294 rdf:first "medium" ;
+	rdf:rest _:c14n292 .
+_:c14n295 rdf:first "low" ;
+	rdf:rest _:c14n294 .
+_:c14n296 rdf:first "high" ;
+	rdf:rest _:c14n297 .
+_:c14n297 rdf:first "very_high" ;
+	rdf:rest rdf:nil .
+_:c14n298 rdf:first "medium" ;
+	rdf:rest _:c14n296 .
+_:c14n299 rdf:first "low" ;
+	rdf:rest _:c14n298 .
+_:c14n3 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n30 sh:datatype xsd:string ;
+	sh:description "What the control is meant to achieve." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_control_objective .
+_:c14n300 rdf:first "principle_6_11" ;
+	rdf:rest _:c14n310 .
+_:c14n301 rdf:first "principle_6_10" ;
+	rdf:rest _:c14n300 .
+_:c14n302 rdf:first "principle_6_9" ;
+	rdf:rest _:c14n301 .
+_:c14n303 rdf:first "principle_6_8" ;
+	rdf:rest _:c14n302 .
+_:c14n304 rdf:first "principle_6_7" ;
+	rdf:rest _:c14n303 .
+_:c14n305 rdf:first "principle_6_6" ;
+	rdf:rest _:c14n304 .
+_:c14n306 rdf:first "principle_6_5" ;
+	rdf:rest _:c14n305 .
+_:c14n307 rdf:first "principle_6_4" ;
+	rdf:rest _:c14n306 .
+_:c14n308 rdf:first "principle_6_3" ;
+	rdf:rest _:c14n307 .
+_:c14n309 rdf:first "principle_6_2" ;
+	rdf:rest _:c14n308 .
+_:c14n31 rdf:first "expired" ;
+	rdf:rest rdf:nil .
+_:c14n310 rdf:first "principle_6_12" ;
+	rdf:rest rdf:nil .
+_:c14n311 rdf:first "principle_6_11" ;
+	rdf:rest _:c14n321 .
+_:c14n312 rdf:first "principle_6_10" ;
+	rdf:rest _:c14n311 .
+_:c14n313 rdf:first "principle_6_9" ;
+	rdf:rest _:c14n312 .
+_:c14n314 rdf:first "principle_6_8" ;
+	rdf:rest _:c14n313 .
+_:c14n315 rdf:first "principle_6_7" ;
+	rdf:rest _:c14n314 .
+_:c14n316 rdf:first "principle_6_6" ;
+	rdf:rest _:c14n315 .
+_:c14n317 rdf:first "principle_6_5" ;
+	rdf:rest _:c14n316 .
+_:c14n318 rdf:first "principle_6_4" ;
+	rdf:rest _:c14n317 .
+_:c14n319 rdf:first "principle_6_3" ;
+	rdf:rest _:c14n318 .
+_:c14n32 sh:class iso29100:PfPiiController ;
+	sh:description "The controllers whose instructions the processor follows." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_instructing_controllers .
+_:c14n320 rdf:first "principle_6_2" ;
+	rdf:rest _:c14n319 .
+_:c14n321 rdf:first "principle_6_12" ;
+	rdf:rest rdf:nil .
+_:c14n322 rdf:first "principle_6_11" ;
+	rdf:rest _:c14n332 .
+_:c14n323 rdf:first "principle_6_10" ;
+	rdf:rest _:c14n322 .
+_:c14n324 rdf:first "principle_6_9" ;
+	rdf:rest _:c14n323 .
+_:c14n325 rdf:first "principle_6_8" ;
+	rdf:rest _:c14n324 .
+_:c14n326 rdf:first "principle_6_7" ;
+	rdf:rest _:c14n325 .
+_:c14n327 rdf:first "principle_6_6" ;
+	rdf:rest _:c14n326 .
+_:c14n328 rdf:first "principle_6_5" ;
+	rdf:rest _:c14n327 .
+_:c14n329 rdf:first "principle_6_4" ;
+	rdf:rest _:c14n328 .
+_:c14n33 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n330 rdf:first "principle_6_3" ;
+	rdf:rest _:c14n329 .
+_:c14n331 rdf:first "principle_6_2" ;
+	rdf:rest _:c14n330 .
+_:c14n332 rdf:first "principle_6_12" ;
+	rdf:rest rdf:nil .
+_:c14n333 rdf:first "ordinary" ;
+	rdf:rest _:c14n334 .
+_:c14n334 rdf:first "sensitive" ;
+	rdf:rest rdf:nil .
+_:c14n335 rdf:first "ordinary" ;
+	rdf:rest _:c14n336 .
+_:c14n336 rdf:first "sensitive" ;
+	rdf:rest rdf:nil .
+_:c14n34 sh:datatype xsd:string ;
+	sh:description "What the policy covers." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_policy_scope .
+_:c14n35 sh:class iso29100:PfPiiPrincipal ;
+	sh:description "The people the PII of the record is about." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_concerned_principals .
+_:c14n36 sh:datatype xsd:string ;
+	sh:description "What the organization will do about the gaps." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_improvements .
+_:c14n37 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII items the record concerns." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_concerned_pii .
+_:c14n38 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 11 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n39 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n4 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 5 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n40 sh:class iso29100:PfControl ;
+	sh:description "The controls that meet it." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_met_by .
+_:c14n41 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n42 rdf:first "distinguishing_trait" ;
+	rdf:rest _:c14n232 .
+_:c14n43 sh:class iso29100:PfPiiProcessor ;
+	sh:description "The processors that do the work." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 7 ;
+	sh:path iso29100:pf_processors .
+_:c14n44 sh:datatype xsd:string ;
+	sh:description "The reasons the PII is processed, in the organization's own words." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_purposes .
+_:c14n45 rdf:first "retired" ;
+	rdf:rest rdf:nil .
+_:c14n46 sh:description "How the agreement was obtained." ;
+	sh:in _:c14n183 ;
+	sh:maxCount 1 ;
+	sh:order 4 ;
+	sh:path iso29100:pf_consent_mechanism .
+_:c14n47 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n48 sh:datatype xsd:string ;
+	sh:description "The legal systems that apply to the record, in the organization's terms." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_jurisdictions .
+_:c14n49 sh:class iso29100:PfControl ;
+	sh:description "The organization's controls." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 9 ;
+	sh:path iso29100:pf_controls .
+_:c14n5 sh:datatype xsd:string ;
+	sh:description "Who did the assessment." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_assessor .
+_:c14n50 sh:datatype xsd:string ;
+	sh:description "What shows that the record's claim holds, such as a report or a log." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_evidence .
+_:c14n51 sh:datatype xsd:date ;
+	sh:description "When the policy was last reviewed." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path iso29100:pf_policy_last_reviewed .
+_:c14n52 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 4 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n53 sh:class iso29100:PfPiiController ;
+	sh:description "The controller that answers for the activity." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 6 ;
+	sh:path iso29100:pf_controller .
+_:c14n54 sh:datatype xsd:duration ;
+	sh:description "How long the PII is kept, as an ISO 8601 duration." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_retention ;
+	sh:pattern "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$" .
+_:c14n55 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 0 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n56 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n57 sh:datatype xsd:string ;
+	sh:description "What the harm to people would be." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 5 ;
+	sh:path iso29100:pf_risk_consequence .
+_:c14n58 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n59 rdf:first "law" ;
+	rdf:rest _:c14n119 .
+_:c14n6 sh:datatype xsd:string ;
+	sh:description "The rights the policy tells people they have." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path iso29100:pf_stated_rights .
+_:c14n60 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 12 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n61 sh:class iso29100:PfSafeguardingRequirement ;
+	sh:description "What the organization must do to safeguard PII." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 7 ;
+	sh:path iso29100:pf_safeguarding_requirements .
+_:c14n62 sh:class iso29100:PfPiiProcessor ;
+	sh:description "The processors that work for the controller." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 2 ;
+	sh:path iso29100:pf_appointed_processors .
+_:c14n63 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 8 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n64 sh:datatype xsd:string ;
+	sh:description "Who was asked, and what they said." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path iso29100:pf_consultations .
+_:c14n65 sh:datatype xsd:string ;
+	sh:description "How easily the item could be joined with other data to identify someone, in the organization's words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path iso29100:pf_linkability .
+_:c14n66 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path schema1:description .
+_:c14n67 sh:class iso29100:PfBreach ;
+	sh:description "The breaches the organization has recorded." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 13 ;
+	sh:path iso29100:pf_breaches .
+_:c14n68 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path schema1:description .
+_:c14n69 sh:datatype xsd:string ;
+	sh:description "The reasons the PII is processed, in the organization's own words." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 0 ;
+	sh:path iso29100:pf_purposes .
+_:c14n7 rdf:first iso29100:pf_controller_policy ;
+	rdf:rest _:c14n201 .
+_:c14n70 sh:datatype xsd:boolean ;
+	sh:description "Whether an alias stands in for the item's identifying details." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path iso29100:pf_pseudonymized .
+_:c14n71 sh:class iso29100:PfPiiItem ;
+	sh:description "The PII items the record concerns." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 3 ;
+	sh:path iso29100:pf_concerned_pii .
+_:c14n72 rdf:first "planned" ;
+	rdf:rest _:c14n200 .
+_:c14n73 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n74 rdf:first rdf:type ;
+	rdf:rest _:c14n203 .
+_:c14n75 rdf:first iso29100:pf_processing_agreement ;
+	rdf:rest _:c14n237 .
+_:c14n76 sh:class iso29100:PfPrincipleImplementation ;
+	sh:description "How the organization stands against each privacy principle." ;
+	sh:nodeKind sh:IRI ;
+	sh:order 10 ;
+	sh:path iso29100:pf_principle_implementations .
+_:c14n77 sh:description "The principle the record is about." ;
+	sh:in _:c14n331 ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:order 2 ;
+	sh:path iso29100:pf_principle .
+_:c14n78 rdf:first "internal" ;
+	rdf:rest _:c14n193 .
+_:c14n79 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n8 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n80 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n81 sh:datatype xsd:string ;
+	sh:description "The name the organization gives the record." ;
+	sh:maxCount 1 ;
+	sh:minCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 12 ;
+	sh:path schema1:name ;
+	sh:pattern "^\\s*\\S" .
+_:c14n82 sh:datatype xsd:string ;
+	sh:description "The legal systems that apply to the record, in the organization's terms." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 6 ;
+	sh:path iso29100:pf_jurisdictions .
+_:c14n83 sh:datatype xsd:string ;
+	sh:description "The legal systems that apply to the record, in the organization's terms." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_jurisdictions .
+_:c14n84 rdf:first iso29100:pf_receiving_purpose ;
+	rdf:rest _:c14n167 .
+_:c14n85 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 6 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n86 sh:datatype xsd:date ;
+	sh:description "When the next assessment is due, which is after this one." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 9 ;
+	sh:path iso29100:pf_next_assessment .
+_:c14n87 rdf:first "refused" ;
+	rdf:rest _:c14n238 .
+_:c14n88 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n89 rdf:first rdf:type ;
+	rdf:rest rdf:nil .
+_:c14n9 sh:datatype xsd:string ;
+	sh:description "What was done straight away." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path iso29100:pf_immediate_actions .
+_:c14n90 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 11 ;
+	sh:path schema1:description .
+_:c14n91 sh:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:IRI ;
+	sh:order 8 ;
+	sh:path iso29100:pf_id ;
+	sh:pattern "^\\S+$" .
+_:c14n92 sh:datatype xsd:dateTime ;
+	sh:description "When the breach happened." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_breach_occurred .
+_:c14n93 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 13 ;
+	sh:path schema1:description .
+_:c14n94 sh:datatype xsd:string ;
+	sh:description "What the record says or describes, in the organization's own words." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 7 ;
+	sh:path schema1:description .
+_:c14n95 sh:datatype xsd:integer ;
+	sh:description "How many people the breach reached, where that is known." ;
+	sh:maxCount 1 ;
+	sh:minInclusive 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 4 ;
+	sh:path iso29100:pf_principals_affected .
+_:c14n96 sh:datatype xsd:boolean ;
+	sh:description "Whether a law or contract requires anyone to be told." ;
+	sh:maxCount 1 ;
+	sh:nodeKind sh:Literal ;
+	sh:order 8 ;
+	sh:path iso29100:pf_notification_required .
+_:c14n97 sh:datatype xsd:string ;
+	sh:description "The ICT systems the framework covers." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 2 ;
+	sh:path iso29100:pf_ict_systems .
+_:c14n98 sh:datatype xsd:string ;
+	sh:description "What makes the processing lawful, in the terms of the law that applies." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 1 ;
+	sh:path iso29100:pf_legal_bases .
+_:c14n99 sh:datatype xsd:string ;
+	sh:description "What the organization does to follow the principle." ;
+	sh:nodeKind sh:Literal ;
+	sh:order 3 ;
+	sh:path iso29100:pf_measures .

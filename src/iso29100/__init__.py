@@ -1,3 +1,8 @@
+"""iso29100.
+
+ISO/IEC 29100:2024 privacy framework records (LinkML)
+"""
+
 try:
     from iso29100._version import __version__, __version_tuple__
 except ImportError:  # pragma: no cover

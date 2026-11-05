@@ -1,3 +1,3 @@
 # Schema Directory
 
-This folder contains the LinkML schema yaml files.
+This folder holds the LinkML schema and ISO Open Data's records of the edition.

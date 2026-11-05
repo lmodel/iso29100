@@ -1,0 +1,4 @@
+# Fails at: /pf_pseudonymized
+pf_id: acme:pii
+title: An item whose flag is not a boolean
+pf_pseudonymized: partly

@@ -1,64 +1,92 @@
-# metamodel_version: 1.7.0
-# version: 1.0.0
-enum ConsentMechanism
+# metamodel_version: 1.12.0
+# version: 2024
+enum PfConsentMechanism
   {
     opt_in
     opt_out
     implied
   }
 
-enum PIIFlowRole
+enum PfConsentState
   {
-    pii_provider
-    pii_recipient
-    not_involved
+    given
+    refused
+    withdrawn
+    expired
   }
 
-enum PIIProcessingOperation
-  {
-    collection
-    storage
-    alteration
-    retrieval
-    consultation
-    disclosure
-    anonymization
-    pseudonymization
-    dissemination
-    deletion
-    destruction
-  }
-
-enum PIISensitivityCategory
-  {
-    standard
-    sensitive
-  }
-
-enum PrivacyControlType
+enum PfControlKind
   {
     organizational
     physical
     technical
-    legal_contractual
+    privacy_enhancing_technology
+    contractual
   }
 
-enum PrivacyPrinciple
+enum PfImplementationState
   {
-    consent_and_choice
-    purpose_legitimacy_and_specification
-    collection_limitation
-    data_minimization
-    use_retention_and_disclosure_limitation
-    accuracy_and_quality
-    openness_transparency_and_notice
-    individual_participation_and_access
-    accountability
-    information_security
-    privacy_compliance
+    planned
+    in_progress
+    in_operation
+    retired
   }
 
-enum PrivacyRiskLevel
+enum PfOperation
+  {
+    collect
+    store
+    retrieve
+    consult
+    alter
+    pseudonymize
+    anonymize
+    disclose
+    disseminate
+    delete
+    destroy
+  }
+
+enum PfPiiRecognition
+  {
+    direct_identifier
+    distinguishing_trait
+    linked_information
+    pseudonym
+    metadata
+    unsolicited
+  }
+
+enum PfPolicyAudience
+  {
+    internal
+    public_notice
+  }
+
+enum PfPrinciple
+  {
+    principle_6_2
+    principle_6_3
+    principle_6_4
+    principle_6_5
+    principle_6_6
+    principle_6_7
+    principle_6_8
+    principle_6_9
+    principle_6_10
+    principle_6_11
+    principle_6_12
+  }
+
+enum PfRequirementFactor
+  {
+    law
+    contract
+    business
+    other
+  }
+
+enum PfRiskLevel
   {
     low
     medium
@@ -66,326 +94,282 @@ enum PrivacyRiskLevel
     very_high
   }
 
-enum SafeguardingRequirementFactor
+enum PfSensitivity
   {
-    legal_and_regulatory
-    contractual
-    business
-    other
+    ordinary
+    sensitive
   }
 
-type ConsentRecord
+type PfActor implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfActorType: String!
+    pfJurisdictions: [String]
+    pfContact: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    principalRef: String
-    consentDate: String
-    consentMechanism: ConsentMechanism
-    processingPurposesConsented: [String]
-    piiCategoriesConsented: [String]
-    withdrawalDate: String
-    consentStatus: String
-    consentEvidenceRef: String
   }
 
-interface NamedEntity
+type PfBreach implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfConcernedPii: [PfPiiItem]
+    pfBreachOccurred: String
+    pfBreachDiscovered: String
+    pfBreachClosed: String
+    pfPrincipalsAffected: Int
+    pfBreachedRequirements: [PfSafeguardingRequirement]
+    pfBreachSeverity: PfRiskLevel
+    pfImmediateActions: [String]
+    pfNotificationRequired: Boolean
+    pfNotifications: [String]
+    pfRemediation: [String]
+    pfLessons: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
   }
 
-type PersonallyIdentifiableInformation
+type PfConsent implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfPurposes: [String]
+    pfConcernedPii: [PfPiiItem]
+    pfEvidence: [String]
+    pfPrincipal: PfPiiPrincipal!
+    pfConsentMechanism: PfConsentMechanism
+    pfConsentGiven: String
+    pfConsentState: PfConsentState!
+    pfConsentWithdrawn: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    piiCategory: [String]
-    sensitivityLevel: PIISensitivityCategory
-    identifierType: String
-    isPseudonymized: Boolean
-    isAnonymized: Boolean
-    linkabilityRisk: String
-    applicableToPrincipal: String
-    retentionSchedule: String
-    processingOperations: [PIIProcessingOperation]
   }
 
-type PIIController
+type PfControl implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfPrinciples: [PfPrinciple]
+    pfEvidence: [String]
+    pfControlKind: PfControlKind!
+    pfControlObjective: String
+    pfControlDetail: String
+    pfControlResponsible: PfActor
+    pfControlState: PfImplementationState
+    pfAnswersRequirements: [PfSafeguardingRequirement]
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    contactInformation: String
-    jurisdictions: [String]
-    processingPurposes: [String]
-    legalBases: [String]
-    appointedProcessors: [PIIProcessor]
-    privacyPolicyRef: PrivacyPolicy
-    dataProtectionOfficer: String
   }
 
-type PIIFlowScenario
+type PfFramework implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfJurisdictions: [String]
+    pfOrganization: String!
+    pfIctSystems: [String]
+    pfActors: [PfActor]
+    pfPiiItems: [PfPiiItem]
+    pfFlows: [PfPiiFlow]
+    pfProcessingActivities: [PfProcessingActivity]
+    pfSafeguardingRequirements: [PfSafeguardingRequirement]
+    pfPolicies: [PfPolicy]
+    pfControls: [PfControl]
+    pfPrincipleImplementations: [PfPrincipleImplementation]
+    pfRisks: [PfRisk]
+    pfImpactAssessments: [PfImpactAssessment]
+    pfBreaches: [PfBreach]
+    pfConsents: [PfConsent]
+    pfPreferences: [PfPreference]
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    scenarioLabel: String
-    piiPrincipalRole: PIIFlowRole
-    piiControllerRole: PIIFlowRole
-    piiProcessorRole: PIIFlowRole
-    thirdPartyRole: PIIFlowRole
-    scenarioDescription: String
-    legalControlRetention: String
   }
 
-type PIIPrincipal
+type PfImpactAssessment implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfAssessmentScope: String
+    pfAssessmentDate: String
+    pfAssessor: String
+    pfAssessedActivities: [PfProcessingActivity]
+    pfRisksFound: [PfRisk]
+    pfRisksTreated: [PfRisk]
+    pfRisksAccepted: [PfRisk]
+    pfAssessmentOutcome: String
+    pfConsultations: [String]
+    pfNextAssessment: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    contactInformation: String
-    jurisdictions: [String]
-    privacyPreferences: [PrivacyPreference]
-    consentRecords: [ConsentRecord]
   }
 
-type PIIProcessingActivity
+type PfPiiController
   {
-    id: String!
-    name: String!
+    pfActorType: String!
+    pfJurisdictions: [String]
+    pfContact: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    processingPurpose: String
-    legalBasis: String
-    operationsPerformed: [PIIProcessingOperation]
-    piiCategoriesProcessed: [String]
-    sensitivityLevelsInvolved: [PIISensitivityCategory]
-    controllerRef: PIIController
-    processorRef: PIIProcessor
-    dataFlows: [PIIFlowScenario]
-    retentionPeriod: DurationType
-    privacyControlsApplied: [PrivacyControl]
-    crossBorderTransfer: Boolean
-    transferSafeguards: [String]
+    pfPurposes: [String]
+    pfLegalBases: [String]
+    pfAppointedProcessors: [PfPiiProcessor]
+    pfControllerPolicy: PfPolicy
+    pfPrivacyOfficer: String
   }
 
-type PIIProcessor
+type PfPiiFlow implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfConcernedPii: [PfPiiItem]
+    pfProvider: PfActor!
+    pfRecipient: PfActor!
+    pfDecidesAfterwards: PfActor
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    contactInformation: String
-    jurisdictions: [String]
-    instructingController: PIIController
-    processingAgreementRef: String
-    subProcessors: [PIIProcessor]
   }
 
-type PrivacyBreach
+type PfPiiItem implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfConcernedPrincipals: [PfPiiPrincipal]
+    pfOperations: [PfOperation]
+    pfRetention: PfDuration
+    pfPiiCategories: [String]
+    pfRecognizedBy: [PfPiiRecognition]
+    pfSensitivity: PfSensitivity
+    pfPseudonymized: Boolean
+    pfLinkability: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    breachDatetime: String
-    discoveryDatetime: String
-    breachDescription: String
-    affectedPiiCategories: [String]
-    affectedPrincipalsCount: PositiveIntegerType
-    violatedRequirements: [PrivacySafeguardingRequirement]
-    breachSeverity: PrivacyRiskLevel
-    immediateActions: [String]
-    notificationRequired: Boolean
-    notificationsMade: [String]
-    remediationActions: [String]
-    lessonsLearned: String
-    closureDatetime: String
   }
 
-type PrivacyControl
+type PfPiiPrincipal
   {
-    id: String!
-    name: String!
+    pfActorType: String!
+    pfJurisdictions: [String]
+    pfContact: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    controlType: PrivacyControlType
-    controlObjective: String
-    addressedPrinciples: [PrivacyPrinciple]
-    implementationDescription: String
-    responsibleActor: String
-    implementationStatus: String
-    effectivenessEvidence: [String]
-    relatedSafeguardingRequirements: [PrivacySafeguardingRequirement]
-    isPet: Boolean
   }
 
-type PrivacyFramework
+type PfPiiProcessor
   {
-    id: String!
-    name: String!
+    pfActorType: String!
+    pfJurisdictions: [String]
+    pfContact: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    organizationName: String
-    ictSystemDescription: String
-    applicableJurisdictions: [String]
-    piiControllers: [PIIController]
-    piiProcessors: [PIIProcessor]
-    thirdParties: [ThirdParty]
-    piiPrincipalsDescription: String
-    privacyPolicy: PrivacyPolicy
-    privacyControls: [PrivacyControl]
-    safeguardingRequirements: [PrivacySafeguardingRequirement]
-    privacyRisks: [PrivacyRisk]
-    privacyImpactAssessments: [PrivacyImpactAssessment]
-    privacyBreaches: [PrivacyBreach]
-    piiProcessingActivities: [PIIProcessingActivity]
-    principleImplementations: [PrivacyPrincipleImplementation]
+    pfInstructingControllers: [PfPiiController]
+    pfProcessingAgreement: String
+    pfSubProcessors: [PfPiiProcessor]
   }
 
-type PrivacyImpactAssessment
+type PfPolicy implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfPurposes: [String]
+    pfConcernedPii: [PfPiiItem]
+    pfPrinciples: [PfPrinciple]
+    pfPolicyAudience: PfPolicyAudience!
+    pfPolicyVersion: String
+    pfPolicyScope: String
+    pfPolicyEffectiveDate: String
+    pfPolicyLastReviewed: String
+    pfRetentionStatement: String
+    pfStatedRights: [String]
+    pfInquiryContact: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    assessmentScope: String
-    assessmentDate: String
-    assessor: String
-    processingActivitiesAssessed: [PIIProcessingActivity]
-    risksIdentified: [PrivacyRisk]
-    risksTreated: [PrivacyRisk]
-    residualRisksAccepted: [PrivacyRisk]
-    assessmentOutcome: String
-    nextAssessmentDate: String
-    consultationRecords: [String]
   }
 
-type PrivacyPolicy
+type PfPreference implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfPrincipal: PfPiiPrincipal!
+    pfPreferenceScope: String
+    pfWantsAnonymity: Boolean
+    pfWantsPseudonymity: Boolean
+    pfRefusedOperations: [PfOperation]
+    pfRefusedRecipients: [String]
+    pfPreferenceRecorded: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    policyVersion: String
-    effectiveDate: String
-    policyScope: String
-    processingPurposesCovered: [String]
-    piiCategoriesCovered: [String]
-    dataRetentionStatement: String
-    piiPrincipalRights: [String]
-    contactForInquiries: String
-    lastReviewDate: String
-    isExternalNotice: Boolean
-    applicablePrinciples: [PrivacyPrinciple]
   }
 
-type PrivacyPreference
+type PfPrincipleImplementation implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfRelatedControls: [PfControl]
+    pfEvidence: [String]
+    pfPrinciple: PfPrinciple!
+    pfMeasures: [String]
+    pfGaps: [String]
+    pfImprovements: [String]
+    pfLastAssessed: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    principalRef: String
-    preferenceScope: String
-    anonymityPreference: Boolean
-    pseudonymityPreference: Boolean
-    processingRestrictionPreferences: [PIIProcessingOperation]
-    disclosureRestrictionPreferences: [String]
-    preferenceRecordedDate: String
   }
 
-type PrivacyPrincipleImplementation
+type PfProcessingActivity implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfPurposes: [String]
+    pfLegalBases: [String]
+    pfOperations: [PfOperation]
+    pfConcernedPii: [PfPiiItem]
+    pfRetention: PfDuration
+    pfRelatedControls: [PfControl]
+    pfController: PfPiiController!
+    pfProcessors: [PfPiiProcessor]
+    pfActivityFlows: [PfPiiFlow]
+    pfSensitivities: [PfSensitivity]
+    pfCrossesBorders: Boolean
+    pfTransferSafeguards: [String]
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    principle: PrivacyPrinciple!
-    implementationMeasures: [String]
-    applicableControlsRef: [PrivacyControl]
-    evidenceOfAdherence: [String]
-    gapsIdentified: [String]
-    improvementActions: [String]
-    lastAssessedDate: String
   }
 
-type PrivacyRisk
+interface PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    riskSource: String
-    affectedPiiCategories: [String]
-    affectedPrincipalsDescription: String
-    riskLikelihood: String
-    riskImpactDescription: String
-    inherentRiskLevel: PrivacyRiskLevel
-    residualRiskLevel: PrivacyRiskLevel
-    mitigatingControls: [PrivacyControl]
-    riskOwner: String
   }
 
-type PrivacySafeguardingRequirement
+type PfRisk implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfConcernedPii: [PfPiiItem]
+    pfConcernedPrincipals: [PfPiiPrincipal]
+    pfRelatedControls: [PfControl]
+    pfRiskSource: String
+    pfRiskLikelihood: String
+    pfRiskConsequence: String
+    pfRiskInherentLevel: PfRiskLevel
+    pfRiskResidualLevel: PfRiskLevel
+    pfRiskOwner: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    requirementFactor: SafeguardingRequirementFactor
-    requirementText: String
-    sourceReference: String
-    applicableToActors: [String]
-    relatedControls: [PrivacyControl]
-    priority: String
   }
 
-interface PrivacyStakeholder
+type PfSafeguardingRequirement implements PfRecordMixin
   {
-    id: String!
-    name: String!
+    pfRequirementFactor: PfRequirementFactor!
+    pfRequirementSource: String
+    pfAppliesTo: [PfActor]
+    pfMetBy: [PfControl]
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    contactInformation: String
-    jurisdictions: [String]
   }
 
-type ThirdParty
+type PfThirdParty
   {
-    id: String!
-    name: String!
+    pfActorType: String!
+    pfJurisdictions: [String]
+    pfContact: String
+    pfId: String!
+    title: String!
     description: String
-    createdDate: String
-    modifiedDate: String
-    contactInformation: String
-    jurisdictions: [String]
-    receivingPurpose: String
-    transferBasis: String
+    pfReceivingPurpose: String
+    pfTransferBasis: String
   }

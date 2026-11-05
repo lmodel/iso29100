@@ -1,3 +1,0 @@
-id: iso29100:pii-bad-sensitivity
-name: PII With Invalid Sensitivity Level
-sensitivity_level: ultra_sensitive

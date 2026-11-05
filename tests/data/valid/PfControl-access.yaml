@@ -1,0 +1,14 @@
+pf_id: acme:control-access
+title: Role-based access to customer records
+pf_principles:
+  - principle_6_5
+  - principle_6_11
+pf_evidence:
+  - Access review of 2026-05-02
+pf_control_kind: technical
+pf_control_objective: Keep customer records from staff who do not need them
+pf_control_detail: Access follows the role in the staff directory
+pf_control_responsible: acme:controller-acme
+pf_control_state: in_operation
+pf_answers_requirements:
+  - acme:requirement-access

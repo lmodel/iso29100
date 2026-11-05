@@ -1,0 +1,18 @@
+pf_id: acme:pii-delivery-address
+title: Delivery address
+pf_concerned_principals:
+  - acme:principal-customers
+pf_operations:
+  - collect
+  - store
+  - disclose
+pf_retention: P7Y
+pf_pii_categories:
+  - Name
+  - Postal address
+pf_recognized_by:
+  - direct_identifier
+  - linked_information
+pf_sensitivity: ordinary
+pf_pseudonymized: false
+pf_linkability: Joins easily with order history

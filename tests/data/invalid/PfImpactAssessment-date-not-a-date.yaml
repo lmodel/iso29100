@@ -1,0 +1,4 @@
+# Fails at: /pf_assessment_date
+pf_id: acme:assessment
+title: An assessment dated in words
+pf_assessment_date: last March

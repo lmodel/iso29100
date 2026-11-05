@@ -1,0 +1,5 @@
+# Fails at: /
+pf_id: acme:principal
+pf_actor_type: PfPiiPrincipal
+title: A principal with a key the schema does not declare
+name: Dana Example

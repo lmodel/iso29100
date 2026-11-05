@@ -1,0 +1,6 @@
+# Fails at: /pf_consent_state
+pf_id: acme:consent
+title: A consent with a withdrawal date that still says it holds
+pf_principal: acme:principal
+pf_consent_state: given
+pf_consent_withdrawn: "2026-05-01T08:00:00Z"

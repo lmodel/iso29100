@@ -1,0 +1,4 @@
+# Fails at: /pf_principals_affected
+pf_id: acme:breach
+title: A breach that reached nobody
+pf_principals_affected: 0

@@ -1,0 +1,13 @@
+pf_id: acme:consent-marketing-1
+title: Marketing email consent
+pf_purposes:
+  - Send offers by email
+pf_concerned_pii:
+  - acme:pii-delivery-address
+pf_evidence:
+  - Record 8841 of the consent platform
+pf_principal: acme:principal-customers
+pf_consent_mechanism: opt_in
+pf_consent_given: "2026-02-01T12:00:00Z"
+pf_consent_state: withdrawn
+pf_consent_withdrawn: "2026-05-01T08:00:00Z"

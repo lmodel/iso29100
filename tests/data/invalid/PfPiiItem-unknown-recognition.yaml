@@ -1,0 +1,5 @@
+# Fails at: /pf_recognized_by/0
+pf_id: acme:pii
+title: An item recognized in an unknown way
+pf_recognized_by:
+  - guesswork
