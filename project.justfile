@@ -6,8 +6,8 @@
 
 # ============ Knowledge bundle: the adapted domain schema ============
 
-# `.lokf/iso29100.yaml` is the copy `lokf adapt` writes from the schema so that
-# it can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The
+# `.lokf/schema/iso29100.yaml` is the copy `lokf adapt` writes from the schema so that
+# it can sit beside `.lokf/schema/lokf.yaml` (`lokf adapt --help` lists the moves). The
 # roots are the classes a knowledge concept may use as its `type`: the actors, a
 # PII item, a processing activity, a requirement, a policy, a control, a principle's
 # implementation, a risk and an impact assessment. The recipes run the `lokf` the
@@ -16,12 +16,12 @@
 lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
 lokf_adapt_roots := "--root PfActor --root PfPiiItem --root PfProcessingActivity --root PfSafeguardingRequirement --root PfPolicy --root PfControl --root PfPrincipleImplementation --root PfRisk --root PfImpactAssessment"
 
-# Rewrite .lokf/iso29100.yaml from the schema (run after every schema change)
+# Rewrite .lokf/schema/iso29100.yaml from the schema (run after every schema change)
 [group('knowledge bundle')]
 lokf-adapt:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso29100.yaml
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/iso29100.yaml
 
-# Fail when .lokf/iso29100.yaml is stale against the schema or .lokf/lokf.yaml
+# Fail when .lokf/schema/iso29100.yaml is stale against the schema or .lokf/schema/lokf.yaml
 [group('knowledge bundle')]
 lokf-adapt-check:
-  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/iso29100.yaml --check
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/schema/lokf.yaml -o .lokf/schema/iso29100.yaml --check

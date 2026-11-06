@@ -40,7 +40,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 ## Before opening a pull request
 
 - **Quote nothing from the standard.** Name the clause by number, in your own words, everywhere. [AI_COVENANT.md](AI_COVENANT.md) says why.
-- **Edit the schema, then regenerate.** Edit `src/iso29100/schema/iso29100.yaml`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/iso29100/datamodel/`, `docs/schema/` and `.lokf/iso29100.yaml` are generated.
+- **Edit the schema, then regenerate.** Edit `src/iso29100/schema/iso29100.yaml`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/iso29100/datamodel/`, `docs/schema/` and `.lokf/schema/iso29100.yaml` are generated.
 - **Leave `src/iso29100/schema/iso-open-data/` as ISO published it.** Replace it whole from one day's dataset, and move the pins in `scripts/check_upstream_release.py` and the schema header.
 - **Map only what a source states, and keep names apart.** A mapping rests on a file this repository pins, such as DPV's in `upstream/dpv-iso.ttl`, with that file's predicate. A term with no sure match stays unmapped. A host imports the adapt copy beside the Linked Open Knowledge Format (LOKF) schema and those copies, so it shares no name with them. `tests/test_upstream.py` and `tests/test_schema_rules.py` check them.
 - **Run the tests**: `just test`. Example data goes in `tests/data/valid/` and `tests/data/invalid/`, named `ClassName-suffix.yaml`, with an invalid example per constraint whose first line names where it fails.
