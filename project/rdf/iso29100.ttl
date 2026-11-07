@@ -1,0 +1,2030 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix pav: <http://purl.org/pav/> .
+<https://w3id.org/lmodel/iso29100/PfActor> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:annotations _:c14n33 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_contact> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfActor"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfActor"^^xsd:anyURI ;
+	linkml:description "Someone who takes part in handling PII, told apart by the part they play. One party can play different parts for different PII, with a record for each." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n32 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfActor__pf_contact> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> .
+<https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_actor_type" ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_actor_type"^^xsd:anyURI ;
+	linkml:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	linkml:designates_type true ;
+	linkml:domain <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/pf_actor_type> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_actor_type"^^xsd:anyURI ;
+	linkml:usage_slot_name "pf_actor_type" .
+<https://w3id.org/lmodel/iso29100/PfBreach> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "The framework names the idea of a breach. These fields are what an adopter keeps, and go beyond the framework itself." ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_breach_closed> , <https://w3id.org/lmodel/iso29100/pf_breach_discovered> , <https://w3id.org/lmodel/iso29100/pf_breach_occurred> , <https://w3id.org/lmodel/iso29100/pf_breach_severity> , <https://w3id.org/lmodel/iso29100/pf_breached_requirements> , <https://w3id.org/lmodel/iso29100/pf_immediate_actions> , <https://w3id.org/lmodel/iso29100/pf_lessons> , <https://w3id.org/lmodel/iso29100/pf_notification_required> , <https://w3id.org/lmodel/iso29100/pf_notifications> , <https://w3id.org/lmodel/iso29100/pf_principals_affected> , <https://w3id.org/lmodel/iso29100/pf_remediation> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfBreach"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfBreach"^^xsd:anyURI ;
+	linkml:description "A time when PII was handled against a safeguarding requirement: what happened, who was told and what was done." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n12 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_closed> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_discovered> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_occurred> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_severity> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breached_requirements> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_immediate_actions> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_lessons> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_notification_required> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_notifications> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_principals_affected> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_remediation> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_id> .
+<https://w3id.org/lmodel/iso29100/PfConsent> a linkml:ClassDefinition ;
+	skos:exactMatch "dpv:InformedConsent"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "The framework defines consent and its principle, and DPV maps that term to dpv:InformedConsent. The fields are what an adopter keeps, and go beyond the framework itself." ;
+	sh:rule _:c14n22 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_consent_given> , <https://w3id.org/lmodel/iso29100/pf_consent_mechanism> , <https://w3id.org/lmodel/iso29100/pf_consent_state> , <https://w3id.org/lmodel/iso29100/pf_consent_withdrawn> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfConsent"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfConsent"^^xsd:anyURI ;
+	linkml:description "One person's agreement to the processing of their PII for stated purposes, and where it stands." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n15 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfConsent_pf_principal> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_given> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_mechanism> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_state> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_withdrawn> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_evidence> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_purposes> .
+<https://w3id.org/lmodel/iso29100/PfConsentMechanism> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfConsentMechanism"^^xsd:anyURI ;
+	linkml:description "How a person's agreement to processing is obtained." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/implied> , <https://w3id.org/lmodel/iso29100/opt_in> , <https://w3id.org/lmodel/iso29100/opt_out> .
+<https://w3id.org/lmodel/iso29100/PfConsentState> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfConsentState"^^xsd:anyURI ;
+	linkml:description "Where a person's agreement stands." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/expired> , <https://w3id.org/lmodel/iso29100/given> , <https://w3id.org/lmodel/iso29100/refused> , <https://w3id.org/lmodel/iso29100/withdrawn> .
+<https://w3id.org/lmodel/iso29100/PfConsent_pf_principal> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_principal" ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_principal"^^xsd:anyURI ;
+	linkml:description "The person the record is about." ;
+	linkml:domain <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/pf_principal> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiPrincipal> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principal"^^xsd:anyURI ;
+	linkml:usage_slot_name "pf_principal" .
+<https://w3id.org/lmodel/iso29100/PfControl> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n16 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_answers_requirements> , <https://w3id.org/lmodel/iso29100/pf_control_detail> , <https://w3id.org/lmodel/iso29100/pf_control_kind> , <https://w3id.org/lmodel/iso29100/pf_control_objective> , <https://w3id.org/lmodel/iso29100/pf_control_responsible> , <https://w3id.org/lmodel/iso29100/pf_control_state> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfControl"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfControl"^^xsd:anyURI ;
+	linkml:description "A measure that treats a privacy risk by making it less likely or less harmful, the principles it serves and how far it has been put into effect." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n5 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfControl__pf_answers_requirements> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_detail> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_kind> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_objective> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_responsible> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_state> , <https://w3id.org/lmodel/iso29100/pf_evidence> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_principles> .
+<https://w3id.org/lmodel/iso29100/PfControlKind> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n49 ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfControlKind"^^xsd:anyURI ;
+	linkml:description "The form a control takes." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/contractual> , <https://w3id.org/lmodel/iso29100/organizational> , <https://w3id.org/lmodel/iso29100/physical> , <https://w3id.org/lmodel/iso29100/privacy_enhancing_technology> , <https://w3id.org/lmodel/iso29100/technical> .
+<https://w3id.org/lmodel/iso29100/PfFramework> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n34 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_actors> , <https://w3id.org/lmodel/iso29100/pf_breaches> , <https://w3id.org/lmodel/iso29100/pf_consents> , <https://w3id.org/lmodel/iso29100/pf_controls> , <https://w3id.org/lmodel/iso29100/pf_flows> , <https://w3id.org/lmodel/iso29100/pf_ict_systems> , <https://w3id.org/lmodel/iso29100/pf_impact_assessments> , <https://w3id.org/lmodel/iso29100/pf_organization> , <https://w3id.org/lmodel/iso29100/pf_pii_items> , <https://w3id.org/lmodel/iso29100/pf_policies> , <https://w3id.org/lmodel/iso29100/pf_preferences> , <https://w3id.org/lmodel/iso29100/pf_principle_implementations> , <https://w3id.org/lmodel/iso29100/pf_processing_activities> , <https://w3id.org/lmodel/iso29100/pf_risks> , <https://w3id.org/lmodel/iso29100/pf_safeguarding_requirements> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfFramework"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfFramework"^^xsd:anyURI ;
+	linkml:description "One organization's use of the privacy framework: the systems it covers, and every record the organization keeps about them, each kind in a list of its own." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n46 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_actors> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_breaches> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_consents> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_controls> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_flows> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_ict_systems> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_impact_assessments> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_organization> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_pii_items> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_policies> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_preferences> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_principle_implementations> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_processing_activities> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_risks> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_safeguarding_requirements> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> ;
+	linkml:tree_root true .
+<https://w3id.org/lmodel/iso29100/PfImpactAssessment> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "These fields are what an adopter keeps, and go beyond the framework itself." ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_assessed_activities> , <https://w3id.org/lmodel/iso29100/pf_assessment_date> , <https://w3id.org/lmodel/iso29100/pf_assessment_outcome> , <https://w3id.org/lmodel/iso29100/pf_assessment_scope> , <https://w3id.org/lmodel/iso29100/pf_assessor> , <https://w3id.org/lmodel/iso29100/pf_consultations> , <https://w3id.org/lmodel/iso29100/pf_next_assessment> , <https://w3id.org/lmodel/iso29100/pf_risks_accepted> , <https://w3id.org/lmodel/iso29100/pf_risks_found> , <https://w3id.org/lmodel/iso29100/pf_risks_treated> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfImpactAssessment"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfImpactAssessment"^^xsd:anyURI ;
+	linkml:description "A review of what a system or activity could do to people's privacy, the risks it found and what became of them." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n18 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessed_activities> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_date> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_outcome> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_scope> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessor> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_consultations> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_next_assessment> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_accepted> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_found> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_treated> , <https://w3id.org/lmodel/iso29100/pf_id> .
+<https://w3id.org/lmodel/iso29100/PfImplementationState> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfImplementationState"^^xsd:anyURI ;
+	linkml:description "How far a control has been put into effect." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/in_operation> , <https://w3id.org/lmodel/iso29100/in_progress> , <https://w3id.org/lmodel/iso29100/planned> , <https://w3id.org/lmodel/iso29100/retired> .
+<https://w3id.org/lmodel/iso29100/PfOperation> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfOperation"^^xsd:anyURI ;
+	linkml:description "The things an organization can do to PII." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/alter> , <https://w3id.org/lmodel/iso29100/anonymize> , <https://w3id.org/lmodel/iso29100/collect> , <https://w3id.org/lmodel/iso29100/consult> , <https://w3id.org/lmodel/iso29100/delete> , <https://w3id.org/lmodel/iso29100/destroy> , <https://w3id.org/lmodel/iso29100/disclose> , <https://w3id.org/lmodel/iso29100/disseminate> , <https://w3id.org/lmodel/iso29100/pseudonymize> , <https://w3id.org/lmodel/iso29100/retrieve> , <https://w3id.org/lmodel/iso29100/store> .
+<https://w3id.org/lmodel/iso29100/PfPiiController> a linkml:ClassDefinition ;
+	skos:exactMatch "dpv:DataController"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n52 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_appointed_processors> , <https://w3id.org/lmodel/iso29100/pf_controller_policy> , <https://w3id.org/lmodel/iso29100/pf_privacy_officer> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPiiController"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPiiController"^^xsd:anyURI ;
+	linkml:description "The party that decides why and how PII is processed, and answers for it even when another party does the work." ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_usage _:c14n4 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfActor__pf_contact> , <https://w3id.org/lmodel/iso29100/pfPiiController__pf_appointed_processors> , <https://w3id.org/lmodel/iso29100/pfPiiController__pf_controller_policy> , <https://w3id.org/lmodel/iso29100/pfPiiController__pf_privacy_officer> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> , <https://w3id.org/lmodel/iso29100/pf_legal_bases> , <https://w3id.org/lmodel/iso29100/pf_purposes> .
+<https://w3id.org/lmodel/iso29100/PfPiiFlow> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n44 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_decides_afterwards> , <https://w3id.org/lmodel/iso29100/pf_provider> , <https://w3id.org/lmodel/iso29100/pf_recipient> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPiiFlow"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPiiFlow"^^xsd:anyURI ;
+	linkml:description "One way PII passes from one actor to another, and who decides what happens to it afterwards." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n29 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_decides_afterwards> , <https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_provider> , <https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_recipient> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_id> .
+<https://w3id.org/lmodel/iso29100/PfPiiItem> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:narrowMatch "dpv:PersonalData"^^xsd:anyURI ;
+	skos:note "DPV's mapping says dpv:PersonalData is narrower than the standard's PII, and this class keeps that direction." ;
+	linkml:annotations _:c14n9 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_linkability> , <https://w3id.org/lmodel/iso29100/pf_pii_categories> , <https://w3id.org/lmodel/iso29100/pf_pseudonymized> , <https://w3id.org/lmodel/iso29100/pf_recognized_by> , <https://w3id.org/lmodel/iso29100/pf_sensitivity> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPiiItem"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPiiItem"^^xsd:anyURI ;
+	linkml:description "A piece or set of information that can be tied to a person, why it counts as PII, how sensitive it is and how it is handled." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n11 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_linkability> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_pii_categories> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_pseudonymized> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_recognized_by> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_sensitivity> , <https://w3id.org/lmodel/iso29100/pf_concerned_principals> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_operations> , <https://w3id.org/lmodel/iso29100/pf_retention> .
+<https://w3id.org/lmodel/iso29100/PfPiiPrincipal> a linkml:ClassDefinition ;
+	skos:exactMatch "dpv:DataSubject"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n35 ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPiiPrincipal"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPiiPrincipal"^^xsd:anyURI ;
+	linkml:description "The person the PII is about, or a group of such people when the organization records them together." ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_usage _:c14n43 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfActor__pf_contact> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> .
+<https://w3id.org/lmodel/iso29100/PfPiiProcessor> a linkml:ClassDefinition ;
+	skos:exactMatch "dpv:DataProcessor"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n39 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_instructing_controllers> , <https://w3id.org/lmodel/iso29100/pf_processing_agreement> , <https://w3id.org/lmodel/iso29100/pf_sub_processors> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPiiProcessor"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPiiProcessor"^^xsd:anyURI ;
+	linkml:description "A party that processes PII for a controller, on that controller's instructions." ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_usage _:c14n56 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfActor__pf_contact> , <https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_instructing_controllers> , <https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_processing_agreement> , <https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_sub_processors> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> .
+<https://w3id.org/lmodel/iso29100/PfPiiRecognition> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n60 ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPiiRecognition"^^xsd:anyURI ;
+	linkml:description "The ways information turns out to be PII, which a record lists so that a reader can see why the item counts." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/direct_identifier> , <https://w3id.org/lmodel/iso29100/distinguishing_trait> , <https://w3id.org/lmodel/iso29100/linked_information> , <https://w3id.org/lmodel/iso29100/metadata> , <https://w3id.org/lmodel/iso29100/pseudonym> , <https://w3id.org/lmodel/iso29100/unsolicited> .
+<https://w3id.org/lmodel/iso29100/PfPolicy> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n8 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_inquiry_contact> , <https://w3id.org/lmodel/iso29100/pf_policy_audience> , <https://w3id.org/lmodel/iso29100/pf_policy_effective_date> , <https://w3id.org/lmodel/iso29100/pf_policy_last_reviewed> , <https://w3id.org/lmodel/iso29100/pf_policy_scope> , <https://w3id.org/lmodel/iso29100/pf_policy_version> , <https://w3id.org/lmodel/iso29100/pf_retention_statement> , <https://w3id.org/lmodel/iso29100/pf_stated_rights> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPolicy"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPolicy"^^xsd:anyURI ;
+	linkml:description "A privacy policy: what the organization commits to about PII, written for its own people or as a notice to the people whose PII it handles." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n19 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_inquiry_contact> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_audience> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_effective_date> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_last_reviewed> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_scope> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_version> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_retention_statement> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_stated_rights> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_principles> , <https://w3id.org/lmodel/iso29100/pf_purposes> .
+<https://w3id.org/lmodel/iso29100/PfPolicyAudience> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n48 ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPolicyAudience"^^xsd:anyURI ;
+	linkml:description "Who a privacy policy is written for." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/internal> , <https://w3id.org/lmodel/iso29100/public_notice> .
+<https://w3id.org/lmodel/iso29100/PfPreference> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "The framework names the idea of a privacy preference. These fields are what an adopter keeps, and go beyond the framework itself." ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_preference_recorded> , <https://w3id.org/lmodel/iso29100/pf_preference_scope> , <https://w3id.org/lmodel/iso29100/pf_refused_operations> , <https://w3id.org/lmodel/iso29100/pf_refused_recipients> , <https://w3id.org/lmodel/iso29100/pf_wants_anonymity> , <https://w3id.org/lmodel/iso29100/pf_wants_pseudonymity> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPreference"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPreference"^^xsd:anyURI ;
+	linkml:description "What one person has said they want done, or not done, with their PII." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n37 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfPreference_pf_principal> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_preference_recorded> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_preference_scope> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_refused_operations> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_refused_recipients> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_wants_anonymity> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_wants_pseudonymity> , <https://w3id.org/lmodel/iso29100/pf_id> .
+<https://w3id.org/lmodel/iso29100/PfPreference_pf_principal> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_principal" ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_principal"^^xsd:anyURI ;
+	linkml:description "The person the record is about." ;
+	linkml:domain <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/pf_principal> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiPrincipal> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principal"^^xsd:anyURI ;
+	linkml:usage_slot_name "pf_principal" .
+<https://w3id.org/lmodel/iso29100/PfPrinciple> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n25 ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPrinciple"^^xsd:anyURI ;
+	linkml:description "The privacy principles by their subclause numbers. A value's title and description are this project's own summary, and the principles' headings and wording are ISO's." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/principle_6_10> , <https://w3id.org/lmodel/iso29100/principle_6_11> , <https://w3id.org/lmodel/iso29100/principle_6_12> , <https://w3id.org/lmodel/iso29100/principle_6_2> , <https://w3id.org/lmodel/iso29100/principle_6_3> , <https://w3id.org/lmodel/iso29100/principle_6_4> , <https://w3id.org/lmodel/iso29100/principle_6_5> , <https://w3id.org/lmodel/iso29100/principle_6_6> , <https://w3id.org/lmodel/iso29100/principle_6_7> , <https://w3id.org/lmodel/iso29100/principle_6_8> , <https://w3id.org/lmodel/iso29100/principle_6_9> .
+<https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n13 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_gaps> , <https://w3id.org/lmodel/iso29100/pf_improvements> , <https://w3id.org/lmodel/iso29100/pf_last_assessed> , <https://w3id.org/lmodel/iso29100/pf_measures> , <https://w3id.org/lmodel/iso29100/pf_principle> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfPrincipleImplementation"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfPrincipleImplementation"^^xsd:anyURI ;
+	linkml:description "How the organization stands against one privacy principle: what it does, what shows it, and what is still missing." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n58 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_gaps> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_improvements> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_last_assessed> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_measures> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_principle> , <https://w3id.org/lmodel/iso29100/pf_evidence> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_related_controls> .
+<https://w3id.org/lmodel/iso29100/PfProcessingActivity> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "The fields are what an adopter keeps. The framework's own subject here is what counts as processing, which PfOperation lists." ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_activity_flows> , <https://w3id.org/lmodel/iso29100/pf_controller> , <https://w3id.org/lmodel/iso29100/pf_crosses_borders> , <https://w3id.org/lmodel/iso29100/pf_processors> , <https://w3id.org/lmodel/iso29100/pf_sensitivities> , <https://w3id.org/lmodel/iso29100/pf_transfer_safeguards> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfProcessingActivity"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfProcessingActivity"^^xsd:anyURI ;
+	linkml:description "Something the organization does with PII: why, on what basis, what it does to which PII, who is responsible, and how long the PII is kept." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n28 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_activity_flows> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_controller> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_crosses_borders> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_processors> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_sensitivities> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_transfer_safeguards> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_legal_bases> , <https://w3id.org/lmodel/iso29100/pf_operations> , <https://w3id.org/lmodel/iso29100/pf_purposes> , <https://w3id.org/lmodel/iso29100/pf_related_controls> , <https://w3id.org/lmodel/iso29100/pf_retention> .
+<https://w3id.org/lmodel/iso29100/PfRecordMixin> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "It is a mixin, not a base class, so that the adapt copy can re-root some record classes on LOKF's Concept and leave the others as they are. lokf adapt replaces pf_id with LOKF's id, and a class that declares id itself must descend from Concept." ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfRecordMixin"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfRecordMixin"^^xsd:anyURI ;
+	linkml:description "What every record of the framework has, so that other records can refer to it: an identifier, a title and a description." ;
+	linkml:mixin true ;
+	linkml:slot_usage _:c14n55 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pf_id> .
+<https://w3id.org/lmodel/iso29100/PfRecordMixin_title> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/name"^^xsd:anyURI ;
+	skos:note "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key." ;
+	skos:prefLabel "title" ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/title"^^xsd:anyURI ;
+	linkml:description "The name the organization gives the record." ;
+	linkml:domain <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/title> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:pattern "^\\s*\\S" ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:required true ;
+	linkml:slot_uri "http://schema.org/name"^^xsd:anyURI ;
+	linkml:usage_slot_name "title" .
+<https://w3id.org/lmodel/iso29100/PfRequirementFactor> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n36 ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfRequirementFactor"^^xsd:anyURI ;
+	linkml:description "Where a requirement to safeguard PII comes from." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/business> , <https://w3id.org/lmodel/iso29100/contract> , <https://w3id.org/lmodel/iso29100/law> , <https://w3id.org/lmodel/iso29100/other> .
+<https://w3id.org/lmodel/iso29100/PfRisk> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:note "The framework names privacy risk as an idea and leaves the scale to the organization. These fields are what an adopter keeps." ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_risk_consequence> , <https://w3id.org/lmodel/iso29100/pf_risk_inherent_level> , <https://w3id.org/lmodel/iso29100/pf_risk_likelihood> , <https://w3id.org/lmodel/iso29100/pf_risk_owner> , <https://w3id.org/lmodel/iso29100/pf_risk_residual_level> , <https://w3id.org/lmodel/iso29100/pf_risk_source> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfRisk"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfRisk"^^xsd:anyURI ;
+	linkml:description "A way that handling PII could harm people: where the risk comes from, how likely and how bad it is, and what is done about it." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n45 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_consequence> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_inherent_level> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_likelihood> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_owner> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_residual_level> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_source> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_concerned_principals> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_related_controls> .
+<https://w3id.org/lmodel/iso29100/PfRiskLevel> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfRiskLevel"^^xsd:anyURI ;
+	linkml:description "A qualitative level of risk to people, offered for an organization that adopts it, since the framework leaves the scale to the organization." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/high> , <https://w3id.org/lmodel/iso29100/low> , <https://w3id.org/lmodel/iso29100/medium> , <https://w3id.org/lmodel/iso29100/very_high> .
+<https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n54 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_applies_to> , <https://w3id.org/lmodel/iso29100/pf_met_by> , <https://w3id.org/lmodel/iso29100/pf_requirement_factor> , <https://w3id.org/lmodel/iso29100/pf_requirement_source> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement"^^xsd:anyURI ;
+	linkml:description "Something the organization must do to protect PII, and where that duty comes from." ;
+	linkml:mixins <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:slot_usage _:c14n38 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_applies_to> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_met_by> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_requirement_factor> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_requirement_source> , <https://w3id.org/lmodel/iso29100/pf_id> .
+<https://w3id.org/lmodel/iso29100/PfSensitivity> skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n1 ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfSensitivity"^^xsd:anyURI ;
+	linkml:description "How much harm the PII could do to the person it is about." ;
+	linkml:permissible_values <https://w3id.org/lmodel/iso29100/ordinary> , <https://w3id.org/lmodel/iso29100/sensitive> .
+<https://w3id.org/lmodel/iso29100/PfThirdParty> a linkml:ClassDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:annotations _:c14n10 ;
+	linkml:attributes <https://w3id.org/lmodel/iso29100/pf_receiving_purpose> , <https://w3id.org/lmodel/iso29100/pf_transfer_basis> ;
+	linkml:class_uri "https://w3id.org/lmodel/iso29100/PfThirdParty"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfThirdParty"^^xsd:anyURI ;
+	linkml:description "A party outside the controller and its processors that receives PII for its own ends, and usually becomes a controller of that PII." ;
+	linkml:is_a <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_usage _:c14n2 ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfActor__pf_contact> , <https://w3id.org/lmodel/iso29100/pfThirdParty__pf_receiving_purpose> , <https://w3id.org/lmodel/iso29100/pfThirdParty__pf_transfer_basis> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> .
+<https://w3id.org/lmodel/iso29100/alter> linkml:description "Change PII that is already held." .
+<https://w3id.org/lmodel/iso29100/anonymize> linkml:description "Change PII so that nobody can trace it back to a person again." .
+<https://w3id.org/lmodel/iso29100/boolean> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+	skos:exactMatch "schema:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Bool" ;
+	linkml:definition_uri "https://w3id.org/linkml/Boolean"^^xsd:anyURI ;
+	linkml:description "A binary (true or false) value" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "bool" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#boolean"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/business> linkml:description "How the business or its application works, or a code of practice it chose to follow." .
+<https://w3id.org/lmodel/iso29100/collect> linkml:description "Get PII from the person it is about, or from another source." .
+<https://w3id.org/lmodel/iso29100/consult> linkml:description "Look at PII without taking a copy away." .
+<https://w3id.org/lmodel/iso29100/contract> linkml:description "An agreement between parties, such as one with a processor, or rules that bind a group of companies." .
+<https://w3id.org/lmodel/iso29100/contractual> linkml:description "A binding agreement, such as one with a processor or across a group of companies." .
+<https://w3id.org/lmodel/iso29100/curie> dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations this MUST be expanded to a URI" , "in non-RDF serializations MAY be serialized as the compact representation" ;
+	linkml:base "Curie" ;
+	linkml:definition_uri "https://w3id.org/linkml/Curie"^^xsd:anyURI ;
+	linkml:description "a compact URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/date> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"." , "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+	skos:exactMatch "schema:Date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDate" ;
+	linkml:definition_uri "https://w3id.org/linkml/Date"^^xsd:anyURI ;
+	linkml:description "a date (year, month and day) in an idealized calendar" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/date_or_datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI ;
+	linkml:description "Either a date or a datetime" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+	skos:exactMatch "schema:DateTime"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDateTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Datetime"^^xsd:anyURI ;
+	linkml:description "The combination of a date and time" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#dateTime"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/decimal> a linkml:TypeDefinition ;
+	skos:broadMatch "schema:Number"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Decimal" ;
+	linkml:definition_uri "https://w3id.org/linkml/Decimal"^^xsd:anyURI ;
+	linkml:description "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#decimal"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/delete> linkml:description "Remove PII so that it can no longer be reached or used." .
+<https://w3id.org/lmodel/iso29100/description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/description"^^xsd:anyURI ;
+	skos:note "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key." ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/description"^^xsd:anyURI ;
+	linkml:description "What the record says or describes, in the organization's own words." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "http://schema.org/description"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/destroy> linkml:description "Remove PII and whatever carried it, beyond recovery." .
+<https://w3id.org/lmodel/iso29100/direct_identifier> linkml:description "It singles out one person by itself, such as a passport number." .
+<https://w3id.org/lmodel/iso29100/disclose> linkml:description "Make PII available to another party." .
+<https://w3id.org/lmodel/iso29100/disseminate> linkml:description "Spread PII widely, such as by publishing it." .
+<https://w3id.org/lmodel/iso29100/distinguishing_trait> linkml:description "It sets one person apart, alone or with other details, such as a rare job title in a small town." .
+<https://w3id.org/lmodel/iso29100/double> a linkml:TypeDefinition ;
+	skos:closeMatch "schema:Float"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Double"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:double specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#double"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/expired> linkml:description "The agreement ran out." .
+<https://w3id.org/lmodel/iso29100/float> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+	skos:exactMatch "schema:Float"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Float"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:float specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#float"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/given> linkml:description "The agreement holds." .
+<https://w3id.org/lmodel/iso29100/high> linkml:description "The harm could be serious." .
+<https://w3id.org/lmodel/iso29100/implied> linkml:description "Something the person does shows agreement, such as placing an order, where the law allows that reading." .
+<https://w3id.org/lmodel/iso29100/in_operation> linkml:description "It is in place and working." .
+<https://w3id.org/lmodel/iso29100/in_progress> linkml:description "It is being put in place." .
+<https://w3id.org/lmodel/iso29100/integer> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+	skos:exactMatch "schema:Integer"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/linkml/Integer"^^xsd:anyURI ;
+	linkml:description "An integer" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/internal> linkml:description "People inside the organization, who act on its commitments." .
+<https://w3id.org/lmodel/iso29100/iso29100> dcterms:license "Apache-2.0" ;
+	dcterms:source "https://www.iso.org/standard/85938.html"^^xsd:anyURI ;
+	dcterms:title "ISO/IEC 29100:2024 privacy framework records" ;
+	pav:version "2024" ;
+	a linkml:SchemaDefinition ;
+	rdfs:seeAlso "https://lmodel.github.io/iso29100"^^xsd:anyURI , "https://www.iso.org/standard/85938.html"^^xsd:anyURI ;
+	skos:note "Every record that other records refer to has a pf_id, and a reference holds that identifier. PfFramework holds each kind of record in a list of its own." , "ISO/IEC 29100 is copyright ISO and IEC, and none of its text is reproduced here. An element's title and description are this project's own words. An element cites what it models by number in the iso29100_clause annotation only where a third party's public outline of the edition gives that number, so terms and lower subclauses go uncited. A reader with a licensed copy looks the text up there." , "The mappings to the Data Privacy Vocabulary (DPV) are the five rows DPV publishes for this edition, in upstream/dpv-iso.ttl, with DPV's direction kept. No other mapping is declared, because no source states one." , "The version is the edition the schema models, and source is ISO's page for it. ISO Open Data's records of the edition and of the two it replaced are copied to src/iso29100/schema/iso-open-data/ on the date the annotations give, and scripts/check_upstream_release.py reports when ISO changes them. The release tags are the schema's own versions." ;
+	sh:declare _:c14n0 , _:c14n21 , _:c14n24 , _:c14n3 , _:c14n47 ;
+	linkml:annotations _:c14n17 , _:c14n23 , _:c14n51 , _:c14n53 , _:c14n59 ;
+	linkml:classes <https://w3id.org/lmodel/iso29100/PfActor> , <https://w3id.org/lmodel/iso29100/PfBreach> , <https://w3id.org/lmodel/iso29100/PfConsent> , <https://w3id.org/lmodel/iso29100/PfControl> , <https://w3id.org/lmodel/iso29100/PfFramework> , <https://w3id.org/lmodel/iso29100/PfImpactAssessment> , <https://w3id.org/lmodel/iso29100/PfPiiController> , <https://w3id.org/lmodel/iso29100/PfPiiFlow> , <https://w3id.org/lmodel/iso29100/PfPiiItem> , <https://w3id.org/lmodel/iso29100/PfPiiPrincipal> , <https://w3id.org/lmodel/iso29100/PfPiiProcessor> , <https://w3id.org/lmodel/iso29100/PfPolicy> , <https://w3id.org/lmodel/iso29100/PfPreference> , <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> , <https://w3id.org/lmodel/iso29100/PfRecordMixin> , <https://w3id.org/lmodel/iso29100/PfRisk> , <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> , <https://w3id.org/lmodel/iso29100/PfThirdParty> ;
+	linkml:default_prefix "iso29100" ;
+	linkml:default_range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:description "A LinkML model of the records an organization keeps when it applies the privacy framework of ISO/IEC 29100:2024 to the information and communication technology (ICT) systems that handle personally identifiable information (PII). The records say who takes part, which PII is involved and how it moves, what must be safeguarded and how, and how the organization stands against each privacy principle." ;
+	linkml:enums <https://w3id.org/lmodel/iso29100/PfConsentMechanism> , <https://w3id.org/lmodel/iso29100/PfConsentState> , <https://w3id.org/lmodel/iso29100/PfControlKind> , <https://w3id.org/lmodel/iso29100/PfImplementationState> , <https://w3id.org/lmodel/iso29100/PfOperation> , <https://w3id.org/lmodel/iso29100/PfPiiRecognition> , <https://w3id.org/lmodel/iso29100/PfPolicyAudience> , <https://w3id.org/lmodel/iso29100/PfPrinciple> , <https://w3id.org/lmodel/iso29100/PfRequirementFactor> , <https://w3id.org/lmodel/iso29100/PfRiskLevel> , <https://w3id.org/lmodel/iso29100/PfSensitivity> ;
+	linkml:id "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:imports "linkml:types"^^xsd:anyURI ;
+	linkml:metamodel_version "1.12.0" ;
+	linkml:slots <https://w3id.org/lmodel/iso29100/PfActor_pf_actor_type> , <https://w3id.org/lmodel/iso29100/PfConsent_pf_principal> , <https://w3id.org/lmodel/iso29100/PfPreference_pf_principal> , <https://w3id.org/lmodel/iso29100/PfRecordMixin_title> , <https://w3id.org/lmodel/iso29100/description> , <https://w3id.org/lmodel/iso29100/pfActor__pf_contact> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_closed> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_discovered> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_occurred> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_severity> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_breached_requirements> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_immediate_actions> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_lessons> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_notification_required> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_notifications> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_principals_affected> , <https://w3id.org/lmodel/iso29100/pfBreach__pf_remediation> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_given> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_mechanism> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_state> , <https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_withdrawn> , <https://w3id.org/lmodel/iso29100/pfControl__pf_answers_requirements> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_detail> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_kind> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_objective> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_responsible> , <https://w3id.org/lmodel/iso29100/pfControl__pf_control_state> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_actors> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_breaches> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_consents> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_controls> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_flows> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_ict_systems> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_impact_assessments> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_organization> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_pii_items> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_policies> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_preferences> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_principle_implementations> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_processing_activities> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_risks> , <https://w3id.org/lmodel/iso29100/pfFramework__pf_safeguarding_requirements> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessed_activities> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_date> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_outcome> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_scope> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessor> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_consultations> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_next_assessment> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_accepted> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_found> , <https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_treated> , <https://w3id.org/lmodel/iso29100/pfPiiController__pf_appointed_processors> , <https://w3id.org/lmodel/iso29100/pfPiiController__pf_controller_policy> , <https://w3id.org/lmodel/iso29100/pfPiiController__pf_privacy_officer> , <https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_decides_afterwards> , <https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_provider> , <https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_recipient> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_linkability> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_pii_categories> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_pseudonymized> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_recognized_by> , <https://w3id.org/lmodel/iso29100/pfPiiItem__pf_sensitivity> , <https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_instructing_controllers> , <https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_processing_agreement> , <https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_sub_processors> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_inquiry_contact> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_audience> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_effective_date> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_last_reviewed> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_scope> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_version> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_retention_statement> , <https://w3id.org/lmodel/iso29100/pfPolicy__pf_stated_rights> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_preference_recorded> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_preference_scope> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_refused_operations> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_refused_recipients> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_wants_anonymity> , <https://w3id.org/lmodel/iso29100/pfPreference__pf_wants_pseudonymity> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_gaps> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_improvements> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_last_assessed> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_measures> , <https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_principle> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_activity_flows> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_controller> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_crosses_borders> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_processors> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_sensitivities> , <https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_transfer_safeguards> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_consequence> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_inherent_level> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_likelihood> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_owner> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_residual_level> , <https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_source> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_applies_to> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_met_by> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_requirement_factor> , <https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_requirement_source> , <https://w3id.org/lmodel/iso29100/pfThirdParty__pf_receiving_purpose> , <https://w3id.org/lmodel/iso29100/pfThirdParty__pf_transfer_basis> , <https://w3id.org/lmodel/iso29100/pf_actor_type> , <https://w3id.org/lmodel/iso29100/pf_concerned_pii> , <https://w3id.org/lmodel/iso29100/pf_concerned_principals> , <https://w3id.org/lmodel/iso29100/pf_evidence> , <https://w3id.org/lmodel/iso29100/pf_id> , <https://w3id.org/lmodel/iso29100/pf_jurisdictions> , <https://w3id.org/lmodel/iso29100/pf_legal_bases> , <https://w3id.org/lmodel/iso29100/pf_operations> , <https://w3id.org/lmodel/iso29100/pf_principal> , <https://w3id.org/lmodel/iso29100/pf_principles> , <https://w3id.org/lmodel/iso29100/pf_purposes> , <https://w3id.org/lmodel/iso29100/pf_related_controls> , <https://w3id.org/lmodel/iso29100/pf_retention> , <https://w3id.org/lmodel/iso29100/title> ;
+	linkml:source_file "iso29100.yaml" ;
+	linkml:source_file_date "2026-11-07T02:04:00"^^xsd:dateTime ;
+	linkml:source_file_size 34943 ;
+	linkml:types <https://w3id.org/lmodel/iso29100/boolean> , <https://w3id.org/lmodel/iso29100/curie> , <https://w3id.org/lmodel/iso29100/date> , <https://w3id.org/lmodel/iso29100/date_or_datetime> , <https://w3id.org/lmodel/iso29100/datetime> , <https://w3id.org/lmodel/iso29100/decimal> , <https://w3id.org/lmodel/iso29100/double> , <https://w3id.org/lmodel/iso29100/float> , <https://w3id.org/lmodel/iso29100/integer> , <https://w3id.org/lmodel/iso29100/jsonpath> , <https://w3id.org/lmodel/iso29100/jsonpointer> , <https://w3id.org/lmodel/iso29100/ncname> , <https://w3id.org/lmodel/iso29100/nodeidentifier> , <https://w3id.org/lmodel/iso29100/objectidentifier> , <https://w3id.org/lmodel/iso29100/pf_duration> , <https://w3id.org/lmodel/iso29100/sparqlpath> , <https://w3id.org/lmodel/iso29100/string> , <https://w3id.org/lmodel/iso29100/time> , <https://w3id.org/lmodel/iso29100/uri> , <https://w3id.org/lmodel/iso29100/uriorcurie> .
+<https://w3id.org/lmodel/iso29100/jsonpath> dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/jsonpointer> dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpointer"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/law> linkml:description "A statute, a regulation, a court's ruling or a collective agreement." .
+<https://w3id.org/lmodel/iso29100/linked_information> linkml:description "It says something about a person who is already known, or can be joined to a record that does." .
+<https://w3id.org/lmodel/iso29100/low> linkml:description "The harm to people would be limited." .
+<https://w3id.org/lmodel/iso29100/medium> linkml:description "The harm would call for planned measures." .
+<https://w3id.org/lmodel/iso29100/metadata> linkml:description "It describes other data, such as a message's sender and time, and so reveals a person." .
+<https://w3id.org/lmodel/iso29100/ncname> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NCName" ;
+	linkml:definition_uri "https://w3id.org/linkml/Ncname"^^xsd:anyURI ;
+	linkml:description "Prefix part of CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/nodeidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NodeIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Nodeidentifier"^^xsd:anyURI ;
+	linkml:description "A URI, CURIE or BNODE that represents a node in a model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#nonLiteral"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/objectidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "Used for inheritance and type checking" ;
+	linkml:base "ElementIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Objectidentifier"^^xsd:anyURI ;
+	linkml:description "A URI or CURIE that represents an object in the model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#iri"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/opt_in> linkml:description "The person acts to agree before the processing starts." .
+<https://w3id.org/lmodel/iso29100/opt_out> linkml:description "The processing goes ahead unless the person acts to refuse it." .
+<https://w3id.org/lmodel/iso29100/ordinary> linkml:description "It needs the usual protection for PII." .
+<https://w3id.org/lmodel/iso29100/organizational> linkml:description "A policy, a procedure, a role or another way of running things." .
+<https://w3id.org/lmodel/iso29100/other> linkml:description "Another source, such as what people have said they prefer, or a technical standard the organization adopted." .
+<https://w3id.org/lmodel/iso29100/pfActor__pf_contact> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_contact" ;
+	linkml:description "How to reach the actor about privacy." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_contact"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_closed> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_breach_closed" ;
+	linkml:description "When the organization closed the matter, which is not before it found out." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_breach_closed"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_discovered> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_breach_discovered" ;
+	linkml:description "When the organization found out, which is not before it happened." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_breach_discovered"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_occurred> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_breach_occurred" ;
+	linkml:description "When the breach happened." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_breach_occurred"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_breach_severity> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_breach_severity" ;
+	linkml:description "How serious the breach is." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRiskLevel> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_breach_severity"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_breached_requirements> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_breached_requirements" ;
+	linkml:description "The safeguarding requirements the breach went against." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_breached_requirements"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_immediate_actions> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_immediate_actions" ;
+	linkml:description "What was done straight away." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_immediate_actions"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_lessons> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_lessons" ;
+	linkml:description "What the organization learned." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_lessons"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_notification_required> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_notification_required" ;
+	linkml:description "Whether a law or contract requires anyone to be told." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_notification_required"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_notifications> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_notifications" ;
+	linkml:description "Who was told, and when." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_notifications"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_principals_affected> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_principals_affected" ;
+	linkml:description "How many people the breach reached, where that is known." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:minimum_value "1"^^linkml:\@id ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/integer> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principals_affected"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfBreach__pf_remediation> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_remediation" ;
+	linkml:description "What was done to put things right." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_remediation"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_given> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_consent_given" ;
+	linkml:description "When the person agreed." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_consent_given"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_mechanism> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_consent_mechanism" ;
+	linkml:description "How the agreement was obtained." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfConsentMechanism> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_consent_mechanism"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_state> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_consent_state" ;
+	linkml:description "Where the agreement stands." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfConsentState> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_consent_state"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfConsent__pf_consent_withdrawn> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_consent_withdrawn" ;
+	linkml:description "When the person took the agreement back." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_consent_withdrawn"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfControl__pf_answers_requirements> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_answers_requirements" ;
+	linkml:description "The safeguarding requirements the control answers to." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_answers_requirements"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfControl__pf_control_detail> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_control_detail" ;
+	linkml:description "How the control is put into effect." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_control_detail"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfControl__pf_control_kind> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_control_kind" ;
+	linkml:description "The form the control takes." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControlKind> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_control_kind"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfControl__pf_control_objective> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_control_objective" ;
+	linkml:description "What the control is meant to achieve." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_control_objective"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfControl__pf_control_responsible> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_control_responsible" ;
+	linkml:description "The actor that answers for the control." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_control_responsible"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfControl__pf_control_state> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_control_state" ;
+	linkml:description "How far the control has been put into effect." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfImplementationState> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_control_state"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_actors> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_actors" ;
+	linkml:description "Those who take part in handling the PII." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_actors"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_breaches> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_breaches" ;
+	linkml:description "The breaches the organization has recorded." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfBreach> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_breaches"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_consents> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_consents" ;
+	linkml:description "The consents the organization holds." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_consents"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_controls> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_controls" ;
+	linkml:description "The organization's controls." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_controls"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_flows> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_flows" ;
+	linkml:description "The ways PII passes between the actors." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_flows"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_ict_systems> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_ict_systems" ;
+	linkml:description "The ICT systems the framework covers." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_ict_systems"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_impact_assessments> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_impact_assessments" ;
+	linkml:description "The organization's privacy impact assessments." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_impact_assessments"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_organization> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_organization" ;
+	linkml:description "The organization that applies the framework." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_organization"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_pii_items> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_pii_items" ;
+	linkml:description "The PII the organization has recognized." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_pii_items"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_policies> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_policies" ;
+	linkml:description "The organization's privacy policies." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_policies"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_preferences> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_preferences" ;
+	linkml:description "What people have said they prefer." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_preferences"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_principle_implementations> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_principle_implementations" ;
+	linkml:description "How the organization stands against each privacy principle." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principle_implementations"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_processing_activities> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_processing_activities" ;
+	linkml:description "What the organization does with PII." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_processing_activities"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_risks> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risks" ;
+	linkml:description "The risks to people that the organization has identified." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risks"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfFramework__pf_safeguarding_requirements> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_safeguarding_requirements" ;
+	linkml:description "What the organization must do to safeguard PII." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_safeguarding_requirements"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessed_activities> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_assessed_activities" ;
+	linkml:description "The processing activities it looks at." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_assessed_activities"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_date> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_assessment_date" ;
+	linkml:description "When the assessment was done." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_assessment_date"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_outcome> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_assessment_outcome" ;
+	linkml:description "What the assessment concluded." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_assessment_outcome"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessment_scope> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_assessment_scope" ;
+	linkml:description "What the assessment looks at." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_assessment_scope"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_assessor> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_assessor" ;
+	linkml:description "Who did the assessment." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_assessor"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_consultations> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_consultations" ;
+	linkml:description "Who was asked, and what they said." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_consultations"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_next_assessment> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_next_assessment" ;
+	linkml:description "When the next assessment is due, which is after this one." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_next_assessment"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_accepted> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risks_accepted" ;
+	linkml:description "Those of the risks found that the organization has accepted as they stand." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risks_accepted"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_found> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risks_found" ;
+	linkml:description "The risks it found." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risks_found"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfImpactAssessment__pf_risks_treated> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risks_treated" ;
+	linkml:description "Those of the risks found that have been treated." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfImpactAssessment> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risks_treated"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiController__pf_appointed_processors> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_appointed_processors" ;
+	linkml:description "The processors that work for the controller." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_appointed_processors"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiController__pf_controller_policy> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_controller_policy" ;
+	linkml:description "The privacy policy the controller works under." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_controller_policy"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiController__pf_privacy_officer> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_privacy_officer" ;
+	linkml:description "The person who advises the controller on privacy, where there is one." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_privacy_officer"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_decides_afterwards> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_decides_afterwards" ;
+	linkml:description "The actor that decides what happens to the PII once it has passed. A processor never holds this position." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_decides_afterwards"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_provider> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_provider" ;
+	linkml:description "The actor the PII comes from." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_provider"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiFlow__pf_recipient> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_recipient" ;
+	linkml:description "The actor the PII goes to." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_recipient"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiItem__pf_linkability> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_linkability" ;
+	linkml:description "How easily the item could be joined with other data to identify someone, in the organization's words." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_linkability"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiItem__pf_pii_categories> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_pii_categories" ;
+	linkml:description "What the item holds, in the organization's own words." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_pii_categories"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiItem__pf_pseudonymized> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_pseudonymized" ;
+	linkml:description "Whether an alias stands in for the item's identifying details." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_pseudonymized"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiItem__pf_recognized_by> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_recognized_by" ;
+	linkml:description "Why the information counts as PII." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiRecognition> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_recognized_by"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiItem__pf_sensitivity> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_sensitivity" ;
+	linkml:description "How sensitive the item is." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSensitivity> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_sensitivity"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_instructing_controllers> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_instructing_controllers" ;
+	linkml:description "The controllers whose instructions the processor follows." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_instructing_controllers"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_processing_agreement> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_processing_agreement" ;
+	linkml:description "The reference of the agreement that binds the processor, where there is one." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_processing_agreement"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPiiProcessor__pf_sub_processors> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_sub_processors" ;
+	linkml:description "The processors this processor has engaged in turn." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_sub_processors"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_inquiry_contact> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_inquiry_contact" ;
+	linkml:description "Where people can send questions about the policy." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_inquiry_contact"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_audience> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_policy_audience" ;
+	linkml:description "Who the policy is written for." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPolicyAudience> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_policy_audience"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_effective_date> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_policy_effective_date" ;
+	linkml:description "When the policy takes effect." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_policy_effective_date"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_last_reviewed> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_policy_last_reviewed" ;
+	linkml:description "When the policy was last reviewed." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_policy_last_reviewed"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_scope> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_policy_scope" ;
+	linkml:description "What the policy covers." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_policy_scope"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_policy_version> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_policy_version" ;
+	linkml:description "The version of the policy." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_policy_version"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_retention_statement> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_retention_statement" ;
+	linkml:description "What the policy says about how long PII is kept." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_retention_statement"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPolicy__pf_stated_rights> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_stated_rights" ;
+	linkml:description "The rights the policy tells people they have." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_stated_rights"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPreference__pf_preference_recorded> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_preference_recorded" ;
+	linkml:description "When the organization recorded the preference." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_preference_recorded"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPreference__pf_preference_scope> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_preference_scope" ;
+	linkml:description "What the preference applies to." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_preference_scope"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPreference__pf_refused_operations> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_refused_operations" ;
+	linkml:description "What the person does not want done to their PII." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfOperation> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_refused_operations"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPreference__pf_refused_recipients> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_refused_recipients" ;
+	linkml:description "Who the person does not want their PII passed to." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_refused_recipients"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPreference__pf_wants_anonymity> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_wants_anonymity" ;
+	linkml:description "Whether the person asks not to be identified at all." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_wants_anonymity"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPreference__pf_wants_pseudonymity> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_wants_pseudonymity" ;
+	linkml:description "Whether the person asks to appear under an alias." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_wants_pseudonymity"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_gaps> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_gaps" ;
+	linkml:description "Where the organization falls short." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_gaps"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_improvements> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_improvements" ;
+	linkml:description "What the organization will do about the gaps." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_improvements"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_last_assessed> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_last_assessed" ;
+	linkml:description "When the organization last checked its standing." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_last_assessed"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_measures> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_measures" ;
+	linkml:description "What the organization does to follow the principle." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_measures"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfPrincipleImplementation__pf_principle> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_principle" ;
+	linkml:description "The principle the record is about." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPrinciple> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principle"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_activity_flows> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_activity_flows" ;
+	linkml:description "The flows of PII the activity involves." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiFlow> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_activity_flows"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_controller> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_controller" ;
+	linkml:description "The controller that answers for the activity." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_controller"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_crosses_borders> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_crosses_borders" ;
+	linkml:description "Whether PII leaves the jurisdiction it was collected in." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_crosses_borders"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_processors> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_processors" ;
+	linkml:description "The processors that do the work." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiProcessor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_processors"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_sensitivities> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_sensitivities" ;
+	linkml:description "The levels of sensitivity among the PII involved." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSensitivity> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_sensitivities"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfProcessingActivity__pf_transfer_safeguards> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_transfer_safeguards" ;
+	linkml:description "What protects the PII when it crosses a border." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_transfer_safeguards"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_consequence> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risk_consequence" ;
+	linkml:description "What the harm to people would be." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risk_consequence"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_inherent_level> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risk_inherent_level" ;
+	linkml:description "The risk's level before controls." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRiskLevel> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risk_inherent_level"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_likelihood> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risk_likelihood" ;
+	linkml:description "How likely the harm is, in the organization's own terms." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risk_likelihood"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_owner> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risk_owner" ;
+	linkml:description "The person who answers for the risk." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risk_owner"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_residual_level> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risk_residual_level" ;
+	linkml:description "The risk's level after controls, which is never above the level before." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRiskLevel> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risk_residual_level"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfRisk__pf_risk_source> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_risk_source" ;
+	linkml:description "Where the risk comes from." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_risk_source"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_applies_to> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_applies_to" ;
+	linkml:description "The actors that must meet it." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_applies_to"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_met_by> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_met_by" ;
+	linkml:description "The controls that meet it." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_met_by"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_requirement_factor> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_requirement_factor" ;
+	linkml:description "Where the requirement comes from." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRequirementFactor> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_requirement_factor"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfSafeguardingRequirement__pf_requirement_source> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_requirement_source" ;
+	linkml:description "The law, contract or other document that states it." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_requirement_source"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfThirdParty__pf_receiving_purpose> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_receiving_purpose" ;
+	linkml:description "What the third party receives the PII for." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfThirdParty> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfThirdParty> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_receiving_purpose"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pfThirdParty__pf_transfer_basis> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:prefLabel "pf_transfer_basis" ;
+	linkml:description "What makes the passing of PII to the third party lawful." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfThirdParty> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfThirdParty> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_transfer_basis"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_activity_flows> a linkml:SlotDefinition ;
+	linkml:description "The flows of PII the activity involves." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiFlow> .
+<https://w3id.org/lmodel/iso29100/pf_actor_type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_actor_type"^^xsd:anyURI ;
+	linkml:description "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty." ;
+	linkml:designates_type true ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_actor_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_actors> a linkml:SlotDefinition ;
+	linkml:description "Those who take part in handling the PII." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> .
+<https://w3id.org/lmodel/iso29100/pf_answers_requirements> a linkml:SlotDefinition ;
+	linkml:description "The safeguarding requirements the control answers to." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> .
+<https://w3id.org/lmodel/iso29100/pf_applies_to> a linkml:SlotDefinition ;
+	linkml:description "The actors that must meet it." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> .
+<https://w3id.org/lmodel/iso29100/pf_appointed_processors> a linkml:SlotDefinition ;
+	linkml:description "The processors that work for the controller." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiProcessor> .
+<https://w3id.org/lmodel/iso29100/pf_assessed_activities> a linkml:SlotDefinition ;
+	linkml:description "The processing activities it looks at." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfProcessingActivity> .
+<https://w3id.org/lmodel/iso29100/pf_assessment_date> a linkml:SlotDefinition ;
+	linkml:description "When the assessment was done." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> .
+<https://w3id.org/lmodel/iso29100/pf_assessment_outcome> a linkml:SlotDefinition ;
+	linkml:description "What the assessment concluded." .
+<https://w3id.org/lmodel/iso29100/pf_assessment_scope> a linkml:SlotDefinition ;
+	linkml:description "What the assessment looks at." .
+<https://w3id.org/lmodel/iso29100/pf_assessor> a linkml:SlotDefinition ;
+	linkml:description "Who did the assessment." .
+<https://w3id.org/lmodel/iso29100/pf_breach_closed> a linkml:SlotDefinition ;
+	linkml:description "When the organization closed the matter, which is not before it found out." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> .
+<https://w3id.org/lmodel/iso29100/pf_breach_discovered> a linkml:SlotDefinition ;
+	linkml:description "When the organization found out, which is not before it happened." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> .
+<https://w3id.org/lmodel/iso29100/pf_breach_occurred> a linkml:SlotDefinition ;
+	linkml:description "When the breach happened." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> .
+<https://w3id.org/lmodel/iso29100/pf_breach_severity> a linkml:SlotDefinition ;
+	linkml:description "How serious the breach is." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRiskLevel> .
+<https://w3id.org/lmodel/iso29100/pf_breached_requirements> a linkml:SlotDefinition ;
+	linkml:description "The safeguarding requirements the breach went against." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> .
+<https://w3id.org/lmodel/iso29100/pf_breaches> a linkml:SlotDefinition ;
+	linkml:description "The breaches the organization has recorded." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfBreach> .
+<https://w3id.org/lmodel/iso29100/pf_concerned_pii> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_concerned_pii"^^xsd:anyURI ;
+	linkml:description "The PII items the record concerns." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfBreach> , <https://w3id.org/lmodel/iso29100/PfConsent> , <https://w3id.org/lmodel/iso29100/PfPiiFlow> , <https://w3id.org/lmodel/iso29100/PfPolicy> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> , <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiItem> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_concerned_pii"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_concerned_principals> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_concerned_principals"^^xsd:anyURI ;
+	linkml:description "The people the PII of the record is about." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> , <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiPrincipal> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_concerned_principals"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_consent_given> a linkml:SlotDefinition ;
+	linkml:description "When the person agreed." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> .
+<https://w3id.org/lmodel/iso29100/pf_consent_mechanism> a linkml:SlotDefinition ;
+	linkml:description "How the agreement was obtained." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfConsentMechanism> .
+<https://w3id.org/lmodel/iso29100/pf_consent_state> a linkml:SlotDefinition ;
+	linkml:description "Where the agreement stands." ;
+	linkml:equals_string "withdrawn" ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfConsentState> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_consent_withdrawn> a linkml:SlotDefinition ;
+	linkml:description "When the person took the agreement back." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/datetime> ;
+	linkml:value_presence "PRESENT" .
+<https://w3id.org/lmodel/iso29100/pf_consents> a linkml:SlotDefinition ;
+	linkml:description "The consents the organization holds." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfConsent> .
+<https://w3id.org/lmodel/iso29100/pf_consultations> a linkml:SlotDefinition ;
+	linkml:description "Who was asked, and what they said." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_contact> a linkml:SlotDefinition ;
+	linkml:description "How to reach the actor about privacy." .
+<https://w3id.org/lmodel/iso29100/pf_control_detail> a linkml:SlotDefinition ;
+	linkml:description "How the control is put into effect." .
+<https://w3id.org/lmodel/iso29100/pf_control_kind> a linkml:SlotDefinition ;
+	linkml:description "The form the control takes." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControlKind> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_control_objective> a linkml:SlotDefinition ;
+	linkml:description "What the control is meant to achieve." .
+<https://w3id.org/lmodel/iso29100/pf_control_responsible> a linkml:SlotDefinition ;
+	linkml:description "The actor that answers for the control." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> .
+<https://w3id.org/lmodel/iso29100/pf_control_state> a linkml:SlotDefinition ;
+	linkml:description "How far the control has been put into effect." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfImplementationState> .
+<https://w3id.org/lmodel/iso29100/pf_controller> a linkml:SlotDefinition ;
+	linkml:description "The controller that answers for the activity." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiController> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_controller_policy> a linkml:SlotDefinition ;
+	linkml:description "The privacy policy the controller works under." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPolicy> .
+<https://w3id.org/lmodel/iso29100/pf_controls> a linkml:SlotDefinition ;
+	linkml:description "The organization's controls." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControl> .
+<https://w3id.org/lmodel/iso29100/pf_crosses_borders> a linkml:SlotDefinition ;
+	linkml:description "Whether PII leaves the jurisdiction it was collected in." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> .
+<https://w3id.org/lmodel/iso29100/pf_decides_afterwards> a linkml:SlotDefinition ;
+	linkml:description "The actor that decides what happens to the PII once it has passed. A processor never holds this position." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> .
+<https://w3id.org/lmodel/iso29100/pf_duration> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/PfDuration"^^xsd:anyURI ;
+	linkml:description "A length of time as ISO 8601 writes it, such as P7Y for seven years or P30D for thirty days." ;
+	linkml:pattern "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$" ;
+	linkml:typeof <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#duration"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_evidence> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_evidence"^^xsd:anyURI ;
+	linkml:description "What shows that the record's claim holds, such as a report or a log." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> , <https://w3id.org/lmodel/iso29100/PfControl> , <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_evidence"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_flows> a linkml:SlotDefinition ;
+	linkml:description "The ways PII passes between the actors." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiFlow> .
+<https://w3id.org/lmodel/iso29100/pf_gaps> a linkml:SlotDefinition ;
+	linkml:description "Where the organization falls short." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_ict_systems> a linkml:SlotDefinition ;
+	linkml:description "The ICT systems the framework covers." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_id> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_id"^^xsd:anyURI ;
+	linkml:description "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:identifier true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:pattern "^\\S+$" ;
+	linkml:range <https://w3id.org/lmodel/iso29100/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_id"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_immediate_actions> a linkml:SlotDefinition ;
+	linkml:description "What was done straight away." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_impact_assessments> a linkml:SlotDefinition ;
+	linkml:description "The organization's privacy impact assessments." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfImpactAssessment> .
+<https://w3id.org/lmodel/iso29100/pf_improvements> a linkml:SlotDefinition ;
+	linkml:description "What the organization will do about the gaps." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_inquiry_contact> a linkml:SlotDefinition ;
+	linkml:description "Where people can send questions about the policy." .
+<https://w3id.org/lmodel/iso29100/pf_instructing_controllers> a linkml:SlotDefinition ;
+	linkml:description "The controllers whose instructions the processor follows." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiController> .
+<https://w3id.org/lmodel/iso29100/pf_jurisdictions> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_jurisdictions"^^xsd:anyURI ;
+	linkml:description "The legal systems that apply to the record, in the organization's terms." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfActor> , <https://w3id.org/lmodel/iso29100/PfFramework> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_jurisdictions"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_last_assessed> a linkml:SlotDefinition ;
+	linkml:description "When the organization last checked its standing." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> .
+<https://w3id.org/lmodel/iso29100/pf_legal_bases> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_legal_bases"^^xsd:anyURI ;
+	linkml:description "What makes the processing lawful, in the terms of the law that applies." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiController> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_legal_bases"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_lessons> a linkml:SlotDefinition ;
+	linkml:description "What the organization learned." .
+<https://w3id.org/lmodel/iso29100/pf_linkability> a linkml:SlotDefinition ;
+	linkml:description "How easily the item could be joined with other data to identify someone, in the organization's words." .
+<https://w3id.org/lmodel/iso29100/pf_measures> a linkml:SlotDefinition ;
+	linkml:description "What the organization does to follow the principle." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_met_by> a linkml:SlotDefinition ;
+	linkml:description "The controls that meet it." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControl> .
+<https://w3id.org/lmodel/iso29100/pf_next_assessment> a linkml:SlotDefinition ;
+	linkml:description "When the next assessment is due, which is after this one." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> .
+<https://w3id.org/lmodel/iso29100/pf_notification_required> a linkml:SlotDefinition ;
+	linkml:description "Whether a law or contract requires anyone to be told." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> .
+<https://w3id.org/lmodel/iso29100/pf_notifications> a linkml:SlotDefinition ;
+	linkml:description "Who was told, and when." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_operations> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_operations"^^xsd:anyURI ;
+	linkml:description "The things done to the PII." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfOperation> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_operations"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_organization> a linkml:SlotDefinition ;
+	linkml:description "The organization that applies the framework." ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_pii_categories> a linkml:SlotDefinition ;
+	linkml:description "What the item holds, in the organization's own words." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_pii_items> a linkml:SlotDefinition ;
+	linkml:description "The PII the organization has recognized." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiItem> .
+<https://w3id.org/lmodel/iso29100/pf_policies> a linkml:SlotDefinition ;
+	linkml:description "The organization's privacy policies." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPolicy> .
+<https://w3id.org/lmodel/iso29100/pf_policy_audience> a linkml:SlotDefinition ;
+	linkml:description "Who the policy is written for." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPolicyAudience> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_policy_effective_date> a linkml:SlotDefinition ;
+	linkml:description "When the policy takes effect." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> .
+<https://w3id.org/lmodel/iso29100/pf_policy_last_reviewed> a linkml:SlotDefinition ;
+	linkml:description "When the policy was last reviewed." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> .
+<https://w3id.org/lmodel/iso29100/pf_policy_scope> a linkml:SlotDefinition ;
+	linkml:description "What the policy covers." .
+<https://w3id.org/lmodel/iso29100/pf_policy_version> a linkml:SlotDefinition ;
+	linkml:description "The version of the policy." .
+<https://w3id.org/lmodel/iso29100/pf_preference_recorded> a linkml:SlotDefinition ;
+	linkml:description "When the organization recorded the preference." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/date> .
+<https://w3id.org/lmodel/iso29100/pf_preference_scope> a linkml:SlotDefinition ;
+	linkml:description "What the preference applies to." .
+<https://w3id.org/lmodel/iso29100/pf_preferences> a linkml:SlotDefinition ;
+	linkml:description "What people have said they prefer." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPreference> .
+<https://w3id.org/lmodel/iso29100/pf_principal> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_principal"^^xsd:anyURI ;
+	linkml:description "The person the record is about." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> , <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfPreference> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiPrincipal> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principal"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_principals_affected> a linkml:SlotDefinition ;
+	linkml:description "How many people the breach reached, where that is known." ;
+	linkml:minimum_value "1"^^linkml:\@id ;
+	linkml:range <https://w3id.org/lmodel/iso29100/integer> .
+<https://w3id.org/lmodel/iso29100/pf_principle> a linkml:SlotDefinition ;
+	linkml:description "The principle the record is about." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPrinciple> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_principle_implementations> a linkml:SlotDefinition ;
+	linkml:description "How the organization stands against each privacy principle." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> .
+<https://w3id.org/lmodel/iso29100/pf_principles> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_principles"^^xsd:anyURI ;
+	linkml:description "The privacy principles the record bears on." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfControl> , <https://w3id.org/lmodel/iso29100/PfPolicy> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPrinciple> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_principles"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_privacy_officer> a linkml:SlotDefinition ;
+	linkml:description "The person who advises the controller on privacy, where there is one." .
+<https://w3id.org/lmodel/iso29100/pf_processing_activities> a linkml:SlotDefinition ;
+	linkml:description "What the organization does with PII." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfProcessingActivity> .
+<https://w3id.org/lmodel/iso29100/pf_processing_agreement> a linkml:SlotDefinition ;
+	linkml:description "The reference of the agreement that binds the processor, where there is one." .
+<https://w3id.org/lmodel/iso29100/pf_processors> a linkml:SlotDefinition ;
+	linkml:description "The processors that do the work." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiProcessor> .
+<https://w3id.org/lmodel/iso29100/pf_provider> a linkml:SlotDefinition ;
+	linkml:description "The actor the PII comes from." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_pseudonymized> a linkml:SlotDefinition ;
+	linkml:description "Whether an alias stands in for the item's identifying details." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> .
+<https://w3id.org/lmodel/iso29100/pf_purposes> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_purposes"^^xsd:anyURI ;
+	linkml:description "The reasons the PII is processed, in the organization's own words." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfConsent> , <https://w3id.org/lmodel/iso29100/PfPiiController> , <https://w3id.org/lmodel/iso29100/PfPolicy> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfConsent> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_purposes"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_receiving_purpose> a linkml:SlotDefinition ;
+	linkml:description "What the third party receives the PII for." .
+<https://w3id.org/lmodel/iso29100/pf_recipient> a linkml:SlotDefinition ;
+	linkml:description "The actor the PII goes to." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfActor> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_recognized_by> a linkml:SlotDefinition ;
+	linkml:description "Why the information counts as PII." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiRecognition> .
+<https://w3id.org/lmodel/iso29100/pf_refused_operations> a linkml:SlotDefinition ;
+	linkml:description "What the person does not want done to their PII." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfOperation> .
+<https://w3id.org/lmodel/iso29100/pf_refused_recipients> a linkml:SlotDefinition ;
+	linkml:description "Who the person does not want their PII passed to." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_related_controls> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_related_controls"^^xsd:anyURI ;
+	linkml:description "The organization's controls that act on the record's subject." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPrincipleImplementation> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> , <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRisk> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfControl> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_related_controls"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_remediation> a linkml:SlotDefinition ;
+	linkml:description "What was done to put things right." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_requirement_factor> a linkml:SlotDefinition ;
+	linkml:description "Where the requirement comes from." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRequirementFactor> ;
+	linkml:required true .
+<https://w3id.org/lmodel/iso29100/pf_requirement_source> a linkml:SlotDefinition ;
+	linkml:description "The law, contract or other document that states it." .
+<https://w3id.org/lmodel/iso29100/pf_retention> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/pf_retention"^^xsd:anyURI ;
+	linkml:description "How long the PII is kept, as an ISO 8601 duration." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfPiiItem> , <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfProcessingActivity> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/pf_duration> ;
+	linkml:slot_uri "https://w3id.org/lmodel/iso29100/pf_retention"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/pf_retention_statement> a linkml:SlotDefinition ;
+	linkml:description "What the policy says about how long PII is kept." .
+<https://w3id.org/lmodel/iso29100/pf_risk_consequence> a linkml:SlotDefinition ;
+	linkml:description "What the harm to people would be." .
+<https://w3id.org/lmodel/iso29100/pf_risk_inherent_level> a linkml:SlotDefinition ;
+	linkml:description "The risk's level before controls." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRiskLevel> .
+<https://w3id.org/lmodel/iso29100/pf_risk_likelihood> a linkml:SlotDefinition ;
+	linkml:description "How likely the harm is, in the organization's own terms." .
+<https://w3id.org/lmodel/iso29100/pf_risk_owner> a linkml:SlotDefinition ;
+	linkml:description "The person who answers for the risk." .
+<https://w3id.org/lmodel/iso29100/pf_risk_residual_level> a linkml:SlotDefinition ;
+	linkml:description "The risk's level after controls, which is never above the level before." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRiskLevel> .
+<https://w3id.org/lmodel/iso29100/pf_risk_source> a linkml:SlotDefinition ;
+	linkml:description "Where the risk comes from." .
+<https://w3id.org/lmodel/iso29100/pf_risks> a linkml:SlotDefinition ;
+	linkml:description "The risks to people that the organization has identified." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> .
+<https://w3id.org/lmodel/iso29100/pf_risks_accepted> a linkml:SlotDefinition ;
+	linkml:description "Those of the risks found that the organization has accepted as they stand." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> .
+<https://w3id.org/lmodel/iso29100/pf_risks_found> a linkml:SlotDefinition ;
+	linkml:description "The risks it found." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> .
+<https://w3id.org/lmodel/iso29100/pf_risks_treated> a linkml:SlotDefinition ;
+	linkml:description "Those of the risks found that have been treated." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfRisk> .
+<https://w3id.org/lmodel/iso29100/pf_safeguarding_requirements> a linkml:SlotDefinition ;
+	linkml:description "What the organization must do to safeguard PII." ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSafeguardingRequirement> .
+<https://w3id.org/lmodel/iso29100/pf_sensitivities> a linkml:SlotDefinition ;
+	linkml:description "The levels of sensitivity among the PII involved." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSensitivity> .
+<https://w3id.org/lmodel/iso29100/pf_sensitivity> a linkml:SlotDefinition ;
+	linkml:description "How sensitive the item is." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfSensitivity> .
+<https://w3id.org/lmodel/iso29100/pf_stated_rights> a linkml:SlotDefinition ;
+	linkml:description "The rights the policy tells people they have." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_sub_processors> a linkml:SlotDefinition ;
+	linkml:description "The processors this processor has engaged in turn." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/iso29100/PfPiiProcessor> .
+<https://w3id.org/lmodel/iso29100/pf_transfer_basis> a linkml:SlotDefinition ;
+	linkml:description "What makes the passing of PII to the third party lawful." .
+<https://w3id.org/lmodel/iso29100/pf_transfer_safeguards> a linkml:SlotDefinition ;
+	linkml:description "What protects the PII when it crosses a border." ;
+	linkml:multivalued true .
+<https://w3id.org/lmodel/iso29100/pf_wants_anonymity> a linkml:SlotDefinition ;
+	linkml:description "Whether the person asks not to be identified at all." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> .
+<https://w3id.org/lmodel/iso29100/pf_wants_pseudonymity> a linkml:SlotDefinition ;
+	linkml:description "Whether the person asks to appear under an alias." ;
+	linkml:range <https://w3id.org/lmodel/iso29100/boolean> .
+<https://w3id.org/lmodel/iso29100/physical> linkml:description "A measure that guards the places and equipment where PII sits." .
+<https://w3id.org/lmodel/iso29100/planned> linkml:description "It is decided on but not started." .
+<https://w3id.org/lmodel/iso29100/principle_6_10> dcterms:title "6.10 Answer for it" ;
+	linkml:annotations _:c14n14 ;
+	linkml:description "The organization writes down its duties, keeps protection in place when PII passes to others, and handles complaints and redress." .
+<https://w3id.org/lmodel/iso29100/principle_6_11> dcterms:title "6.11 Keep it safe" ;
+	linkml:annotations _:c14n7 ;
+	linkml:description "Security measures at every level guard PII against loss and unauthorized reach for as long as it is held." .
+<https://w3id.org/lmodel/iso29100/principle_6_12> dcterms:title "6.12 Show the rules are met" ;
+	linkml:annotations _:c14n42 ;
+	linkml:description "The organization checks, and can prove, that it meets its privacy duties, through audits and regular risk assessment." .
+<https://w3id.org/lmodel/iso29100/principle_6_2> dcterms:title "6.2 People decide" ;
+	linkml:annotations _:c14n30 ;
+	linkml:description "People get a say in whether their PII is processed, can agree or refuse purpose by purpose, and can change their minds later." .
+<https://w3id.org/lmodel/iso29100/principle_6_3> dcterms:title "6.3 Lawful, stated reasons" ;
+	linkml:annotations _:c14n27 ;
+	linkml:description "The law allows each reason for processing, and people are told the reason before their PII is gathered, or at that moment." .
+<https://w3id.org/lmodel/iso29100/principle_6_4> dcterms:title "6.4 Gather within bounds" ;
+	linkml:annotations _:c14n50 ;
+	linkml:description "The organization gathers only the PII that the law allows and its stated reasons need." .
+<https://w3id.org/lmodel/iso29100/principle_6_5> dcterms:title "6.5 A small footprint" ;
+	linkml:annotations _:c14n26 ;
+	linkml:description "Systems and procedures are built to touch as little PII as they can, and as few people as possible can reach it." .
+<https://w3id.org/lmodel/iso29100/principle_6_6> dcterms:title "6.6 Bounded use and keeping" ;
+	linkml:annotations _:c14n6 ;
+	linkml:description "PII is used, shared and kept only as far as the stated reasons go, and is safely disposed of afterwards." .
+<https://w3id.org/lmodel/iso29100/principle_6_7> dcterms:title "6.7 Correct and fit" ;
+	linkml:annotations _:c14n57 ;
+	linkml:description "PII stays right, whole, up to date and suited to its use, and there are ways to check and fix it." .
+<https://w3id.org/lmodel/iso29100/principle_6_8> dcterms:title "6.8 Say what happens" ;
+	linkml:annotations _:c14n20 ;
+	linkml:description "People can easily find out what the organization does with PII, and hear about important changes." .
+<https://w3id.org/lmodel/iso29100/principle_6_9> dcterms:title "6.9 People see their own" ;
+	linkml:annotations _:c14n41 ;
+	linkml:description "People can look at the PII held about them and dispute it, within what the law allows." .
+<https://w3id.org/lmodel/iso29100/privacy_enhancing_technology> linkml:description "A technical measure built to reduce what is collected or revealed about people." .
+<https://w3id.org/lmodel/iso29100/pseudonym> linkml:description "It holds an alias in place of an identifier, and the alias can be traced." .
+<https://w3id.org/lmodel/iso29100/pseudonymize> linkml:description "Swap identifying details for an alias, in a way someone can still trace back." .
+<https://w3id.org/lmodel/iso29100/public_notice> linkml:description "The people whose PII it handles, who read it to learn what happens." .
+<https://w3id.org/lmodel/iso29100/refused> linkml:description "The person said no." .
+<https://w3id.org/lmodel/iso29100/retired> linkml:description "It is no longer in use." .
+<https://w3id.org/lmodel/iso29100/retrieve> linkml:description "Fetch stored PII for use." .
+<https://w3id.org/lmodel/iso29100/sensitive> linkml:description "Its misuse could badly harm the person, or a law sets it apart, such as health data, so it needs stronger protection." .
+<https://w3id.org/lmodel/iso29100/sparqlpath> dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Sparqlpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/store> linkml:description "Hold PII on a lasting medium." .
+<https://w3id.org/lmodel/iso29100/string> a linkml:TypeDefinition ;
+	skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+	skos:exactMatch "schema:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/String"^^xsd:anyURI ;
+	linkml:description "A character string" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/technical> linkml:description "A system, product or service that protects PII." .
+<https://w3id.org/lmodel/iso29100/time> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"." , "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+	skos:exactMatch "schema:Time"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Time"^^xsd:anyURI ;
+	linkml:description "A time object represents a (local) time of day, independent of any particular day" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#time"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/title> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/iso29100"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/name"^^xsd:anyURI ;
+	skos:note "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key." ;
+	linkml:definition_uri "https://w3id.org/lmodel/iso29100/title"^^xsd:anyURI ;
+	linkml:description "The name the organization gives the record." ;
+	linkml:domain_of <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:owner <https://w3id.org/lmodel/iso29100/PfRecordMixin> ;
+	linkml:range <https://w3id.org/lmodel/iso29100/string> ;
+	linkml:slot_uri "http://schema.org/name"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/unsolicited> linkml:description "The organization received it without asking for it." .
+<https://w3id.org/lmodel/iso29100/uri> dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+	a linkml:TypeDefinition ;
+	skos:closeMatch "schema:URL"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+	linkml:base "URI" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uri"^^xsd:anyURI ;
+	linkml:description "a complete URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/uriorcurie> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "URIorCURIE" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uriorcurie"^^xsd:anyURI ;
+	linkml:description "a URI or a CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/iso29100/very_high> linkml:description "The harm could be severe or lasting, and needs treating at once." .
+<https://w3id.org/lmodel/iso29100/withdrawn> linkml:description "The person took back an agreement they had given." .
+_:c14n0 sh:namespace "http://schema.org/"^^xsd:anyURI ;
+	sh:prefix "schema" .
+_:c14n1 skos:example "5.4" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n10 a linkml:Annotation ;
+	skos:example "5.2" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n13 a linkml:Annotation ;
+	skos:example "6.1" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n14 skos:example "6.10" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n16 a linkml:Annotation ;
+	skos:example "5.7" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n17 skos:example "2026-11-05" ;
+	linkml:tag "iso_open_data_date"^^xsd:anyURI .
+_:c14n20 skos:example "6.8" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n21 sh:namespace "https://w3id.org/lmodel/iso29100/"^^xsd:anyURI ;
+	sh:prefix "iso29100" .
+_:c14n22 dcterms:title "a withdrawal date means the consent is withdrawn" ;
+	a linkml:ClassRule ;
+	sh:condition _:c14n40 ;
+	linkml:description "A consent with a withdrawal date has the state withdrawn." ;
+	linkml:postconditions _:c14n31 .
+_:c14n23 skos:example "ISO/IEC 29100:2024" ;
+	linkml:tag "standard"^^xsd:anyURI .
+_:c14n24 sh:namespace "https://w3id.org/linkml/"^^xsd:anyURI ;
+	sh:prefix "linkml" .
+_:c14n25 skos:example "6.1" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n26 skos:example "6.5" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n27 skos:example "6.3" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n3 sh:namespace "http://www.w3.org/2001/XMLSchema#"^^xsd:anyURI ;
+	sh:prefix "xsd" .
+_:c14n30 skos:example "6.2" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n31 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/iso29100/pf_consent_state> .
+_:c14n33 a linkml:Annotation ;
+	skos:example "5.2" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n34 a linkml:Annotation ;
+	skos:example "5.1" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n35 a linkml:Annotation ;
+	skos:example "5.2" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n36 skos:example "5.5" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n39 a linkml:Annotation ;
+	skos:example "5.2" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n40 a linkml:AnonymousClassExpression ;
+	linkml:slot_conditions <https://w3id.org/lmodel/iso29100/pf_consent_withdrawn> .
+_:c14n41 skos:example "6.9" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n42 skos:example "6.12" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n44 a linkml:Annotation ;
+	skos:example "5.3" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n47 sh:namespace "https://w3id.org/dpv#"^^xsd:anyURI ;
+	sh:prefix "dpv" .
+_:c14n48 skos:example "5.6" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n49 skos:example "5.7" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n50 skos:example "6.4" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n51 skos:example "ISO/IEC 29100:2011, ISO/IEC 29100:2011/Amd 1:2018" ;
+	linkml:tag "replaces"^^xsd:anyURI .
+_:c14n52 a linkml:Annotation ;
+	skos:example "5.2" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n53 skos:example "2024-02-16" ;
+	linkml:tag "publication_date"^^xsd:anyURI .
+_:c14n54 a linkml:Annotation ;
+	skos:example "5.5" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n57 skos:example "6.7" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n59 skos:example "2" ;
+	linkml:tag "edition"^^xsd:anyURI .
+_:c14n6 skos:example "6.6" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n60 skos:example "5.4" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n7 skos:example "6.11" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n8 a linkml:Annotation ;
+	skos:example "5.6" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+_:c14n9 a linkml:Annotation ;
+	skos:example "5.4" ;
+	linkml:tag "iso29100_clause"^^xsd:anyURI .
+
