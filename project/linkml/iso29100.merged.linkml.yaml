@@ -1,0 +1,3743 @@
+{
+  "name": "iso29100",
+  "annotations": {
+    "standard": {
+      "tag": "standard",
+      "value": "ISO/IEC 29100:2024"
+    },
+    "edition": {
+      "tag": "edition",
+      "value": "2"
+    },
+    "publication_date": {
+      "tag": "publication_date",
+      "value": "2024-02-16"
+    },
+    "replaces": {
+      "tag": "replaces",
+      "value": "ISO/IEC 29100:2011, ISO/IEC 29100:2011/Amd 1:2018"
+    },
+    "iso_open_data_date": {
+      "tag": "iso_open_data_date",
+      "value": "2026-11-05"
+    }
+  },
+  "description": "A LinkML model of the records an organization keeps when it applies the privacy framework of ISO/IEC 29100:2024 to the information and communication technology (ICT) systems that handle personally identifiable information (PII). The records say who takes part, which PII is involved and how it moves, what must be safeguarded and how, and how the organization stands against each privacy principle.",
+  "title": "ISO/IEC 29100:2024 privacy framework records",
+  "comments": [
+    "The version is the edition the schema models, and source is ISO's page for it. ISO Open Data's records of the edition and of the two it replaced are copied to src/iso29100/schema/iso-open-data/ on the date the annotations give, and scripts/check_upstream_release.py reports when ISO changes them. The release tags are the schema's own versions.",
+    "ISO/IEC 29100 is copyright ISO and IEC, and none of its text is reproduced here. An element's title and description are this project's own words. An element cites what it models by number in the iso29100_clause annotation only where a third party's public outline of the edition gives that number, so terms and lower subclauses go uncited. A reader with a licensed copy looks the text up there.",
+    "Every record that other records refer to has a pf_id, and a reference holds that identifier. PfFramework holds each kind of record in a list of its own.",
+    "The mappings to the Data Privacy Vocabulary (DPV) are the five rows DPV publishes for this edition, in upstream/dpv-iso.ttl, with DPV's direction kept. No other mapping is declared, because no source states one."
+  ],
+  "source": "https://www.iso.org/standard/85938.html",
+  "see_also": [
+    "https://lmodel.github.io/iso29100",
+    "https://www.iso.org/standard/85938.html"
+  ],
+  "id": "https://w3id.org/lmodel/iso29100",
+  "version": "2024",
+  "license": "Apache-2.0",
+  "prefixes": {
+    "linkml": {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    "iso29100": {
+      "prefix_prefix": "iso29100",
+      "prefix_reference": "https://w3id.org/lmodel/iso29100/"
+    },
+    "dpv": {
+      "prefix_prefix": "dpv",
+      "prefix_reference": "https://w3id.org/dpv#"
+    },
+    "schema": {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    "xsd": {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "shex": {
+      "prefix_prefix": "shex",
+      "prefix_reference": "http://www.w3.org/ns/shex#"
+    }
+  },
+  "default_prefix": "iso29100",
+  "default_range": "string",
+  "types": {
+    "pf_duration": {
+      "name": "pf_duration",
+      "description": "A length of time as ISO 8601 writes it, such as P7Y for seven years or P30D for thirty days.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:duration",
+      "pattern": "^P(?=[0-9T])([0-9]+Y)?([0-9]+M)?([0-9]+W)?([0-9]+D)?(T(?=[0-9])([0-9]+H)?([0-9]+M)?([0-9]+S)?)?$"
+    },
+    "string": {
+      "name": "string",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "xsd:string"
+    },
+    "integer": {
+      "name": "integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "xsd:integer"
+    },
+    "boolean": {
+      "name": "boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "xsd:boolean",
+      "repr": "bool"
+    },
+    "float": {
+      "name": "float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:float"
+    },
+    "double": {
+      "name": "double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:double"
+    },
+    "decimal": {
+      "name": "decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "xsd:decimal"
+    },
+    "time": {
+      "name": "time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "xsd:time",
+      "repr": "str"
+    },
+    "date": {
+      "name": "date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "xsd:date",
+      "repr": "str"
+    },
+    "datetime": {
+      "name": "datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "xsd:dateTime",
+      "repr": "str"
+    },
+    "date_or_datetime": {
+      "name": "date_or_datetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "str",
+      "uri": "linkml:DateOrDatetime",
+      "repr": "str"
+    },
+    "uriorcurie": {
+      "name": "uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "URIorCURIE",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "curie": {
+      "name": "curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "Curie",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "uri": {
+      "name": "uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "ncname": {
+      "name": "ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "NCName",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "objectidentifier": {
+      "name": "objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "ElementIdentifier",
+      "uri": "shex:iri",
+      "repr": "str"
+    },
+    "nodeidentifier": {
+      "name": "nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "NodeIdentifier",
+      "uri": "shex:nonLiteral",
+      "repr": "str"
+    },
+    "jsonpointer": {
+      "name": "jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "jsonpath": {
+      "name": "jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "sparqlpath": {
+      "name": "sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    }
+  },
+  "enums": {
+    "PfPrinciple": {
+      "name": "PfPrinciple",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "6.1"
+        }
+      },
+      "description": "The privacy principles by their subclause numbers. A value's title and description are this project's own summary, and the principles' headings and wording are ISO's.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "principle_6_2": {
+          "text": "principle_6_2",
+          "description": "People get a say in whether their PII is processed, can agree or refuse purpose by purpose, and can change their minds later.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.2"
+            }
+          },
+          "title": "6.2 People decide"
+        },
+        "principle_6_3": {
+          "text": "principle_6_3",
+          "description": "The law allows each reason for processing, and people are told the reason before their PII is gathered, or at that moment.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.3"
+            }
+          },
+          "title": "6.3 Lawful, stated reasons"
+        },
+        "principle_6_4": {
+          "text": "principle_6_4",
+          "description": "The organization gathers only the PII that the law allows and its stated reasons need.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.4"
+            }
+          },
+          "title": "6.4 Gather within bounds"
+        },
+        "principle_6_5": {
+          "text": "principle_6_5",
+          "description": "Systems and procedures are built to touch as little PII as they can, and as few people as possible can reach it.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.5"
+            }
+          },
+          "title": "6.5 A small footprint"
+        },
+        "principle_6_6": {
+          "text": "principle_6_6",
+          "description": "PII is used, shared and kept only as far as the stated reasons go, and is safely disposed of afterwards.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.6"
+            }
+          },
+          "title": "6.6 Bounded use and keeping"
+        },
+        "principle_6_7": {
+          "text": "principle_6_7",
+          "description": "PII stays right, whole, up to date and suited to its use, and there are ways to check and fix it.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.7"
+            }
+          },
+          "title": "6.7 Correct and fit"
+        },
+        "principle_6_8": {
+          "text": "principle_6_8",
+          "description": "People can easily find out what the organization does with PII, and hear about important changes.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.8"
+            }
+          },
+          "title": "6.8 Say what happens"
+        },
+        "principle_6_9": {
+          "text": "principle_6_9",
+          "description": "People can look at the PII held about them and dispute it, within what the law allows.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.9"
+            }
+          },
+          "title": "6.9 People see their own"
+        },
+        "principle_6_10": {
+          "text": "principle_6_10",
+          "description": "The organization writes down its duties, keeps protection in place when PII passes to others, and handles complaints and redress.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.10"
+            }
+          },
+          "title": "6.10 Answer for it"
+        },
+        "principle_6_11": {
+          "text": "principle_6_11",
+          "description": "Security measures at every level guard PII against loss and unauthorized reach for as long as it is held.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.11"
+            }
+          },
+          "title": "6.11 Keep it safe"
+        },
+        "principle_6_12": {
+          "text": "principle_6_12",
+          "description": "The organization checks, and can prove, that it meets its privacy duties, through audits and regular risk assessment.",
+          "annotations": {
+            "iso29100_clause": {
+              "tag": "iso29100_clause",
+              "value": "6.12"
+            }
+          },
+          "title": "6.12 Show the rules are met"
+        }
+      }
+    },
+    "PfOperation": {
+      "name": "PfOperation",
+      "description": "The things an organization can do to PII.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "collect": {
+          "text": "collect",
+          "description": "Get PII from the person it is about, or from another source."
+        },
+        "store": {
+          "text": "store",
+          "description": "Hold PII on a lasting medium."
+        },
+        "retrieve": {
+          "text": "retrieve",
+          "description": "Fetch stored PII for use."
+        },
+        "consult": {
+          "text": "consult",
+          "description": "Look at PII without taking a copy away."
+        },
+        "alter": {
+          "text": "alter",
+          "description": "Change PII that is already held."
+        },
+        "pseudonymize": {
+          "text": "pseudonymize",
+          "description": "Swap identifying details for an alias, in a way someone can still trace back."
+        },
+        "anonymize": {
+          "text": "anonymize",
+          "description": "Change PII so that nobody can trace it back to a person again."
+        },
+        "disclose": {
+          "text": "disclose",
+          "description": "Make PII available to another party."
+        },
+        "disseminate": {
+          "text": "disseminate",
+          "description": "Spread PII widely, such as by publishing it."
+        },
+        "delete": {
+          "text": "delete",
+          "description": "Remove PII so that it can no longer be reached or used."
+        },
+        "destroy": {
+          "text": "destroy",
+          "description": "Remove PII and whatever carried it, beyond recovery."
+        }
+      }
+    },
+    "PfPiiRecognition": {
+      "name": "PfPiiRecognition",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.4"
+        }
+      },
+      "description": "The ways information turns out to be PII, which a record lists so that a reader can see why the item counts.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "direct_identifier": {
+          "text": "direct_identifier",
+          "description": "It singles out one person by itself, such as a passport number."
+        },
+        "distinguishing_trait": {
+          "text": "distinguishing_trait",
+          "description": "It sets one person apart, alone or with other details, such as a rare job title in a small town."
+        },
+        "linked_information": {
+          "text": "linked_information",
+          "description": "It says something about a person who is already known, or can be joined to a record that does."
+        },
+        "pseudonym": {
+          "text": "pseudonym",
+          "description": "It holds an alias in place of an identifier, and the alias can be traced."
+        },
+        "metadata": {
+          "text": "metadata",
+          "description": "It describes other data, such as a message's sender and time, and so reveals a person."
+        },
+        "unsolicited": {
+          "text": "unsolicited",
+          "description": "The organization received it without asking for it."
+        }
+      }
+    },
+    "PfSensitivity": {
+      "name": "PfSensitivity",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.4"
+        }
+      },
+      "description": "How much harm the PII could do to the person it is about.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "ordinary": {
+          "text": "ordinary",
+          "description": "It needs the usual protection for PII."
+        },
+        "sensitive": {
+          "text": "sensitive",
+          "description": "Its misuse could badly harm the person, or a law sets it apart, such as health data, so it needs stronger protection."
+        }
+      }
+    },
+    "PfRequirementFactor": {
+      "name": "PfRequirementFactor",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.5"
+        }
+      },
+      "description": "Where a requirement to safeguard PII comes from.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "law": {
+          "text": "law",
+          "description": "A statute, a regulation, a court's ruling or a collective agreement."
+        },
+        "contract": {
+          "text": "contract",
+          "description": "An agreement between parties, such as one with a processor, or rules that bind a group of companies."
+        },
+        "business": {
+          "text": "business",
+          "description": "How the business or its application works, or a code of practice it chose to follow."
+        },
+        "other": {
+          "text": "other",
+          "description": "Another source, such as what people have said they prefer, or a technical standard the organization adopted."
+        }
+      }
+    },
+    "PfPolicyAudience": {
+      "name": "PfPolicyAudience",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.6"
+        }
+      },
+      "description": "Who a privacy policy is written for.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "internal": {
+          "text": "internal",
+          "description": "People inside the organization, who act on its commitments."
+        },
+        "public_notice": {
+          "text": "public_notice",
+          "description": "The people whose PII it handles, who read it to learn what happens."
+        }
+      }
+    },
+    "PfControlKind": {
+      "name": "PfControlKind",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.7"
+        }
+      },
+      "description": "The form a control takes.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "organizational": {
+          "text": "organizational",
+          "description": "A policy, a procedure, a role or another way of running things."
+        },
+        "physical": {
+          "text": "physical",
+          "description": "A measure that guards the places and equipment where PII sits."
+        },
+        "technical": {
+          "text": "technical",
+          "description": "A system, product or service that protects PII."
+        },
+        "privacy_enhancing_technology": {
+          "text": "privacy_enhancing_technology",
+          "description": "A technical measure built to reduce what is collected or revealed about people."
+        },
+        "contractual": {
+          "text": "contractual",
+          "description": "A binding agreement, such as one with a processor or across a group of companies."
+        }
+      }
+    },
+    "PfImplementationState": {
+      "name": "PfImplementationState",
+      "description": "How far a control has been put into effect.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "planned": {
+          "text": "planned",
+          "description": "It is decided on but not started."
+        },
+        "in_progress": {
+          "text": "in_progress",
+          "description": "It is being put in place."
+        },
+        "in_operation": {
+          "text": "in_operation",
+          "description": "It is in place and working."
+        },
+        "retired": {
+          "text": "retired",
+          "description": "It is no longer in use."
+        }
+      }
+    },
+    "PfRiskLevel": {
+      "name": "PfRiskLevel",
+      "description": "A qualitative level of risk to people, offered for an organization that adopts it, since the framework leaves the scale to the organization.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "low": {
+          "text": "low",
+          "description": "The harm to people would be limited."
+        },
+        "medium": {
+          "text": "medium",
+          "description": "The harm would call for planned measures."
+        },
+        "high": {
+          "text": "high",
+          "description": "The harm could be serious."
+        },
+        "very_high": {
+          "text": "very_high",
+          "description": "The harm could be severe or lasting, and needs treating at once."
+        }
+      }
+    },
+    "PfConsentMechanism": {
+      "name": "PfConsentMechanism",
+      "description": "How a person's agreement to processing is obtained.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "opt_in": {
+          "text": "opt_in",
+          "description": "The person acts to agree before the processing starts."
+        },
+        "opt_out": {
+          "text": "opt_out",
+          "description": "The processing goes ahead unless the person acts to refuse it."
+        },
+        "implied": {
+          "text": "implied",
+          "description": "Something the person does shows agreement, such as placing an order, where the law allows that reading."
+        }
+      }
+    },
+    "PfConsentState": {
+      "name": "PfConsentState",
+      "description": "Where a person's agreement stands.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "permissible_values": {
+        "given": {
+          "text": "given",
+          "description": "The agreement holds."
+        },
+        "refused": {
+          "text": "refused",
+          "description": "The person said no."
+        },
+        "withdrawn": {
+          "text": "withdrawn",
+          "description": "The person took back an agreement they had given."
+        },
+        "expired": {
+          "text": "expired",
+          "description": "The agreement ran out."
+        }
+      }
+    }
+  },
+  "slots": {
+    "pf_id": {
+      "name": "pf_id",
+      "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "identifier": true,
+      "domain_of": [
+        "PfRecordMixin"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "pattern": "^\\S+$"
+    },
+    "title": {
+      "name": "title",
+      "description": "The name the organization gives the record.",
+      "comments": [
+        "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "slot_uri": "schema:name",
+      "domain_of": [
+        "PfRecordMixin"
+      ]
+    },
+    "description": {
+      "name": "description",
+      "description": "What the record says or describes, in the organization's own words.",
+      "comments": [
+        "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "slot_uri": "schema:description",
+      "domain_of": [
+        "PfRecordMixin"
+      ]
+    },
+    "pf_actor_type": {
+      "name": "pf_actor_type",
+      "description": "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "designates_type": true,
+      "domain_of": [
+        "PfActor"
+      ],
+      "range": "string"
+    },
+    "pf_jurisdictions": {
+      "name": "pf_jurisdictions",
+      "description": "The legal systems that apply to the record, in the organization's terms.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfFramework",
+        "PfActor"
+      ],
+      "multivalued": true
+    },
+    "pf_purposes": {
+      "name": "pf_purposes",
+      "description": "The reasons the PII is processed, in the organization's own words.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPiiController",
+        "PfProcessingActivity",
+        "PfPolicy",
+        "PfConsent"
+      ],
+      "multivalued": true
+    },
+    "pf_legal_bases": {
+      "name": "pf_legal_bases",
+      "description": "What makes the processing lawful, in the terms of the law that applies.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPiiController",
+        "PfProcessingActivity"
+      ],
+      "multivalued": true
+    },
+    "pf_operations": {
+      "name": "pf_operations",
+      "description": "The things done to the PII.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPiiItem",
+        "PfProcessingActivity"
+      ],
+      "range": "PfOperation",
+      "multivalued": true
+    },
+    "pf_retention": {
+      "name": "pf_retention",
+      "description": "How long the PII is kept, as an ISO 8601 duration.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPiiItem",
+        "PfProcessingActivity"
+      ],
+      "range": "pf_duration"
+    },
+    "pf_principles": {
+      "name": "pf_principles",
+      "description": "The privacy principles the record bears on.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPolicy",
+        "PfControl"
+      ],
+      "range": "PfPrinciple",
+      "multivalued": true
+    },
+    "pf_concerned_pii": {
+      "name": "pf_concerned_pii",
+      "description": "The PII items the record concerns.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPiiFlow",
+        "PfProcessingActivity",
+        "PfPolicy",
+        "PfRisk",
+        "PfBreach",
+        "PfConsent"
+      ],
+      "range": "PfPiiItem",
+      "multivalued": true
+    },
+    "pf_concerned_principals": {
+      "name": "pf_concerned_principals",
+      "description": "The people the PII of the record is about.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfPiiItem",
+        "PfRisk"
+      ],
+      "range": "PfPiiPrincipal",
+      "multivalued": true
+    },
+    "pf_principal": {
+      "name": "pf_principal",
+      "description": "The person the record is about.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfConsent",
+        "PfPreference"
+      ],
+      "range": "PfPiiPrincipal"
+    },
+    "pf_related_controls": {
+      "name": "pf_related_controls",
+      "description": "The organization's controls that act on the record's subject.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfProcessingActivity",
+        "PfPrincipleImplementation",
+        "PfRisk"
+      ],
+      "range": "PfControl",
+      "multivalued": true
+    },
+    "pf_evidence": {
+      "name": "pf_evidence",
+      "description": "What shows that the record's claim holds, such as a report or a log.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "domain_of": [
+        "PfControl",
+        "PfPrincipleImplementation",
+        "PfConsent"
+      ],
+      "multivalued": true
+    }
+  },
+  "classes": {
+    "PfRecordMixin": {
+      "name": "PfRecordMixin",
+      "description": "What every record of the framework has, so that other records can refer to it: an identifier, a title and a description.",
+      "comments": [
+        "It is a mixin, not a base class, so that the adapt copy can re-root some record classes on LOKF's Concept and leave the others as they are. lokf adapt replaces pf_id with LOKF's id, and a class that declares id itself must descend from Concept."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixin": true,
+      "slots": [
+        "pf_id",
+        "title",
+        "description"
+      ],
+      "slot_usage": {
+        "title": {
+          "name": "title",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        }
+      },
+      "attributes": {
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfRecordMixin",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfRecordMixin",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfRecordMixin",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfFramework": {
+      "name": "PfFramework",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.1"
+        }
+      },
+      "description": "One organization's use of the privacy framework: the systems it covers, and every record the organization keeps about them, each kind in a list of its own.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_jurisdictions"
+      ],
+      "attributes": {
+        "pf_organization": {
+          "name": "pf_organization",
+          "description": "The organization that applies the framework.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "pf_ict_systems": {
+          "name": "pf_ict_systems",
+          "description": "The ICT systems the framework covers.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_actors": {
+          "name": "pf_actors",
+          "description": "Those who take part in handling the PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfActor",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_pii_items": {
+          "name": "pf_pii_items",
+          "description": "The PII the organization has recognized.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_flows": {
+          "name": "pf_flows",
+          "description": "The ways PII passes between the actors.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfPiiFlow",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_processing_activities": {
+          "name": "pf_processing_activities",
+          "description": "What the organization does with PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfProcessingActivity",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_safeguarding_requirements": {
+          "name": "pf_safeguarding_requirements",
+          "description": "What the organization must do to safeguard PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfSafeguardingRequirement",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_policies": {
+          "name": "pf_policies",
+          "description": "The organization's privacy policies.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfPolicy",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_controls": {
+          "name": "pf_controls",
+          "description": "The organization's controls.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfControl",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_principle_implementations": {
+          "name": "pf_principle_implementations",
+          "description": "How the organization stands against each privacy principle.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfPrincipleImplementation",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_risks": {
+          "name": "pf_risks",
+          "description": "The risks to people that the organization has identified.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfRisk",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_impact_assessments": {
+          "name": "pf_impact_assessments",
+          "description": "The organization's privacy impact assessments.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfImpactAssessment",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_breaches": {
+          "name": "pf_breaches",
+          "description": "The breaches the organization has recorded.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfBreach",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_consents": {
+          "name": "pf_consents",
+          "description": "The consents the organization holds.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfConsent",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_preferences": {
+          "name": "pf_preferences",
+          "description": "What people have said they prefer.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework"
+          ],
+          "range": "PfPreference",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "pf_jurisdictions": {
+          "name": "pf_jurisdictions",
+          "description": "The legal systems that apply to the record, in the organization's terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfFramework",
+            "PfActor"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfFramework",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      },
+      "tree_root": true
+    },
+    "PfActor": {
+      "name": "PfActor",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.2"
+        }
+      },
+      "description": "Someone who takes part in handling PII, told apart by the part they play. One party can play different parts for different PII, with a record for each.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "abstract": true,
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_actor_type",
+        "pf_jurisdictions"
+      ],
+      "slot_usage": {
+        "pf_actor_type": {
+          "name": "pf_actor_type",
+          "required": true
+        }
+      },
+      "attributes": {
+        "pf_contact": {
+          "name": "pf_contact",
+          "description": "How to reach the actor about privacy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfActor",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string"
+        },
+        "pf_actor_type": {
+          "name": "pf_actor_type",
+          "description": "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "designates_type": true,
+          "owner": "PfActor",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "pf_jurisdictions": {
+          "name": "pf_jurisdictions",
+          "description": "The legal systems that apply to the record, in the organization's terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfActor",
+          "domain_of": [
+            "PfFramework",
+            "PfActor"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfActor",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfActor",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfActor",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPiiPrincipal": {
+      "name": "PfPiiPrincipal",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.2"
+        }
+      },
+      "description": "The person the PII is about, or a group of such people when the organization records them together.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "dpv:DataSubject"
+      ],
+      "is_a": "PfActor",
+      "attributes": {
+        "pf_actor_type": {
+          "name": "pf_actor_type",
+          "description": "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "designates_type": true,
+          "owner": "PfPiiPrincipal",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "pf_jurisdictions": {
+          "name": "pf_jurisdictions",
+          "description": "The legal systems that apply to the record, in the organization's terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiPrincipal",
+          "domain_of": [
+            "PfFramework",
+            "PfActor"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_contact": {
+          "name": "pf_contact",
+          "description": "How to reach the actor about privacy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiPrincipal",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string"
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPiiPrincipal",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPiiPrincipal",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPiiPrincipal",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPiiController": {
+      "name": "PfPiiController",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.2"
+        }
+      },
+      "description": "The party that decides why and how PII is processed, and answers for it even when another party does the work.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "dpv:DataController"
+      ],
+      "is_a": "PfActor",
+      "slots": [
+        "pf_purposes",
+        "pf_legal_bases"
+      ],
+      "attributes": {
+        "pf_appointed_processors": {
+          "name": "pf_appointed_processors",
+          "description": "The processors that work for the controller.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfPiiController"
+          ],
+          "range": "PfPiiProcessor",
+          "multivalued": true
+        },
+        "pf_controller_policy": {
+          "name": "pf_controller_policy",
+          "description": "The privacy policy the controller works under.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfPiiController"
+          ],
+          "range": "PfPolicy"
+        },
+        "pf_privacy_officer": {
+          "name": "pf_privacy_officer",
+          "description": "The person who advises the controller on privacy, where there is one.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfPiiController"
+          ],
+          "range": "string"
+        },
+        "pf_purposes": {
+          "name": "pf_purposes",
+          "description": "The reasons the PII is processed, in the organization's own words.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfPiiController",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_legal_bases": {
+          "name": "pf_legal_bases",
+          "description": "What makes the processing lawful, in the terms of the law that applies.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfPiiController",
+            "PfProcessingActivity"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_actor_type": {
+          "name": "pf_actor_type",
+          "description": "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "designates_type": true,
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "pf_jurisdictions": {
+          "name": "pf_jurisdictions",
+          "description": "The legal systems that apply to the record, in the organization's terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfFramework",
+            "PfActor"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_contact": {
+          "name": "pf_contact",
+          "description": "How to reach the actor about privacy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string"
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPiiController",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPiiProcessor": {
+      "name": "PfPiiProcessor",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.2"
+        }
+      },
+      "description": "A party that processes PII for a controller, on that controller's instructions.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "dpv:DataProcessor"
+      ],
+      "is_a": "PfActor",
+      "attributes": {
+        "pf_instructing_controllers": {
+          "name": "pf_instructing_controllers",
+          "description": "The controllers whose instructions the processor follows.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfPiiProcessor"
+          ],
+          "range": "PfPiiController",
+          "multivalued": true
+        },
+        "pf_processing_agreement": {
+          "name": "pf_processing_agreement",
+          "description": "The reference of the agreement that binds the processor, where there is one.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfPiiProcessor"
+          ],
+          "range": "string"
+        },
+        "pf_sub_processors": {
+          "name": "pf_sub_processors",
+          "description": "The processors this processor has engaged in turn.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfPiiProcessor"
+          ],
+          "range": "PfPiiProcessor",
+          "multivalued": true
+        },
+        "pf_actor_type": {
+          "name": "pf_actor_type",
+          "description": "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "designates_type": true,
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "pf_jurisdictions": {
+          "name": "pf_jurisdictions",
+          "description": "The legal systems that apply to the record, in the organization's terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfFramework",
+            "PfActor"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_contact": {
+          "name": "pf_contact",
+          "description": "How to reach the actor about privacy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string"
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPiiProcessor",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfThirdParty": {
+      "name": "PfThirdParty",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.2"
+        }
+      },
+      "description": "A party outside the controller and its processors that receives PII for its own ends, and usually becomes a controller of that PII.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "is_a": "PfActor",
+      "attributes": {
+        "pf_receiving_purpose": {
+          "name": "pf_receiving_purpose",
+          "description": "What the third party receives the PII for.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfThirdParty"
+          ],
+          "range": "string"
+        },
+        "pf_transfer_basis": {
+          "name": "pf_transfer_basis",
+          "description": "What makes the passing of PII to the third party lawful.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfThirdParty"
+          ],
+          "range": "string"
+        },
+        "pf_actor_type": {
+          "name": "pf_actor_type",
+          "description": "The kind of actor: PfPiiPrincipal, PfPiiController, PfPiiProcessor or PfThirdParty.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "designates_type": true,
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "pf_jurisdictions": {
+          "name": "pf_jurisdictions",
+          "description": "The legal systems that apply to the record, in the organization's terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfFramework",
+            "PfActor"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_contact": {
+          "name": "pf_contact",
+          "description": "How to reach the actor about privacy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfActor"
+          ],
+          "range": "string"
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfThirdParty",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPiiItem": {
+      "name": "PfPiiItem",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.4"
+        }
+      },
+      "description": "A piece or set of information that can be tied to a person, why it counts as PII, how sensitive it is and how it is handled.",
+      "comments": [
+        "DPV's mapping says dpv:PersonalData is narrower than the standard's PII, and this class keeps that direction."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "narrow_mappings": [
+        "dpv:PersonalData"
+      ],
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_concerned_principals",
+        "pf_operations",
+        "pf_retention"
+      ],
+      "attributes": {
+        "pf_pii_categories": {
+          "name": "pf_pii_categories",
+          "description": "What the item holds, in the organization's own words.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_recognized_by": {
+          "name": "pf_recognized_by",
+          "description": "Why the information counts as PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem"
+          ],
+          "range": "PfPiiRecognition",
+          "multivalued": true
+        },
+        "pf_sensitivity": {
+          "name": "pf_sensitivity",
+          "description": "How sensitive the item is.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem"
+          ],
+          "range": "PfSensitivity"
+        },
+        "pf_pseudonymized": {
+          "name": "pf_pseudonymized",
+          "description": "Whether an alias stands in for the item's identifying details.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem"
+          ],
+          "range": "boolean"
+        },
+        "pf_linkability": {
+          "name": "pf_linkability",
+          "description": "How easily the item could be joined with other data to identify someone, in the organization's words.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem"
+          ],
+          "range": "string"
+        },
+        "pf_concerned_principals": {
+          "name": "pf_concerned_principals",
+          "description": "The people the PII of the record is about.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem",
+            "PfRisk"
+          ],
+          "range": "PfPiiPrincipal",
+          "multivalued": true
+        },
+        "pf_operations": {
+          "name": "pf_operations",
+          "description": "The things done to the PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem",
+            "PfProcessingActivity"
+          ],
+          "range": "PfOperation",
+          "multivalued": true
+        },
+        "pf_retention": {
+          "name": "pf_retention",
+          "description": "How long the PII is kept, as an ISO 8601 duration.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfPiiItem",
+            "PfProcessingActivity"
+          ],
+          "range": "pf_duration"
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPiiItem",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPiiFlow": {
+      "name": "PfPiiFlow",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.3"
+        }
+      },
+      "description": "One way PII passes from one actor to another, and who decides what happens to it afterwards.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_concerned_pii"
+      ],
+      "attributes": {
+        "pf_provider": {
+          "name": "pf_provider",
+          "description": "The actor the PII comes from.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfPiiFlow"
+          ],
+          "range": "PfActor",
+          "required": true
+        },
+        "pf_recipient": {
+          "name": "pf_recipient",
+          "description": "The actor the PII goes to.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfPiiFlow"
+          ],
+          "range": "PfActor",
+          "required": true
+        },
+        "pf_decides_afterwards": {
+          "name": "pf_decides_afterwards",
+          "description": "The actor that decides what happens to the PII once it has passed. A processor never holds this position.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfPiiFlow"
+          ],
+          "range": "PfActor"
+        },
+        "pf_concerned_pii": {
+          "name": "pf_concerned_pii",
+          "description": "The PII items the record concerns.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfPiiFlow",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfRisk",
+            "PfBreach",
+            "PfConsent"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPiiFlow",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfProcessingActivity": {
+      "name": "PfProcessingActivity",
+      "description": "Something the organization does with PII: why, on what basis, what it does to which PII, who is responsible, and how long the PII is kept.",
+      "comments": [
+        "The fields are what an adopter keeps. The framework's own subject here is what counts as processing, which PfOperation lists."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_purposes",
+        "pf_legal_bases",
+        "pf_operations",
+        "pf_concerned_pii",
+        "pf_retention",
+        "pf_related_controls"
+      ],
+      "attributes": {
+        "pf_controller": {
+          "name": "pf_controller",
+          "description": "The controller that answers for the activity.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity"
+          ],
+          "range": "PfPiiController",
+          "required": true
+        },
+        "pf_processors": {
+          "name": "pf_processors",
+          "description": "The processors that do the work.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity"
+          ],
+          "range": "PfPiiProcessor",
+          "multivalued": true
+        },
+        "pf_activity_flows": {
+          "name": "pf_activity_flows",
+          "description": "The flows of PII the activity involves.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity"
+          ],
+          "range": "PfPiiFlow",
+          "multivalued": true
+        },
+        "pf_sensitivities": {
+          "name": "pf_sensitivities",
+          "description": "The levels of sensitivity among the PII involved.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity"
+          ],
+          "range": "PfSensitivity",
+          "multivalued": true
+        },
+        "pf_crosses_borders": {
+          "name": "pf_crosses_borders",
+          "description": "Whether PII leaves the jurisdiction it was collected in.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity"
+          ],
+          "range": "boolean"
+        },
+        "pf_transfer_safeguards": {
+          "name": "pf_transfer_safeguards",
+          "description": "What protects the PII when it crosses a border.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_purposes": {
+          "name": "pf_purposes",
+          "description": "The reasons the PII is processed, in the organization's own words.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfPiiController",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_legal_bases": {
+          "name": "pf_legal_bases",
+          "description": "What makes the processing lawful, in the terms of the law that applies.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfPiiController",
+            "PfProcessingActivity"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_operations": {
+          "name": "pf_operations",
+          "description": "The things done to the PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfPiiItem",
+            "PfProcessingActivity"
+          ],
+          "range": "PfOperation",
+          "multivalued": true
+        },
+        "pf_concerned_pii": {
+          "name": "pf_concerned_pii",
+          "description": "The PII items the record concerns.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfPiiFlow",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfRisk",
+            "PfBreach",
+            "PfConsent"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true
+        },
+        "pf_retention": {
+          "name": "pf_retention",
+          "description": "How long the PII is kept, as an ISO 8601 duration.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfPiiItem",
+            "PfProcessingActivity"
+          ],
+          "range": "pf_duration"
+        },
+        "pf_related_controls": {
+          "name": "pf_related_controls",
+          "description": "The organization's controls that act on the record's subject.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfProcessingActivity",
+            "PfPrincipleImplementation",
+            "PfRisk"
+          ],
+          "range": "PfControl",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfProcessingActivity",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfSafeguardingRequirement": {
+      "name": "PfSafeguardingRequirement",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.5"
+        }
+      },
+      "description": "Something the organization must do to protect PII, and where that duty comes from.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "attributes": {
+        "pf_requirement_factor": {
+          "name": "pf_requirement_factor",
+          "description": "Where the requirement comes from.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfSafeguardingRequirement"
+          ],
+          "range": "PfRequirementFactor",
+          "required": true
+        },
+        "pf_requirement_source": {
+          "name": "pf_requirement_source",
+          "description": "The law, contract or other document that states it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfSafeguardingRequirement"
+          ],
+          "range": "string"
+        },
+        "pf_applies_to": {
+          "name": "pf_applies_to",
+          "description": "The actors that must meet it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfSafeguardingRequirement"
+          ],
+          "range": "PfActor",
+          "multivalued": true
+        },
+        "pf_met_by": {
+          "name": "pf_met_by",
+          "description": "The controls that meet it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfSafeguardingRequirement"
+          ],
+          "range": "PfControl",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfSafeguardingRequirement",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPolicy": {
+      "name": "PfPolicy",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.6"
+        }
+      },
+      "description": "A privacy policy: what the organization commits to about PII, written for its own people or as a notice to the people whose PII it handles.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_purposes",
+        "pf_concerned_pii",
+        "pf_principles"
+      ],
+      "attributes": {
+        "pf_policy_audience": {
+          "name": "pf_policy_audience",
+          "description": "Who the policy is written for.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "PfPolicyAudience",
+          "required": true
+        },
+        "pf_policy_version": {
+          "name": "pf_policy_version",
+          "description": "The version of the policy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "string"
+        },
+        "pf_policy_scope": {
+          "name": "pf_policy_scope",
+          "description": "What the policy covers.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "string"
+        },
+        "pf_policy_effective_date": {
+          "name": "pf_policy_effective_date",
+          "description": "When the policy takes effect.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "date"
+        },
+        "pf_policy_last_reviewed": {
+          "name": "pf_policy_last_reviewed",
+          "description": "When the policy was last reviewed.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "date"
+        },
+        "pf_retention_statement": {
+          "name": "pf_retention_statement",
+          "description": "What the policy says about how long PII is kept.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "string"
+        },
+        "pf_stated_rights": {
+          "name": "pf_stated_rights",
+          "description": "The rights the policy tells people they have.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_inquiry_contact": {
+          "name": "pf_inquiry_contact",
+          "description": "Where people can send questions about the policy.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy"
+          ],
+          "range": "string"
+        },
+        "pf_purposes": {
+          "name": "pf_purposes",
+          "description": "The reasons the PII is processed, in the organization's own words.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPiiController",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_concerned_pii": {
+          "name": "pf_concerned_pii",
+          "description": "The PII items the record concerns.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPiiFlow",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfRisk",
+            "PfBreach",
+            "PfConsent"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true
+        },
+        "pf_principles": {
+          "name": "pf_principles",
+          "description": "The privacy principles the record bears on.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfPolicy",
+            "PfControl"
+          ],
+          "range": "PfPrinciple",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPolicy",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfControl": {
+      "name": "PfControl",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "5.7"
+        }
+      },
+      "description": "A measure that treats a privacy risk by making it less likely or less harmful, the principles it serves and how far it has been put into effect.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_principles",
+        "pf_evidence"
+      ],
+      "attributes": {
+        "pf_control_kind": {
+          "name": "pf_control_kind",
+          "description": "The form the control takes.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl"
+          ],
+          "range": "PfControlKind",
+          "required": true
+        },
+        "pf_control_objective": {
+          "name": "pf_control_objective",
+          "description": "What the control is meant to achieve.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl"
+          ],
+          "range": "string"
+        },
+        "pf_control_detail": {
+          "name": "pf_control_detail",
+          "description": "How the control is put into effect.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl"
+          ],
+          "range": "string"
+        },
+        "pf_control_responsible": {
+          "name": "pf_control_responsible",
+          "description": "The actor that answers for the control.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl"
+          ],
+          "range": "PfActor"
+        },
+        "pf_control_state": {
+          "name": "pf_control_state",
+          "description": "How far the control has been put into effect.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl"
+          ],
+          "range": "PfImplementationState"
+        },
+        "pf_answers_requirements": {
+          "name": "pf_answers_requirements",
+          "description": "The safeguarding requirements the control answers to.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl"
+          ],
+          "range": "PfSafeguardingRequirement",
+          "multivalued": true
+        },
+        "pf_principles": {
+          "name": "pf_principles",
+          "description": "The privacy principles the record bears on.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfPolicy",
+            "PfControl"
+          ],
+          "range": "PfPrinciple",
+          "multivalued": true
+        },
+        "pf_evidence": {
+          "name": "pf_evidence",
+          "description": "What shows that the record's claim holds, such as a report or a log.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfControl",
+            "PfPrincipleImplementation",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfControl",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfControl",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfPrincipleImplementation": {
+      "name": "PfPrincipleImplementation",
+      "annotations": {
+        "iso29100_clause": {
+          "tag": "iso29100_clause",
+          "value": "6.1"
+        }
+      },
+      "description": "How the organization stands against one privacy principle: what it does, what shows it, and what is still missing.",
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_related_controls",
+        "pf_evidence"
+      ],
+      "attributes": {
+        "pf_principle": {
+          "name": "pf_principle",
+          "description": "The principle the record is about.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfPrincipleImplementation"
+          ],
+          "range": "PfPrinciple",
+          "required": true
+        },
+        "pf_measures": {
+          "name": "pf_measures",
+          "description": "What the organization does to follow the principle.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfPrincipleImplementation"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_gaps": {
+          "name": "pf_gaps",
+          "description": "Where the organization falls short.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfPrincipleImplementation"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_improvements": {
+          "name": "pf_improvements",
+          "description": "What the organization will do about the gaps.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfPrincipleImplementation"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_last_assessed": {
+          "name": "pf_last_assessed",
+          "description": "When the organization last checked its standing.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfPrincipleImplementation"
+          ],
+          "range": "date"
+        },
+        "pf_related_controls": {
+          "name": "pf_related_controls",
+          "description": "The organization's controls that act on the record's subject.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfProcessingActivity",
+            "PfPrincipleImplementation",
+            "PfRisk"
+          ],
+          "range": "PfControl",
+          "multivalued": true
+        },
+        "pf_evidence": {
+          "name": "pf_evidence",
+          "description": "What shows that the record's claim holds, such as a report or a log.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfControl",
+            "PfPrincipleImplementation",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPrincipleImplementation",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfRisk": {
+      "name": "PfRisk",
+      "description": "A way that handling PII could harm people: where the risk comes from, how likely and how bad it is, and what is done about it.",
+      "comments": [
+        "The framework names privacy risk as an idea and leaves the scale to the organization. These fields are what an adopter keeps."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_concerned_pii",
+        "pf_concerned_principals",
+        "pf_related_controls"
+      ],
+      "attributes": {
+        "pf_risk_source": {
+          "name": "pf_risk_source",
+          "description": "Where the risk comes from.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRisk"
+          ],
+          "range": "string"
+        },
+        "pf_risk_likelihood": {
+          "name": "pf_risk_likelihood",
+          "description": "How likely the harm is, in the organization's own terms.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRisk"
+          ],
+          "range": "string"
+        },
+        "pf_risk_consequence": {
+          "name": "pf_risk_consequence",
+          "description": "What the harm to people would be.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRisk"
+          ],
+          "range": "string"
+        },
+        "pf_risk_inherent_level": {
+          "name": "pf_risk_inherent_level",
+          "description": "The risk's level before controls.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRisk"
+          ],
+          "range": "PfRiskLevel"
+        },
+        "pf_risk_residual_level": {
+          "name": "pf_risk_residual_level",
+          "description": "The risk's level after controls, which is never above the level before.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRisk"
+          ],
+          "range": "PfRiskLevel"
+        },
+        "pf_risk_owner": {
+          "name": "pf_risk_owner",
+          "description": "The person who answers for the risk.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRisk"
+          ],
+          "range": "string"
+        },
+        "pf_concerned_pii": {
+          "name": "pf_concerned_pii",
+          "description": "The PII items the record concerns.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfPiiFlow",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfRisk",
+            "PfBreach",
+            "PfConsent"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true
+        },
+        "pf_concerned_principals": {
+          "name": "pf_concerned_principals",
+          "description": "The people the PII of the record is about.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfPiiItem",
+            "PfRisk"
+          ],
+          "range": "PfPiiPrincipal",
+          "multivalued": true
+        },
+        "pf_related_controls": {
+          "name": "pf_related_controls",
+          "description": "The organization's controls that act on the record's subject.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfProcessingActivity",
+            "PfPrincipleImplementation",
+            "PfRisk"
+          ],
+          "range": "PfControl",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfRisk",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfImpactAssessment": {
+      "name": "PfImpactAssessment",
+      "description": "A review of what a system or activity could do to people's privacy, the risks it found and what became of them.",
+      "comments": [
+        "These fields are what an adopter keeps, and go beyond the framework itself."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "attributes": {
+        "pf_assessment_scope": {
+          "name": "pf_assessment_scope",
+          "description": "What the assessment looks at.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "string"
+        },
+        "pf_assessment_date": {
+          "name": "pf_assessment_date",
+          "description": "When the assessment was done.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "date"
+        },
+        "pf_assessor": {
+          "name": "pf_assessor",
+          "description": "Who did the assessment.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "string"
+        },
+        "pf_assessed_activities": {
+          "name": "pf_assessed_activities",
+          "description": "The processing activities it looks at.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "PfProcessingActivity",
+          "multivalued": true
+        },
+        "pf_risks_found": {
+          "name": "pf_risks_found",
+          "description": "The risks it found.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "PfRisk",
+          "multivalued": true
+        },
+        "pf_risks_treated": {
+          "name": "pf_risks_treated",
+          "description": "Those of the risks found that have been treated.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "PfRisk",
+          "multivalued": true
+        },
+        "pf_risks_accepted": {
+          "name": "pf_risks_accepted",
+          "description": "Those of the risks found that the organization has accepted as they stand.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "PfRisk",
+          "multivalued": true
+        },
+        "pf_assessment_outcome": {
+          "name": "pf_assessment_outcome",
+          "description": "What the assessment concluded.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "string"
+        },
+        "pf_consultations": {
+          "name": "pf_consultations",
+          "description": "Who was asked, and what they said.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_next_assessment": {
+          "name": "pf_next_assessment",
+          "description": "When the next assessment is due, which is after this one.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfImpactAssessment"
+          ],
+          "range": "date"
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfImpactAssessment",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfBreach": {
+      "name": "PfBreach",
+      "description": "A time when PII was handled against a safeguarding requirement: what happened, who was told and what was done.",
+      "comments": [
+        "The framework names the idea of a breach. These fields are what an adopter keeps, and go beyond the framework itself."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_concerned_pii"
+      ],
+      "attributes": {
+        "pf_breach_occurred": {
+          "name": "pf_breach_occurred",
+          "description": "When the breach happened.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "datetime"
+        },
+        "pf_breach_discovered": {
+          "name": "pf_breach_discovered",
+          "description": "When the organization found out, which is not before it happened.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "datetime"
+        },
+        "pf_breach_closed": {
+          "name": "pf_breach_closed",
+          "description": "When the organization closed the matter, which is not before it found out.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "datetime"
+        },
+        "pf_principals_affected": {
+          "name": "pf_principals_affected",
+          "description": "How many people the breach reached, where that is known.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "integer",
+          "minimum_value": 1
+        },
+        "pf_breached_requirements": {
+          "name": "pf_breached_requirements",
+          "description": "The safeguarding requirements the breach went against.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "PfSafeguardingRequirement",
+          "multivalued": true
+        },
+        "pf_breach_severity": {
+          "name": "pf_breach_severity",
+          "description": "How serious the breach is.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "PfRiskLevel"
+        },
+        "pf_immediate_actions": {
+          "name": "pf_immediate_actions",
+          "description": "What was done straight away.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_notification_required": {
+          "name": "pf_notification_required",
+          "description": "Whether a law or contract requires anyone to be told.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "boolean"
+        },
+        "pf_notifications": {
+          "name": "pf_notifications",
+          "description": "Who was told, and when.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_remediation": {
+          "name": "pf_remediation",
+          "description": "What was done to put things right.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_lessons": {
+          "name": "pf_lessons",
+          "description": "What the organization learned.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfBreach"
+          ],
+          "range": "string"
+        },
+        "pf_concerned_pii": {
+          "name": "pf_concerned_pii",
+          "description": "The PII items the record concerns.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfPiiFlow",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfRisk",
+            "PfBreach",
+            "PfConsent"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfBreach",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    },
+    "PfConsent": {
+      "name": "PfConsent",
+      "description": "One person's agreement to the processing of their PII for stated purposes, and where it stands.",
+      "comments": [
+        "The framework defines consent and its principle, and DPV maps that term to dpv:InformedConsent. The fields are what an adopter keeps, and go beyond the framework itself."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "exact_mappings": [
+        "dpv:InformedConsent"
+      ],
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_purposes",
+        "pf_concerned_pii",
+        "pf_evidence",
+        "pf_principal"
+      ],
+      "slot_usage": {
+        "pf_principal": {
+          "name": "pf_principal",
+          "required": true
+        }
+      },
+      "attributes": {
+        "pf_consent_mechanism": {
+          "name": "pf_consent_mechanism",
+          "description": "How the agreement was obtained.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfConsent"
+          ],
+          "range": "PfConsentMechanism"
+        },
+        "pf_consent_given": {
+          "name": "pf_consent_given",
+          "description": "When the person agreed.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfConsent"
+          ],
+          "range": "datetime"
+        },
+        "pf_consent_state": {
+          "name": "pf_consent_state",
+          "description": "Where the agreement stands.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfConsent"
+          ],
+          "range": "PfConsentState",
+          "required": true
+        },
+        "pf_consent_withdrawn": {
+          "name": "pf_consent_withdrawn",
+          "description": "When the person took the agreement back.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfConsent"
+          ],
+          "range": "datetime"
+        },
+        "pf_purposes": {
+          "name": "pf_purposes",
+          "description": "The reasons the PII is processed, in the organization's own words.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfPiiController",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_concerned_pii": {
+          "name": "pf_concerned_pii",
+          "description": "The PII items the record concerns.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfPiiFlow",
+            "PfProcessingActivity",
+            "PfPolicy",
+            "PfRisk",
+            "PfBreach",
+            "PfConsent"
+          ],
+          "range": "PfPiiItem",
+          "multivalued": true
+        },
+        "pf_evidence": {
+          "name": "pf_evidence",
+          "description": "What shows that the record's claim holds, such as a report or a log.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfControl",
+            "PfPrincipleImplementation",
+            "PfConsent"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_principal": {
+          "name": "pf_principal",
+          "description": "The person the record is about.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfConsent",
+            "PfPreference"
+          ],
+          "range": "PfPiiPrincipal",
+          "required": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfConsent",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      },
+      "rules": [
+        {
+          "preconditions": {
+            "slot_conditions": {
+              "pf_consent_withdrawn": {
+                "name": "pf_consent_withdrawn",
+                "value_presence": "PRESENT"
+              }
+            }
+          },
+          "postconditions": {
+            "slot_conditions": {
+              "pf_consent_state": {
+                "name": "pf_consent_state",
+                "equals_string": "withdrawn"
+              }
+            }
+          },
+          "description": "A consent with a withdrawal date has the state withdrawn.",
+          "title": "a withdrawal date means the consent is withdrawn"
+        }
+      ]
+    },
+    "PfPreference": {
+      "name": "PfPreference",
+      "description": "What one person has said they want done, or not done, with their PII.",
+      "comments": [
+        "The framework names the idea of a privacy preference. These fields are what an adopter keeps, and go beyond the framework itself."
+      ],
+      "from_schema": "https://w3id.org/lmodel/iso29100",
+      "mixins": [
+        "PfRecordMixin"
+      ],
+      "slots": [
+        "pf_principal"
+      ],
+      "slot_usage": {
+        "pf_principal": {
+          "name": "pf_principal",
+          "required": true
+        }
+      },
+      "attributes": {
+        "pf_preference_scope": {
+          "name": "pf_preference_scope",
+          "description": "What the preference applies to.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfPreference"
+          ],
+          "range": "string"
+        },
+        "pf_wants_anonymity": {
+          "name": "pf_wants_anonymity",
+          "description": "Whether the person asks not to be identified at all.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfPreference"
+          ],
+          "range": "boolean"
+        },
+        "pf_wants_pseudonymity": {
+          "name": "pf_wants_pseudonymity",
+          "description": "Whether the person asks to appear under an alias.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfPreference"
+          ],
+          "range": "boolean"
+        },
+        "pf_refused_operations": {
+          "name": "pf_refused_operations",
+          "description": "What the person does not want done to their PII.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfPreference"
+          ],
+          "range": "PfOperation",
+          "multivalued": true
+        },
+        "pf_refused_recipients": {
+          "name": "pf_refused_recipients",
+          "description": "Who the person does not want their PII passed to.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfPreference"
+          ],
+          "range": "string",
+          "multivalued": true
+        },
+        "pf_preference_recorded": {
+          "name": "pf_preference_recorded",
+          "description": "When the organization recorded the preference.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfPreference"
+          ],
+          "range": "date"
+        },
+        "pf_principal": {
+          "name": "pf_principal",
+          "description": "The person the record is about.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfConsent",
+            "PfPreference"
+          ],
+          "range": "PfPiiPrincipal",
+          "required": true
+        },
+        "pf_id": {
+          "name": "pf_id",
+          "description": "The record's identifier, unique among the records of the framework, such as a URI or a CURIE. Other records refer to the record by it.",
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "identifier": true,
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "uriorcurie",
+          "required": true,
+          "pattern": "^\\S+$"
+        },
+        "title": {
+          "name": "title",
+          "description": "The name the organization gives the record.",
+          "comments": [
+            "It means what LOKF's title means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:name",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the record says or describes, in the organization's own words.",
+          "comments": [
+            "It means what LOKF's description means and carries the same IRI, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/iso29100",
+          "slot_uri": "schema:description",
+          "owner": "PfPreference",
+          "domain_of": [
+            "PfRecordMixin"
+          ],
+          "range": "string"
+        }
+      }
+    }
+  },
+  "metamodel_version": "1.12.0",
+  "source_file": "src/iso29100/schema/iso29100.yaml",
+  "@type": "SchemaDefinition"
+}
