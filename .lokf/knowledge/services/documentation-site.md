@@ -3,7 +3,7 @@ type: Service
 id: https://w3id.org/lmodel/iso29100/knowledge/services/documentation-site
 genre: reference
 title: Documentation site
-description: The knowledge website in `website/`, an Astro Starlight site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/iso29100`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
+description: The knowledge website in `website/`, a Hugo site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/iso29100`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
 resource: website
 dependsOn:
   - https://w3id.org/lmodel/iso29100/knowledge/datasets/generated-artefacts
@@ -12,20 +12,20 @@ references:
 sources:
   - id: website-readme.md
     resource: website/README.md
-  - id: site.config.mjs
-    resource: website/site.config.mjs
-    title: REPO, SITE, BASE and REDIRECTS
+  - id: site.toml
+    resource: website/site.toml
+    title: the site's address, title and redirects
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T14:12:24Z"
+  at: "2026-11-15T03:07:32Z"
 status: draft
 ---
 
 # Documentation site
 
-`website/` holds an Astro Starlight site with a page per concept, a health page, a graph, the schema's pages and the docs. Every page comes from a file the repository already holds.[^website-readme.md]
+`website/` holds a Hugo site with a page per concept, a health page, a graph, the schema's pages and the docs. Every page comes from a file the repository already holds.[^website-readme.md]
 
-`REDIRECTS` keeps the retired mkdocs site's addresses, each redirected to a page of the site.[^site.config.mjs]
+`website/site.toml` sends old addresses on to pages of the site. It sends `about` to the page built from `docs/about.md`, each retired `elements/` page to its successor's page, such as `elements/PrivacyRisk` to the page of `PfRisk`, and each address under `schema/` to the schema's page of the same name.[^site.toml]
 
 [^website-readme.md]: website/README.md
-[^site.config.mjs]: website/site.config.mjs, REPO, SITE, BASE and REDIRECTS
+[^site.toml]: website/site.toml, the site's address, title and redirects

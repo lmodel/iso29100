@@ -13,7 +13,7 @@ authors = [
 license = "Apache-2.0"
 license-files = ["LICENSE", "NOTICE"]
 readme = "README.md"
-requires-python = ">=3.10"
+requires-python = ">=3.11"
 dynamic = ["version"]
 
 dependencies = [
@@ -51,7 +51,7 @@ exclude = [
     "src/iso29100/_version.py",
 ]
 # Set oldest supported Python version
-target-version = "py310"
+target-version = "py311"
 
 # Ref.: https://github.com/codespell-project/codespell
 [tool.codespell]
@@ -70,11 +70,11 @@ skip = [
   "upstream/*",
   "tests/neighbours/*",
   ".lokf/scripts/*",
-  "website/package-lock.json",
+  "website/uv.lock",
 ]
 
 # Reminder: words have to be lowercased for the ignore-words-list.
-ignore-words-list = "linke,thirdparty"
+ignore-words-list = "linke,thirdparty,intoto"
 quiet-level = 3
 
 # Ref.: https://github.com/crate-ci/typos (spell checker)
@@ -93,5 +93,5 @@ extend-exclude = [
   "upstream/*",
   "tests/neighbours/*",
   ".lokf/scripts/*",
-  "website/package-lock.json",
+  "website/uv.lock",
 ]
