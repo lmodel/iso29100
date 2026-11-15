@@ -17,7 +17,7 @@ sources:
     title: the site's address, title and redirects
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T02:40:53Z"
+  at: "2026-11-15T03:07:32Z"
 status: draft
 ---
 
@@ -25,7 +25,7 @@ status: draft
 
 `website/` holds a Hugo site with a page per concept, a health page, a graph, the schema's pages and the docs. Every page comes from a file the repository already holds.[^website-readme.md]
 
-`REDIRECTS` keeps the retired mkdocs site's addresses, each redirected to a page of the site.[^site.toml]
+`website/site.toml` sends old addresses on to pages of the site. It sends `about` to the page built from `docs/about.md`, each retired `elements/` page to its successor's page, such as `elements/PrivacyRisk` to the page of `PfRisk`, and each address under `schema/` to the schema's page of the same name.[^site.toml]
 
 [^website-readme.md]: website/README.md
 [^site.toml]: website/site.toml, the site's address, title and redirects
